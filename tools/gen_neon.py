@@ -36,88 +36,135 @@ def noisy(c, a=5):
 
 
 # ------------------------------------------------------------------ car models
-# cuboid: (x, y, z, w, h, d, role, dilation); part pivots in root space (ground y=0, up = -y, front = -z)
+# cuboid: (x, y, z, w, h, d, role, dilation); pivots in root space: ground y=0, up = -y, front = -z, +x = car's LEFT.
+# The cabin is open (frame + tinted glass) so the interior shows: dashboard with gauges, steering wheel, seats.
 def wheel(r=6, w=4):
     return [(-w // 2, -r, -4, w, 2 * r, 8, "tire", 0), (-w // 2, -4, -r, w, 8, 2 * r, "tire", 0),
             (-w // 2, -4, -4, w, 8, 8, "hub", 0.2)]
 
 
-def sedan_body(police=False):
-    body = [
-        (-14, -11, -28, 28, 7, 56, "paint", 0),       # lower body
-        (-12, -20, -10, 24, 9, 26, "cabin", 0),       # cabin with windows
-        (-14, -6, -29, 28, 2, 1, "trim", 0),          # front bumper
-        (-14, -6, 28, 28, 2, 1, "trim", 0),           # rear bumper
-        (-12, -10, -29, 5, 2, 1, "headlight", 0),
-        (7, -10, -29, 5, 2, 1, "headlight", 0),
-        (-12, -10, 28, 5, 2, 1, "taillight", 0),
-        (7, -10, 28, 5, 2, 1, "taillight", 0),
-        (-4, -9, -29, 8, 2, 1, "grille", 0),
-        (-15, -14, -9, 1, 2, 2, "trim", 0),           # mirrors
-        (14, -14, -9, 1, 2, 2, "trim", 0),
+def steering_wheel():
+    return [(-3, -3, 0, 6, 1, 1, "wheel", 0), (-3, 2, 0, 6, 1, 1, "wheel", 0),
+            (-3, -2, 0, 1, 4, 1, "wheel", 0), (2, -2, 0, 1, 4, 1, "wheel", 0),
+            (-2, 0, 0, 4, 1, 1, "wheel", 0), (-1, -1, -1, 2, 2, 1, "hub_dark", 0)]
+
+
+def cabin(belt, roof, z_ws, z_rw):
+    """Open cabin between beltline `belt` and roof height `roof` (negative y), windshield at z_ws, rear window at z_rw."""
+    h = belt - roof
+    mid = (z_ws + z_rw) // 2
+    return [
+        (-14, roof - 1, z_ws, 28, 1, z_rw - z_ws + 1, "paint", 0),             # roof
+        (-14, roof, z_ws, 1, h, 2, "paint", 0), (13, roof, z_ws, 1, h, 2, "paint", 0),    # A pillars
+        (-14, roof, mid, 1, h, 2, "paint", 0), (13, roof, mid, 1, h, 2, "paint", 0),      # B pillars
+        (-14, roof, z_rw - 1, 1, h, 2, "paint", 0), (13, roof, z_rw - 1, 1, h, 2, "paint", 0),  # C pillars
+        (-13, roof, z_ws, 26, h, 1, "glass", 0),                                # windshield
+        (-13, roof, z_rw, 26, h, 1, "glass", 0),                                # rear window
+        (-14, roof, z_ws + 2, 1, h, mid - z_ws - 2, "glass", 0),                # side windows
+        (13, roof, z_ws + 2, 1, h, mid - z_ws - 2, "glass", 0),
+        (-14, roof, mid + 2, 1, h, z_rw - 1 - mid - 2, "glass", 0),
+        (13, roof, mid + 2, 1, h, z_rw - 1 - mid - 2, "glass", 0),
     ]
+
+
+def interior(belt, roof, z_dash, z_seat, z_rear):
+    seat_top = roof + 3                      # seat backs stop below the roof, headrests just under it
+    sh = belt - seat_top
+    return [
+        (-12, belt - 3, z_dash, 24, 3, 4, "dash", 0),        # dashboard (gauges face the driver)
+        (-1, belt - 2, z_dash + 4, 2, 2, 7, "console", 0),   # centre console
+        (0, belt - 4, z_dash + 7, 1, 2, 1, "chrome", 0),     # gear stick
+        (2, seat_top, z_seat, 9, sh, 2, "seat", 0),          # driver seat (left side)
+        (4, roof + 1, z_seat, 5, 2, 2, "seat", 0),           # headrest
+        (-11, seat_top, z_seat, 9, sh, 2, "seat", 0),        # passenger seat
+        (-9, roof + 1, z_seat, 5, 2, 2, "seat", 0),
+        (-12, seat_top + 1, z_rear, 24, sh - 1, 2, "seat", 0),  # rear bench
+    ]
+
+
+def sedan_parts(police=False):
+    belt, roof = -14, -22
+    body = [
+        (-15, -12, -30, 30, 8, 60, "paint", 0),          # main body
+        (-14, belt, -30, 28, 2, 19, "paint", 0),          # hood
+        (-14, belt, 16, 28, 2, 14, "paint", 0),           # trunk lid
+        (-14, -5, -10, 28, 1, 20, "trim", 0),             # side skirts
+        (-15, -6, -31, 30, 3, 1, "trim", 0),              # front bumper
+        (-15, -6, 30, 30, 3, 1, "trim", 0),               # rear bumper
+        (-13, -11, -31, 6, 2, 1, "headlight", 0), (7, -11, -31, 6, 2, 1, "headlight", 0),
+        (-6, -11, -31, 12, 3, 1, "grille", 0),
+        (-3, -8, -32, 6, 2, 1, "plate", 0),
+        (-14, -11, 30, 6, 2, 1, "taillight", 0), (8, -11, 30, 6, 2, 1, "taillight", 0),
+        (-3, -9, 31, 6, 2, 1, "plate", 0),
+        (-11, -5, 30, 2, 1, 2, "chrome", 0),              # exhaust
+        (15, belt - 2, -10, 2, 2, 2, "trim", 0), (-17, belt - 2, -10, 2, 2, 2, "trim", 0),  # mirrors
+    ] + cabin(belt, roof, -11, 15) + interior(belt, roof, -10, 1, 11)
     if police:
-        body += [(-8, -22, -2, 8, 2, 4, "light_red", 0), (0, -22, -2, 8, 2, 4, "light_blue", 0)]
+        body += [(-10, -12, -33, 20, 7, 2, "trim", 0),    # push bar
+                 (-9, roof - 3, 1, 9, 2, 4, "light_red", 0), (0, roof - 3, 1, 9, 2, 4, "light_blue", 0)]
     return body
 
 
-SPORTS_BODY = [
-    (-14, -10, -30, 28, 6, 60, "paint", 0),
-    (-11, -16, -6, 22, 6, 20, "cabin", 0),
-    (-14, -5, -31, 28, 2, 1, "trim", 0),
-    (-14, -5, 30, 28, 2, 1, "trim", 0),
-    (-12, -9, -31, 6, 2, 1, "headlight", 0),
-    (6, -9, -31, 6, 2, 1, "headlight", 0),
-    (-13, -9, 30, 7, 2, 1, "taillight", 0),
-    (6, -9, 30, 7, 2, 1, "taillight", 0),
-    (-10, -13, 26, 2, 3, 2, "trim", 0),           # spoiler posts
-    (8, -13, 26, 2, 3, 2, "trim", 0),
-    (-14, -14, 25, 28, 1, 5, "paint", 0),         # spoiler wing
-    (-15, -13, -5, 1, 2, 2, "trim", 0),
-    (14, -13, -5, 1, 2, 2, "trim", 0),
-]
+def sports_parts():
+    belt, roof = -12, -19
+    return [
+        (-15, -10, -31, 30, 6, 62, "paint", 0),
+        (-14, belt, -31, 28, 2, 23, "paint", 0),          # long hood
+        (-14, belt, 18, 28, 2, 13, "paint", 0),
+        (-15, -5, -12, 30, 1, 26, "trim", 0),
+        (-15, -6, -32, 30, 2, 1, "trim", 0),
+        (-15, -6, 31, 30, 2, 1, "trim", 0),
+        (-13, -9, -32, 7, 2, 1, "headlight", 0), (6, -9, -32, 7, 2, 1, "headlight", 0),
+        (-5, -8, -32, 10, 2, 1, "grille", 0),
+        (-14, -9, 31, 7, 2, 1, "taillight", 0), (7, -9, 31, 7, 2, 1, "taillight", 0),
+        (-12, -5, 31, 2, 1, 2, "chrome", 0), (10, -5, 31, 2, 1, 2, "chrome", 0),
+        (15, -9, 4, 1, 3, 6, "trim", 0), (-16, -9, 4, 1, 3, 6, "trim", 0),   # side intakes
+        (-10, belt - 3, 27, 2, 3, 2, "trim", 0), (8, belt - 3, 27, 2, 3, 2, "trim", 0),   # spoiler posts
+        (-15, belt - 4, 26, 30, 1, 5, "paint", 0),       # spoiler wing
+        (15, belt - 2, -7, 2, 2, 2, "trim", 0), (-17, belt - 2, -7, 2, 2, 2, "trim", 0),
+    ] + cabin(belt, roof, -8, 17) + interior(belt, roof, -7, 4, 14)
 
 
-def car_spec(cls, layer, body, wz, tex):
+def car_spec(cls, layer, body, wz, tex, steer_at):
+    sx, sy, sz = steer_at
     return {"class": cls, "layer": layer, "tex": tex, "parts": [
-        ("body", "root", (0, 0, 0), body),
-        ("front_left", "root", (13, -6, -wz), wheel()),
-        ("front_right", "root", (-13, -6, -wz), wheel()),
-        ("rear_left", "root", (13, -6, wz), wheel()),
-        ("rear_right", "root", (-13, -6, wz), wheel()),
+        ("body", "root", (0, 0, 0, 0), body),
+        ("steering", "body", (sx, sy, sz, -0.45), steering_wheel()),
+        ("front_left", "root", (13, -6, -wz, 0), wheel()),
+        ("front_right", "root", (-13, -6, -wz, 0), wheel()),
+        ("rear_left", "root", (13, -6, wz, 0), wheel()),
+        ("rear_right", "root", (-13, -6, wz, 0), wheel()),
     ]}
 
 
-SEDAN = car_spec("SedanModel", "sedan", sedan_body(), 18, (256, 128))
-SPORTS = car_spec("SportsCarModel", "sports_car", SPORTS_BODY, 19, (256, 128))
-POLICE = car_spec("PoliceCarModel", "police_car", sedan_body(True), 18, (256, 128))
+SEDAN = car_spec("SedanModel", "sedan", sedan_parts(), 19, (256, 256), (6, -19, -5))
+SPORTS = car_spec("SportsCarModel", "sports_car", sports_parts(), 20, (256, 256), (6, -16, -2))
+POLICE = car_spec("PoliceCarModel", "police_car", sedan_parts(True), 19, (256, 256), (6, -19, -5))
 
 
 def pack(model):
     tw, th = model["tex"]
     out, cache = [], {}
     x = y = shelf = 0
-    for pname, _, _, cubs in model["parts"]:
-        for c in cubs:
-            key = c if c[6] in ("tire", "hub") else None
-            if key is not None and key in cache:
-                out.append((pname, c) + cache[key])
-                continue
-            w, h, d = c[3], c[4], c[5]
-            fw, fh = 2 * (w + d), d + h
-            if x + fw > tw:
-                x, y, shelf = 0, y + shelf, 0
-            if y + fh > th:
-                raise SystemExit("texture too small")
-            out.append((pname, c, x, y))
-            if key is not None:
-                cache[key] = (x, y)
-            x += fw
-            shelf = max(shelf, fh)
+    items = [(p[0], c) for p in model["parts"] for c in p[3]]
+    items.sort(key=lambda it: -(it[1][4] + it[1][5]))
+    for pname, c in items:
+        key = c if c[6] in ("tire", "hub", "wheel", "hub_dark") else None
+        if key is not None and key in cache:
+            out.append((pname, c) + cache[key])
+            continue
+        w, h, d = c[3], c[4], c[5]
+        fw, fh = 2 * (w + d), d + h
+        if x + fw > tw:
+            x, y, shelf = 0, y + shelf, 0
+        if y + fh > th:
+            raise SystemExit("texture too small for " + model["class"])
+        out.append((pname, c, x, y))
+        if key is not None:
+            cache[key] = (x, y)
+        x += fw
+        shelf = max(shelf, fh)
     return out
-
-
-GLASS = (40, 60, 80)
 
 
 def paint(img, u, v, w, h, d, role, base, police=False, flash=False):
@@ -127,32 +174,129 @@ def paint(img, u, v, w, h, d, role, base, police=False, flash=False):
     for name, (fx, fy, fw, fh) in faces.items():
         for i in range(fw):
             for j in range(fh):
+                a = 255
                 c = base
+                edge = i == 0 or j == 0 or i == fw - 1 or j == fh - 1
                 if role == "paint":
-                    if name == "top": c = shade(base, 18)
-                    elif name == "bottom": c = (30, 30, 30)
-                    if police and name in ("side1", "side2"):
-                        c = (240, 240, 240) if j < fh // 2 else (25, 25, 30)
-                    if police and name == "top": c = (240, 240, 240)
-                    if name in ("side1", "side2") and j == fh - 2 and not police: c = shade(base, -35)
-                elif role == "cabin":
-                    if name == "top": c = base if not police else (240, 240, 240)
-                    elif name == "bottom": c = (30, 30, 30)
-                    else:
-                        pillar = i == 0 or i == fw - 1 or (name in ("side1", "side2") and i == fw // 2)
-                        c = (base if not police else (240, 240, 240)) if (pillar or j == 0) else shade(GLASS, (j * 6))
-                elif role == "trim": c = (45, 45, 50)
-                elif role == "grille": c = (20, 20, 22) if j % 2 else (70, 70, 75)
-                elif role == "headlight": c = (255, 248, 210)
-                elif role == "taillight": c = (210, 20, 20)
+                    if name == "top":
+                        c = shade(base, 20)
+                    elif name == "bottom":
+                        c = (28, 28, 30)
+                    if police:
+                        c = (240, 240, 240) if (name == "top" or j < fh // 2) else (22, 22, 28)
+                    if name in ("side1", "side2") and fw > 30:
+                        if i in (fw // 3, (2 * fw) // 3):
+                            c = shade(c, -45)                      # door shut lines
+                        if j == 2 and (i == fw // 3 - 3 or i == (2 * fw) // 3 - 3):
+                            c = (200, 200, 205)                    # door handles
+                    if edge:
+                        c = shade(c, -14)
+                elif role == "glass":
+                    c, a = (90, 130, 170), 95
+                    if j == 0 or (i + j) % 11 == 0:
+                        c, a = (200, 220, 240), 130                # reflections
+                elif role == "trim":
+                    c = (40, 40, 44)
+                elif role == "grille":
+                    c = (18, 18, 20) if j % 2 else (70, 70, 76)
+                elif role == "headlight":
+                    c = (255, 248, 215)
+                elif role == "taillight":
+                    c = (215, 22, 22)
+                elif role == "plate":
+                    c = (240, 240, 230) if not edge else (40, 40, 120)
+                elif role == "chrome":
+                    c = (200, 200, 208)
                 elif role == "tire":
                     c = (30, 30, 30) if (i + j) % 3 else (48, 48, 48)
-                elif role == "hub": c = (190, 190, 196)
-                elif role == "light_red": c = (255, 60, 60) if flash else (120, 20, 20)
-                elif role == "light_blue": c = (70, 120, 255) if not flash else (20, 30, 110)
-                if role in ("paint", "cabin", "trim") and (i == 0 or j == 0 or i == fw - 1 or j == fh - 1) and role != "cabin":
-                    c = shade(c, -12)
-                px[fx + i, fy + j] = noisy(c, 4 if role in ("paint",) else 2)
+                elif role == "hub":
+                    c = (195, 195, 202)
+                elif role == "seat":
+                    c = (44, 40, 38) if (j % 3) else (34, 30, 28)
+                elif role == "console":
+                    c = (28, 28, 30)
+                elif role == "wheel":
+                    c = (22, 22, 24)
+                elif role == "hub_dark":
+                    c = (60, 60, 66)
+                elif role == "dash":
+                    c = (30, 30, 32)
+                    if name == "back":                             # the face the driver looks at
+                        c = (14, 14, 16)
+                        for gx in (fw - 7, fw - 3):
+                            if (i - gx) ** 2 + (j - fh // 2) ** 2 <= 2:
+                                c = (230, 230, 230)
+                        if i == fw - 6 and j == fh // 2:
+                            c = (230, 40, 30)                      # speedo needle
+                        if fw // 2 - 3 <= i <= fw // 2 + 2 and 0 < j < fh - 1:
+                            c = (40, 110, 200)                     # centre screen
+                elif role == "light_red":
+                    c = (255, 60, 60) if flash else (120, 20, 20)
+                elif role == "light_blue":
+                    c = (70, 120, 255) if not flash else (20, 30, 110)
+                c = noisy(c, 4 if role == "paint" else 2)
+                px[fx + i, fy + j] = c[:3] + (a,)
+
+
+MODEL_TEMPLATE = """package com.neoncoast.client;
+
+import com.neoncoast.NeonCoast;
+import com.neoncoast.vehicle.CarEntity;
+import net.minecraft.client.model.*;
+import net.minecraft.client.render.RenderLayer;
+import net.minecraft.client.render.entity.model.EntityModelLayer;
+import net.minecraft.client.render.entity.model.SinglePartEntityModel;
+import net.minecraft.util.math.MathHelper;
+
+/** Generated by tools/gen_neon.py - shapes and texture layout must match. Rendered translucent for the tinted glass. */
+public class CLS extends SinglePartEntityModel<CarEntity> {
+    public static final EntityModelLayer LAYER = new EntityModelLayer(NeonCoast.id("LAYERNAME"), "main");
+    private final ModelPart top;
+    private final ModelPart body;
+    private final ModelPart steering;
+    private final ModelPart frontLeft, frontRight, rearLeft, rearRight;
+
+    public CLS(ModelPart top) {
+        super(RenderLayer::getEntityTranslucent);
+        this.top = top;
+        ModelPart root = top.getChild("root");
+        this.body = root.getChild("body");
+        this.steering = body.getChild("steering");
+        this.frontLeft = root.getChild("front_left");
+        this.frontRight = root.getChild("front_right");
+        this.rearLeft = root.getChild("rear_left");
+        this.rearRight = root.getChild("rear_right");
+    }
+
+    public static TexturedModelData getTexturedModelData() {
+        ModelData data = new ModelData();
+        ModelPartData root = data.getRoot().addChild("root", ModelPartBuilder.create(), ModelTransform.pivot(0.0f, 24.0f, 0.0f));
+PARTS
+        return TexturedModelData.of(data, TW, TH);
+    }
+
+    @Override
+    public ModelPart getPart() {
+        return top;
+    }
+
+    @Override
+    public void setAngles(CarEntity car, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {
+        float td = MathHelper.clamp(animationProgress - car.age, 0.0f, 1.0f);
+        float steer = car.getSteerAngle(td) * MathHelper.RADIANS_PER_DEGREE;
+        float spin = car.getWheelSpin(td);
+        body.roll = car.getRoll(td) * MathHelper.RADIANS_PER_DEGREE;
+        body.pitch = car.getBodyPitch(td) * MathHelper.RADIANS_PER_DEGREE;
+        steering.roll = -steer * 3.0f;   // the steering wheel turns about three times as far as the tyres
+        frontLeft.yaw = steer;
+        frontRight.yaw = steer;
+        frontLeft.pitch = spin;
+        frontRight.pitch = spin;
+        rearLeft.pitch = spin;
+        rearRight.pitch = spin;
+    }
+}
+"""
 
 
 def gen_model(model, colors, police=False):
@@ -171,71 +315,18 @@ def gen_model(model, colors, police=False):
     for pname, parent, pivot, cubs in model["parts"]:
         chain = "ModelPartBuilder.create()"
         for (pp, c, u, v) in placed:
-            if pp != pname: continue
+            if pp != pname:
+                continue
             x, y, z, w, h, d, role, dil = c
-            if dil:
-                chain += f".uv({u}, {v}).cuboid({f(x)}, {f(y)}, {f(z)}, {f(w)}, {f(h)}, {f(d)}, new Dilation({f(dil)}))"
-            else:
-                chain += f".uv({u}, {v}).cuboid({f(x)}, {f(y)}, {f(z)}, {f(w)}, {f(h)}, {f(d)})"
-        lines.append(f"        {parent}.addChild(\"{pname}\", {chain},\n                ModelTransform.pivot({f(pivot[0])}, {f(pivot[1])}, {f(pivot[2])}));")
-    body = "\n".join(lines)
-    cls = model["class"]
-    src = f'''package com.neoncoast.client;
-
-import com.neoncoast.NeonCoast;
-import com.neoncoast.vehicle.CarEntity;
-import net.minecraft.client.model.*;
-import net.minecraft.client.render.entity.model.EntityModelLayer;
-import net.minecraft.client.render.entity.model.SinglePartEntityModel;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.math.MathHelper;
-
-/** Generated by tools/gen_neon.py - shapes and texture layout must match. */
-public class {cls} extends SinglePartEntityModel<CarEntity> {{
-    public static final EntityModelLayer LAYER = new EntityModelLayer(NeonCoast.id("{model['layer']}"), "main");
-    private final ModelPart top;
-    private final ModelPart body;
-    private final ModelPart frontLeft, frontRight, rearLeft, rearRight;
-
-    public {cls}(ModelPart top) {{
-        this.top = top;
-        ModelPart root = top.getChild("root");
-        this.body = root.getChild("body");
-        this.frontLeft = root.getChild("front_left");
-        this.frontRight = root.getChild("front_right");
-        this.rearLeft = root.getChild("rear_left");
-        this.rearRight = root.getChild("rear_right");
-    }}
-
-    public static TexturedModelData getTexturedModelData() {{
-        ModelData data = new ModelData();
-        ModelPartData root = data.getRoot().addChild("root", ModelPartBuilder.create(), ModelTransform.pivot(0.0f, 24.0f, 0.0f));
-{body}
-        return TexturedModelData.of(data, {tw}, {th});
-    }}
-
-    @Override
-    public ModelPart getPart() {{
-        return top;
-    }}
-
-    @Override
-    public void setAngles(CarEntity car, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {{
-        float td = MathHelper.clamp(animationProgress - car.age, 0.0f, 1.0f);
-        float steer = car.getSteerAngle(td) * MathHelper.RADIANS_PER_DEGREE;
-        float spin = car.getWheelSpin(td);
-        body.roll = car.getRoll(td) * MathHelper.RADIANS_PER_DEGREE;
-        body.pitch = car.getBodyPitch(td) * MathHelper.RADIANS_PER_DEGREE;
-        frontLeft.yaw = steer;
-        frontRight.yaw = steer;
-        frontLeft.pitch = spin;
-        frontRight.pitch = spin;
-        rearLeft.pitch = spin;
-        rearRight.pitch = spin;
-    }}
-}}
-'''
-    open(mk(f"{J}/{cls}.java"), "w").write(src)
+            dil_s = f", new Dilation({f(dil)})" if dil else ""
+            chain += f".uv({u}, {v}).cuboid({f(x)}, {f(y)}, {f(z)}, {f(w)}, {f(h)}, {f(d)}{dil_s})"
+        prefix = "ModelPartData bodyData = " if pname == "body" else ""
+        par = "bodyData" if parent == "body" else parent
+        lines.append(f"        {prefix}{par}.addChild(\"{pname}\", {chain},\n"
+                     f"                ModelTransform.of({f(pivot[0])}, {f(pivot[1])}, {f(pivot[2])}, {f(pivot[3])}, 0.0f, 0.0f));")
+    src = (MODEL_TEMPLATE.replace("CLS", model["class"]).replace("LAYERNAME", model["layer"])
+           .replace("PARTS", "\n".join(lines)).replace("TW", str(tw)).replace("TH", str(th)))
+    open(mk(f"{J}/{model['class']}.java"), "w").write(src)
 
 
 # ------------------------------------------------------------------ police officer skin (64x64 player layout)
@@ -451,6 +542,8 @@ def main():
     icon = Image.open(f"{A}/textures/item/sports_car_key.png").resize((128, 128), Image.NEAREST)
     icon.save(mk(f"{A}/icon.png"))
     print("neon coast assets done")
+    # building blocks + All City world type (also re-adds their lang/tag entries)
+    subprocess.run([sys.executable, os.path.join(os.path.dirname(os.path.abspath(__file__)), "gen_city.py"), ROOT], check=True)
 
 
 main()

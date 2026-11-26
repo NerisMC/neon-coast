@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "neoncoast:block/ac_unit"
+    },
+    "facing=east": {
+      "model": "neoncoast:block/ac_unit",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "neoncoast:block/ac_unit",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "neoncoast:block/ac_unit",
+      "y": 270
+    }
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "particle": "neoncoast:block/fire_hydrant",
+    "front": "neoncoast:block/fire_hydrant",
+    "side": "neoncoast:block/fire_hydrant",
+    "top": "neoncoast:block/fire_hydrant"
+  },
+  "elements": [
+    {
+      "from": [
+        5,
+        0,
+        5
+      ],
+      "to": [
+        11,
+        11,
+        11
+      ],
+      "faces": {
+        "north": {
+          "texture": "#front"
+        },
+        "south": {
+          "texture": "#side"
+        },
+        "east": {
+          "texture": "#side"
+        },
+        "west": {
+          "texture": "#side"
+        },
+        "up": {
+          "texture": "#top"
+        },
+        "down": {
+          "texture": "#top",
+          "cullface": "down"
+        }
+      }
+    }
+  ]
+}

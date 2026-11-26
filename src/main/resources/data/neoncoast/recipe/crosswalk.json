@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "neoncoast:asphalt"
+  },
+  "result": {
+    "id": "neoncoast:crosswalk",
+    "count": 1
+  }
+}

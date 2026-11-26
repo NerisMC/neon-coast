@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "pattern": [
+    "PPP",
+    "I I"
+  ],
+  "key": {
+    "P": {
+      "tag": "minecraft:planks"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "result": {
+    "id": "neoncoast:bench",
+    "count": 2
+  }
+}

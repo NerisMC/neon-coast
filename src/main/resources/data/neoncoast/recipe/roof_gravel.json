@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "minecraft:gravel"
+  },
+  "result": {
+    "id": "neoncoast:roof_gravel",
+    "count": 1
+  }
+}

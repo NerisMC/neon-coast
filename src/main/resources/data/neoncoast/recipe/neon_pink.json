@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "pattern": [
+    "GDG",
+    "DSD",
+    "GDG"
+  ],
+  "key": {
+    "G": {
+      "item": "minecraft:glass"
+    },
+    "D": {
+      "item": "minecraft:pink_dye"
+    },
+    "S": {
+      "item": "minecraft:glowstone"
+    }
+  },
+  "result": {
+    "id": "neoncoast:neon_pink",
+    "count": 4
+  }
+}

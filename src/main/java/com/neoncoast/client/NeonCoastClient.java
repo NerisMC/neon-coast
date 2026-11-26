@@ -12,7 +12,10 @@ import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
+import com.neoncoast.registry.ModBlocks;
+import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.render.RenderLayer;
 
 public class NeonCoastClient implements ClientModInitializer {
     @Override
@@ -30,6 +33,8 @@ public class NeonCoastClient implements ClientModInitializer {
         EntityRendererRegistry.register(ModEntities.POLICE_OFFICER, PoliceRenderer::new);
 
         HudRenderCallback.EVENT.register(Hud::render);
+        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getTranslucent(), ModBlocks.OFFICE_WINDOW, ModBlocks.GLASS_CURTAIN_WALL);
+        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), ModBlocks.TRAFFIC_LIGHT, ModBlocks.BENCH, ModBlocks.FIRE_HYDRANT);
 
         ClientPlayNetworking.registerGlobalReceiver(WantedSyncPayload.ID, (payload, context) -> {
             ClientState.stars = payload.stars();

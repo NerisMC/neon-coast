@@ -13,5 +13,5 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: neon-coast-jar
-          path: build/libs/neon-coast-1.0.0.jar
+          path: build/libs/neon-coast-1.1.0.jar
           if-no-files-found: error

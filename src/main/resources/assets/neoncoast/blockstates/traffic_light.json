@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "neoncoast:block/traffic_light"
+    },
+    "facing=east": {
+      "model": "neoncoast:block/traffic_light",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "neoncoast:block/traffic_light",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "neoncoast:block/traffic_light",
+      "y": 270
+    }
+  }
+}

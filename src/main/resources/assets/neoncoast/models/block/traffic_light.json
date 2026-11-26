@@ -1,0 +1,44 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "particle": "neoncoast:block/traffic_light_side",
+    "front": "neoncoast:block/traffic_light_front",
+    "side": "neoncoast:block/traffic_light_side",
+    "top": "neoncoast:block/traffic_light_side"
+  },
+  "elements": [
+    {
+      "from": [
+        5,
+        0,
+        5
+      ],
+      "to": [
+        11,
+        16,
+        11
+      ],
+      "faces": {
+        "north": {
+          "texture": "#front"
+        },
+        "south": {
+          "texture": "#side"
+        },
+        "east": {
+          "texture": "#side"
+        },
+        "west": {
+          "texture": "#side"
+        },
+        "up": {
+          "texture": "#top"
+        },
+        "down": {
+          "texture": "#top",
+          "cullface": "down"
+        }
+      }
+    }
+  ]
+}

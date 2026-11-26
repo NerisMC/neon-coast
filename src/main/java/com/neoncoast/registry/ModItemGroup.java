@@ -26,6 +26,26 @@ public final class ModItemGroup {
                         entries.add(ModBlocks.ASPHALT);
                         entries.add(ModBlocks.ROAD_LINE);
                         entries.add(ModBlocks.SIDEWALK);
+                        entries.add(ModBlocks.CROSSWALK);
+                        entries.add(ModBlocks.MANHOLE);
+                        entries.add(ModBlocks.CONCRETE_PANEL);
+                        entries.add(ModBlocks.DARK_PANEL);
+                        entries.add(ModBlocks.MARBLE);
+                        entries.add(ModBlocks.BRICK_FACADE);
+                        entries.add(ModBlocks.METAL_CLADDING);
+                        entries.add(ModBlocks.OFFICE_WINDOW);
+                        entries.add(ModBlocks.GLASS_CURTAIN_WALL);
+                        entries.add(ModBlocks.ROOF_GRAVEL);
+                        entries.add(ModBlocks.SHOP_AWNING);
+                        entries.add(ModBlocks.GARAGE_DOOR);
+                        for (net.minecraft.block.Block neon : ModBlocks.NEON) entries.add(neon);
+                        entries.add(ModBlocks.VENDING_MACHINE);
+                        entries.add(ModBlocks.DUMPSTER);
+                        entries.add(ModBlocks.AC_UNIT);
+                        entries.add(ModBlocks.FIRE_HYDRANT);
+                        entries.add(ModBlocks.TRAFFIC_LIGHT);
+                        entries.add(ModBlocks.BENCH);
+                        entries.add(ModBlocks.TRASH_CAN);
                     })
                     .build());
 
