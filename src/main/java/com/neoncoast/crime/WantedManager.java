@@ -43,7 +43,7 @@ public final class WantedManager {
         State s = STATES.computeIfAbsent(player.getUUID(), u -> new State());
         int before = s.stars;
         s.stars = Math.min(MAX_STARS, s.stars + amount);
-        s.lastSeen = player.serverLevel().getGameTime();
+        s.lastSeen = player.level().getGameTime();
         s.evading = false;
         if (s.stars != before) sync(player, s);
     }
@@ -67,7 +67,7 @@ public final class WantedManager {
         for (ServerPlayer player : server.getPlayerList().getPlayers()) {
             State s = STATES.get(player.getUUID());
             if (s == null || s.stars == 0) continue;
-            long now = player.serverLevel().getGameTime();
+            long now = player.level().getGameTime();
             if (isSeenByPolice(player)) {
                 s.lastSeen = now;
                 if (s.evading) {

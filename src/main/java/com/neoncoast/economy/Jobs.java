@@ -33,7 +33,7 @@ public final class Jobs {
             player.sendSystemMessage(Component.literal("You already have a delivery: " + describe(player, current.target)).withStyle(ChatFormatting.YELLOW));
             return;
         }
-        ServerLevel world = player.serverLevel();
+        ServerLevel world = player.level();
         float angle = world.getRandom().nextFloat() * Mth.TWO_PI;
         int dist = 120 + world.getRandom().nextInt(200);
         int x = Mth.floor(player.getX() + Mth.cos(angle) * dist);
