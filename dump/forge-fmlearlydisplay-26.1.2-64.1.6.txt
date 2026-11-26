@@ -1,0 +1,226 @@
+Compiled from "ColourScheme.java"
+public final class net.minecraftforge.fml.earlydisplay.ColourScheme$Colour extends java.lang.Record {
+  public net.minecraftforge.fml.earlydisplay.ColourScheme$Colour(int, int, int);
+  public float redf();
+  public float greenf();
+  public float bluef();
+  public int packedint(int);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int red();
+  public int green();
+  public int blue();
+}
+Compiled from "ColourScheme.java"
+public final class net.minecraftforge.fml.earlydisplay.ColourScheme extends java.lang.Enum<net.minecraftforge.fml.earlydisplay.ColourScheme> {
+  public static final net.minecraftforge.fml.earlydisplay.ColourScheme RED;
+  public static final net.minecraftforge.fml.earlydisplay.ColourScheme BLACK;
+  public static net.minecraftforge.fml.earlydisplay.ColourScheme[] values();
+  public static net.minecraftforge.fml.earlydisplay.ColourScheme valueOf(java.lang.String);
+  public net.minecraftforge.fml.earlydisplay.ColourScheme$Colour background();
+  public net.minecraftforge.fml.earlydisplay.ColourScheme$Colour foreground();
+}
+Compiled from "DisplayWindow.java"
+public class net.minecraftforge.fml.earlydisplay.DisplayWindow implements net.minecraftforge.fml.loading.ImmediateWindowProvider {
+  public net.minecraftforge.fml.earlydisplay.DisplayWindow();
+  public java.lang.String name();
+  public java.lang.Runnable initialize(java.lang.String[]);
+  public void render(int);
+  public java.lang.Runnable start(java.lang.String, java.lang.String);
+  public java.lang.String getGLVersion();
+  public void initWindow(java.lang.String);
+  public long setupMinecraftWindow(int, int, java.lang.String, long, java.util.function.Supplier<java.lang.Object>);
+  public boolean positionWindow(java.util.Optional<java.lang.Object>, java.util.function.IntConsumer, java.util.function.IntConsumer, java.util.function.IntConsumer, java.util.function.IntConsumer);
+  public void updateFramebufferSize(java.util.function.IntConsumer, java.util.function.IntConsumer);
+  public <T> java.util.function.Supplier<T> loadingOverlay(java.util.function.Supplier<?>, java.util.function.Supplier<?>, java.util.function.Consumer<java.util.Optional<java.lang.Throwable>>, boolean);
+  public void updateModuleReads(java.lang.ModuleLayer);
+  public int getFramebufferTextureId();
+  public net.minecraftforge.fml.earlydisplay.RenderElement$DisplayContext context();
+  public void periodicTick();
+  public void addMojangTexture(int);
+  public void close();
+}
+Compiled from "EarlyFramebuffer.java"
+public class net.minecraftforge.fml.earlydisplay.EarlyFramebuffer {
+  public void close();
+}
+Compiled from "ElementShader.java"
+public final class net.minecraftforge.fml.earlydisplay.ElementShader$RenderType extends java.lang.Enum<net.minecraftforge.fml.earlydisplay.ElementShader$RenderType> {
+  public static final net.minecraftforge.fml.earlydisplay.ElementShader$RenderType FONT;
+  public static final net.minecraftforge.fml.earlydisplay.ElementShader$RenderType TEXTURE;
+  public static final net.minecraftforge.fml.earlydisplay.ElementShader$RenderType BAR;
+  public static net.minecraftforge.fml.earlydisplay.ElementShader$RenderType[] values();
+  public static net.minecraftforge.fml.earlydisplay.ElementShader$RenderType valueOf(java.lang.String);
+}
+Compiled from "ElementShader.java"
+public class net.minecraftforge.fml.earlydisplay.ElementShader {
+  public net.minecraftforge.fml.earlydisplay.ElementShader();
+  public void init();
+  public void activate();
+  public void updateTextureUniform(int);
+  public void updateScreenSizeUniform(int, int);
+  public void updateRenderTypeUniform(net.minecraftforge.fml.earlydisplay.ElementShader$RenderType);
+  public void clear();
+  public void close();
+  public int program();
+}
+Compiled from "PerformanceInfo.java"
+public class net.minecraftforge.fml.earlydisplay.PerformanceInfo {
+}
+Compiled from "QuadHelper.java"
+public class net.minecraftforge.fml.earlydisplay.QuadHelper {
+  public net.minecraftforge.fml.earlydisplay.QuadHelper();
+  public static void loadQuad(net.minecraftforge.fml.earlydisplay.SimpleBufferBuilder, float, float, float, float, float, float, float, float, int);
+  public static void loadQuad(net.minecraftforge.fml.earlydisplay.SimpleBufferBuilder, float, float, float, float, float, float, float, float);
+}
+Compiled from "RenderElement.java"
+interface net.minecraftforge.fml.earlydisplay.RenderElement$BarPosition {
+  public abstract int[] location(net.minecraftforge.fml.earlydisplay.RenderElement$DisplayContext);
+}
+Compiled from "RenderElement.java"
+interface net.minecraftforge.fml.earlydisplay.RenderElement$ColourFunction {
+  public abstract int colour(int);
+}
+Compiled from "RenderElement.java"
+public final class net.minecraftforge.fml.earlydisplay.RenderElement$DisplayContext extends java.lang.Record {
+  public net.minecraftforge.fml.earlydisplay.RenderElement$DisplayContext(int, int, int, net.minecraftforge.fml.earlydisplay.ElementShader, net.minecraftforge.fml.earlydisplay.ColourScheme, net.minecraftforge.fml.earlydisplay.PerformanceInfo);
+  public int scaledWidth();
+  public int scaledHeight();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int width();
+  public int height();
+  public int scale();
+  public net.minecraftforge.fml.earlydisplay.ElementShader elementShader();
+  public net.minecraftforge.fml.earlydisplay.ColourScheme colourScheme();
+  public net.minecraftforge.fml.earlydisplay.PerformanceInfo performance();
+}
+Compiled from "RenderElement.java"
+interface net.minecraftforge.fml.earlydisplay.RenderElement$Initializer extends java.util.function.Supplier<net.minecraftforge.fml.earlydisplay.RenderElement$Renderer> {
+}
+Compiled from "RenderElement.java"
+interface net.minecraftforge.fml.earlydisplay.RenderElement$ProgressDisplay {
+  public abstract float[] progress(int);
+}
+Compiled from "RenderElement.java"
+interface net.minecraftforge.fml.earlydisplay.RenderElement$Renderer {
+  public abstract void accept(net.minecraftforge.fml.earlydisplay.SimpleBufferBuilder, net.minecraftforge.fml.earlydisplay.RenderElement$DisplayContext, int);
+  public default net.minecraftforge.fml.earlydisplay.RenderElement$Renderer then(net.minecraftforge.fml.earlydisplay.RenderElement$Renderer);
+}
+Compiled from "RenderElement.java"
+interface net.minecraftforge.fml.earlydisplay.RenderElement$TextGenerator {
+  public abstract void accept(net.minecraftforge.fml.earlydisplay.SimpleBufferBuilder, net.minecraftforge.fml.earlydisplay.SimpleFont, net.minecraftforge.fml.earlydisplay.RenderElement$DisplayContext);
+}
+Compiled from "RenderElement.java"
+interface net.minecraftforge.fml.earlydisplay.RenderElement$TextureRenderer {
+  public abstract void accept(net.minecraftforge.fml.earlydisplay.SimpleBufferBuilder, net.minecraftforge.fml.earlydisplay.RenderElement$DisplayContext, int[], int);
+}
+Compiled from "RenderElement.java"
+public class net.minecraftforge.fml.earlydisplay.RenderElement {
+  public net.minecraftforge.fml.earlydisplay.RenderElement(net.minecraftforge.fml.earlydisplay.RenderElement$Initializer);
+  public net.minecraftforge.fml.earlydisplay.RenderElement(net.minecraftforge.fml.earlydisplay.RenderElement$Renderer);
+  public boolean render(net.minecraftforge.fml.earlydisplay.RenderElement$DisplayContext, int);
+  public void retire(int);
+  public static net.minecraftforge.fml.earlydisplay.RenderElement mojang(int, int);
+  public static net.minecraftforge.fml.earlydisplay.RenderElement logMessageOverlay(net.minecraftforge.fml.earlydisplay.SimpleFont);
+  public static net.minecraftforge.fml.earlydisplay.RenderElement forgeVersionOverlay(net.minecraftforge.fml.earlydisplay.SimpleFont, java.lang.String);
+  public static net.minecraftforge.fml.earlydisplay.RenderElement squir();
+  public static net.minecraftforge.fml.earlydisplay.RenderElement anvil(net.minecraftforge.fml.earlydisplay.SimpleFont);
+  public static net.minecraftforge.fml.earlydisplay.RenderElement progressBars(net.minecraftforge.fml.earlydisplay.SimpleFont);
+  public static net.minecraftforge.fml.earlydisplay.RenderElement performanceBar(net.minecraftforge.fml.earlydisplay.SimpleFont);
+  public static void startupProgressBars(net.minecraftforge.fml.earlydisplay.SimpleFont, net.minecraftforge.fml.earlydisplay.SimpleBufferBuilder, net.minecraftforge.fml.earlydisplay.RenderElement$DisplayContext, int);
+  public static net.minecraftforge.fml.earlydisplay.RenderElement$Renderer progressBar(net.minecraftforge.fml.earlydisplay.RenderElement$BarPosition, net.minecraftforge.fml.earlydisplay.RenderElement$ColourFunction, net.minecraftforge.fml.earlydisplay.RenderElement$ProgressDisplay);
+  public static float clamp(float, float, float);
+  public static int clamp(int, int, int);
+  public static int hsvToRGB(float, float, float);
+}
+Compiled from "STBHelper.java"
+public class net.minecraftforge.fml.earlydisplay.STBHelper {
+  public net.minecraftforge.fml.earlydisplay.STBHelper();
+  public static java.nio.ByteBuffer readFromClasspath(java.lang.String, int);
+  public static int[] loadTextureFromClasspath(java.lang.String, int, int);
+  public static java.nio.ByteBuffer loadImageFromClasspath(java.lang.String, int, int[], int[], int[]);
+}
+Compiled from "SimpleBufferBuilder.java"
+public final class net.minecraftforge.fml.earlydisplay.SimpleBufferBuilder$Element extends java.lang.Enum<net.minecraftforge.fml.earlydisplay.SimpleBufferBuilder$Element> {
+  public static final net.minecraftforge.fml.earlydisplay.SimpleBufferBuilder$Element POS;
+  public static final net.minecraftforge.fml.earlydisplay.SimpleBufferBuilder$Element TEX;
+  public static final net.minecraftforge.fml.earlydisplay.SimpleBufferBuilder$Element COLOR;
+  public final int glType;
+  public final int count;
+  public final int width;
+  public static net.minecraftforge.fml.earlydisplay.SimpleBufferBuilder$Element[] values();
+  public static net.minecraftforge.fml.earlydisplay.SimpleBufferBuilder$Element valueOf(java.lang.String);
+}
+Compiled from "SimpleBufferBuilder.java"
+public final class net.minecraftforge.fml.earlydisplay.SimpleBufferBuilder$Format extends java.lang.Enum<net.minecraftforge.fml.earlydisplay.SimpleBufferBuilder$Format> {
+  public static final net.minecraftforge.fml.earlydisplay.SimpleBufferBuilder$Format POS;
+  public static final net.minecraftforge.fml.earlydisplay.SimpleBufferBuilder$Format POS_TEX;
+  public static final net.minecraftforge.fml.earlydisplay.SimpleBufferBuilder$Format POS_COLOR;
+  public static final net.minecraftforge.fml.earlydisplay.SimpleBufferBuilder$Format POS_TEX_COLOR;
+  public final int stride;
+  public static net.minecraftforge.fml.earlydisplay.SimpleBufferBuilder$Format[] values();
+  public static net.minecraftforge.fml.earlydisplay.SimpleBufferBuilder$Format valueOf(java.lang.String);
+  public void bind();
+  public void enable();
+  public void disable();
+}
+Compiled from "SimpleBufferBuilder.java"
+public final class net.minecraftforge.fml.earlydisplay.SimpleBufferBuilder$Mode extends java.lang.Enum<net.minecraftforge.fml.earlydisplay.SimpleBufferBuilder$Mode> {
+  public static final net.minecraftforge.fml.earlydisplay.SimpleBufferBuilder$Mode TRIANGLES;
+  public static final net.minecraftforge.fml.earlydisplay.SimpleBufferBuilder$Mode QUADS;
+  public final int vertices;
+  public static net.minecraftforge.fml.earlydisplay.SimpleBufferBuilder$Mode[] values();
+  public static net.minecraftforge.fml.earlydisplay.SimpleBufferBuilder$Mode valueOf(java.lang.String);
+}
+Compiled from "SimpleBufferBuilder.java"
+public class net.minecraftforge.fml.earlydisplay.SimpleBufferBuilder implements java.io.Closeable {
+  public net.minecraftforge.fml.earlydisplay.SimpleBufferBuilder(int);
+  public static void destroy();
+  public net.minecraftforge.fml.earlydisplay.SimpleBufferBuilder begin(net.minecraftforge.fml.earlydisplay.SimpleBufferBuilder$Format, net.minecraftforge.fml.earlydisplay.SimpleBufferBuilder$Mode);
+  public net.minecraftforge.fml.earlydisplay.SimpleBufferBuilder pos(float, float);
+  public net.minecraftforge.fml.earlydisplay.SimpleBufferBuilder tex(float, float);
+  public net.minecraftforge.fml.earlydisplay.SimpleBufferBuilder colour(float, float, float, float);
+  public net.minecraftforge.fml.earlydisplay.SimpleBufferBuilder colour(int);
+  public net.minecraftforge.fml.earlydisplay.SimpleBufferBuilder colour(byte, byte, byte, byte);
+  public net.minecraftforge.fml.earlydisplay.SimpleBufferBuilder endVertex();
+  public int finishAndUpload();
+  public void draw();
+  public void close();
+}
+Compiled from "SimpleFont.java"
+public final class net.minecraftforge.fml.earlydisplay.SimpleFont$DisplayText extends java.lang.Record {
+  public net.minecraftforge.fml.earlydisplay.SimpleFont$DisplayText(java.lang.String, int);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String string();
+  public int colour();
+}
+Compiled from "SimpleFont.java"
+final class net.minecraftforge.fml.earlydisplay.SimpleFont$Glyph extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public char c();
+  public int charwidth();
+  public int[] pos();
+  public float[] uv();
+}
+Compiled from "SimpleFont.java"
+final class net.minecraftforge.fml.earlydisplay.SimpleFont$Pos extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int x();
+  public int y();
+  public int minx();
+}
+Compiled from "SimpleFont.java"
+public class net.minecraftforge.fml.earlydisplay.SimpleFont {
+  public net.minecraftforge.fml.earlydisplay.SimpleFont(java.lang.String, int, int, int);
+  public int stringWidth(java.lang.String);
+  public net.minecraftforge.fml.earlydisplay.SimpleBufferBuilder generateVerticesForTexts(int, int, net.minecraftforge.fml.earlydisplay.SimpleBufferBuilder, net.minecraftforge.fml.earlydisplay.SimpleFont$DisplayText...);
+}

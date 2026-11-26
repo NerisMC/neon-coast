@@ -1,0 +1,10 @@
+Compiled from "UnsafeHacks.java"
+public class net.minecraftforge.fml.unsafe.UnsafeHacks {
+  public net.minecraftforge.fml.unsafe.UnsafeHacks();
+  public static <T> T newInstance(java.lang.Class<T>);
+  public static <T> T getField(java.lang.reflect.Field, java.lang.Object);
+  public static void setField(java.lang.reflect.Field, java.lang.Object, java.lang.Object);
+  public static int getIntField(java.lang.reflect.Field, java.lang.Object);
+  public static void setIntField(java.lang.reflect.Field, java.lang.Object, int);
+  public static void cleanEnumCache(java.lang.Class<? extends java.lang.Enum<?>>);
+}

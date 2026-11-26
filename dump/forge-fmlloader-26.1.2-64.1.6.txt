@@ -1,0 +1,1069 @@
+Compiled from "CapabilityTokenSubclass.java"
+class net.minecraftforge.fml.common.asm.CapabilityTokenSubclass$1 {
+}
+Compiled from "CapabilityTokenSubclass.java"
+class net.minecraftforge.fml.common.asm.CapabilityTokenSubclass$2 extends org.objectweb.asm.signature.SignatureVisitor {
+  public void visitClassType(java.lang.String);
+  public void visitInnerClassType(java.lang.String);
+  public void visitEnd();
+}
+Compiled from "CapabilityTokenSubclass.java"
+public final class net.minecraftforge.fml.common.asm.CapabilityTokenSubclass implements cpw.mods.modlauncher.serviceapi.ILaunchPluginService {
+  public net.minecraftforge.fml.common.asm.CapabilityTokenSubclass();
+  public java.lang.String name();
+  public java.util.EnumSet<cpw.mods.modlauncher.serviceapi.ILaunchPluginService$Phase> handlesClass(org.objectweb.asm.Type, boolean);
+  public int processClassWithFlags(cpw.mods.modlauncher.serviceapi.ILaunchPluginService$Phase, org.objectweb.asm.tree.ClassNode, org.objectweb.asm.Type, java.lang.String);
+}
+Compiled from "RuntimeEnumExtender.java"
+final class net.minecraftforge.fml.common.asm.RuntimeEnumExtender$LazyInit {
+}
+Compiled from "RuntimeEnumExtender.java"
+public class net.minecraftforge.fml.common.asm.RuntimeEnumExtender implements cpw.mods.modlauncher.serviceapi.ILaunchPluginService {
+  public net.minecraftforge.fml.common.asm.RuntimeEnumExtender();
+  public java.lang.String name();
+  public java.util.EnumSet<cpw.mods.modlauncher.serviceapi.ILaunchPluginService$Phase> handlesClass(org.objectweb.asm.Type, boolean);
+  public int processClassWithFlags(cpw.mods.modlauncher.serviceapi.ILaunchPluginService$Phase, org.objectweb.asm.tree.ClassNode, org.objectweb.asm.Type, java.lang.String);
+}
+Compiled from "BackgroundWaiter.java"
+public class net.minecraftforge.fml.loading.BackgroundWaiter {
+  public net.minecraftforge.fml.loading.BackgroundWaiter();
+  public static void runAndTick(java.lang.Runnable, java.lang.Runnable);
+}
+Compiled from "ClasspathLocatorUtils.java"
+public class net.minecraftforge.fml.loading.ClasspathLocatorUtils {
+  public net.minecraftforge.fml.loading.ClasspathLocatorUtils();
+  public static java.nio.file.Path findJarPathFor(java.lang.String, java.lang.String, java.net.URL);
+}
+Compiled from "EarlyLoadingException.java"
+public class net.minecraftforge.fml.loading.EarlyLoadingException$ExceptionData {
+  public net.minecraftforge.fml.loading.EarlyLoadingException$ExceptionData(java.lang.String, java.lang.Object...);
+  public net.minecraftforge.fml.loading.EarlyLoadingException$ExceptionData(java.lang.String, net.minecraftforge.forgespi.language.IModInfo, java.lang.Object...);
+  public java.lang.String getI18message();
+  public java.lang.Object[] getArgs();
+  public net.minecraftforge.forgespi.language.IModInfo getModInfo();
+}
+Compiled from "EarlyLoadingException.java"
+public class net.minecraftforge.fml.loading.EarlyLoadingException extends java.lang.RuntimeException {
+  public java.util.List<net.minecraftforge.fml.loading.EarlyLoadingException$ExceptionData> getAllData();
+  public net.minecraftforge.fml.loading.EarlyLoadingException(java.lang.String, java.lang.Throwable, java.util.List<net.minecraftforge.fml.loading.EarlyLoadingException$ExceptionData>);
+}
+Compiled from "FMLConfig.java"
+public final class net.minecraftforge.fml.loading.FMLConfig$ConfigValue extends java.lang.Enum<net.minecraftforge.fml.loading.FMLConfig$ConfigValue> {
+  public static final net.minecraftforge.fml.loading.FMLConfig$ConfigValue EARLY_WINDOW_CONTROL;
+  public static final net.minecraftforge.fml.loading.FMLConfig$ConfigValue MAX_THREADS;
+  public static final net.minecraftforge.fml.loading.FMLConfig$ConfigValue VERSION_CHECK;
+  public static final net.minecraftforge.fml.loading.FMLConfig$ConfigValue DEFAULT_CONFIG_PATH;
+  public static final net.minecraftforge.fml.loading.FMLConfig$ConfigValue DISABLE_OPTIMIZED_DFU;
+  public static final net.minecraftforge.fml.loading.FMLConfig$ConfigValue EARLY_WINDOW_PROVIDER;
+  public static final net.minecraftforge.fml.loading.FMLConfig$ConfigValue EARLY_WINDOW_WIDTH;
+  public static final net.minecraftforge.fml.loading.FMLConfig$ConfigValue EARLY_WINDOW_HEIGHT;
+  public static final net.minecraftforge.fml.loading.FMLConfig$ConfigValue EARLY_WINDOW_FBSCALE;
+  public static final net.minecraftforge.fml.loading.FMLConfig$ConfigValue EARLY_WINDOW_MAXIMIZED;
+  public static final net.minecraftforge.fml.loading.FMLConfig$ConfigValue EARLY_WINDOW_SKIP_GL_VERSIONS;
+  public static final net.minecraftforge.fml.loading.FMLConfig$ConfigValue EARLY_WINDOW_SQUIR;
+  public static final net.minecraftforge.fml.loading.FMLConfig$ConfigValue EARLY_WINDOW_SHOW_CPU;
+  public static final net.minecraftforge.fml.loading.FMLConfig$ConfigValue EARLY_WINDOW_LOG_HELP_MSG;
+  public static net.minecraftforge.fml.loading.FMLConfig$ConfigValue[] values();
+  public static net.minecraftforge.fml.loading.FMLConfig$ConfigValue valueOf(java.lang.String);
+  public <T> void updateValue(com.electronwill.nightconfig.core.file.CommentedFileConfig, T);
+}
+Compiled from "FMLConfig.java"
+public class net.minecraftforge.fml.loading.FMLConfig {
+  public net.minecraftforge.fml.loading.FMLConfig();
+  public static void load();
+  public static java.lang.String getConfigValue(net.minecraftforge.fml.loading.FMLConfig$ConfigValue);
+  public static boolean getBoolConfigValue(net.minecraftforge.fml.loading.FMLConfig$ConfigValue);
+  public static int getIntConfigValue(net.minecraftforge.fml.loading.FMLConfig$ConfigValue);
+  public static <A> java.util.List<A> getListConfigValue(net.minecraftforge.fml.loading.FMLConfig$ConfigValue);
+  public static <T> void updateConfig(net.minecraftforge.fml.loading.FMLConfig$ConfigValue, T);
+  public static java.lang.String defaultConfigPath();
+}
+Compiled from "FMLEnvironment.java"
+public class net.minecraftforge.fml.loading.FMLEnvironment$Keys {
+  public static final java.util.function.Supplier<cpw.mods.modlauncher.api.TypesafeMap$Key<java.lang.ClassLoader>> LOCATORCLASSLOADER;
+  public net.minecraftforge.fml.loading.FMLEnvironment$Keys();
+}
+Compiled from "FMLEnvironment.java"
+public class net.minecraftforge.fml.loading.FMLEnvironment {
+  public static final net.minecraftforge.api.distmarker.Dist dist;
+  public static final java.lang.String naming;
+  public static final boolean production;
+  public static final boolean secureJarsEnabled;
+  public net.minecraftforge.fml.loading.FMLEnvironment();
+}
+Compiled from "FMLLoader.java"
+public final class net.minecraftforge.fml.loading.FMLLoader {
+  public static java.lang.Runnable progressWindowTick;
+  public static net.minecraftforge.fml.loading.moddiscovery.BackgroundScanHandler backgroundScanHandler;
+  public net.minecraftforge.fml.loading.FMLLoader();
+  public static java.util.List<cpw.mods.modlauncher.api.ITransformationService$Resource> beginModScan(java.util.Map<java.lang.String, ?>);
+  public static java.util.List<cpw.mods.modlauncher.api.ITransformationService$Resource> completeScan(cpw.mods.modlauncher.api.IModuleLayerManager);
+  public static net.minecraftforge.fml.loading.targets.CommonLaunchHandler getLaunchHandler();
+  public static void addAccessTransformer(java.nio.file.Path, net.minecraftforge.fml.loading.moddiscovery.ModFile);
+  public static net.minecraftforge.api.distmarker.Dist getDist();
+  public static void beforeStart(java.lang.ModuleLayer);
+  public static java.nio.file.Path getGamePath();
+  public static java.lang.String getNaming();
+  public static java.util.Optional<java.util.function.BiFunction<cpw.mods.modlauncher.api.INameMappingService$Domain, java.lang.String, java.lang.String>> getNameFunction(java.lang.String);
+  public static java.lang.String getLauncherInfo();
+  public static java.util.List<java.util.Map<java.lang.String, java.lang.String>> modLauncherModList();
+  public static java.lang.String launcherHandlerName();
+  public static boolean isProduction();
+  public static boolean isSecureJarEnabled();
+  public static java.lang.ModuleLayer getGameLayer();
+  public static net.minecraftforge.fml.loading.VersionInfo versionInfo();
+}
+Compiled from "FMLPaths.java"
+public final class net.minecraftforge.fml.loading.FMLPaths extends java.lang.Enum<net.minecraftforge.fml.loading.FMLPaths> {
+  public static final net.minecraftforge.fml.loading.FMLPaths GAMEDIR;
+  public static final net.minecraftforge.fml.loading.FMLPaths MODSDIR;
+  public static final net.minecraftforge.fml.loading.FMLPaths CONFIGDIR;
+  public static final net.minecraftforge.fml.loading.FMLPaths FMLCONFIG;
+  public static net.minecraftforge.fml.loading.FMLPaths[] values();
+  public static net.minecraftforge.fml.loading.FMLPaths valueOf(java.lang.String);
+  public static void setup(cpw.mods.modlauncher.api.IEnvironment);
+  public static void loadAbsolutePaths(java.nio.file.Path);
+  public static java.nio.file.Path getOrCreateGameRelativePath(java.nio.file.Path);
+  public java.nio.file.Path relative();
+  public java.nio.file.Path get();
+}
+Compiled from "FMLServiceProvider.java"
+public class net.minecraftforge.fml.loading.FMLServiceProvider implements cpw.mods.modlauncher.api.ITransformationService {
+  public net.minecraftforge.fml.loading.FMLServiceProvider();
+  public java.lang.String name();
+  public void initialize(cpw.mods.modlauncher.api.IEnvironment);
+  public java.util.List<cpw.mods.modlauncher.api.ITransformationService$Resource> beginScanning(cpw.mods.modlauncher.api.IEnvironment);
+  public java.util.List<cpw.mods.modlauncher.api.ITransformationService$Resource> completeScan(cpw.mods.modlauncher.api.IModuleLayerManager);
+  public void onLoad(cpw.mods.modlauncher.api.IEnvironment, java.util.Set<java.lang.String>) throws cpw.mods.modlauncher.api.IncompatibleEnvironmentException;
+  public java.util.List<cpw.mods.modlauncher.api.ITransformer> transformers();
+}
+Compiled from "ImmediateWindowHandler.java"
+final class net.minecraftforge.fml.loading.ImmediateWindowHandler$DummyProvider extends java.lang.Record implements net.minecraftforge.fml.loading.ImmediateWindowProvider {
+  public java.lang.String name();
+  public java.lang.Runnable initialize(java.lang.String[]);
+  public void updateFramebufferSize(java.util.function.IntConsumer, java.util.function.IntConsumer);
+  public long setupMinecraftWindow(int, int, java.lang.String, long, java.util.function.Supplier<java.lang.Object>);
+  public boolean positionWindow(java.util.Optional<java.lang.Object>, java.util.function.IntConsumer, java.util.function.IntConsumer, java.util.function.IntConsumer, java.util.function.IntConsumer);
+  public <T> java.util.function.Supplier<T> loadingOverlay(java.util.function.Supplier<?>, java.util.function.Supplier<?>, java.util.function.Consumer<java.util.Optional<java.lang.Throwable>>, boolean);
+  public java.lang.String getGLVersion();
+  public void updateModuleReads(java.lang.ModuleLayer);
+  public void periodicTick();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+}
+Compiled from "ImmediateWindowHandler.java"
+public class net.minecraftforge.fml.loading.ImmediateWindowHandler {
+  public net.minecraftforge.fml.loading.ImmediateWindowHandler();
+  public static void load(java.lang.String, java.lang.String[]);
+  public static long setupMinecraftWindow(int, int, java.lang.String, long, java.util.function.Supplier<java.lang.Object>);
+  public static boolean positionWindow(java.util.Optional<java.lang.Object>, java.util.function.IntConsumer, java.util.function.IntConsumer, java.util.function.IntConsumer, java.util.function.IntConsumer);
+  public static void updateFBSize(java.util.function.IntConsumer, java.util.function.IntConsumer);
+  public static <T> java.util.function.Supplier<T> loadingOverlay(java.util.function.Supplier<?>, java.util.function.Supplier<?>, java.util.function.Consumer<java.util.Optional<java.lang.Throwable>>, boolean);
+  public static void acceptGameLayer(java.lang.ModuleLayer);
+  public static void renderTick();
+  public static java.lang.String getGLVersion();
+  public static void updateProgress(java.lang.String);
+}
+Compiled from "ImmediateWindowProvider.java"
+public interface net.minecraftforge.fml.loading.ImmediateWindowProvider {
+  public abstract java.lang.String name();
+  public abstract java.lang.Runnable initialize(java.lang.String[]);
+  public abstract void updateFramebufferSize(java.util.function.IntConsumer, java.util.function.IntConsumer);
+  public abstract long setupMinecraftWindow(int, int, java.lang.String, long, java.util.function.Supplier<java.lang.Object>);
+  public abstract boolean positionWindow(java.util.Optional<java.lang.Object>, java.util.function.IntConsumer, java.util.function.IntConsumer, java.util.function.IntConsumer, java.util.function.IntConsumer);
+  public abstract <T> java.util.function.Supplier<T> loadingOverlay(java.util.function.Supplier<?>, java.util.function.Supplier<?>, java.util.function.Consumer<java.util.Optional<java.lang.Throwable>>, boolean);
+  public abstract void updateModuleReads(java.lang.ModuleLayer);
+  public abstract void periodicTick();
+  public abstract java.lang.String getGLVersion();
+}
+Compiled from "JarVersionLookupHandler.java"
+public final class net.minecraftforge.fml.loading.JarVersionLookupHandler$Info extends java.lang.Record {
+  public net.minecraftforge.fml.loading.JarVersionLookupHandler$Info(net.minecraftforge.fml.loading.JarVersionLookupHandler$Version, net.minecraftforge.fml.loading.JarVersionLookupHandler$Version);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraftforge.fml.loading.JarVersionLookupHandler$Version spec();
+  public net.minecraftforge.fml.loading.JarVersionLookupHandler$Version impl();
+}
+Compiled from "JarVersionLookupHandler.java"
+public final class net.minecraftforge.fml.loading.JarVersionLookupHandler$Version extends java.lang.Record {
+  public net.minecraftforge.fml.loading.JarVersionLookupHandler$Version(java.util.Optional<java.lang.String>, java.util.Optional<java.lang.String>, java.util.Optional<java.lang.String>);
+  public java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.Optional<java.lang.String> title();
+  public java.util.Optional<java.lang.String> vendor();
+  public java.util.Optional<java.lang.String> version();
+}
+Compiled from "JarVersionLookupHandler.java"
+public class net.minecraftforge.fml.loading.JarVersionLookupHandler {
+  public net.minecraftforge.fml.loading.JarVersionLookupHandler();
+  public static net.minecraftforge.fml.loading.JarVersionLookupHandler$Info getInfo(java.lang.String);
+  public static net.minecraftforge.fml.loading.JarVersionLookupHandler$Info getInfo(java.lang.Class<?>);
+  public static net.minecraftforge.fml.loading.JarVersionLookupHandler$Info getInfo(java.lang.Package);
+  public static java.util.Optional<java.lang.String> getImplementationVersion(java.lang.String);
+  public static java.util.Optional<java.lang.String> getSpecificationVersion(java.lang.String);
+  public static java.util.Optional<java.lang.String> getImplementationVersion(java.lang.Class<?>);
+  public static java.util.Optional<java.lang.String> getImplementationTitle(java.lang.Class<?>);
+  public static java.util.Optional<java.lang.String> getSpecificationVersion(java.lang.Class<?>);
+}
+Compiled from "LanguageLoadingProvider.java"
+final class net.minecraftforge.fml.loading.LanguageLoadingProvider$Wrapper extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public org.apache.maven.artifact.versioning.ArtifactVersion version();
+  public net.minecraftforge.forgespi.language.IModLanguageProvider service();
+}
+Compiled from "LanguageLoadingProvider.java"
+public final class net.minecraftforge.fml.loading.LanguageLoadingProvider {
+  public net.minecraftforge.fml.loading.LanguageLoadingProvider();
+  public static void forEach(java.util.function.Consumer<net.minecraftforge.forgespi.language.IModLanguageProvider>);
+  public static <T> java.util.stream.Stream<T> applyForEach(java.util.function.Function<net.minecraftforge.forgespi.language.IModLanguageProvider, T>);
+  public static void reload();
+  public static net.minecraftforge.forgespi.language.IModLanguageProvider findLanguage(net.minecraftforge.fml.loading.moddiscovery.ModFile, java.lang.String, org.apache.maven.artifact.versioning.VersionRange);
+}
+Compiled from "LauncherVersion.java"
+public class net.minecraftforge.fml.loading.LauncherVersion {
+  public net.minecraftforge.fml.loading.LauncherVersion();
+  public static java.lang.String getVersion();
+}
+Compiled from "LoadingModList.java"
+public interface net.minecraftforge.fml.loading.LoadingModList {
+  public static net.minecraftforge.fml.loading.moddiscovery.ModFileInfo getModFileById(java.lang.String);
+  public static java.util.List<net.minecraftforge.fml.loading.moddiscovery.ModFileInfo> getModFiles();
+  public static java.util.List<net.minecraftforge.fml.loading.moddiscovery.ModInfo> getMods();
+  public static java.nio.file.Path findResource(java.lang.String);
+  public static java.util.List<net.minecraftforge.fml.loading.EarlyLoadingException> getErrors();
+  public static java.util.List<net.minecraftforge.forgespi.locating.IModFile> getBrokenFiles();
+}
+Compiled from "LoadingModListImpl.java"
+final class net.minecraftforge.fml.loading.LoadingModListImpl$1LazyInit {
+}
+Compiled from "LoadingModListImpl.java"
+final class net.minecraftforge.fml.loading.LoadingModListImpl extends java.lang.Record implements net.minecraftforge.fml.loading.LoadingModList {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.List<net.minecraftforge.fml.loading.moddiscovery.ModFileInfo> getModFiles();
+  public java.util.List<net.minecraftforge.fml.loading.moddiscovery.ModInfo> getMods();
+  public java.util.Map<java.lang.String, net.minecraftforge.fml.loading.moddiscovery.ModFileInfo> fileById();
+  public java.util.ArrayList<net.minecraftforge.fml.loading.EarlyLoadingException> getErrors();
+  public java.util.ArrayList<net.minecraftforge.forgespi.locating.IModFile> getBrokenFiles();
+}
+Compiled from "LogMarkers.java"
+public class net.minecraftforge.fml.loading.LogMarkers {
+  public static final org.slf4j.Marker CORE;
+  public static final org.slf4j.Marker LOADING;
+  public static final org.slf4j.Marker SCAN;
+  public static final org.slf4j.Marker SPLASH;
+  public net.minecraftforge.fml.loading.LogMarkers();
+}
+Compiled from "MCPNamingService.java"
+class net.minecraftforge.fml.loading.MCPNamingService$1 {
+}
+Compiled from "MCPNamingService.java"
+public class net.minecraftforge.fml.loading.MCPNamingService implements cpw.mods.modlauncher.api.INameMappingService {
+  public net.minecraftforge.fml.loading.MCPNamingService();
+  public java.lang.String mappingName();
+  public java.lang.String mappingVersion();
+  public java.util.Map$Entry<java.lang.String, java.lang.String> understanding();
+  public java.util.function.BiFunction<cpw.mods.modlauncher.api.INameMappingService$Domain, java.lang.String, java.lang.String> namingFunction();
+}
+Compiled from "MavenCoordinateResolver.java"
+public class net.minecraftforge.fml.loading.MavenCoordinateResolver {
+  public net.minecraftforge.fml.loading.MavenCoordinateResolver();
+  public static java.nio.file.Path get(java.lang.String);
+  public static java.nio.file.Path get(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String);
+}
+Compiled from "ModDirTransformerDiscoverer.java"
+public class net.minecraftforge.fml.loading.ModDirTransformerDiscoverer implements cpw.mods.modlauncher.serviceapi.ITransformerDiscoveryService {
+  public net.minecraftforge.fml.loading.ModDirTransformerDiscoverer();
+  public java.util.List<cpw.mods.modlauncher.api.NamedPath> candidates(java.nio.file.Path, java.lang.String);
+  public void earlyInitialization(java.lang.String, java.lang.String[]);
+  public java.util.List<cpw.mods.modlauncher.api.NamedPath> candidates(java.nio.file.Path);
+  public static java.util.List<java.nio.file.Path> allExcluded();
+  public static boolean isServiceProvider(java.nio.file.Path);
+}
+Compiled from "ModSorter.java"
+class net.minecraftforge.fml.loading.ModSorter$1 {
+}
+Compiled from "ModSorter.java"
+final class net.minecraftforge.fml.loading.ModSorter$ModPair extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraftforge.fml.loading.moddiscovery.ModFile file();
+  public net.minecraftforge.fml.loading.moddiscovery.ModInfo info();
+}
+Compiled from "ModSorter.java"
+final class net.minecraftforge.fml.loading.ModSorter$State extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.List<net.minecraftforge.fml.loading.moddiscovery.ModFile> files();
+  public java.util.List<net.minecraftforge.fml.loading.moddiscovery.ModInfo> mods();
+}
+Compiled from "ModSorter.java"
+public final class net.minecraftforge.fml.loading.ModSorter {
+  public static net.minecraftforge.fml.loading.LoadingModList sort(java.util.List<net.minecraftforge.fml.loading.moddiscovery.ModFile>, java.util.List<net.minecraftforge.fml.loading.EarlyLoadingException$ExceptionData>);
+}
+Compiled from "RuntimeDistCleaner.java"
+final class net.minecraftforge.fml.loading.RuntimeDistCleaner$LambdaGatherer extends org.objectweb.asm.MethodVisitor {
+  public net.minecraftforge.fml.loading.RuntimeDistCleaner$LambdaGatherer();
+  public void accept(org.objectweb.asm.tree.MethodNode);
+  public void visitInvokeDynamicInsn(java.lang.String, java.lang.String, org.objectweb.asm.Handle, java.lang.Object...);
+  public java.util.List<org.objectweb.asm.Handle> getDynamicLambdaHandles();
+}
+Compiled from "RuntimeDistCleaner.java"
+final class net.minecraftforge.fml.loading.RuntimeDistCleaner$Target extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String side();
+  public java.lang.String intf();
+}
+Compiled from "RuntimeDistCleaner.java"
+public final class net.minecraftforge.fml.loading.RuntimeDistCleaner implements cpw.mods.modlauncher.serviceapi.ILaunchPluginService {
+  public net.minecraftforge.fml.loading.RuntimeDistCleaner();
+  public java.lang.String name();
+  public java.util.EnumSet<cpw.mods.modlauncher.serviceapi.ILaunchPluginService$Phase> handlesClass(org.objectweb.asm.Type, boolean);
+  public int processClassWithFlags(cpw.mods.modlauncher.serviceapi.ILaunchPluginService$Phase, org.objectweb.asm.tree.ClassNode, org.objectweb.asm.Type, java.lang.String);
+  public java.util.function.Consumer<net.minecraftforge.api.distmarker.Dist> getExtension();
+  public java.lang.Object getExtension();
+}
+Compiled from "StringSubstitutor.java"
+class net.minecraftforge.fml.loading.StringSubstitutor$1 extends org.apache.commons.lang3.text.StrLookup<java.lang.String> {
+  public java.lang.String lookup(java.lang.String);
+}
+Compiled from "StringSubstitutor.java"
+public class net.minecraftforge.fml.loading.StringSubstitutor {
+  public net.minecraftforge.fml.loading.StringSubstitutor();
+  public static java.lang.String replace(java.lang.String, net.minecraftforge.fml.loading.moddiscovery.ModFile);
+}
+Compiled from "StringUtils.java"
+public class net.minecraftforge.fml.loading.StringUtils {
+  public net.minecraftforge.fml.loading.StringUtils();
+  public static java.lang.String toLowerCase(java.lang.String);
+  public static java.lang.String toUpperCase(java.lang.String);
+  public static boolean endsWith(java.lang.String, java.lang.String...);
+  public static java.net.URL toURL(java.lang.String);
+  public static java.lang.String parseStringFormat(java.lang.String, java.util.Map<java.lang.String, java.lang.String>);
+  public static java.lang.String binToHex(byte[]);
+}
+Compiled from "TracingPrintStream.java"
+public class net.minecraftforge.fml.loading.TracingPrintStream extends java.io.PrintStream {
+  public net.minecraftforge.fml.loading.TracingPrintStream(org.slf4j.Logger, java.io.PrintStream);
+  public void println(java.lang.Object);
+  public void println(java.lang.String);
+  public void println(boolean);
+  public void println(char);
+  public void println(int);
+  public void println(long);
+  public void println(float);
+  public void println(double);
+  public void println(char[]);
+}
+Compiled from "UniqueModListBuilder.java"
+public final class net.minecraftforge.fml.loading.UniqueModListBuilder$UniqueModListData extends java.lang.Record {
+  public net.minecraftforge.fml.loading.UniqueModListBuilder$UniqueModListData(java.util.List<net.minecraftforge.fml.loading.moddiscovery.ModFile>, java.util.Map<java.lang.String, java.util.List<net.minecraftforge.fml.loading.moddiscovery.ModFile>>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.List<net.minecraftforge.fml.loading.moddiscovery.ModFile> modFiles();
+  public java.util.Map<java.lang.String, java.util.List<net.minecraftforge.fml.loading.moddiscovery.ModFile>> modFilesByFirstId();
+}
+Compiled from "UniqueModListBuilder.java"
+public final class net.minecraftforge.fml.loading.UniqueModListBuilder {
+  public static net.minecraftforge.fml.loading.UniqueModListBuilder$UniqueModListData buildUniqueList(java.util.List<net.minecraftforge.fml.loading.moddiscovery.ModFile>);
+}
+Compiled from "VersionInfo.java"
+final class net.minecraftforge.fml.loading.VersionInfo$JSON extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String forge();
+  public java.lang.String mcp();
+  public java.lang.String mc();
+}
+Compiled from "VersionInfo.java"
+public final class net.minecraftforge.fml.loading.VersionInfo extends java.lang.Record {
+  public net.minecraftforge.fml.loading.VersionInfo(java.lang.String, java.lang.String, java.lang.String, java.lang.String);
+  public java.lang.String mcAndForgeVersion();
+  public java.lang.String mcAndMCPVersion();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String forgeVersion();
+  public java.lang.String mcVersion();
+  public java.lang.String mcpVersion();
+  public java.lang.String forgeGroup();
+}
+Compiled from "VersionSupportMatrix.java"
+public class net.minecraftforge.fml.loading.VersionSupportMatrix {
+  public net.minecraftforge.fml.loading.VersionSupportMatrix();
+  public static boolean testVersionSupportMatrix(org.apache.maven.artifact.versioning.VersionRange, java.lang.String, java.lang.String);
+}
+Compiled from "ForgeHighlight.java"
+public class net.minecraftforge.fml.loading.log4j.ForgeHighlight {
+  protected static final org.apache.logging.log4j.Logger LOGGER;
+  public net.minecraftforge.fml.loading.log4j.ForgeHighlight();
+  public static org.apache.logging.log4j.core.pattern.HighlightConverter newInstance(org.apache.logging.log4j.core.config.Configuration, java.lang.String[]);
+}
+Compiled from "SLF4JFixerLaunchPluginService.java"
+public class net.minecraftforge.fml.loading.log4j.SLF4JFixerLaunchPluginService implements cpw.mods.modlauncher.serviceapi.ILaunchPluginService {
+  public net.minecraftforge.fml.loading.log4j.SLF4JFixerLaunchPluginService();
+  public java.lang.String name();
+  public java.util.EnumSet<cpw.mods.modlauncher.serviceapi.ILaunchPluginService$Phase> handlesClass(org.objectweb.asm.Type, boolean);
+  public void initializeLaunch(cpw.mods.modlauncher.serviceapi.ILaunchPluginService$ITransformerLoader, cpw.mods.modlauncher.api.NamedPath[]);
+}
+Compiled from "AbstractModProvider.java"
+class net.minecraftforge.fml.loading.moddiscovery.AbstractModProvider$1 implements cpw.mods.jarhandling.JarMetadata {
+  public java.lang.String name();
+  public java.lang.String version();
+  public java.lang.module.ModuleDescriptor descriptor();
+}
+Compiled from "AbstractModProvider.java"
+class net.minecraftforge.fml.loading.moddiscovery.AbstractModProvider$2 implements net.minecraftforge.forgespi.language.IConfigurable {
+  public <T> java.util.Optional<T> getConfigElement(java.lang.String);
+  public <T> java.util.Optional<T> getConfigElement(java.lang.String...);
+  public java.util.List<? extends net.minecraftforge.forgespi.language.IConfigurable> getConfigList(java.lang.String);
+  public java.util.List<? extends net.minecraftforge.forgespi.language.IConfigurable> getConfigList(java.lang.String...);
+}
+Compiled from "AbstractModProvider.java"
+final class net.minecraftforge.fml.loading.moddiscovery.AbstractModProvider$DefaultModFileInfo extends java.lang.Record implements net.minecraftforge.forgespi.language.IModFileInfo,net.minecraftforge.forgespi.language.IConfigurable {
+  public <T> java.util.Optional<T> getConfigElement(java.lang.String);
+  public <T> java.util.Optional<T> getConfigElement(java.lang.String...);
+  public java.util.List<? extends net.minecraftforge.forgespi.language.IConfigurable> getConfigList(java.lang.String...);
+  public java.util.List<net.minecraftforge.forgespi.language.IModInfo> getMods();
+  public java.util.List<net.minecraftforge.forgespi.language.IModFileInfo$LanguageSpec> requiredLanguageLoaders();
+  public boolean showAsResourcePack();
+  public boolean showAsDataPack();
+  public java.util.Map<java.lang.String, java.lang.Object> getFileProperties();
+  public java.lang.String getLicense();
+  public net.minecraftforge.forgespi.locating.IModFile getFile();
+  public net.minecraftforge.forgespi.language.IConfigurable getConfig();
+  public java.lang.String moduleName();
+  public java.lang.String versionString();
+  public java.util.List<java.lang.String> usesServices();
+  public java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraftforge.forgespi.locating.IModFile mod();
+  public java.lang.String license();
+  public net.minecraftforge.forgespi.language.IConfigurable configurable();
+}
+Compiled from "AbstractModProvider.java"
+final class net.minecraftforge.fml.loading.moddiscovery.AbstractModProvider$Holder<T> {
+}
+Compiled from "AbstractModProvider.java"
+public abstract class net.minecraftforge.fml.loading.moddiscovery.AbstractModProvider implements net.minecraftforge.forgespi.locating.IModProvider {
+  protected static final java.lang.String MODS_TOML;
+  protected static final java.lang.String MODULE_INFO;
+  public net.minecraftforge.fml.loading.moddiscovery.AbstractModProvider();
+  protected net.minecraftforge.forgespi.locating.IModLocator$ModFileOrException createMod(java.nio.file.Path);
+  protected net.minecraftforge.forgespi.locating.IModLocator$ModFileOrException createMod(java.nio.file.Path, boolean);
+  protected net.minecraftforge.forgespi.locating.IModLocator$ModFileOrException createMod(java.nio.file.Path, boolean, java.lang.String);
+  protected static cpw.mods.jarhandling.JarMetadata loadMetaFromJar(cpw.mods.jarhandling.SecureJar, net.minecraftforge.fml.loading.moddiscovery.ModJarMetadata);
+  protected net.minecraftforge.forgespi.language.IModFileInfo manifestParser(net.minecraftforge.forgespi.locating.IModFile);
+  public boolean isValid(net.minecraftforge.forgespi.locating.IModFile);
+  public void initArguments(java.util.Map<java.lang.String, ?>);
+  protected java.lang.String getDefaultJarModType();
+  public void scanFile(net.minecraftforge.forgespi.locating.IModFile, java.util.function.Consumer<java.nio.file.Path>);
+}
+Compiled from "BackgroundScanHandler.java"
+final class net.minecraftforge.fml.loading.moddiscovery.BackgroundScanHandler$ScanStatus extends java.lang.Enum<net.minecraftforge.fml.loading.moddiscovery.BackgroundScanHandler$ScanStatus> {
+  public static final net.minecraftforge.fml.loading.moddiscovery.BackgroundScanHandler$ScanStatus NOT_STARTED;
+  public static final net.minecraftforge.fml.loading.moddiscovery.BackgroundScanHandler$ScanStatus RUNNING;
+  public static final net.minecraftforge.fml.loading.moddiscovery.BackgroundScanHandler$ScanStatus COMPLETE;
+  public static final net.minecraftforge.fml.loading.moddiscovery.BackgroundScanHandler$ScanStatus TIMED_OUT;
+  public static final net.minecraftforge.fml.loading.moddiscovery.BackgroundScanHandler$ScanStatus INTERRUPTED;
+  public static final net.minecraftforge.fml.loading.moddiscovery.BackgroundScanHandler$ScanStatus ERRORED;
+  public static net.minecraftforge.fml.loading.moddiscovery.BackgroundScanHandler$ScanStatus[] values();
+  public static net.minecraftforge.fml.loading.moddiscovery.BackgroundScanHandler$ScanStatus valueOf(java.lang.String);
+}
+Compiled from "BackgroundScanHandler.java"
+public final class net.minecraftforge.fml.loading.moddiscovery.BackgroundScanHandler {
+  public net.minecraftforge.fml.loading.moddiscovery.BackgroundScanHandler(java.util.List<net.minecraftforge.fml.loading.moddiscovery.ModFile>);
+  public java.util.List<net.minecraftforge.fml.loading.moddiscovery.ModFile> getModFiles();
+  public void submitForScanning(net.minecraftforge.fml.loading.moddiscovery.ModFile);
+  public void waitForScanToComplete(java.lang.Runnable);
+}
+Compiled from "ClasspathLocator.java"
+public final class net.minecraftforge.fml.loading.moddiscovery.ClasspathLocator extends net.minecraftforge.fml.loading.moddiscovery.AbstractModProvider implements net.minecraftforge.forgespi.locating.IModLocator {
+  public net.minecraftforge.fml.loading.moddiscovery.ClasspathLocator();
+  public java.lang.String name();
+  public java.util.List<net.minecraftforge.forgespi.locating.IModLocator$ModFileOrException> scanMods();
+}
+Compiled from "InvalidModFileException.java"
+public class net.minecraftforge.fml.loading.moddiscovery.InvalidModFileException extends net.minecraftforge.forgespi.locating.ModFileLoadingException {
+  public net.minecraftforge.fml.loading.moddiscovery.InvalidModFileException(java.lang.String, net.minecraftforge.forgespi.language.IModFileInfo);
+  public net.minecraftforge.forgespi.language.IModFileInfo getBrokenFile();
+}
+Compiled from "InvalidModIdentifier.java"
+public final class net.minecraftforge.fml.loading.moddiscovery.InvalidModIdentifier extends java.lang.Enum<net.minecraftforge.fml.loading.moddiscovery.InvalidModIdentifier> {
+  public static final net.minecraftforge.fml.loading.moddiscovery.InvalidModIdentifier OLDFORGE;
+  public static final net.minecraftforge.fml.loading.moddiscovery.InvalidModIdentifier FABRIC;
+  public static final net.minecraftforge.fml.loading.moddiscovery.InvalidModIdentifier LITELOADER;
+  public static final net.minecraftforge.fml.loading.moddiscovery.InvalidModIdentifier OPTIFINE;
+  public static final net.minecraftforge.fml.loading.moddiscovery.InvalidModIdentifier BUKKIT;
+  public static final net.minecraftforge.fml.loading.moddiscovery.InvalidModIdentifier INVALIDZIP;
+  public static net.minecraftforge.fml.loading.moddiscovery.InvalidModIdentifier[] values();
+  public static net.minecraftforge.fml.loading.moddiscovery.InvalidModIdentifier valueOf(java.lang.String);
+  public static java.util.Optional<java.lang.String> identifyJarProblem(java.nio.file.Path);
+}
+Compiled from "JarInJarDependencyLocator.java"
+class net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator$Entry implements java.lang.Comparable<net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator$Entry> {
+  public java.lang.String toString();
+  public int compareTo(net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator$Entry);
+  public int compareTo(java.lang.Object);
+}
+Compiled from "JarInJarDependencyLocator.java"
+final class net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator$Key extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator$Entry parent();
+  public java.lang.String path();
+}
+Compiled from "JarInJarDependencyLocator.java"
+final class net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator$ModEntry extends net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator$Entry {
+}
+Compiled from "JarInJarDependencyLocator.java"
+final class net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator$Nested extends net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator$Entry {
+  public java.nio.file.Path getFinalPath();
+  public java.lang.String toString();
+}
+Compiled from "JarInJarDependencyLocator.java"
+final class net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator$NestedOption extends net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator$Option {
+  public void addTo(net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator$Selector);
+}
+Compiled from "JarInJarDependencyLocator.java"
+class net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator$Option extends net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator$Entry {
+  public void addTo(net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator$Selector);
+}
+Compiled from "JarInJarDependencyLocator.java"
+final class net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator$OptionMetadata extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String resource();
+  public net.minecraftforge.forgespi.locating.IModFile$Type layer();
+  public java.lang.String id();
+  public java.util.List<net.minecraftforge.jarjar.metadata.ContainedJarMetadata> deps();
+  public net.minecraftforge.jarjar.metadata.ContainedJarMetadata meta();
+  public boolean nested();
+}
+Compiled from "JarInJarDependencyLocator.java"
+final class net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator$Options extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.List<net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator$OptionMetadata> options();
+}
+Compiled from "JarInJarDependencyLocator.java"
+final class net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator$Selector extends net.minecraftforge.jarjar.selection.JarSelector<net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator$Entry> {
+  public void force(net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator$Entry);
+  public void option(net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator$Entry, net.minecraftforge.jarjar.metadata.ContainedJarMetadata);
+  public void add(net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator$Entry);
+  protected java.io.InputStream getResource(net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator$Entry, java.lang.String);
+  protected net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator$Entry getNested(net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator$Entry, java.lang.String);
+  protected java.lang.String getIdentifier(net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator$Entry);
+  protected java.lang.Throwable getFailureException(java.util.Collection<net.minecraftforge.jarjar.selection.JarSelector$ResolutionFailureInformation<net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator$Entry>>);
+  public void add(java.lang.Object);
+  public void option(java.lang.Object, net.minecraftforge.jarjar.metadata.ContainedJarMetadata);
+  public void force(java.lang.Object);
+  protected java.lang.String getIdentifier(java.lang.Object);
+  protected java.lang.Object getNested(java.lang.Object, java.lang.String);
+  protected java.io.InputStream getResource(java.lang.Object, java.lang.String);
+}
+Compiled from "JarInJarDependencyLocator.java"
+public class net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator extends net.minecraftforge.fml.loading.moddiscovery.AbstractModProvider implements net.minecraftforge.forgespi.locating.IDependencyLocator {
+  public net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator();
+  public java.lang.String name();
+  public java.util.List<net.minecraftforge.forgespi.locating.IModFile> scanMods(java.lang.Iterable<net.minecraftforge.forgespi.locating.IModFile>);
+  protected java.lang.String getDefaultJarModType();
+  protected static java.lang.String identifyMod(net.minecraftforge.forgespi.locating.IModFile);
+}
+Compiled from "MinecraftLocator.java"
+public final class net.minecraftforge.fml.loading.moddiscovery.MinecraftLocator extends net.minecraftforge.fml.loading.moddiscovery.AbstractModProvider implements net.minecraftforge.forgespi.locating.IModLocator {
+  public net.minecraftforge.fml.loading.moddiscovery.MinecraftLocator();
+  public java.util.List<net.minecraftforge.forgespi.locating.IModLocator$ModFileOrException> scanMods();
+  public java.lang.String name();
+  public void scanFile(net.minecraftforge.forgespi.locating.IModFile, java.util.function.Consumer<java.nio.file.Path>);
+}
+Compiled from "ModAnnotation.java"
+final class net.minecraftforge.fml.loading.moddiscovery.ModAnnotation {
+  public static net.minecraftforge.forgespi.language.ModFileScanData$AnnotationData fromModAnnotation(org.objectweb.asm.Type, net.minecraftforge.fml.loading.moddiscovery.ModAnnotation);
+  public net.minecraftforge.fml.loading.moddiscovery.ModAnnotation(java.lang.annotation.ElementType, org.objectweb.asm.Type, java.lang.String);
+  public net.minecraftforge.fml.loading.moddiscovery.ModAnnotation(org.objectweb.asm.Type, net.minecraftforge.fml.loading.moddiscovery.ModAnnotation);
+  public java.lang.String toString();
+  public java.lang.annotation.ElementType getType();
+  public org.objectweb.asm.Type getASMType();
+  public java.lang.String getMember();
+  public java.util.Map<java.lang.String, java.lang.Object> getValues();
+  public void addArray(java.lang.String);
+  public void addProperty(java.lang.String, java.lang.Object);
+  public void addEnumProperty(java.lang.String, java.lang.String, java.lang.String);
+  public void endArray();
+  public net.minecraftforge.fml.loading.moddiscovery.ModAnnotation addChildAnnotation(java.lang.String, java.lang.String);
+}
+Compiled from "ModClassVisitor.java"
+class net.minecraftforge.fml.loading.moddiscovery.ModClassVisitor$1 extends org.objectweb.asm.FieldVisitor {
+  public org.objectweb.asm.AnnotationVisitor visitAnnotation(java.lang.String, boolean);
+}
+Compiled from "ModClassVisitor.java"
+class net.minecraftforge.fml.loading.moddiscovery.ModClassVisitor$2 extends org.objectweb.asm.MethodVisitor {
+  public org.objectweb.asm.AnnotationVisitor visitAnnotation(java.lang.String, boolean);
+}
+Compiled from "ModClassVisitor.java"
+final class net.minecraftforge.fml.loading.moddiscovery.ModClassVisitor$ModAnnotationVisitor extends org.objectweb.asm.AnnotationVisitor {
+  public net.minecraftforge.fml.loading.moddiscovery.ModClassVisitor$ModAnnotationVisitor(net.minecraftforge.fml.loading.moddiscovery.ModClassVisitor, net.minecraftforge.fml.loading.moddiscovery.ModAnnotation);
+  public net.minecraftforge.fml.loading.moddiscovery.ModClassVisitor$ModAnnotationVisitor(net.minecraftforge.fml.loading.moddiscovery.ModClassVisitor, net.minecraftforge.fml.loading.moddiscovery.ModAnnotation, java.lang.String);
+  public net.minecraftforge.fml.loading.moddiscovery.ModClassVisitor$ModAnnotationVisitor(net.minecraftforge.fml.loading.moddiscovery.ModClassVisitor, net.minecraftforge.fml.loading.moddiscovery.ModAnnotation, boolean);
+  public void visit(java.lang.String, java.lang.Object);
+  public void visitEnum(java.lang.String, java.lang.String, java.lang.String);
+  public org.objectweb.asm.AnnotationVisitor visitArray(java.lang.String);
+  public org.objectweb.asm.AnnotationVisitor visitAnnotation(java.lang.String, java.lang.String);
+  public void visitEnd();
+}
+Compiled from "ModClassVisitor.java"
+final class net.minecraftforge.fml.loading.moddiscovery.ModClassVisitor extends org.objectweb.asm.ClassVisitor {
+  public void visit(int, int, java.lang.String, java.lang.String, java.lang.String, java.lang.String[]);
+  public org.objectweb.asm.AnnotationVisitor visitAnnotation(java.lang.String, boolean);
+  public org.objectweb.asm.FieldVisitor visitField(int, java.lang.String, java.lang.String, java.lang.String, java.lang.Object);
+  public org.objectweb.asm.MethodVisitor visitMethod(int, java.lang.String, java.lang.String, java.lang.String, java.lang.String[]);
+  public void buildData(java.util.Set<net.minecraftforge.forgespi.language.ModFileScanData$ClassData>, java.util.Set<net.minecraftforge.forgespi.language.ModFileScanData$AnnotationData>);
+}
+Compiled from "ModDiscoverer.java"
+public final class net.minecraftforge.fml.loading.moddiscovery.ModDiscoverer {
+  public static net.minecraftforge.fml.loading.moddiscovery.ModValidator discoverMods(java.util.Map<java.lang.String, ?>);
+}
+Compiled from "ModFile.java"
+public class net.minecraftforge.fml.loading.moddiscovery.ModFile implements net.minecraftforge.forgespi.locating.IModFile {
+  public net.minecraftforge.fml.loading.moddiscovery.ModFile(cpw.mods.jarhandling.SecureJar, net.minecraftforge.forgespi.locating.IModProvider, net.minecraftforge.forgespi.locating.ModFileFactory$ModFileInfoParser);
+  public net.minecraftforge.fml.loading.moddiscovery.ModFile(cpw.mods.jarhandling.SecureJar, net.minecraftforge.forgespi.locating.IModProvider, net.minecraftforge.forgespi.locating.ModFileFactory$ModFileInfoParser, java.lang.String);
+  public java.util.function.Supplier<java.util.Map<java.lang.String, java.lang.Object>> getSubstitutionMap();
+  public net.minecraftforge.forgespi.locating.IModFile$Type getType();
+  public java.nio.file.Path getFilePath();
+  public cpw.mods.jarhandling.SecureJar getSecureJar();
+  public java.util.List<net.minecraftforge.forgespi.language.IModInfo> getModInfos();
+  public java.util.List<java.nio.file.Path> getAccessTransformers();
+  public boolean identifyMods();
+  public net.minecraftforge.forgespi.language.ModFileScanData compileContent();
+  public void scanFile(java.util.function.Consumer<java.nio.file.Path>);
+  public void setFutureScanResult(java.util.concurrent.CompletableFuture<net.minecraftforge.forgespi.language.ModFileScanData>);
+  public net.minecraftforge.forgespi.language.ModFileScanData getScanResult();
+  public void setScanResult(net.minecraftforge.forgespi.language.ModFileScanData, java.lang.Throwable);
+  public void setFileProperties(java.util.Map<java.lang.String, java.lang.Object>);
+  public java.util.List<net.minecraftforge.forgespi.language.IModLanguageProvider> getLoaders();
+  public java.nio.file.Path findResource(java.lang.String...);
+  public void identifyLanguage();
+  public java.lang.String toString();
+  public java.lang.String getFileName();
+  public net.minecraftforge.forgespi.locating.IModProvider getProvider();
+  public net.minecraftforge.forgespi.language.IModFileInfo getModFileInfo();
+  public void setSecurityStatus(cpw.mods.jarhandling.SecureJar$Status);
+  public cpw.mods.jarhandling.SecureJar$Status getSecurityStatus();
+  public org.apache.maven.artifact.versioning.ArtifactVersion getJarVersion();
+}
+Compiled from "ModFileInfo.java"
+public class net.minecraftforge.fml.loading.moddiscovery.ModFileInfo implements net.minecraftforge.forgespi.language.IModFileInfo,net.minecraftforge.forgespi.language.IConfigurable {
+  public static final java.lang.String NOT_A_FORGE_MOD_PROP;
+  public net.minecraftforge.fml.loading.moddiscovery.ModFileInfo(net.minecraftforge.fml.loading.moddiscovery.ModFile, net.minecraftforge.forgespi.language.IConfigurable, java.util.function.Consumer<net.minecraftforge.forgespi.language.IModFileInfo>, java.util.List<net.minecraftforge.forgespi.language.IModFileInfo$LanguageSpec>);
+  public java.util.List<net.minecraftforge.forgespi.language.IModInfo> getMods();
+  public net.minecraftforge.fml.loading.moddiscovery.ModFile getFile();
+  public java.util.List<net.minecraftforge.forgespi.language.IModFileInfo$LanguageSpec> requiredLanguageLoaders();
+  public java.util.Map<java.lang.String, java.lang.Object> getFileProperties();
+  public boolean showAsResourcePack();
+  public boolean isClientSideOnly();
+  public boolean showAsDataPack();
+  public <T> java.util.Optional<T> getConfigElement(java.lang.String);
+  public <T> java.util.Optional<T> getConfigElement(java.lang.String...);
+  public java.util.List<? extends net.minecraftforge.forgespi.language.IConfigurable> getConfigList(java.lang.String...);
+  public java.lang.String getLicense();
+  public net.minecraftforge.forgespi.language.IConfigurable getConfig();
+  public java.net.URL getIssueURL();
+  public boolean missingLicense();
+  public java.util.Optional<java.lang.String> getCodeSigningFingerprint();
+  public java.util.Optional<java.lang.String> getTrustData();
+  public java.lang.String moduleName();
+  public java.lang.String versionString();
+  public java.util.List<java.lang.String> usesServices();
+  public net.minecraftforge.forgespi.locating.IModFile getFile();
+}
+Compiled from "ModFileParser.java"
+public class net.minecraftforge.fml.loading.moddiscovery.ModFileParser {
+  public net.minecraftforge.fml.loading.moddiscovery.ModFileParser();
+  public static net.minecraftforge.forgespi.language.IModFileInfo readModList(net.minecraftforge.fml.loading.moddiscovery.ModFile, net.minecraftforge.forgespi.locating.ModFileFactory$ModFileInfoParser);
+  public static net.minecraftforge.forgespi.language.IModFileInfo modsTomlParser(net.minecraftforge.forgespi.locating.IModFile);
+}
+Compiled from "ModInfo.java"
+final class net.minecraftforge.fml.loading.moddiscovery.ModInfo$Holder<T> {
+  public net.minecraftforge.fml.loading.moddiscovery.ModInfo$Holder(T);
+}
+Compiled from "ModInfo.java"
+final class net.minecraftforge.fml.loading.moddiscovery.ModInfo$ModVersion extends java.lang.Record implements net.minecraftforge.forgespi.language.IModInfo$ModVersion {
+  public static net.minecraftforge.fml.loading.moddiscovery.ModInfo$ModVersion of(net.minecraftforge.forgespi.language.IModInfo, net.minecraftforge.forgespi.language.IConfigurable);
+  public net.minecraftforge.forgespi.language.IModInfo getOwner();
+  public void setOwner(net.minecraftforge.forgespi.language.IModInfo);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraftforge.fml.loading.moddiscovery.ModInfo$Holder<net.minecraftforge.forgespi.language.IModInfo> owner();
+  public java.lang.String getModId();
+  public org.apache.maven.artifact.versioning.VersionRange getVersionRange();
+  public boolean isMandatory();
+  public net.minecraftforge.forgespi.language.IModInfo$Ordering getOrdering();
+  public net.minecraftforge.forgespi.language.IModInfo$DependencySide getSide();
+  public java.util.Optional<java.net.URL> getReferralURL();
+}
+Compiled from "ModInfo.java"
+public final class net.minecraftforge.fml.loading.moddiscovery.ModInfo extends java.lang.Record implements net.minecraftforge.forgespi.language.IModInfo,net.minecraftforge.forgespi.language.IConfigurable {
+  public net.minecraftforge.fml.loading.moddiscovery.ModInfo(net.minecraftforge.fml.loading.moddiscovery.ModFileInfo, net.minecraftforge.forgespi.language.IConfigurable, java.lang.String, java.lang.String, org.apache.maven.artifact.versioning.ArtifactVersion, java.lang.String, java.lang.String, java.util.Optional<java.lang.String>, boolean, java.util.Optional<java.net.URL>, java.util.Optional<java.net.URL>, net.minecraftforge.fml.loading.moddiscovery.ModInfo$Holder<java.util.List<? extends net.minecraftforge.fml.loading.moddiscovery.ModInfo$ModVersion>>, net.minecraftforge.fml.loading.moddiscovery.ModInfo$Holder<java.util.List<net.minecraftforge.forgespi.locating.ForgeFeature$Bound>>, java.util.Map<java.lang.String, java.lang.Object>);
+  public static net.minecraftforge.fml.loading.moddiscovery.ModInfo of(net.minecraftforge.fml.loading.moddiscovery.ModFileInfo, net.minecraftforge.forgespi.language.IConfigurable);
+  public <T> java.util.Optional<T> getConfigElement(java.lang.String);
+  public <T> java.util.Optional<T> getConfigElement(java.lang.String...);
+  public java.util.List<? extends net.minecraftforge.forgespi.language.IConfigurable> getConfigList(java.lang.String...);
+  public java.util.List<? extends net.minecraftforge.forgespi.language.IModInfo$ModVersion> getDependencies();
+  public java.util.List<? extends net.minecraftforge.forgespi.locating.ForgeFeature$Bound> getForgeFeatures();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraftforge.fml.loading.moddiscovery.ModFileInfo getOwningFile();
+  public net.minecraftforge.forgespi.language.IConfigurable getConfig();
+  public java.lang.String getModId();
+  public java.lang.String getNamespace();
+  public org.apache.maven.artifact.versioning.ArtifactVersion getVersion();
+  public java.lang.String getDisplayName();
+  public java.lang.String getDescription();
+  public java.util.Optional<java.lang.String> getLogoFile();
+  public boolean getLogoBlur();
+  public java.util.Optional<java.net.URL> getUpdateURL();
+  public java.util.Optional<java.net.URL> getModURL();
+  public net.minecraftforge.fml.loading.moddiscovery.ModInfo$Holder<java.util.List<? extends net.minecraftforge.fml.loading.moddiscovery.ModInfo$ModVersion>> dependencies();
+  public net.minecraftforge.fml.loading.moddiscovery.ModInfo$Holder<java.util.List<net.minecraftforge.forgespi.locating.ForgeFeature$Bound>> forgeFeatures();
+  public java.util.Map<java.lang.String, java.lang.Object> getModProperties();
+  public net.minecraftforge.forgespi.language.IModFileInfo getOwningFile();
+}
+Compiled from "ModJarMetadata.java"
+public final class net.minecraftforge.fml.loading.moddiscovery.ModJarMetadata implements cpw.mods.jarhandling.JarMetadata {
+  public void setModFile(net.minecraftforge.forgespi.locating.IModFile);
+  public java.lang.String name();
+  public java.lang.String version();
+  public java.lang.module.ModuleDescriptor descriptor();
+  public boolean equals(java.lang.Object);
+  public int hashCode();
+  public java.lang.String toString();
+}
+Compiled from "ModValidator.java"
+public class net.minecraftforge.fml.loading.moddiscovery.ModValidator {
+  public net.minecraftforge.fml.loading.moddiscovery.ModValidator(java.util.Map<net.minecraftforge.forgespi.locating.IModFile$Type, java.util.List<net.minecraftforge.fml.loading.moddiscovery.ModFile>>, java.util.List<net.minecraftforge.forgespi.language.IModFileInfo>, java.util.List<net.minecraftforge.fml.loading.EarlyLoadingException$ExceptionData>, java.util.List<net.minecraftforge.forgespi.locating.ModFileLoadingException>);
+  public net.minecraftforge.fml.loading.moddiscovery.ModValidator(java.util.Map<net.minecraftforge.forgespi.locating.IModFile$Type, java.util.List<net.minecraftforge.fml.loading.moddiscovery.ModFile>>, java.util.List<net.minecraftforge.forgespi.language.IModFileInfo>, java.util.List<net.minecraftforge.fml.loading.EarlyLoadingException$ExceptionData>);
+  public void stage1Validation();
+  public cpw.mods.modlauncher.api.ITransformationService$Resource getPluginResources();
+  public cpw.mods.modlauncher.api.ITransformationService$Resource getModResources();
+  public net.minecraftforge.fml.loading.moddiscovery.BackgroundScanHandler stage2Validation();
+}
+Compiled from "ModsFolderLocator.java"
+public class net.minecraftforge.fml.loading.moddiscovery.ModsFolderLocator extends net.minecraftforge.fml.loading.moddiscovery.AbstractModProvider implements net.minecraftforge.forgespi.locating.IModLocator {
+  public net.minecraftforge.fml.loading.moddiscovery.ModsFolderLocator();
+  public java.util.List<net.minecraftforge.forgespi.locating.IModLocator$ModFileOrException> scanMods();
+  public java.lang.String name();
+  public java.lang.String toString();
+}
+Compiled from "NightConfigWrapper.java"
+final class net.minecraftforge.fml.loading.moddiscovery.NightConfigWrapper implements net.minecraftforge.forgespi.language.IConfigurable {
+  public net.minecraftforge.fml.loading.moddiscovery.NightConfigWrapper(com.electronwill.nightconfig.core.UnmodifiableConfig);
+  public <T> java.util.Optional<T> getConfigElement(java.lang.String);
+  public <T> java.util.Optional<T> getConfigElement(java.lang.String...);
+  public java.util.List<? extends net.minecraftforge.forgespi.language.IConfigurable> getConfigList(java.lang.String...);
+}
+Compiled from "Scanner.java"
+final class net.minecraftforge.fml.loading.moddiscovery.Scanner extends java.lang.Record {
+  public net.minecraftforge.fml.loading.moddiscovery.Scanner(net.minecraftforge.fml.loading.moddiscovery.ModFile);
+  public net.minecraftforge.forgespi.language.ModFileScanData scan();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraftforge.fml.loading.moddiscovery.ModFile fileToScan();
+  public net.minecraftforge.forgespi.language.ModFileScanData result();
+}
+Compiled from "Message.java"
+final class net.minecraftforge.fml.loading.progress.Message$MessageType extends java.lang.Enum<net.minecraftforge.fml.loading.progress.Message$MessageType> {
+  public static final net.minecraftforge.fml.loading.progress.Message$MessageType MC;
+  public static final net.minecraftforge.fml.loading.progress.Message$MessageType ML;
+  public static final net.minecraftforge.fml.loading.progress.Message$MessageType LOC;
+  public static final net.minecraftforge.fml.loading.progress.Message$MessageType MOD;
+  public static net.minecraftforge.fml.loading.progress.Message$MessageType[] values();
+  public static net.minecraftforge.fml.loading.progress.Message$MessageType valueOf(java.lang.String);
+  public float[] colour();
+}
+Compiled from "Message.java"
+public class net.minecraftforge.fml.loading.progress.Message {
+  public net.minecraftforge.fml.loading.progress.Message(java.lang.String, net.minecraftforge.fml.loading.progress.Message$MessageType);
+  public java.lang.String getText();
+  public float[] getTypeColour();
+}
+Compiled from "ProgressMeter.java"
+public final class net.minecraftforge.fml.loading.progress.ProgressMeter {
+  public net.minecraftforge.fml.loading.progress.ProgressMeter(java.lang.String, int, int, net.minecraftforge.fml.loading.progress.Message);
+  public java.lang.String name();
+  public int steps();
+  public int current();
+  public net.minecraftforge.fml.loading.progress.Message label();
+  public void increment();
+  public void complete();
+  public float progress();
+  public void setAbsolute(int);
+  public void label(java.lang.String);
+}
+Compiled from "StartupNotificationManager.java"
+public final class net.minecraftforge.fml.loading.progress.StartupNotificationManager$AgeMessage extends java.lang.Record {
+  public net.minecraftforge.fml.loading.progress.StartupNotificationManager$AgeMessage(int, net.minecraftforge.fml.loading.progress.Message);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int age();
+  public net.minecraftforge.fml.loading.progress.Message message();
+}
+Compiled from "StartupNotificationManager.java"
+public class net.minecraftforge.fml.loading.progress.StartupNotificationManager {
+  public net.minecraftforge.fml.loading.progress.StartupNotificationManager();
+  public static java.util.List<net.minecraftforge.fml.loading.progress.ProgressMeter> getCurrentProgress();
+  public static net.minecraftforge.fml.loading.progress.ProgressMeter prependProgressBar(java.lang.String, int);
+  public static net.minecraftforge.fml.loading.progress.ProgressMeter addProgressBar(java.lang.String, int);
+  public static void popBar(net.minecraftforge.fml.loading.progress.ProgressMeter);
+  public static java.util.List<net.minecraftforge.fml.loading.progress.StartupNotificationManager$AgeMessage> getMessages();
+  public static void addModMessage(java.lang.String);
+  public static java.util.Optional<java.util.function.Consumer<java.lang.String>> modLoaderConsumer();
+  public static java.util.Optional<java.util.function.Consumer<java.lang.String>> locatorConsumer();
+  public static java.util.Optional<java.util.function.Consumer<java.lang.String>> mcLoaderConsumer();
+}
+Compiled from "ArgumentList.java"
+final class net.minecraftforge.fml.loading.targets.ArgumentList$EntryValue implements java.util.function.Supplier<java.lang.String[]> {
+  public net.minecraftforge.fml.loading.targets.ArgumentList$EntryValue(boolean, java.lang.String, java.lang.String, java.lang.String);
+  public java.lang.String getKey();
+  public java.lang.String getValue();
+  public void setValue(java.lang.String);
+  public java.lang.String[] get();
+  public java.lang.String toString();
+  public java.lang.Object get();
+}
+Compiled from "ArgumentList.java"
+class net.minecraftforge.fml.loading.targets.ArgumentList {
+  public static net.minecraftforge.fml.loading.targets.ArgumentList from(java.lang.String...);
+  public void addRaw(java.lang.String);
+  public void addArg(boolean, java.lang.String, java.lang.String);
+  public java.lang.String[] getArguments();
+  public boolean has(java.lang.String);
+  public boolean hasValue(java.lang.String);
+  public java.lang.String get(java.lang.String);
+  public java.lang.String getOrDefault(java.lang.String, java.lang.String);
+  public void put(java.lang.String, java.lang.String);
+  public void putLazy(java.lang.String, java.lang.String);
+  public java.lang.String remove(java.lang.String);
+}
+Compiled from "CommonDevLaunchHandler.java"
+abstract class net.minecraftforge.fml.loading.targets.CommonDevLaunchHandler extends net.minecraftforge.fml.loading.targets.CommonLaunchHandler {
+  protected net.minecraftforge.fml.loading.targets.CommonDevLaunchHandler(net.minecraftforge.fml.loading.targets.CommonLaunchHandler$LaunchType, java.lang.String);
+  protected net.minecraftforge.fml.loading.targets.CommonDevLaunchHandler(java.lang.String);
+  public java.lang.String getNaming();
+  public boolean isProduction();
+  protected java.lang.String[] preLaunch(java.lang.String[], java.lang.ModuleLayer);
+  protected cpw.mods.modlauncher.api.ServiceRunner makeService(java.lang.String[], java.lang.ModuleLayer);
+  protected static java.lang.String[] findClassPath();
+  protected static java.nio.file.Path findJarOnClasspath(java.lang.String[], java.lang.String);
+  protected static java.nio.file.Path getMinecraftOnly(java.nio.file.Path, java.nio.file.Path);
+  protected static java.nio.file.Path getForgeOnly(java.nio.file.Path);
+}
+Compiled from "CommonLaunchHandler.java"
+public final class net.minecraftforge.fml.loading.targets.CommonLaunchHandler$LaunchType extends java.lang.Record {
+  protected net.minecraftforge.fml.loading.targets.CommonLaunchHandler$LaunchType(java.lang.String, java.lang.String, java.lang.String, net.minecraftforge.api.distmarker.Dist, boolean);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String name();
+  public java.lang.String module();
+  public java.lang.String main();
+  public net.minecraftforge.api.distmarker.Dist dist();
+  public boolean data();
+}
+Compiled from "CommonLaunchHandler.java"
+public abstract class net.minecraftforge.fml.loading.targets.CommonLaunchHandler implements cpw.mods.modlauncher.api.ILaunchHandlerService {
+  protected static final org.slf4j.Logger LOGGER;
+  protected net.minecraftforge.api.distmarker.Dist dist;
+  protected boolean isData;
+  protected java.lang.String module;
+  protected java.lang.String main;
+  protected static final net.minecraftforge.fml.loading.targets.CommonLaunchHandler$LaunchType CLIENT;
+  protected static final net.minecraftforge.fml.loading.targets.CommonLaunchHandler$LaunchType CLIENT_DATA;
+  protected static final net.minecraftforge.fml.loading.targets.CommonLaunchHandler$LaunchType DATA;
+  protected static final net.minecraftforge.fml.loading.targets.CommonLaunchHandler$LaunchType SERVER;
+  protected static final net.minecraftforge.fml.loading.targets.CommonLaunchHandler$LaunchType SERVER_GAMETEST;
+  protected net.minecraftforge.fml.loading.targets.CommonLaunchHandler(net.minecraftforge.fml.loading.targets.CommonLaunchHandler$LaunchType, java.lang.String);
+  protected net.minecraftforge.fml.loading.targets.CommonLaunchHandler(java.lang.String);
+  public java.lang.String name();
+  public net.minecraftforge.api.distmarker.Dist getDist();
+  public boolean isData();
+  public boolean isProduction();
+  public abstract java.lang.String getNaming();
+  public abstract java.util.List<java.nio.file.Path> getMinecraftPaths();
+  protected java.lang.String[] preLaunch(java.lang.String[], java.lang.ModuleLayer);
+  public cpw.mods.modlauncher.api.ServiceRunner launchService(java.lang.String[], java.lang.ModuleLayer);
+  protected cpw.mods.modlauncher.api.ServiceRunner makeService(java.lang.String[], java.lang.ModuleLayer);
+  protected void runTarget(java.lang.String, java.lang.String, java.lang.String[], java.lang.ModuleLayer) throws java.lang.Throwable;
+  protected static java.nio.file.Path getPathFromResource(java.lang.String);
+  protected static java.nio.file.Path getPathFromResource(java.lang.String, java.lang.ClassLoader);
+}
+Compiled from "ForgeDevLaunchHandler.java"
+public final class net.minecraftforge.fml.loading.targets.ForgeDevLaunchHandler$Client extends net.minecraftforge.fml.loading.targets.ForgeDevLaunchHandler {
+  public net.minecraftforge.fml.loading.targets.ForgeDevLaunchHandler$Client();
+  public java.util.List getMinecraftPaths();
+  public boolean isProduction();
+  public java.lang.String getNaming();
+}
+Compiled from "ForgeDevLaunchHandler.java"
+public final class net.minecraftforge.fml.loading.targets.ForgeDevLaunchHandler$ClientData extends net.minecraftforge.fml.loading.targets.ForgeDevLaunchHandler {
+  public net.minecraftforge.fml.loading.targets.ForgeDevLaunchHandler$ClientData();
+  public java.util.List getMinecraftPaths();
+  public boolean isProduction();
+  public java.lang.String getNaming();
+}
+Compiled from "ForgeDevLaunchHandler.java"
+public final class net.minecraftforge.fml.loading.targets.ForgeDevLaunchHandler$Custom extends net.minecraftforge.fml.loading.targets.ForgeDevLaunchHandler {
+  public net.minecraftforge.fml.loading.targets.ForgeDevLaunchHandler$Custom();
+  public java.util.List getMinecraftPaths();
+  public boolean isProduction();
+  public java.lang.String getNaming();
+}
+Compiled from "ForgeDevLaunchHandler.java"
+public final class net.minecraftforge.fml.loading.targets.ForgeDevLaunchHandler$Data extends net.minecraftforge.fml.loading.targets.ForgeDevLaunchHandler {
+  public net.minecraftforge.fml.loading.targets.ForgeDevLaunchHandler$Data();
+  public java.util.List getMinecraftPaths();
+  public boolean isProduction();
+  public java.lang.String getNaming();
+}
+Compiled from "ForgeDevLaunchHandler.java"
+public final class net.minecraftforge.fml.loading.targets.ForgeDevLaunchHandler$Server extends net.minecraftforge.fml.loading.targets.ForgeDevLaunchHandler {
+  public net.minecraftforge.fml.loading.targets.ForgeDevLaunchHandler$Server();
+  public java.util.List getMinecraftPaths();
+  public boolean isProduction();
+  public java.lang.String getNaming();
+}
+Compiled from "ForgeDevLaunchHandler.java"
+public final class net.minecraftforge.fml.loading.targets.ForgeDevLaunchHandler$ServerGameTest extends net.minecraftforge.fml.loading.targets.ForgeDevLaunchHandler {
+  public net.minecraftforge.fml.loading.targets.ForgeDevLaunchHandler$ServerGameTest();
+  public java.util.List getMinecraftPaths();
+  public boolean isProduction();
+  public java.lang.String getNaming();
+}
+Compiled from "ForgeDevLaunchHandler.java"
+abstract class net.minecraftforge.fml.loading.targets.ForgeDevLaunchHandler extends net.minecraftforge.fml.loading.targets.CommonDevLaunchHandler {
+  public java.util.List<java.nio.file.Path> getMinecraftPaths();
+}
+Compiled from "ForgeDevLocator.java"
+class net.minecraftforge.fml.loading.targets.ForgeDevLocator$1$1 extends org.objectweb.asm.AnnotationVisitor {
+  public void visit(java.lang.String, java.lang.Object);
+}
+Compiled from "ForgeDevLocator.java"
+class net.minecraftforge.fml.loading.targets.ForgeDevLocator$1 extends org.objectweb.asm.ClassVisitor {
+  public void visit(int, int, java.lang.String, java.lang.String, java.lang.String, java.lang.String[]);
+  public org.objectweb.asm.AnnotationVisitor visitAnnotation(java.lang.String, boolean);
+}
+Compiled from "ForgeDevLocator.java"
+public final class net.minecraftforge.fml.loading.targets.ForgeDevLocator extends net.minecraftforge.fml.loading.moddiscovery.AbstractModProvider implements net.minecraftforge.forgespi.locating.IModLocator {
+  public net.minecraftforge.fml.loading.targets.ForgeDevLocator();
+  public java.lang.String name();
+  public java.util.List<net.minecraftforge.forgespi.locating.IModLocator$ModFileOrException> scanMods();
+}
+Compiled from "ForgeProdLaunchHandler.java"
+public final class net.minecraftforge.fml.loading.targets.ForgeProdLaunchHandler$Client extends net.minecraftforge.fml.loading.targets.ForgeProdLaunchHandler {
+  public net.minecraftforge.fml.loading.targets.ForgeProdLaunchHandler$Client();
+  public java.util.List<java.nio.file.Path> getMinecraftPaths();
+  public boolean isProduction();
+  public java.lang.String getNaming();
+}
+Compiled from "ForgeProdLaunchHandler.java"
+public final class net.minecraftforge.fml.loading.targets.ForgeProdLaunchHandler$Server extends net.minecraftforge.fml.loading.targets.ForgeProdLaunchHandler {
+  public net.minecraftforge.fml.loading.targets.ForgeProdLaunchHandler$Server();
+  public java.util.List<java.nio.file.Path> getMinecraftPaths();
+  public boolean isProduction();
+  public java.lang.String getNaming();
+}
+Compiled from "ForgeProdLaunchHandler.java"
+abstract class net.minecraftforge.fml.loading.targets.ForgeProdLaunchHandler extends net.minecraftforge.fml.loading.targets.CommonLaunchHandler {
+  protected net.minecraftforge.fml.loading.targets.ForgeProdLaunchHandler(net.minecraftforge.fml.loading.targets.CommonLaunchHandler$LaunchType);
+  public java.lang.String getNaming();
+  public boolean isProduction();
+}
+Compiled from "ForgeUserdevLaunchHandler.java"
+public final class net.minecraftforge.fml.loading.targets.ForgeUserdevLaunchHandler$Client extends net.minecraftforge.fml.loading.targets.ForgeUserdevLaunchHandler {
+  public net.minecraftforge.fml.loading.targets.ForgeUserdevLaunchHandler$Client();
+  public java.util.List getMinecraftPaths();
+  public boolean isProduction();
+  public java.lang.String getNaming();
+}
+Compiled from "ForgeUserdevLaunchHandler.java"
+public final class net.minecraftforge.fml.loading.targets.ForgeUserdevLaunchHandler$ClientData extends net.minecraftforge.fml.loading.targets.ForgeUserdevLaunchHandler {
+  public net.minecraftforge.fml.loading.targets.ForgeUserdevLaunchHandler$ClientData();
+  public java.util.List getMinecraftPaths();
+  public boolean isProduction();
+  public java.lang.String getNaming();
+}
+Compiled from "ForgeUserdevLaunchHandler.java"
+public final class net.minecraftforge.fml.loading.targets.ForgeUserdevLaunchHandler$Custom extends net.minecraftforge.fml.loading.targets.ForgeUserdevLaunchHandler {
+  public net.minecraftforge.fml.loading.targets.ForgeUserdevLaunchHandler$Custom();
+  public java.util.List getMinecraftPaths();
+  public boolean isProduction();
+  public java.lang.String getNaming();
+}
+Compiled from "ForgeUserdevLaunchHandler.java"
+public final class net.minecraftforge.fml.loading.targets.ForgeUserdevLaunchHandler$Data extends net.minecraftforge.fml.loading.targets.ForgeUserdevLaunchHandler {
+  public net.minecraftforge.fml.loading.targets.ForgeUserdevLaunchHandler$Data();
+  public java.util.List getMinecraftPaths();
+  public boolean isProduction();
+  public java.lang.String getNaming();
+}
+Compiled from "ForgeUserdevLaunchHandler.java"
+public final class net.minecraftforge.fml.loading.targets.ForgeUserdevLaunchHandler$Server extends net.minecraftforge.fml.loading.targets.ForgeUserdevLaunchHandler {
+  public net.minecraftforge.fml.loading.targets.ForgeUserdevLaunchHandler$Server();
+  public java.util.List getMinecraftPaths();
+  public boolean isProduction();
+  public java.lang.String getNaming();
+}
+Compiled from "ForgeUserdevLaunchHandler.java"
+public final class net.minecraftforge.fml.loading.targets.ForgeUserdevLaunchHandler$ServerGameTest extends net.minecraftforge.fml.loading.targets.ForgeUserdevLaunchHandler {
+  public net.minecraftforge.fml.loading.targets.ForgeUserdevLaunchHandler$ServerGameTest();
+  public java.util.List getMinecraftPaths();
+  public boolean isProduction();
+  public java.lang.String getNaming();
+}
+Compiled from "ForgeUserdevLaunchHandler.java"
+abstract class net.minecraftforge.fml.loading.targets.ForgeUserdevLaunchHandler extends net.minecraftforge.fml.loading.targets.CommonDevLaunchHandler {
+  public java.util.List<java.nio.file.Path> getMinecraftPaths();
+}
+Compiled from "ForgeUserdevLocator.java"
+public final class net.minecraftforge.fml.loading.targets.ForgeUserdevLocator extends net.minecraftforge.fml.loading.moddiscovery.AbstractModProvider implements net.minecraftforge.forgespi.locating.IModLocator {
+  public net.minecraftforge.fml.loading.targets.ForgeUserdevLocator();
+  public java.lang.String name();
+  public java.util.List<net.minecraftforge.forgespi.locating.IModLocator$ModFileOrException> scanMods();
+}
+Compiled from "UnionHelper.java"
+final class net.minecraftforge.fml.loading.targets.UnionHelper {
+}
+Compiled from "CyclePresentException.java"
+public final class net.minecraftforge.fml.loading.toposort.CyclePresentException extends java.lang.IllegalArgumentException {
+  public <T> java.util.Set<java.util.Set<T>> getCycles();
+}
+Compiled from "StronglyConnectedComponentDetector.java"
+public class net.minecraftforge.fml.loading.toposort.StronglyConnectedComponentDetector<T> {
+  public net.minecraftforge.fml.loading.toposort.StronglyConnectedComponentDetector(com.google.common.graph.Graph<T>);
+  public java.util.Set<java.util.Set<T>> getComponents();
+}
+Compiled from "TopologicalSort.java"
+public final class net.minecraftforge.fml.loading.toposort.TopologicalSort {
+  public net.minecraftforge.fml.loading.toposort.TopologicalSort();
+  public static <T> java.util.List<T> topologicalSort(com.google.common.graph.Graph<T>, java.util.Comparator<? super T>) throws java.lang.IllegalArgumentException;
+}

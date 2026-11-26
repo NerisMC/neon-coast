@@ -1,0 +1,838 @@
+Compiled from "DisplayWindow.java"
+public class net.neoforged.fml.earlydisplay.DisplayWindow implements net.neoforged.neoforgespi.earlywindow.ImmediateWindowProvider {
+  public net.neoforged.fml.earlydisplay.DisplayWindow();
+  public java.lang.String name();
+  public void initialize(net.neoforged.fml.loading.ProgramArgs);
+  public void setMinecraftVersion(java.lang.String);
+  public void setNeoForgeVersion(java.lang.String);
+  public void renderToFramebuffer();
+  public void initWindow();
+  public long takeOverGlfwWindow();
+  public int getFramebufferTextureId();
+  public void periodicTick();
+  public void updateProgress(java.lang.String);
+  public void completeProgress();
+  public void close();
+  public void crash(java.lang.String);
+  public void displayFatalErrorAndExit(java.util.List<net.neoforged.fml.ModLoadingIssue>, java.nio.file.Path, java.nio.file.Path, java.nio.file.Path);
+}
+Compiled from "Button.java"
+final class net.neoforged.fml.earlydisplay.error.Button {
+}
+Compiled from "ErrorDisplay.java"
+public class net.neoforged.fml.earlydisplay.error.ErrorDisplay$FatalLoadingError extends java.lang.RuntimeException {
+  public net.neoforged.fml.earlydisplay.error.ErrorDisplay$FatalLoadingError();
+}
+Compiled from "ErrorDisplay.java"
+public final class net.neoforged.fml.earlydisplay.error.ErrorDisplay {
+  public static void fatal(long, java.lang.String, java.lang.String, java.util.List<net.neoforged.fml.ModLoadingIssue>, java.nio.file.Path, java.nio.file.Path, java.nio.file.Path);
+}
+Compiled from "ErrorDisplayWindow.java"
+final class net.neoforged.fml.earlydisplay.error.ErrorDisplayWindow$HeaderLine extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.List<net.neoforged.fml.earlydisplay.render.SimpleFont$DisplayText> parts();
+  public int width();
+}
+Compiled from "ErrorDisplayWindow.java"
+final class net.neoforged.fml.earlydisplay.error.ErrorDisplayWindow$MessageEntry extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.List<java.util.List<net.neoforged.fml.earlydisplay.render.SimpleFont$DisplayText>> lines();
+  public int lineCount();
+  public boolean centered();
+}
+Compiled from "ErrorDisplayWindow.java"
+final class net.neoforged.fml.earlydisplay.error.ErrorDisplayWindow {
+}
+Compiled from "FileOpener.java"
+final class net.neoforged.fml.earlydisplay.error.FileOpener$Default extends net.neoforged.fml.earlydisplay.error.FileOpener {
+  protected java.lang.String[] getOpenParameters(java.net.URI);
+}
+Compiled from "FileOpener.java"
+final class net.neoforged.fml.earlydisplay.error.FileOpener$Mac extends net.neoforged.fml.earlydisplay.error.FileOpener {
+  protected java.lang.String[] getOpenParameters(java.net.URI);
+}
+Compiled from "FileOpener.java"
+final class net.neoforged.fml.earlydisplay.error.FileOpener$Windows extends net.neoforged.fml.earlydisplay.error.FileOpener {
+  protected java.lang.String[] getOpenParameters(java.net.URI);
+}
+Compiled from "FileOpener.java"
+abstract class net.neoforged.fml.earlydisplay.error.FileOpener {
+  protected abstract java.lang.String[] getOpenParameters(java.net.URI);
+}
+Compiled from "FontLoader.java"
+final class net.neoforged.fml.earlydisplay.error.FontLoader$ProtoGlyph extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int codepoint();
+  public int width();
+  public int[] lines();
+}
+Compiled from "FontLoader.java"
+final class net.neoforged.fml.earlydisplay.error.FontLoader {
+}
+Compiled from "FormatHelper.java"
+final class net.neoforged.fml.earlydisplay.error.FormatHelper$SplitPos extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int partIdx();
+  public int charIdx();
+  public boolean onSpace();
+}
+Compiled from "FormatHelper.java"
+final class net.neoforged.fml.earlydisplay.error.FormatHelper {
+}
+Compiled from "package-info.java"
+interface net.neoforged.fml.earlydisplay.error.package-info {
+}
+Compiled from "EarlyFramebuffer.java"
+public class net.neoforged.fml.earlydisplay.render.EarlyFramebuffer {
+  public net.neoforged.fml.earlydisplay.render.EarlyFramebuffer(int, int);
+  public void activate();
+  public void deactivate();
+  public void blitToScreen(net.neoforged.fml.earlydisplay.theme.ThemeColor, int, int);
+  public void resize(int, int);
+  public void close();
+  public int width();
+  public int height();
+}
+Compiled from "ElementShader.java"
+public class net.neoforged.fml.earlydisplay.render.ElementShader implements java.lang.AutoCloseable {
+  public static final java.lang.String UNIFORM_SCREEN_SIZE;
+  public static final java.lang.String UNIFORM_SAMPLER0;
+  public static net.neoforged.fml.earlydisplay.render.ElementShader create(java.lang.String, net.neoforged.fml.earlydisplay.theme.ThemeResource, net.neoforged.fml.earlydisplay.theme.ThemeResource, java.nio.file.Path);
+  public static net.neoforged.fml.earlydisplay.render.ElementShader create(java.lang.String, java.nio.ByteBuffer, java.nio.ByteBuffer);
+  public void activate();
+  public void clear();
+  public boolean hasUniform(java.lang.String);
+  public void setUniform1i(java.lang.String, int);
+  public void setUniform2f(java.lang.String, float, float);
+  public void close();
+  public int program();
+  public java.lang.String toString();
+}
+Compiled from "GlDebug.java"
+final class net.neoforged.fml.earlydisplay.render.GlDebug$GroupMode extends java.lang.Enum<net.neoforged.fml.earlydisplay.render.GlDebug$GroupMode> {
+  public static final net.neoforged.fml.earlydisplay.render.GlDebug$GroupMode DISABLED;
+  public static final net.neoforged.fml.earlydisplay.render.GlDebug$GroupMode CORE;
+  public static final net.neoforged.fml.earlydisplay.render.GlDebug$GroupMode EXTENSION;
+  public static net.neoforged.fml.earlydisplay.render.GlDebug$GroupMode[] values();
+  public static net.neoforged.fml.earlydisplay.render.GlDebug$GroupMode valueOf(java.lang.String);
+}
+Compiled from "GlDebug.java"
+final class net.neoforged.fml.earlydisplay.render.GlDebug$LabelMode extends java.lang.Enum<net.neoforged.fml.earlydisplay.render.GlDebug$LabelMode> {
+  public static final net.neoforged.fml.earlydisplay.render.GlDebug$LabelMode DISABLED;
+  public static final net.neoforged.fml.earlydisplay.render.GlDebug$LabelMode CORE;
+  public static final net.neoforged.fml.earlydisplay.render.GlDebug$LabelMode EXTENSION;
+  public static net.neoforged.fml.earlydisplay.render.GlDebug$LabelMode[] values();
+  public static net.neoforged.fml.earlydisplay.render.GlDebug$LabelMode valueOf(java.lang.String);
+}
+Compiled from "GlDebug.java"
+public final class net.neoforged.fml.earlydisplay.render.GlDebug {
+  public static void setCapabilities(org.lwjgl.opengl.GLCapabilities);
+  public static void pushGroup(java.lang.String);
+  public static void popGroup();
+  public static void labelBuffer(int, java.lang.String);
+  public static void labelTexture(int, java.lang.String);
+  public static void labelFramebuffer(int, java.lang.String);
+  public static void labelShader(int, java.lang.String);
+  public static void labelProgram(int, java.lang.String);
+  public static void labelVertexArray(int, java.lang.String);
+}
+Compiled from "GlState.java"
+public final class net.neoforged.fml.earlydisplay.render.GlState$StateSnapshot extends java.lang.Record {
+  public net.neoforged.fml.earlydisplay.render.GlState$StateSnapshot(int, int, int, int, float, float, float, float, boolean, int, int, int, int, int, int, int, int, int, int, int, int, int, boolean, int[]);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int viewportX();
+  public int viewportY();
+  public int viewportWidth();
+  public int viewportHeight();
+  public float clearColorRed();
+  public float clearColorGreen();
+  public float clearColorBlue();
+  public float clearColorAlpha();
+  public boolean blendEnabled();
+  public int blendSrcRGB();
+  public int blendDstRGB();
+  public int blendSrcAlpha();
+  public int blendDstAlpha();
+  public int currentProgram();
+  public int boundTexture2D();
+  public int boundSampler();
+  public int activeTextureUnit();
+  public int boundVertexArray();
+  public int boundDrawFramebuffer();
+  public int boundReadFramebuffer();
+  public int boundElementArrayBuffer();
+  public int boundArrayBuffer();
+  public boolean scissorEnabled();
+  public int[] scissorBox();
+}
+Compiled from "GlState.java"
+public final class net.neoforged.fml.earlydisplay.render.GlState {
+  public static void readFromOpenGL();
+  public static void viewport(int, int, int, int);
+  public static void clearColor(float, float, float, float);
+  public static void enableBlend(boolean);
+  public static void blendFuncSeparate(int, int, int, int);
+  public static void useProgram(int);
+  public static void bindTexture2D(int);
+  public static void bindSampler(int);
+  public static void bindVertexArray(int);
+  public static void bindFramebuffer(int);
+  public static void bindDrawFramebuffer(int);
+  public static void bindReadFramebuffer(int);
+  public static void bindElementArrayBuffer(int);
+  public static void bindArrayBuffer(int);
+  public static void scissorBox(int, int, int, int);
+  public static void scissorTest(boolean);
+  public static net.neoforged.fml.earlydisplay.render.GlState$StateSnapshot createSnapshot();
+  public static void applySnapshot(net.neoforged.fml.earlydisplay.render.GlState$StateSnapshot);
+}
+Compiled from "LoadingScreenRenderer.java"
+public class net.neoforged.fml.earlydisplay.render.LoadingScreenRenderer implements java.lang.AutoCloseable {
+  public static final int LAYOUT_WIDTH;
+  public static final int LAYOUT_HEIGHT;
+  public static volatile boolean rendered;
+  public net.neoforged.fml.earlydisplay.render.LoadingScreenRenderer(java.util.concurrent.ScheduledExecutorService, long, net.neoforged.fml.earlydisplay.theme.Theme, java.nio.file.Path, java.util.function.Supplier<java.lang.String>, java.util.function.Supplier<java.lang.String>);
+  public void stopAutomaticRendering() throws java.util.concurrent.TimeoutException, java.lang.InterruptedException;
+  public void renderToScreen();
+  public void renderToFramebuffer();
+  public void close();
+  public int getFramebufferTextureId();
+}
+Compiled from "MaterializedTheme.java"
+public final class net.neoforged.fml.earlydisplay.render.MaterializedTheme extends java.lang.Record implements java.lang.AutoCloseable {
+  public net.neoforged.fml.earlydisplay.render.MaterializedTheme(net.neoforged.fml.earlydisplay.theme.Theme, java.nio.file.Path, java.util.Map<java.lang.String, net.neoforged.fml.earlydisplay.render.SimpleFont>, java.util.Map<java.lang.String, net.neoforged.fml.earlydisplay.render.ElementShader>, net.neoforged.fml.earlydisplay.render.MaterializedThemeSprites);
+  public static net.neoforged.fml.earlydisplay.render.MaterializedTheme materialize(net.neoforged.fml.earlydisplay.theme.Theme, java.nio.file.Path);
+  public net.neoforged.fml.earlydisplay.render.SimpleFont getFont(java.lang.String);
+  public net.neoforged.fml.earlydisplay.render.ElementShader getShader(java.lang.String);
+  public void close();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.neoforged.fml.earlydisplay.theme.Theme theme();
+  public java.nio.file.Path externalThemeDirectory();
+  public java.util.Map<java.lang.String, net.neoforged.fml.earlydisplay.render.SimpleFont> fonts();
+  public java.util.Map<java.lang.String, net.neoforged.fml.earlydisplay.render.ElementShader> shaders();
+  public net.neoforged.fml.earlydisplay.render.MaterializedThemeSprites sprites();
+}
+Compiled from "MaterializedThemeSprites.java"
+public final class net.neoforged.fml.earlydisplay.render.MaterializedThemeSprites extends java.lang.Record {
+  public net.neoforged.fml.earlydisplay.render.MaterializedThemeSprites(net.neoforged.fml.earlydisplay.render.Texture, net.neoforged.fml.earlydisplay.render.Texture, net.neoforged.fml.earlydisplay.render.Texture);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.neoforged.fml.earlydisplay.render.Texture progressBarBackground();
+  public net.neoforged.fml.earlydisplay.render.Texture progressBarForeground();
+  public net.neoforged.fml.earlydisplay.render.Texture progressBarIndeterminate();
+}
+Compiled from "QuadHelper.java"
+public final class net.neoforged.fml.earlydisplay.render.QuadHelper$SpriteFillDirection extends java.lang.Enum<net.neoforged.fml.earlydisplay.render.QuadHelper$SpriteFillDirection> {
+  public static final net.neoforged.fml.earlydisplay.render.QuadHelper$SpriteFillDirection TOP_TO_BOTTOM;
+  public static final net.neoforged.fml.earlydisplay.render.QuadHelper$SpriteFillDirection BOTTOM_TO_TOP;
+  public static net.neoforged.fml.earlydisplay.render.QuadHelper$SpriteFillDirection[] values();
+  public static net.neoforged.fml.earlydisplay.render.QuadHelper$SpriteFillDirection valueOf(java.lang.String);
+}
+Compiled from "QuadHelper.java"
+class net.neoforged.fml.earlydisplay.render.QuadHelper {
+  public static void fillSprite(net.neoforged.fml.earlydisplay.render.SimpleBufferBuilder, net.neoforged.fml.earlydisplay.render.Texture, float, float, float, float, float, int, net.neoforged.fml.earlydisplay.render.QuadHelper$SpriteFillDirection, int, float, float, float, float);
+  public static void addQuad(net.neoforged.fml.earlydisplay.render.SimpleBufferBuilder, float, float, float, float, float, int, float, float, float, float);
+  public static void loadQuad(net.neoforged.fml.earlydisplay.render.SimpleBufferBuilder, net.neoforged.fml.earlydisplay.util.Bounds, float, float, float, float, int);
+  public static void loadQuad(net.neoforged.fml.earlydisplay.render.SimpleBufferBuilder, float, float, float, float, float, float, float, float, int);
+  public static void loadQuad(net.neoforged.fml.earlydisplay.render.SimpleBufferBuilder, float, float, float, float, float, float, float, float);
+}
+Compiled from "RenderContext.java"
+public final class net.neoforged.fml.earlydisplay.render.RenderContext extends java.lang.Record {
+  public net.neoforged.fml.earlydisplay.render.RenderContext(net.neoforged.fml.earlydisplay.render.SimpleBufferBuilder, net.neoforged.fml.earlydisplay.render.MaterializedTheme, float, float, int, int, float, int);
+  public net.neoforged.fml.earlydisplay.render.ElementShader bindShader(java.lang.String);
+  public void blitTexture(net.neoforged.fml.earlydisplay.render.Texture, net.neoforged.fml.earlydisplay.util.Bounds);
+  public void blitTexture(net.neoforged.fml.earlydisplay.render.Texture, net.neoforged.fml.earlydisplay.util.Bounds, int);
+  public void blitTexture(net.neoforged.fml.earlydisplay.render.Texture, float, float, float, float);
+  public void blitTexture(net.neoforged.fml.earlydisplay.render.Texture, float, float, float, float, int);
+  public void blitTextureRegion(net.neoforged.fml.earlydisplay.render.Texture, float, float, float, float, int, float, float, float, float);
+  public void renderTextWithShadow(float, float, net.neoforged.fml.earlydisplay.render.SimpleFont, java.util.List<net.neoforged.fml.earlydisplay.render.SimpleFont$DisplayText>);
+  public void renderText(float, float, net.neoforged.fml.earlydisplay.render.SimpleFont, java.util.List<net.neoforged.fml.earlydisplay.render.SimpleFont$DisplayText>);
+  public void renderIndeterminateProgressBar(net.neoforged.fml.earlydisplay.util.Bounds);
+  public void renderProgressBar(net.neoforged.fml.earlydisplay.util.Bounds, float);
+  public void renderProgressBar(net.neoforged.fml.earlydisplay.util.Bounds, float, int);
+  public void fillRect(float, float, float, float, int);
+  public void fillRect(float, float, float, float, int, int);
+  public void scissorBox(int, int, int, int);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.neoforged.fml.earlydisplay.render.SimpleBufferBuilder sharedBuffer();
+  public net.neoforged.fml.earlydisplay.render.MaterializedTheme theme();
+  public float availableWidth();
+  public float availableHeight();
+  public int viewportOffsetX();
+  public int viewportOffsetY();
+  public float viewportScale();
+  public int animationFrame();
+}
+Compiled from "SimpleBufferBuilder.java"
+public final class net.neoforged.fml.earlydisplay.render.SimpleBufferBuilder$Element extends java.lang.Enum<net.neoforged.fml.earlydisplay.render.SimpleBufferBuilder$Element> {
+  public static final net.neoforged.fml.earlydisplay.render.SimpleBufferBuilder$Element POS;
+  public static final net.neoforged.fml.earlydisplay.render.SimpleBufferBuilder$Element TEX;
+  public static final net.neoforged.fml.earlydisplay.render.SimpleBufferBuilder$Element COLOR;
+  public final int glType;
+  public final int count;
+  public final int width;
+  public static net.neoforged.fml.earlydisplay.render.SimpleBufferBuilder$Element[] values();
+  public static net.neoforged.fml.earlydisplay.render.SimpleBufferBuilder$Element valueOf(java.lang.String);
+}
+Compiled from "SimpleBufferBuilder.java"
+public final class net.neoforged.fml.earlydisplay.render.SimpleBufferBuilder$Format extends java.lang.Enum<net.neoforged.fml.earlydisplay.render.SimpleBufferBuilder$Format> {
+  public static final net.neoforged.fml.earlydisplay.render.SimpleBufferBuilder$Format POS;
+  public static final net.neoforged.fml.earlydisplay.render.SimpleBufferBuilder$Format POS_TEX;
+  public static final net.neoforged.fml.earlydisplay.render.SimpleBufferBuilder$Format POS_COLOR;
+  public static final net.neoforged.fml.earlydisplay.render.SimpleBufferBuilder$Format POS_TEX_COLOR;
+  public final int stride;
+  public static net.neoforged.fml.earlydisplay.render.SimpleBufferBuilder$Format[] values();
+  public static net.neoforged.fml.earlydisplay.render.SimpleBufferBuilder$Format valueOf(java.lang.String);
+  public void bind();
+  public void enable();
+}
+Compiled from "SimpleBufferBuilder.java"
+public final class net.neoforged.fml.earlydisplay.render.SimpleBufferBuilder$Mode extends java.lang.Enum<net.neoforged.fml.earlydisplay.render.SimpleBufferBuilder$Mode> {
+  public static final net.neoforged.fml.earlydisplay.render.SimpleBufferBuilder$Mode TRIANGLES;
+  public static final net.neoforged.fml.earlydisplay.render.SimpleBufferBuilder$Mode QUADS;
+  public final int vertices;
+  public static net.neoforged.fml.earlydisplay.render.SimpleBufferBuilder$Mode[] values();
+  public static net.neoforged.fml.earlydisplay.render.SimpleBufferBuilder$Mode valueOf(java.lang.String);
+}
+Compiled from "SimpleBufferBuilder.java"
+public class net.neoforged.fml.earlydisplay.render.SimpleBufferBuilder implements java.io.Closeable {
+  public net.neoforged.fml.earlydisplay.render.SimpleBufferBuilder(java.lang.String, int);
+  public static void destroy();
+  public net.neoforged.fml.earlydisplay.render.SimpleBufferBuilder begin(net.neoforged.fml.earlydisplay.render.SimpleBufferBuilder$Format, net.neoforged.fml.earlydisplay.render.SimpleBufferBuilder$Mode);
+  public net.neoforged.fml.earlydisplay.render.SimpleBufferBuilder pos(float, float);
+  public net.neoforged.fml.earlydisplay.render.SimpleBufferBuilder tex(float, float);
+  public net.neoforged.fml.earlydisplay.render.SimpleBufferBuilder colour(float, float, float, float);
+  public net.neoforged.fml.earlydisplay.render.SimpleBufferBuilder colour(int);
+  public net.neoforged.fml.earlydisplay.render.SimpleBufferBuilder colour(byte, byte, byte, byte);
+  public net.neoforged.fml.earlydisplay.render.SimpleBufferBuilder endVertex();
+  public int finishAndUpload();
+  public void draw();
+  public void close();
+}
+Compiled from "SimpleFont.java"
+public final class net.neoforged.fml.earlydisplay.render.SimpleFont$DisplayText extends java.lang.Record {
+  public net.neoforged.fml.earlydisplay.render.SimpleFont$DisplayText(java.lang.String, int);
+  public java.util.List<net.neoforged.fml.earlydisplay.render.SimpleFont$DisplayText> splitAt(int, boolean);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String string();
+  public int colour();
+}
+Compiled from "SimpleFont.java"
+public final class net.neoforged.fml.earlydisplay.render.SimpleFont$Glyph extends java.lang.Record {
+  public net.neoforged.fml.earlydisplay.render.SimpleFont$Glyph(char, int, int[], float[]);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public char c();
+  public int charwidth();
+  public int[] pos();
+  public float[] uv();
+}
+Compiled from "SimpleFont.java"
+final class net.neoforged.fml.earlydisplay.render.SimpleFont$Pos extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public float x();
+  public float y();
+  public float minx();
+}
+Compiled from "SimpleFont.java"
+public class net.neoforged.fml.earlydisplay.render.SimpleFont implements java.lang.AutoCloseable {
+  public net.neoforged.fml.earlydisplay.util.Size measureText(java.lang.CharSequence);
+  public void close();
+  public net.neoforged.fml.earlydisplay.render.SimpleFont(int, int, int, java.util.function.IntFunction<net.neoforged.fml.earlydisplay.render.SimpleFont$Glyph>);
+  public net.neoforged.fml.earlydisplay.render.SimpleFont(net.neoforged.fml.earlydisplay.theme.ThemeResource, java.nio.file.Path) throws java.io.IOException;
+  public int lineSpacing();
+  public int descent();
+  public int stringWidth(java.lang.String);
+  public int stringWidth(java.lang.String, int, int);
+  public net.neoforged.fml.earlydisplay.render.SimpleBufferBuilder generateVerticesForTexts(float, float, net.neoforged.fml.earlydisplay.render.SimpleBufferBuilder, java.lang.Iterable<net.neoforged.fml.earlydisplay.render.SimpleFont$DisplayText>);
+}
+Compiled from "Texture.java"
+public final class net.neoforged.fml.earlydisplay.render.Texture extends java.lang.Record implements java.lang.AutoCloseable {
+  public net.neoforged.fml.earlydisplay.render.Texture(int, int, int, net.neoforged.fml.earlydisplay.theme.TextureScaling, net.neoforged.fml.earlydisplay.theme.AnimationMetadata);
+  public int width();
+  public int height();
+  public static net.neoforged.fml.earlydisplay.render.Texture create(net.neoforged.fml.earlydisplay.theme.ThemeTexture, java.nio.file.Path);
+  public static net.neoforged.fml.earlydisplay.render.Texture create(net.neoforged.fml.earlydisplay.theme.UncompressedImage, java.lang.String, net.neoforged.fml.earlydisplay.theme.TextureScaling, net.neoforged.fml.earlydisplay.theme.AnimationMetadata);
+  public static int createEmpty(java.lang.String, int, int, int, int, boolean);
+  public static void writeToTexture(int, int, int, int, int, java.nio.ByteBuffer);
+  public void close();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int textureId();
+  public int physicalWidth();
+  public int physicalHeight();
+  public net.neoforged.fml.earlydisplay.theme.TextureScaling scaling();
+  public net.neoforged.fml.earlydisplay.theme.AnimationMetadata animationMetadata();
+}
+Compiled from "package-info.java"
+interface net.neoforged.fml.earlydisplay.render.package-info {
+}
+Compiled from "ImageElement.java"
+public class net.neoforged.fml.earlydisplay.render.elements.ImageElement extends net.neoforged.fml.earlydisplay.render.elements.RenderElement {
+  public net.neoforged.fml.earlydisplay.render.elements.ImageElement(net.neoforged.fml.earlydisplay.theme.elements.ThemeImageElement, net.neoforged.fml.earlydisplay.render.MaterializedTheme);
+  public void render(net.neoforged.fml.earlydisplay.render.RenderContext);
+  public void close();
+}
+Compiled from "LabelElement.java"
+public class net.neoforged.fml.earlydisplay.render.elements.LabelElement extends net.neoforged.fml.earlydisplay.render.elements.RenderElement {
+  public net.neoforged.fml.earlydisplay.render.elements.LabelElement(net.neoforged.fml.earlydisplay.theme.elements.ThemeLabelElement, net.neoforged.fml.earlydisplay.render.MaterializedTheme, java.util.function.Supplier<java.util.Map<java.lang.String, java.lang.String>>);
+  public void render(net.neoforged.fml.earlydisplay.render.RenderContext);
+}
+Compiled from "MojangLogoElement.java"
+public class net.neoforged.fml.earlydisplay.render.elements.MojangLogoElement extends net.neoforged.fml.earlydisplay.render.elements.RenderElement {
+  public net.neoforged.fml.earlydisplay.render.elements.MojangLogoElement(net.neoforged.fml.earlydisplay.theme.ThemeMojangLogoElement, net.neoforged.fml.earlydisplay.render.MaterializedTheme);
+  public void render(net.neoforged.fml.earlydisplay.render.RenderContext);
+  public void close();
+}
+Compiled from "PerformanceElement.java"
+final class net.neoforged.fml.earlydisplay.render.elements.PerformanceElement$PerformanceInfo extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public long createdNanos();
+  public float memory();
+  public java.lang.String text();
+}
+Compiled from "PerformanceElement.java"
+public class net.neoforged.fml.earlydisplay.render.elements.PerformanceElement extends net.neoforged.fml.earlydisplay.render.elements.RenderElement {
+  public net.neoforged.fml.earlydisplay.render.elements.PerformanceElement(net.neoforged.fml.earlydisplay.theme.elements.ThemePerformanceElement, net.neoforged.fml.earlydisplay.render.MaterializedTheme);
+  public void render(net.neoforged.fml.earlydisplay.render.RenderContext);
+  public void close();
+}
+Compiled from "ProgressBarsElement.java"
+public class net.neoforged.fml.earlydisplay.render.elements.ProgressBarsElement extends net.neoforged.fml.earlydisplay.render.elements.RenderElement {
+  public net.neoforged.fml.earlydisplay.render.elements.ProgressBarsElement(net.neoforged.fml.earlydisplay.theme.elements.ThemeProgressBarsElement, net.neoforged.fml.earlydisplay.render.MaterializedTheme);
+  public void render(net.neoforged.fml.earlydisplay.render.RenderContext);
+}
+Compiled from "RenderElement.java"
+class net.neoforged.fml.earlydisplay.render.elements.RenderElement$1 {
+}
+Compiled from "RenderElement.java"
+public abstract class net.neoforged.fml.earlydisplay.render.elements.RenderElement implements java.lang.AutoCloseable {
+  protected final net.neoforged.fml.earlydisplay.render.MaterializedTheme theme;
+  protected net.neoforged.fml.earlydisplay.render.SimpleFont font;
+  public net.neoforged.fml.earlydisplay.render.elements.RenderElement(net.neoforged.fml.earlydisplay.theme.elements.ThemeElement, net.neoforged.fml.earlydisplay.render.MaterializedTheme);
+  public java.lang.String id();
+  public void setId(java.lang.String);
+  public abstract void render(net.neoforged.fml.earlydisplay.render.RenderContext);
+  public net.neoforged.fml.earlydisplay.util.Bounds resolveBounds(float, float, float, float);
+  public static float clamp(float, float, float);
+  public static int clamp(int, int, int);
+  public void close();
+  public java.lang.String toString();
+}
+Compiled from "StartupLogElement.java"
+public class net.neoforged.fml.earlydisplay.render.elements.StartupLogElement extends net.neoforged.fml.earlydisplay.render.elements.RenderElement {
+  public net.neoforged.fml.earlydisplay.render.elements.StartupLogElement(net.neoforged.fml.earlydisplay.theme.elements.ThemeStartupLogElement, net.neoforged.fml.earlydisplay.render.MaterializedTheme);
+  public void render(net.neoforged.fml.earlydisplay.render.RenderContext);
+}
+Compiled from "package-info.java"
+interface net.neoforged.fml.earlydisplay.render.elements.package-info {
+}
+Compiled from "AnimationMetadata.java"
+public final class net.neoforged.fml.earlydisplay.theme.AnimationMetadata extends java.lang.Record {
+  public net.neoforged.fml.earlydisplay.theme.AnimationMetadata(int);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int frameCount();
+}
+Compiled from "ImageLoader.java"
+public final class net.neoforged.fml.earlydisplay.theme.ImageLoader$Result$Error extends java.lang.Record implements net.neoforged.fml.earlydisplay.theme.ImageLoader$Result {
+  public net.neoforged.fml.earlydisplay.theme.ImageLoader$Result$Error(java.lang.Exception);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.Exception exception();
+}
+Compiled from "ImageLoader.java"
+public final class net.neoforged.fml.earlydisplay.theme.ImageLoader$Result$Success extends java.lang.Record implements net.neoforged.fml.earlydisplay.theme.ImageLoader$Result {
+  public net.neoforged.fml.earlydisplay.theme.ImageLoader$Result$Success(net.neoforged.fml.earlydisplay.theme.UncompressedImage);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.neoforged.fml.earlydisplay.theme.UncompressedImage image();
+}
+Compiled from "ImageLoader.java"
+public interface net.neoforged.fml.earlydisplay.theme.ImageLoader$Result {
+}
+Compiled from "ImageLoader.java"
+public final class net.neoforged.fml.earlydisplay.theme.ImageLoader {
+  public static net.neoforged.fml.earlydisplay.theme.UncompressedImage loadImage(net.neoforged.fml.earlydisplay.theme.ThemeResource, java.nio.file.Path);
+  public static net.neoforged.fml.earlydisplay.theme.ImageLoader$Result tryLoadImage(net.neoforged.fml.earlydisplay.theme.ThemeResource, java.nio.file.Path);
+  public static net.neoforged.fml.earlydisplay.theme.ImageLoader$Result tryLoadImage(java.lang.String, net.neoforged.fml.earlydisplay.theme.ThemeResource, net.neoforged.fml.earlydisplay.theme.NativeBuffer);
+}
+Compiled from "NativeBuffer.java"
+public final class net.neoforged.fml.earlydisplay.theme.NativeBuffer implements java.lang.AutoCloseable {
+  public net.neoforged.fml.earlydisplay.theme.NativeBuffer(java.nio.ByteBuffer, java.util.function.Consumer<java.nio.ByteBuffer>);
+  public static net.neoforged.fml.earlydisplay.theme.NativeBuffer loadFromPath(java.nio.file.Path) throws java.io.IOException;
+  public static net.neoforged.fml.earlydisplay.theme.NativeBuffer loadFromClasspath(java.lang.String, java.lang.ClassLoader) throws java.io.IOException;
+  public java.nio.ByteBuffer buffer();
+  public byte[] toByteArray();
+  public void close();
+}
+Compiled from "TextureScaling.java"
+public final class net.neoforged.fml.earlydisplay.theme.TextureScaling$NineSlice extends java.lang.Record implements net.neoforged.fml.earlydisplay.theme.TextureScaling {
+  public net.neoforged.fml.earlydisplay.theme.TextureScaling$NineSlice(int, int, int, int, int, int, boolean, boolean, boolean);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int width();
+  public int height();
+  public int left();
+  public int top();
+  public int right();
+  public int bottom();
+  public boolean stretchHorizontalFill();
+  public boolean stretchVerticalFill();
+  public boolean linearScaling();
+}
+Compiled from "TextureScaling.java"
+public final class net.neoforged.fml.earlydisplay.theme.TextureScaling$Stretch extends java.lang.Record implements net.neoforged.fml.earlydisplay.theme.TextureScaling {
+  public net.neoforged.fml.earlydisplay.theme.TextureScaling$Stretch(int, int, boolean);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int width();
+  public int height();
+  public boolean linearScaling();
+}
+Compiled from "TextureScaling.java"
+public final class net.neoforged.fml.earlydisplay.theme.TextureScaling$Tile extends java.lang.Record implements net.neoforged.fml.earlydisplay.theme.TextureScaling {
+  public net.neoforged.fml.earlydisplay.theme.TextureScaling$Tile(int, int, boolean);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int width();
+  public int height();
+  public boolean linearScaling();
+}
+Compiled from "TextureScaling.java"
+public interface net.neoforged.fml.earlydisplay.theme.TextureScaling {
+  public abstract int width();
+  public abstract int height();
+  public abstract boolean linearScaling();
+}
+Compiled from "Theme.java"
+public final class net.neoforged.fml.earlydisplay.theme.Theme extends java.lang.Record {
+  public static final java.lang.String FONT_DEFAULT;
+  public static final java.lang.String SHADER_GUI;
+  public static final java.lang.String SHADER_FONT;
+  public static final java.lang.String SHADER_COLOR;
+  public net.neoforged.fml.earlydisplay.theme.Theme(net.neoforged.fml.earlydisplay.theme.ThemeResource, java.util.Map<java.lang.String, net.neoforged.fml.earlydisplay.theme.ThemeResource>, java.util.Map<java.lang.String, net.neoforged.fml.earlydisplay.theme.ThemeShader>, net.neoforged.fml.earlydisplay.theme.ThemeColorScheme, net.neoforged.fml.earlydisplay.theme.ThemeSprites, net.neoforged.fml.earlydisplay.theme.ThemeLoadingScreen);
+  public static net.neoforged.fml.earlydisplay.theme.Theme createDefaultTheme();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.neoforged.fml.earlydisplay.theme.ThemeResource windowIcon();
+  public java.util.Map<java.lang.String, net.neoforged.fml.earlydisplay.theme.ThemeResource> fonts();
+  public java.util.Map<java.lang.String, net.neoforged.fml.earlydisplay.theme.ThemeShader> shaders();
+  public net.neoforged.fml.earlydisplay.theme.ThemeColorScheme colorScheme();
+  public net.neoforged.fml.earlydisplay.theme.ThemeSprites sprites();
+  public net.neoforged.fml.earlydisplay.theme.ThemeLoadingScreen loadingScreen();
+}
+Compiled from "ThemeColor.java"
+public final class net.neoforged.fml.earlydisplay.theme.ThemeColor extends java.lang.Record {
+  public static final net.neoforged.fml.earlydisplay.theme.ThemeColor WHITE;
+  public net.neoforged.fml.earlydisplay.theme.ThemeColor(float, float, float, float);
+  public static net.neoforged.fml.earlydisplay.theme.ThemeColor ofBytes(int, int, int, int);
+  public static net.neoforged.fml.earlydisplay.theme.ThemeColor ofBytes(int, int, int);
+  public static net.neoforged.fml.earlydisplay.theme.ThemeColor ofArgb(int);
+  public static net.neoforged.fml.earlydisplay.theme.ThemeColor ofRgb(int);
+  public net.neoforged.fml.earlydisplay.theme.ThemeColor withAlpha(float);
+  public int toArgb();
+  public int rByte();
+  public int gByte();
+  public int bByte();
+  public int aByte();
+  public static net.neoforged.fml.earlydisplay.theme.ThemeColor lerp(net.neoforged.fml.earlydisplay.theme.ThemeColor, net.neoforged.fml.earlydisplay.theme.ThemeColor, float);
+  public float[] toHsb();
+  public static net.neoforged.fml.earlydisplay.theme.ThemeColor ofHsb(float, float, float);
+  public static net.neoforged.fml.earlydisplay.theme.ThemeColor scale(net.neoforged.fml.earlydisplay.theme.ThemeColor, float);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public float r();
+  public float g();
+  public float b();
+  public float a();
+}
+Compiled from "ThemeColorScheme.java"
+public final class net.neoforged.fml.earlydisplay.theme.ThemeColorScheme extends java.lang.Record {
+  public static final net.neoforged.fml.earlydisplay.theme.ThemeColorScheme DEFAULT;
+  public net.neoforged.fml.earlydisplay.theme.ThemeColorScheme(net.neoforged.fml.earlydisplay.theme.ThemeColor, net.neoforged.fml.earlydisplay.theme.ThemeColor, net.neoforged.fml.earlydisplay.theme.ThemeColor, net.neoforged.fml.earlydisplay.theme.ThemeColor);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.neoforged.fml.earlydisplay.theme.ThemeColor screenBackground();
+  public net.neoforged.fml.earlydisplay.theme.ThemeColor text();
+  public net.neoforged.fml.earlydisplay.theme.ThemeColor memoryLowColor();
+  public net.neoforged.fml.earlydisplay.theme.ThemeColor memoryHighColor();
+}
+Compiled from "ThemeIds.java"
+public final class net.neoforged.fml.earlydisplay.theme.ThemeIds {
+  public static final java.lang.String DEFAULT;
+  public static final java.lang.String DARK_MODE;
+  public static final java.lang.String APRIL_FOOLS;
+  public static final java.lang.String APRIL_FOOLS_DARK_MODE;
+}
+Compiled from "ThemeLoader.java"
+class net.neoforged.fml.earlydisplay.theme.ThemeLoader$1 {
+}
+Compiled from "ThemeLoader.java"
+interface net.neoforged.fml.earlydisplay.theme.ThemeLoader$PropertyMerger {
+  public abstract com.google.gson.JsonElement map(java.lang.String, com.google.gson.JsonElement, com.google.gson.JsonElement);
+}
+Compiled from "ThemeLoader.java"
+class net.neoforged.fml.earlydisplay.theme.ThemeLoader$StyleLengthAdapter extends com.google.gson.TypeAdapter<net.neoforged.fml.earlydisplay.util.StyleLength> {
+  public void write(com.google.gson.stream.JsonWriter, net.neoforged.fml.earlydisplay.util.StyleLength) throws java.io.IOException;
+  public net.neoforged.fml.earlydisplay.util.StyleLength read(com.google.gson.stream.JsonReader) throws java.io.IOException;
+  public java.lang.Object read(com.google.gson.stream.JsonReader) throws java.io.IOException;
+  public void write(com.google.gson.stream.JsonWriter, java.lang.Object) throws java.io.IOException;
+}
+Compiled from "ThemeLoader.java"
+class net.neoforged.fml.earlydisplay.theme.ThemeLoader$TextureScalingSerializer implements com.google.gson.JsonSerializer<net.neoforged.fml.earlydisplay.theme.TextureScaling>, com.google.gson.JsonDeserializer<net.neoforged.fml.earlydisplay.theme.TextureScaling> {
+  public net.neoforged.fml.earlydisplay.theme.TextureScaling deserialize(com.google.gson.JsonElement, java.lang.reflect.Type, com.google.gson.JsonDeserializationContext) throws com.google.gson.JsonParseException;
+  public com.google.gson.JsonElement serialize(net.neoforged.fml.earlydisplay.theme.TextureScaling, java.lang.reflect.Type, com.google.gson.JsonSerializationContext);
+  public com.google.gson.JsonElement serialize(java.lang.Object, java.lang.reflect.Type, com.google.gson.JsonSerializationContext);
+  public java.lang.Object deserialize(com.google.gson.JsonElement, java.lang.reflect.Type, com.google.gson.JsonDeserializationContext) throws com.google.gson.JsonParseException;
+}
+Compiled from "ThemeLoader.java"
+class net.neoforged.fml.earlydisplay.theme.ThemeLoader$ThemeColorAdapter extends com.google.gson.TypeAdapter<net.neoforged.fml.earlydisplay.theme.ThemeColor> {
+  public void write(com.google.gson.stream.JsonWriter, net.neoforged.fml.earlydisplay.theme.ThemeColor) throws java.io.IOException;
+  public net.neoforged.fml.earlydisplay.theme.ThemeColor read(com.google.gson.stream.JsonReader) throws java.io.IOException;
+  public java.lang.Object read(com.google.gson.stream.JsonReader) throws java.io.IOException;
+  public void write(com.google.gson.stream.JsonWriter, java.lang.Object) throws java.io.IOException;
+}
+Compiled from "ThemeLoader.java"
+class net.neoforged.fml.earlydisplay.theme.ThemeLoader$ThemeElementAdapterFactory$1 extends com.google.gson.TypeAdapter<net.neoforged.fml.earlydisplay.theme.elements.ThemeDecorativeElement> {
+  public net.neoforged.fml.earlydisplay.theme.elements.ThemeDecorativeElement read(com.google.gson.stream.JsonReader) throws java.io.IOException;
+  public void write(com.google.gson.stream.JsonWriter, net.neoforged.fml.earlydisplay.theme.elements.ThemeDecorativeElement) throws java.io.IOException;
+  public java.lang.Object read(com.google.gson.stream.JsonReader) throws java.io.IOException;
+  public void write(com.google.gson.stream.JsonWriter, java.lang.Object) throws java.io.IOException;
+}
+Compiled from "ThemeLoader.java"
+class net.neoforged.fml.earlydisplay.theme.ThemeLoader$ThemeElementAdapterFactory implements com.google.gson.TypeAdapterFactory {
+  public <T> com.google.gson.TypeAdapter<T> create(com.google.gson.Gson, com.google.gson.reflect.TypeToken<T>);
+}
+Compiled from "ThemeLoader.java"
+class net.neoforged.fml.earlydisplay.theme.ThemeLoader$ThemeResourceAdapter extends com.google.gson.TypeAdapter<net.neoforged.fml.earlydisplay.theme.ThemeResource> {
+  public net.neoforged.fml.earlydisplay.theme.ThemeResource read(com.google.gson.stream.JsonReader) throws java.io.IOException;
+  public void write(com.google.gson.stream.JsonWriter, net.neoforged.fml.earlydisplay.theme.ThemeResource) throws java.io.IOException;
+  public java.lang.Object read(com.google.gson.stream.JsonReader) throws java.io.IOException;
+  public void write(com.google.gson.stream.JsonWriter, java.lang.Object) throws java.io.IOException;
+}
+Compiled from "ThemeLoader.java"
+public final class net.neoforged.fml.earlydisplay.theme.ThemeLoader {
+  public static net.neoforged.fml.earlydisplay.theme.Theme load(java.nio.file.Path, java.lang.String) throws java.io.IOException;
+  public static void save(java.nio.file.Path, net.neoforged.fml.earlydisplay.theme.Theme);
+}
+Compiled from "ThemeLoadingScreen.java"
+public final class net.neoforged.fml.earlydisplay.theme.ThemeLoadingScreen extends java.lang.Record {
+  public net.neoforged.fml.earlydisplay.theme.ThemeLoadingScreen(net.neoforged.fml.earlydisplay.theme.elements.ThemeImageElement, net.neoforged.fml.earlydisplay.theme.elements.ThemePerformanceElement, net.neoforged.fml.earlydisplay.theme.elements.ThemeProgressBarsElement, net.neoforged.fml.earlydisplay.theme.elements.ThemeStartupLogElement, net.neoforged.fml.earlydisplay.theme.ThemeMojangLogoElement, java.util.Map<java.lang.String, net.neoforged.fml.earlydisplay.theme.elements.ThemeDecorativeElement>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.neoforged.fml.earlydisplay.theme.elements.ThemeImageElement background();
+  public net.neoforged.fml.earlydisplay.theme.elements.ThemePerformanceElement performance();
+  public net.neoforged.fml.earlydisplay.theme.elements.ThemeProgressBarsElement progressBars();
+  public net.neoforged.fml.earlydisplay.theme.elements.ThemeStartupLogElement startupLog();
+  public net.neoforged.fml.earlydisplay.theme.ThemeMojangLogoElement mojangLogo();
+  public java.util.Map<java.lang.String, net.neoforged.fml.earlydisplay.theme.elements.ThemeDecorativeElement> decoration();
+}
+Compiled from "ThemeMojangLogoElement.java"
+public class net.neoforged.fml.earlydisplay.theme.ThemeMojangLogoElement extends net.neoforged.fml.earlydisplay.theme.elements.ThemeElement {
+  public net.neoforged.fml.earlydisplay.theme.ThemeMojangLogoElement();
+}
+Compiled from "ThemeResource.java"
+public final class net.neoforged.fml.earlydisplay.theme.ThemeResource extends java.lang.Record {
+  public net.neoforged.fml.earlydisplay.theme.ThemeResource(java.lang.String);
+  public net.neoforged.fml.earlydisplay.theme.NativeBuffer toNativeBuffer(java.nio.file.Path) throws java.io.IOException;
+  public net.neoforged.fml.earlydisplay.theme.UncompressedImage loadAsImage(java.nio.file.Path);
+  public net.neoforged.fml.earlydisplay.theme.UncompressedImage tryLoadAsImage(java.nio.file.Path);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String path();
+}
+Compiled from "ThemeShader.java"
+public final class net.neoforged.fml.earlydisplay.theme.ThemeShader extends java.lang.Record {
+  public static final net.neoforged.fml.earlydisplay.theme.ThemeShader DEFAULT_GUI;
+  public static final net.neoforged.fml.earlydisplay.theme.ThemeShader DEFAULT_FONT;
+  public static final net.neoforged.fml.earlydisplay.theme.ThemeShader DEFAULT_COLOR;
+  public net.neoforged.fml.earlydisplay.theme.ThemeShader(net.neoforged.fml.earlydisplay.theme.ThemeResource, net.neoforged.fml.earlydisplay.theme.ThemeResource);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.neoforged.fml.earlydisplay.theme.ThemeResource vertexShader();
+  public net.neoforged.fml.earlydisplay.theme.ThemeResource fragmentShader();
+}
+Compiled from "ThemeSprites.java"
+public final class net.neoforged.fml.earlydisplay.theme.ThemeSprites extends java.lang.Record {
+  public net.neoforged.fml.earlydisplay.theme.ThemeSprites(net.neoforged.fml.earlydisplay.theme.ThemeTexture, net.neoforged.fml.earlydisplay.theme.ThemeTexture, net.neoforged.fml.earlydisplay.theme.ThemeTexture, boolean);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.neoforged.fml.earlydisplay.theme.ThemeTexture progressBarBackground();
+  public net.neoforged.fml.earlydisplay.theme.ThemeTexture progressBarForeground();
+  public net.neoforged.fml.earlydisplay.theme.ThemeTexture progressBarIndeterminate();
+  public boolean progressBarIndeterminateBounces();
+}
+Compiled from "ThemeTexture.java"
+public final class net.neoforged.fml.earlydisplay.theme.ThemeTexture extends java.lang.Record {
+  public net.neoforged.fml.earlydisplay.theme.ThemeTexture(net.neoforged.fml.earlydisplay.theme.ThemeResource, net.neoforged.fml.earlydisplay.theme.TextureScaling);
+  public net.neoforged.fml.earlydisplay.theme.ThemeTexture(net.neoforged.fml.earlydisplay.theme.ThemeResource, net.neoforged.fml.earlydisplay.theme.TextureScaling, net.neoforged.fml.earlydisplay.theme.AnimationMetadata);
+  public java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.neoforged.fml.earlydisplay.theme.ThemeResource resource();
+  public net.neoforged.fml.earlydisplay.theme.TextureScaling scaling();
+  public net.neoforged.fml.earlydisplay.theme.AnimationMetadata animation();
+}
+Compiled from "UncompressedImage.java"
+public final class net.neoforged.fml.earlydisplay.theme.UncompressedImage extends java.lang.Record implements java.lang.AutoCloseable {
+  public net.neoforged.fml.earlydisplay.theme.UncompressedImage(java.lang.String, net.neoforged.fml.earlydisplay.theme.ThemeResource, net.neoforged.fml.earlydisplay.theme.NativeBuffer, int, int);
+  public java.nio.ByteBuffer imageData();
+  public void close();
+  public java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String name();
+  public net.neoforged.fml.earlydisplay.theme.ThemeResource source();
+  public net.neoforged.fml.earlydisplay.theme.NativeBuffer nativeImageData();
+  public int width();
+  public int height();
+}
+Compiled from "package-info.java"
+interface net.neoforged.fml.earlydisplay.theme.package-info {
+}
+Compiled from "ThemeDecorativeElement.java"
+public abstract class net.neoforged.fml.earlydisplay.theme.elements.ThemeDecorativeElement extends net.neoforged.fml.earlydisplay.theme.elements.ThemeElement {
+  public net.neoforged.fml.earlydisplay.theme.elements.ThemeDecorativeElement();
+}
+Compiled from "ThemeElement.java"
+public abstract class net.neoforged.fml.earlydisplay.theme.elements.ThemeElement {
+  public net.neoforged.fml.earlydisplay.theme.elements.ThemeElement();
+  public boolean visible();
+  public void setVisible(boolean);
+  public net.neoforged.fml.earlydisplay.util.StyleLength left();
+  public void setLeft(net.neoforged.fml.earlydisplay.util.StyleLength);
+  public net.neoforged.fml.earlydisplay.util.StyleLength top();
+  public void setTop(net.neoforged.fml.earlydisplay.util.StyleLength);
+  public net.neoforged.fml.earlydisplay.util.StyleLength right();
+  public void setRight(net.neoforged.fml.earlydisplay.util.StyleLength);
+  public net.neoforged.fml.earlydisplay.util.StyleLength bottom();
+  public void setBottom(net.neoforged.fml.earlydisplay.util.StyleLength);
+  public boolean maintainAspectRatio();
+  public void setMaintainAspectRatio(boolean);
+  public java.lang.String font();
+  public void setFont(java.lang.String);
+  public boolean centerHorizontally();
+  public void setCenterHorizontally(boolean);
+  public boolean centerVertically();
+  public void setCenterVertically(boolean);
+}
+Compiled from "ThemeImageElement.java"
+public class net.neoforged.fml.earlydisplay.theme.elements.ThemeImageElement extends net.neoforged.fml.earlydisplay.theme.elements.ThemeDecorativeElement {
+  public net.neoforged.fml.earlydisplay.theme.elements.ThemeImageElement();
+  public net.neoforged.fml.earlydisplay.theme.ThemeTexture texture();
+  public void setTexture(net.neoforged.fml.earlydisplay.theme.ThemeTexture);
+}
+Compiled from "ThemeLabelElement.java"
+public class net.neoforged.fml.earlydisplay.theme.elements.ThemeLabelElement extends net.neoforged.fml.earlydisplay.theme.elements.ThemeDecorativeElement {
+  public net.neoforged.fml.earlydisplay.theme.elements.ThemeLabelElement();
+  public java.lang.String text();
+  public void setText(java.lang.String);
+}
+Compiled from "ThemePerformanceElement.java"
+public class net.neoforged.fml.earlydisplay.theme.elements.ThemePerformanceElement extends net.neoforged.fml.earlydisplay.theme.elements.ThemeElement {
+  public net.neoforged.fml.earlydisplay.theme.elements.ThemePerformanceElement();
+}
+Compiled from "ThemeProgressBarsElement.java"
+public class net.neoforged.fml.earlydisplay.theme.elements.ThemeProgressBarsElement extends net.neoforged.fml.earlydisplay.theme.elements.ThemeElement {
+  public net.neoforged.fml.earlydisplay.theme.elements.ThemeProgressBarsElement();
+  public int labelGap();
+  public void setLabelGap(int);
+  public int barGap();
+  public void setBarGap(int);
+}
+Compiled from "ThemeStartupLogElement.java"
+public class net.neoforged.fml.earlydisplay.theme.elements.ThemeStartupLogElement extends net.neoforged.fml.earlydisplay.theme.elements.ThemeElement {
+  public net.neoforged.fml.earlydisplay.theme.elements.ThemeStartupLogElement();
+}
+Compiled from "package-info.java"
+interface net.neoforged.fml.earlydisplay.theme.elements.package-info {
+}
+Compiled from "Bounds.java"
+public final class net.neoforged.fml.earlydisplay.util.Bounds extends java.lang.Record {
+  public net.neoforged.fml.earlydisplay.util.Bounds(float, float, net.neoforged.fml.earlydisplay.util.Size);
+  public net.neoforged.fml.earlydisplay.util.Bounds(float, float, float, float);
+  public float width();
+  public float height();
+  public float horizontalCenter();
+  public net.neoforged.fml.earlydisplay.util.Bounds union(net.neoforged.fml.earlydisplay.util.Bounds);
+  public net.neoforged.fml.earlydisplay.util.Bounds deflate(float);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public float left();
+  public float top();
+  public float right();
+  public float bottom();
+}
+Compiled from "Placeholders.java"
+public final class net.neoforged.fml.earlydisplay.util.Placeholders {
+  public static java.lang.String resolve(java.lang.String, java.util.Map<java.lang.String, java.lang.String>);
+}
+Compiled from "Size.java"
+public final class net.neoforged.fml.earlydisplay.util.Size extends java.lang.Record {
+  public net.neoforged.fml.earlydisplay.util.Size(float, float);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public float width();
+  public float height();
+}
+Compiled from "StyleLength.java"
+public final class net.neoforged.fml.earlydisplay.util.StyleLength$Unit extends java.lang.Enum<net.neoforged.fml.earlydisplay.util.StyleLength$Unit> {
+  public static final net.neoforged.fml.earlydisplay.util.StyleLength$Unit UNDEFINED;
+  public static final net.neoforged.fml.earlydisplay.util.StyleLength$Unit POINT;
+  public static final net.neoforged.fml.earlydisplay.util.StyleLength$Unit REM;
+  public static final net.neoforged.fml.earlydisplay.util.StyleLength$Unit PERCENT;
+  public static net.neoforged.fml.earlydisplay.util.StyleLength$Unit[] values();
+  public static net.neoforged.fml.earlydisplay.util.StyleLength$Unit valueOf(java.lang.String);
+}
+Compiled from "StyleLength.java"
+public final class net.neoforged.fml.earlydisplay.util.StyleLength {
+  public static net.neoforged.fml.earlydisplay.util.StyleLength ofUndefined();
+  public static net.neoforged.fml.earlydisplay.util.StyleLength ofPoints(float);
+  public static net.neoforged.fml.earlydisplay.util.StyleLength ofREM(float);
+  public static net.neoforged.fml.earlydisplay.util.StyleLength ofPercent(float);
+  public net.neoforged.fml.earlydisplay.util.StyleLength$Unit unit();
+  public float value();
+  public java.lang.String toString();
+}
+Compiled from "package-info.java"
+interface net.neoforged.fml.earlydisplay.util.package-info {
+}

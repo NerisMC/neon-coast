@@ -1,0 +1,3 @@
+net.minecraftforge.fml.lowcodemod.LowCodeModContainer
+net.minecraftforge.fml.lowcodemod.LowCodeModLanguageProvider$LowCodeModTarget
+net.minecraftforge.fml.lowcodemod.LowCodeModLanguageProvider

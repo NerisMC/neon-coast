@@ -1,0 +1,67 @@
+Compiled from "Mod.java"
+public final class net.minecraftforge.fml.common.Mod$EventBusSubscriber$Bus extends java.lang.Enum<net.minecraftforge.fml.common.Mod$EventBusSubscriber$Bus> {
+  public static final net.minecraftforge.fml.common.Mod$EventBusSubscriber$Bus FORGE;
+  public static final net.minecraftforge.fml.common.Mod$EventBusSubscriber$Bus MOD;
+  public static final net.minecraftforge.fml.common.Mod$EventBusSubscriber$Bus BOTH;
+  public static net.minecraftforge.fml.common.Mod$EventBusSubscriber$Bus[] values();
+  public static net.minecraftforge.fml.common.Mod$EventBusSubscriber$Bus valueOf(java.lang.String);
+  public java.util.function.Supplier<net.minecraftforge.eventbus.api.bus.BusGroup> bus();
+}
+Compiled from "Mod.java"
+public interface net.minecraftforge.fml.common.Mod$EventBusSubscriber extends java.lang.annotation.Annotation {
+  public abstract net.minecraftforge.api.distmarker.Dist[] value();
+  public abstract java.lang.String modid();
+  public abstract net.minecraftforge.fml.common.Mod$EventBusSubscriber$Bus bus();
+}
+Compiled from "Mod.java"
+public interface net.minecraftforge.fml.common.Mod extends java.lang.annotation.Annotation {
+  public abstract java.lang.String value();
+}
+Compiled from "AutomaticEventSubscriber.java"
+final class net.minecraftforge.fml.javafmlmod.AutomaticEventSubscriber$EventBusSubscriberLogic$1DodgyLookup {
+}
+Compiled from "AutomaticEventSubscriber.java"
+final class net.minecraftforge.fml.javafmlmod.AutomaticEventSubscriber$EventBusSubscriberLogic {
+  public static void register(net.minecraftforge.eventbus.api.bus.BusGroup, java.lang.Class<?>);
+  public static void registerLenient(net.minecraftforge.eventbus.api.bus.BusGroup, java.lang.Class<?>);
+  public static void registerStrict(net.minecraftforge.eventbus.api.bus.BusGroup, java.lang.Class<?>);
+}
+Compiled from "AutomaticEventSubscriber.java"
+public final class net.minecraftforge.fml.javafmlmod.AutomaticEventSubscriber {
+  public net.minecraftforge.fml.javafmlmod.AutomaticEventSubscriber();
+  public static void inject(net.minecraftforge.fml.ModContainer, net.minecraftforge.forgespi.language.ModFileScanData, java.lang.ClassLoader);
+}
+Compiled from "FMLJavaModLanguageProvider.java"
+final class net.minecraftforge.fml.javafmlmod.FMLJavaModLanguageProvider$FMLModTarget extends java.lang.Record implements net.minecraftforge.forgespi.language.IModLanguageProvider$IModLanguageLoader {
+  public <T> T loadMod(net.minecraftforge.forgespi.language.IModInfo, net.minecraftforge.forgespi.language.ModFileScanData, java.lang.ModuleLayer);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String className();
+  public java.lang.String modId();
+}
+Compiled from "FMLJavaModLanguageProvider.java"
+public class net.minecraftforge.fml.javafmlmod.FMLJavaModLanguageProvider implements net.minecraftforge.forgespi.language.IModLanguageProvider {
+  public static final org.objectweb.asm.Type MODANNOTATION;
+  public net.minecraftforge.fml.javafmlmod.FMLJavaModLanguageProvider();
+  public java.lang.String name();
+  public java.util.function.Consumer<net.minecraftforge.forgespi.language.ModFileScanData> getFileVisitor();
+  public <R extends net.minecraftforge.forgespi.language.ILifecycleEvent<R>> void consumeLifecycleEvent(java.util.function.Supplier<R>);
+}
+Compiled from "FMLJavaModLoadingContext.java"
+public class net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext extends net.minecraftforge.fml.ModLoadingContext {
+  public net.minecraftforge.eventbus.api.bus.BusGroup getModBusGroup();
+  public net.minecraftforge.fml.javafmlmod.FMLModContainer getContainer();
+  public static net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext get();
+  public net.minecraftforge.fml.ModContainer getContainer();
+}
+Compiled from "FMLModContainer.java"
+public class net.minecraftforge.fml.javafmlmod.FMLModContainer extends net.minecraftforge.fml.ModContainer {
+  public net.minecraftforge.fml.javafmlmod.FMLModContainer(net.minecraftforge.forgespi.language.IModInfo, java.lang.String, net.minecraftforge.forgespi.language.ModFileScanData, java.lang.ModuleLayer);
+  public boolean matches(java.lang.Object);
+  public java.lang.Object getMod();
+  public net.minecraftforge.eventbus.api.bus.BusGroup getModBusGroup();
+  protected <T extends net.minecraftforge.fml.event.IModBusEvent> void acceptEvent(T);
+  public void dispatchConfigEvent(net.minecraftforge.fml.config.IConfigEvent);
+  public java.lang.String toString();
+}

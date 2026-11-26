@@ -1,0 +1,635 @@
+Compiled from "Bindings.java"
+public class net.minecraftforge.fml.Bindings {
+  public static java.util.function.Supplier<net.minecraftforge.eventbus.api.bus.BusGroup> getForgeBus();
+  public static java.util.function.Supplier<net.minecraftforge.fml.I18NParser> getMessageParser();
+  public static java.util.function.Supplier<net.minecraftforge.fml.config.IConfigEvent$ConfigConfig> getConfigConfiguration();
+}
+Compiled from "CrashReportCallables.java"
+class net.minecraftforge.fml.CrashReportCallables$1 implements net.minecraftforge.fml.ISystemReportExtender {
+  public java.lang.String getLabel();
+  public java.lang.String get();
+  public java.lang.Object get();
+}
+Compiled from "CrashReportCallables.java"
+class net.minecraftforge.fml.CrashReportCallables$2 implements net.minecraftforge.fml.ISystemReportExtender {
+  public java.lang.String getLabel();
+  public java.lang.String get();
+  public boolean isActive();
+  public java.lang.Object get();
+}
+Compiled from "CrashReportCallables.java"
+public class net.minecraftforge.fml.CrashReportCallables {
+  public net.minecraftforge.fml.CrashReportCallables();
+  public static void registerCrashCallable(net.minecraftforge.fml.ISystemReportExtender);
+  public static void registerCrashCallable(java.lang.String, java.util.function.Supplier<java.lang.String>);
+  public static void registerCrashCallable(java.lang.String, java.util.function.Supplier<java.lang.String>, java.util.function.BooleanSupplier);
+  public static java.util.List<net.minecraftforge.fml.ISystemReportExtender> allCrashCallables();
+}
+Compiled from "DeferredWorkQueue.java"
+final class net.minecraftforge.fml.DeferredWorkQueue$TaskInfo {
+}
+Compiled from "DeferredWorkQueue.java"
+public class net.minecraftforge.fml.DeferredWorkQueue {
+  public net.minecraftforge.fml.DeferredWorkQueue(net.minecraftforge.fml.ModLoadingStage);
+  public static java.util.Optional<net.minecraftforge.fml.DeferredWorkQueue> lookup(java.util.Optional<net.minecraftforge.fml.ModLoadingStage>);
+  public void runTasks();
+  public java.util.concurrent.CompletableFuture<java.lang.Void> enqueueWork(net.minecraftforge.fml.ModContainer, java.lang.Runnable);
+  public <T> java.util.concurrent.CompletableFuture<T> enqueueWork(net.minecraftforge.fml.ModContainer, java.util.function.Supplier<T>);
+}
+Compiled from "I18NParser.java"
+public interface net.minecraftforge.fml.I18NParser {
+  public abstract java.lang.String parseMessage(java.lang.String, java.lang.Object...);
+  public abstract java.lang.String stripControlCodes(java.lang.String);
+}
+Compiled from "IBindingsProvider.java"
+public interface net.minecraftforge.fml.IBindingsProvider {
+  public abstract java.util.function.Supplier<net.minecraftforge.eventbus.api.bus.BusGroup> getForgeBusSupplier();
+  public abstract java.util.function.Supplier<net.minecraftforge.fml.I18NParser> getMessageParser();
+  public abstract java.util.function.Supplier<net.minecraftforge.fml.config.IConfigEvent$ConfigConfig> getConfigConfiguration();
+}
+Compiled from "IExtensionPoint.java"
+public final class net.minecraftforge.fml.IExtensionPoint$DisplayTest extends java.lang.Record implements net.minecraftforge.fml.IExtensionPoint<net.minecraftforge.fml.IExtensionPoint$DisplayTest> {
+  public static final java.lang.String IGNORESERVERONLY;
+  public static final java.util.function.Supplier<net.minecraftforge.fml.IExtensionPoint$DisplayTest> IGNORE_SERVER_VERSION;
+  public static final java.util.function.Supplier<net.minecraftforge.fml.IExtensionPoint$DisplayTest> IGNORE_ALL_VERSION;
+  public net.minecraftforge.fml.IExtensionPoint$DisplayTest(java.lang.String, java.util.function.BiPredicate<java.lang.String, java.lang.Boolean>);
+  public net.minecraftforge.fml.IExtensionPoint$DisplayTest(java.util.function.Supplier<java.lang.String>, java.util.function.BiPredicate<java.lang.String, java.lang.Boolean>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.function.Supplier<java.lang.String> suppliedVersion();
+  public java.util.function.BiPredicate<java.lang.String, java.lang.Boolean> remoteVersionTest();
+}
+Compiled from "IExtensionPoint.java"
+public interface net.minecraftforge.fml.IExtensionPoint<T extends java.lang.Record> {
+}
+Compiled from "IModLoadingState.java"
+public interface net.minecraftforge.fml.IModLoadingState {
+  public abstract java.lang.String name();
+  public abstract java.lang.String previous();
+  public abstract net.minecraftforge.fml.ModLoadingPhase phase();
+  public abstract java.util.function.Supplier<java.lang.String> message();
+  public default java.util.function.IntSupplier size();
+  public abstract java.lang.Runnable inlineRunnable();
+  public default java.util.concurrent.CompletableFuture<java.lang.Void> buildTransition(java.util.concurrent.Executor, java.util.concurrent.Executor, net.minecraftforge.fml.loading.progress.ProgressMeter);
+  public abstract java.util.concurrent.CompletableFuture<java.lang.Void> buildTransition(java.util.concurrent.Executor, java.util.concurrent.Executor, net.minecraftforge.fml.loading.progress.ProgressMeter, java.util.function.Function<java.util.concurrent.Executor, java.util.concurrent.CompletableFuture<java.lang.Void>>, java.util.function.Function<java.util.concurrent.Executor, java.util.concurrent.CompletableFuture<java.lang.Void>>);
+}
+Compiled from "IModStateProvider.java"
+public interface net.minecraftforge.fml.IModStateProvider {
+  public abstract java.util.List<net.minecraftforge.fml.IModLoadingState> getAllStates();
+}
+Compiled from "IModStateTransition.java"
+public interface net.minecraftforge.fml.IModStateTransition$EventGenerator<T extends net.minecraftforge.fml.event.IModBusEvent> extends java.util.function.Function<net.minecraftforge.fml.ModContainer, T> {
+  public static <FN extends net.minecraftforge.fml.event.IModBusEvent> net.minecraftforge.fml.IModStateTransition$EventGenerator<FN> fromFunction(java.util.function.Function<net.minecraftforge.fml.ModContainer, FN>);
+}
+Compiled from "IModStateTransition.java"
+public interface net.minecraftforge.fml.IModStateTransition {
+  public static net.minecraftforge.fml.IModStateTransition buildNoopTransition();
+  public default java.util.concurrent.CompletableFuture<java.lang.Void> build(java.lang.String, java.util.concurrent.Executor, java.util.concurrent.Executor, net.minecraftforge.fml.loading.progress.ProgressMeter, java.util.function.Function<java.util.concurrent.Executor, java.util.concurrent.CompletableFuture<java.lang.Void>>, java.util.function.Function<java.util.concurrent.Executor, java.util.concurrent.CompletableFuture<java.lang.Void>>);
+  public default java.util.function.BiFunction<net.minecraftforge.fml.ModLoadingStage, java.lang.Throwable, net.minecraftforge.fml.ModLoadingStage> nextModLoadingStage();
+  public default <T extends net.minecraftforge.fml.event.IModBusEvent> net.minecraftforge.fml.IModStateTransition$EventGenerator<T> eventFunction();
+  public abstract net.minecraftforge.fml.ThreadSelector threadSelector();
+  public abstract java.util.function.BiFunction<java.util.concurrent.Executor, java.util.concurrent.CompletableFuture<java.lang.Void>, java.util.concurrent.CompletableFuture<java.lang.Void>> finalActivityGenerator();
+}
+Compiled from "ISystemReportExtender.java"
+public interface net.minecraftforge.fml.ISystemReportExtender extends java.util.function.Supplier<java.lang.String> {
+  public abstract java.lang.String getLabel();
+  public default boolean isActive();
+}
+Compiled from "InterModComms.java"
+public final class net.minecraftforge.fml.InterModComms$IMCMessage extends java.lang.Record {
+  public net.minecraftforge.fml.InterModComms$IMCMessage(java.lang.String, java.lang.String, java.lang.String, java.util.function.Supplier<?>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String senderModId();
+  public java.lang.String modId();
+  public java.lang.String method();
+  public java.util.function.Supplier<?> messageSupplier();
+}
+Compiled from "InterModComms.java"
+final class net.minecraftforge.fml.InterModComms$QueueFilteringSpliterator extends java.lang.Record implements java.util.Spliterator<net.minecraftforge.fml.InterModComms$IMCMessage> {
+  public net.minecraftforge.fml.InterModComms$QueueFilteringSpliterator(java.util.concurrent.ConcurrentLinkedQueue<net.minecraftforge.fml.InterModComms$IMCMessage>, java.util.function.Predicate<java.lang.String>);
+  public int characteristics();
+  public long estimateSize();
+  public boolean tryAdvance(java.util.function.Consumer<? super net.minecraftforge.fml.InterModComms$IMCMessage>);
+  public java.util.Spliterator<net.minecraftforge.fml.InterModComms$IMCMessage> trySplit();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.concurrent.ConcurrentLinkedQueue<net.minecraftforge.fml.InterModComms$IMCMessage> queue();
+  public java.util.function.Predicate<java.lang.String> methodFilter();
+  public java.util.Iterator<net.minecraftforge.fml.InterModComms$IMCMessage> iterator();
+}
+Compiled from "InterModComms.java"
+public final class net.minecraftforge.fml.InterModComms {
+  public net.minecraftforge.fml.InterModComms();
+  public static boolean sendTo(java.lang.String, java.lang.String, java.util.function.Supplier<?>);
+  public static boolean sendTo(java.lang.String, java.lang.String, java.lang.String, java.util.function.Supplier<?>);
+  public static java.util.stream.Stream<net.minecraftforge.fml.InterModComms$IMCMessage> getMessages(java.lang.String, java.util.function.Predicate<java.lang.String>);
+  public static java.util.stream.Stream<net.minecraftforge.fml.InterModComms$IMCMessage> getMessages(java.lang.String);
+}
+Compiled from "LoadingFailedException.java"
+public class net.minecraftforge.fml.LoadingFailedException extends java.lang.RuntimeException {
+  public net.minecraftforge.fml.LoadingFailedException(java.util.List<net.minecraftforge.fml.ModLoadingException>);
+  public java.util.List<net.minecraftforge.fml.ModLoadingException> getErrors();
+  public java.lang.String getMessage();
+}
+Compiled from "Logging.java"
+public class net.minecraftforge.fml.Logging {
+  public static final org.apache.logging.log4j.Marker CORE;
+  public static final org.apache.logging.log4j.Marker LOADING;
+  public static final org.apache.logging.log4j.Marker SCAN;
+  public static final org.apache.logging.log4j.Marker SPLASH;
+  public static final org.apache.logging.log4j.Marker CAPABILITIES;
+  public static final org.apache.logging.log4j.Marker MODELLOADING;
+  public static final org.apache.logging.log4j.Marker FORGEMOD;
+  public net.minecraftforge.fml.Logging();
+}
+Compiled from "LogicalSide.java"
+public final class net.minecraftforge.fml.LogicalSide extends java.lang.Enum<net.minecraftforge.fml.LogicalSide> {
+  public static final net.minecraftforge.fml.LogicalSide CLIENT;
+  public static final net.minecraftforge.fml.LogicalSide SERVER;
+  public static net.minecraftforge.fml.LogicalSide[] values();
+  public static net.minecraftforge.fml.LogicalSide valueOf(java.lang.String);
+  public boolean isServer();
+  public boolean isClient();
+}
+Compiled from "ModContainer.java"
+public abstract class net.minecraftforge.fml.ModContainer {
+  protected final java.lang.String modId;
+  protected final java.lang.String namespace;
+  protected final net.minecraftforge.forgespi.language.IModInfo modInfo;
+  protected net.minecraftforge.fml.ModLoadingStage modLoadingStage;
+  protected java.util.function.Supplier<?> contextExtension;
+  protected final java.util.Map<net.minecraftforge.fml.ModLoadingStage, java.lang.Runnable> activityMap;
+  protected final java.util.Map<java.lang.Class<? extends net.minecraftforge.fml.IExtensionPoint<?>>, java.util.function.Supplier<?>> extensionPoints;
+  protected final java.util.EnumMap<net.minecraftforge.fml.config.ModConfig$Type, net.minecraftforge.fml.config.ModConfig> configs;
+  public net.minecraftforge.fml.ModContainer(net.minecraftforge.forgespi.language.IModInfo);
+  public final java.lang.String getModId();
+  public final java.lang.String getNamespace();
+  public net.minecraftforge.fml.ModLoadingStage getCurrentState();
+  public net.minecraftforge.forgespi.language.IModInfo getModInfo();
+  public <T extends java.lang.Record> java.util.Optional<T> getCustomExtension(java.lang.Class<? extends net.minecraftforge.fml.IExtensionPoint<T>>);
+  public <T extends java.lang.Record & net.minecraftforge.fml.IExtensionPoint<T>> void registerExtensionPoint(java.lang.Class<? extends net.minecraftforge.fml.IExtensionPoint<T>>, java.util.function.Supplier<T>);
+  public void registerDisplayTest(net.minecraftforge.fml.IExtensionPoint$DisplayTest);
+  public void registerDisplayTest(java.util.function.Supplier<net.minecraftforge.fml.IExtensionPoint$DisplayTest>);
+  public void registerDisplayTest(java.lang.String, java.util.function.BiPredicate<java.lang.String, java.lang.Boolean>);
+  public void registerDisplayTest(java.util.function.Supplier<java.lang.String>, java.util.function.BiPredicate<java.lang.String, java.lang.Boolean>);
+  public void addConfig(net.minecraftforge.fml.config.ModConfig);
+  public void dispatchConfigEvent(net.minecraftforge.fml.config.IConfigEvent);
+  public abstract boolean matches(java.lang.Object);
+  public abstract java.lang.Object getMod();
+  public net.minecraftforge.eventbus.api.bus.BusGroup getModBusGroup();
+  protected <T extends net.minecraftforge.fml.event.IModBusEvent> void acceptEvent(T);
+}
+Compiled from "ModList.java"
+final class net.minecraftforge.fml.ModList$1LazyInit {
+}
+Compiled from "ModList.java"
+public final class net.minecraftforge.fml.ModList {
+  public static void init();
+  public static java.util.List<net.minecraftforge.forgespi.language.IModFileInfo> getModFiles();
+  public static net.minecraftforge.forgespi.language.IModFileInfo getModFileById(java.lang.String);
+  public static <T> java.util.Optional<T> getModObjectById(java.lang.String);
+  public static java.util.Optional<? extends net.minecraftforge.fml.ModContainer> getModContainerById(java.lang.String);
+  public static java.util.Optional<? extends net.minecraftforge.fml.ModContainer> getModContainerByObject(java.lang.Object);
+  public static java.util.List<net.minecraftforge.forgespi.language.IModInfo> getMods();
+  public static boolean isLoaded(java.lang.String);
+  public static int size();
+  public static java.util.List<net.minecraftforge.forgespi.language.ModFileScanData> getAllScanData();
+  public static void forEachModFile(java.util.function.Consumer<net.minecraftforge.forgespi.locating.IModFile>);
+  public static <T> java.util.stream.Stream<T> applyForEachModFile(java.util.function.Function<net.minecraftforge.forgespi.locating.IModFile, T>);
+  public static void forEachModContainer(java.util.function.BiConsumer<java.lang.String, net.minecraftforge.fml.ModContainer>);
+  public static void forEachModInOrder(java.util.function.Consumer<net.minecraftforge.fml.ModContainer>);
+  public static java.util.List<net.minecraftforge.fml.ModContainer> getLoadedMods();
+  public static <T> java.util.stream.Stream<T> applyForEachModContainer(java.util.function.Function<net.minecraftforge.fml.ModContainer, T>);
+}
+Compiled from "ModLoader.java"
+class net.minecraftforge.fml.ModLoader$1 {
+}
+Compiled from "ModLoader.java"
+final class net.minecraftforge.fml.ModLoader$ErroredModContainer extends net.minecraftforge.fml.ModContainer {
+  public net.minecraftforge.fml.ModLoader$ErroredModContainer();
+  public boolean matches(java.lang.Object);
+  public java.lang.Object getMod();
+}
+Compiled from "ModLoader.java"
+public final class net.minecraftforge.fml.ModLoader {
+  public static void gatherAndInitializeMods(net.minecraftforge.fml.ModWorkManager$DrivenExecutor, java.util.concurrent.Executor, java.lang.Runnable);
+  public static void loadMods(net.minecraftforge.fml.ModWorkManager$DrivenExecutor, java.util.concurrent.Executor, java.lang.Runnable);
+  public static void finishMods(net.minecraftforge.fml.ModWorkManager$DrivenExecutor, java.util.concurrent.Executor, java.lang.Runnable);
+  public static boolean isLoadingStateValid();
+  public static boolean hasCompletedState(net.minecraftforge.fml.IModLoadingState);
+  public static <T extends net.minecraftforge.fml.event.IModBusEvent> void runEventGenerator(java.util.function.Function<net.minecraftforge.fml.ModContainer, T>);
+  public static <T extends net.minecraftforge.fml.event.IModBusEvent> void postEvent(T);
+  public static <T extends net.minecraftforge.fml.event.IModBusEvent> T postEventWithReturn(T);
+  public static <T extends net.minecraftforge.fml.event.IModBusEvent> void postEventWrapContainerInModOrder(T);
+  public static <T extends net.minecraftforge.fml.event.IModBusEvent> void postEventWithWrapInModOrder(T, java.util.function.BiConsumer<net.minecraftforge.fml.ModContainer, T>, java.util.function.BiConsumer<net.minecraftforge.fml.ModContainer, T>);
+  public static java.util.List<net.minecraftforge.fml.ModLoadingWarning> getWarnings();
+  public static void addWarning(net.minecraftforge.fml.ModLoadingWarning);
+  public static boolean isDataGenRunning();
+}
+Compiled from "ModLoadingContext.java"
+public class net.minecraftforge.fml.ModLoadingContext {
+  public net.minecraftforge.fml.ModLoadingContext();
+  public static net.minecraftforge.fml.ModLoadingContext get();
+  public java.lang.String getActiveNamespace();
+  public net.minecraftforge.fml.ModContainer getContainer();
+  public <T extends java.lang.Record & net.minecraftforge.fml.IExtensionPoint<T>> void registerExtensionPoint(java.lang.Class<? extends net.minecraftforge.fml.IExtensionPoint<T>>, java.util.function.Supplier<T>);
+  public void registerDisplayTest(net.minecraftforge.fml.IExtensionPoint$DisplayTest);
+  public void registerDisplayTest(java.util.function.Supplier<net.minecraftforge.fml.IExtensionPoint$DisplayTest>);
+  public void registerDisplayTest(java.lang.String, java.util.function.BiPredicate<java.lang.String, java.lang.Boolean>);
+  public void registerDisplayTest(java.util.function.Supplier<java.lang.String>, java.util.function.BiPredicate<java.lang.String, java.lang.Boolean>);
+  public void registerConfig(net.minecraftforge.fml.config.ModConfig$Type, net.minecraftforge.fml.config.IConfigSpec<?>);
+  public void registerConfig(net.minecraftforge.fml.config.ModConfig$Type, net.minecraftforge.fml.config.IConfigSpec<?>, java.lang.String);
+  public <T> T extension();
+}
+Compiled from "ModLoadingException.java"
+public class net.minecraftforge.fml.ModLoadingException extends java.lang.RuntimeException {
+  public net.minecraftforge.fml.ModLoadingException(net.minecraftforge.forgespi.language.IModInfo, net.minecraftforge.fml.ModLoadingStage, java.lang.String, java.lang.Throwable, java.lang.Object...);
+  public java.lang.String getI18NMessage();
+  public java.lang.Object[] getContext();
+  public java.lang.String formatToString();
+  public java.lang.String getMessage();
+  public net.minecraftforge.forgespi.language.IModInfo getModInfo();
+  public java.lang.String getCleanMessage();
+}
+Compiled from "ModLoadingPhase.java"
+public final class net.minecraftforge.fml.ModLoadingPhase extends java.lang.Enum<net.minecraftforge.fml.ModLoadingPhase> {
+  public static final net.minecraftforge.fml.ModLoadingPhase ERROR;
+  public static final net.minecraftforge.fml.ModLoadingPhase GATHER;
+  public static final net.minecraftforge.fml.ModLoadingPhase LOAD;
+  public static final net.minecraftforge.fml.ModLoadingPhase COMPLETE;
+  public static final net.minecraftforge.fml.ModLoadingPhase DONE;
+  public static net.minecraftforge.fml.ModLoadingPhase[] values();
+  public static net.minecraftforge.fml.ModLoadingPhase valueOf(java.lang.String);
+}
+Compiled from "ModLoadingStage.java"
+public final class net.minecraftforge.fml.ModLoadingStage extends java.lang.Enum<net.minecraftforge.fml.ModLoadingStage> {
+  public static final net.minecraftforge.fml.ModLoadingStage ERROR;
+  public static final net.minecraftforge.fml.ModLoadingStage VALIDATE;
+  public static final net.minecraftforge.fml.ModLoadingStage CONSTRUCT;
+  public static final net.minecraftforge.fml.ModLoadingStage COMMON_SETUP;
+  public static final net.minecraftforge.fml.ModLoadingStage SIDED_SETUP;
+  public static final net.minecraftforge.fml.ModLoadingStage ENQUEUE_IMC;
+  public static final net.minecraftforge.fml.ModLoadingStage PROCESS_IMC;
+  public static final net.minecraftforge.fml.ModLoadingStage COMPLETE;
+  public static final net.minecraftforge.fml.ModLoadingStage DONE;
+  public static net.minecraftforge.fml.ModLoadingStage[] values();
+  public static net.minecraftforge.fml.ModLoadingStage valueOf(java.lang.String);
+  public net.minecraftforge.fml.ModLoadingStage currentState(java.lang.Throwable);
+  public net.minecraftforge.fml.DeferredWorkQueue getDeferredWorkQueue();
+}
+Compiled from "ModLoadingState.java"
+public final class net.minecraftforge.fml.ModLoadingState$Builder {
+  public net.minecraftforge.fml.ModLoadingState$Builder after(net.minecraftforge.fml.ModLoadingState);
+  public net.minecraftforge.fml.ModLoadingState$Builder after(java.lang.String);
+  public net.minecraftforge.fml.ModLoadingState$Builder message(java.lang.String);
+  public net.minecraftforge.fml.ModLoadingState$Builder message(java.util.function.Supplier<java.lang.String>);
+  public net.minecraftforge.fml.ModLoadingState$Builder size(int);
+  public net.minecraftforge.fml.ModLoadingState$Builder size(java.util.function.IntSupplier);
+  public net.minecraftforge.fml.ModLoadingState empty();
+  public net.minecraftforge.fml.ModLoadingState withTransition(net.minecraftforge.fml.IModStateTransition);
+  public net.minecraftforge.fml.ModLoadingState withInline(java.lang.Runnable);
+}
+Compiled from "ModLoadingState.java"
+public final class net.minecraftforge.fml.ModLoadingState extends java.lang.Record implements net.minecraftforge.fml.IModLoadingState {
+  public net.minecraftforge.fml.ModLoadingState(java.lang.String, java.lang.String, java.util.function.Supplier<java.lang.String>, java.util.function.IntSupplier, net.minecraftforge.fml.ModLoadingPhase, java.lang.Runnable, net.minecraftforge.fml.IModStateTransition);
+  public java.util.concurrent.CompletableFuture<java.lang.Void> buildTransition(java.util.concurrent.Executor, java.util.concurrent.Executor, net.minecraftforge.fml.loading.progress.ProgressMeter, java.util.function.Function<java.util.concurrent.Executor, java.util.concurrent.CompletableFuture<java.lang.Void>>, java.util.function.Function<java.util.concurrent.Executor, java.util.concurrent.CompletableFuture<java.lang.Void>>);
+  public static net.minecraftforge.fml.ModLoadingState empty(java.lang.String, java.lang.String, net.minecraftforge.fml.ModLoadingPhase);
+  public static net.minecraftforge.fml.ModLoadingState withTransition(java.lang.String, java.lang.String, net.minecraftforge.fml.ModLoadingPhase, net.minecraftforge.fml.IModStateTransition);
+  public static net.minecraftforge.fml.ModLoadingState withTransition(java.lang.String, java.lang.String, java.util.function.Supplier<java.lang.String>, net.minecraftforge.fml.ModLoadingPhase, net.minecraftforge.fml.IModStateTransition);
+  public static net.minecraftforge.fml.ModLoadingState withInline(java.lang.String, java.lang.String, net.minecraftforge.fml.ModLoadingPhase, java.lang.Runnable);
+  public static net.minecraftforge.fml.ModLoadingState$Builder of(java.lang.String, net.minecraftforge.fml.ModLoadingPhase);
+  public boolean equals(java.lang.Object);
+  public int hashCode();
+  public final java.lang.String toString();
+  public java.lang.String name();
+  public java.lang.String previous();
+  public java.util.function.Supplier<java.lang.String> message();
+  public java.util.function.IntSupplier size();
+  public net.minecraftforge.fml.ModLoadingPhase phase();
+  public java.lang.Runnable inlineRunnable();
+  public net.minecraftforge.fml.IModStateTransition transition();
+}
+Compiled from "ModLoadingWarning.java"
+public final class net.minecraftforge.fml.ModLoadingWarning extends java.lang.Record {
+  public net.minecraftforge.fml.ModLoadingWarning(net.minecraftforge.forgespi.language.IModInfo, net.minecraftforge.fml.ModLoadingStage, java.lang.String, java.lang.Object...);
+  public net.minecraftforge.fml.ModLoadingWarning(net.minecraftforge.forgespi.language.IModInfo, net.minecraftforge.fml.ModLoadingStage, java.lang.String, java.util.List<java.lang.Object>);
+  public java.lang.String formatToString();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraftforge.forgespi.language.IModInfo modInfo();
+  public net.minecraftforge.fml.ModLoadingStage warningStage();
+  public java.lang.String i18nMessage();
+  public java.util.List<java.lang.Object> context();
+}
+Compiled from "ModStateManager.java"
+public final class net.minecraftforge.fml.ModStateManager {
+  public static java.util.List<net.minecraftforge.fml.IModLoadingState> getStates(net.minecraftforge.fml.ModLoadingPhase);
+  public static net.minecraftforge.fml.IModLoadingState findState(java.lang.String);
+}
+Compiled from "ModStateTransitionHelper.java"
+final class net.minecraftforge.fml.ModStateTransitionHelper$FutureResult<V> extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public V value();
+  public java.lang.Throwable exception();
+}
+Compiled from "ModStateTransitionHelper.java"
+final class net.minecraftforge.fml.ModStateTransitionHelper$NoopTransition extends java.lang.Record implements net.minecraftforge.fml.IModStateTransition {
+  public net.minecraftforge.fml.ThreadSelector threadSelector();
+  public java.util.function.BiFunction<java.util.concurrent.Executor, java.util.concurrent.CompletableFuture<java.lang.Void>, java.util.concurrent.CompletableFuture<java.lang.Void>> finalActivityGenerator();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+}
+Compiled from "ModStateTransitionHelper.java"
+final class net.minecraftforge.fml.ModStateTransitionHelper {
+}
+Compiled from "ModWorkManager.java"
+public interface net.minecraftforge.fml.ModWorkManager$DrivenExecutor extends java.util.concurrent.Executor {
+  public abstract void drive(java.lang.Runnable);
+}
+Compiled from "ModWorkManager.java"
+final class net.minecraftforge.fml.ModWorkManager$LazyInit {
+}
+Compiled from "ModWorkManager.java"
+final class net.minecraftforge.fml.ModWorkManager$SyncExecutor extends java.lang.Record implements net.minecraftforge.fml.ModWorkManager$DrivenExecutor {
+  public net.minecraftforge.fml.ModWorkManager$SyncExecutor();
+  public void execute(java.lang.Runnable);
+  public void drive(java.lang.Runnable);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.concurrent.ConcurrentLinkedDeque<java.lang.Runnable> tasks();
+}
+Compiled from "ModWorkManager.java"
+final class net.minecraftforge.fml.ModWorkManager$WrappingExecutor extends java.lang.Record implements net.minecraftforge.fml.ModWorkManager$DrivenExecutor {
+  public void execute(java.lang.Runnable);
+  public void drive(java.lang.Runnable);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.concurrent.Executor wrapped();
+}
+Compiled from "ModWorkManager.java"
+public final class net.minecraftforge.fml.ModWorkManager {
+  public net.minecraftforge.fml.ModWorkManager();
+  public static net.minecraftforge.fml.ModWorkManager$DrivenExecutor syncExecutor();
+  public static net.minecraftforge.fml.ModWorkManager$DrivenExecutor wrappedExecutor(java.util.concurrent.Executor);
+  public static java.util.concurrent.Executor parallelExecutor();
+}
+Compiled from "OptionalMod.java"
+public final class net.minecraftforge.fml.OptionalMod<T> {
+  public static <M> net.minecraftforge.fml.OptionalMod<M> of(java.lang.String);
+  public T get();
+  public java.lang.String getModId();
+  public boolean isPresent();
+  public void ifPresent(java.util.function.Consumer<? super T>);
+  public net.minecraftforge.fml.OptionalMod<T> filter(java.util.function.Predicate<? super T>);
+  public <U> java.util.Optional<U> map(java.util.function.Function<? super T, ? extends U>);
+  public <U> java.util.Optional<U> flatMap(java.util.function.Function<? super T, java.util.Optional<U>>);
+  public T orElse(T);
+  public T orElseGet(java.util.function.Supplier<? extends T>);
+  public <X extends java.lang.Throwable> T orElseThrow(java.util.function.Supplier<? extends X>) throws X;
+  public boolean equals(java.lang.Object);
+  public int hashCode();
+}
+Compiled from "StartupMessageManager.java"
+public class net.minecraftforge.fml.StartupMessageManager {
+  public net.minecraftforge.fml.StartupMessageManager();
+  public static void addModMessage(java.lang.String);
+  public static java.util.Optional<java.util.function.Consumer<java.lang.String>> modLoaderConsumer();
+  public static java.util.Optional<java.util.function.Consumer<java.lang.String>> mcLoaderConsumer();
+  public static net.minecraftforge.fml.loading.progress.ProgressMeter addProgressBar(java.lang.String, int);
+  public static net.minecraftforge.fml.loading.progress.ProgressMeter prependProgressBar(java.lang.String, int);
+}
+Compiled from "ThreadSelector.java"
+public final class net.minecraftforge.fml.ThreadSelector extends java.lang.Enum<net.minecraftforge.fml.ThreadSelector> implements java.util.function.BinaryOperator<java.util.concurrent.Executor> {
+  public static final net.minecraftforge.fml.ThreadSelector SYNC;
+  public static final net.minecraftforge.fml.ThreadSelector PARALLEL;
+  public static net.minecraftforge.fml.ThreadSelector[] values();
+  public static net.minecraftforge.fml.ThreadSelector valueOf(java.lang.String);
+  public java.util.concurrent.Executor apply(java.util.concurrent.Executor, java.util.concurrent.Executor);
+  public java.lang.Object apply(java.lang.Object, java.lang.Object);
+}
+Compiled from "VersionChecker.java"
+class net.minecraftforge.fml.VersionChecker$1 extends java.lang.Thread {
+  public void run();
+}
+Compiled from "VersionChecker.java"
+public final class net.minecraftforge.fml.VersionChecker$CheckResult extends java.lang.Record {
+  public net.minecraftforge.fml.VersionChecker$CheckResult(net.minecraftforge.fml.VersionChecker$Status, org.apache.maven.artifact.versioning.ComparableVersion, java.util.Map<org.apache.maven.artifact.versioning.ComparableVersion, java.lang.String>, java.lang.String);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraftforge.fml.VersionChecker$Status status();
+  public org.apache.maven.artifact.versioning.ComparableVersion target();
+  public java.util.Map<org.apache.maven.artifact.versioning.ComparableVersion, java.lang.String> changes();
+  public java.lang.String url();
+}
+Compiled from "VersionChecker.java"
+public final class net.minecraftforge.fml.VersionChecker$Status extends java.lang.Enum<net.minecraftforge.fml.VersionChecker$Status> {
+  public static final net.minecraftforge.fml.VersionChecker$Status PENDING;
+  public static final net.minecraftforge.fml.VersionChecker$Status FAILED;
+  public static final net.minecraftforge.fml.VersionChecker$Status UP_TO_DATE;
+  public static final net.minecraftforge.fml.VersionChecker$Status OUTDATED;
+  public static final net.minecraftforge.fml.VersionChecker$Status AHEAD;
+  public static final net.minecraftforge.fml.VersionChecker$Status BETA;
+  public static final net.minecraftforge.fml.VersionChecker$Status BETA_OUTDATED;
+  public static net.minecraftforge.fml.VersionChecker$Status[] values();
+  public static net.minecraftforge.fml.VersionChecker$Status valueOf(java.lang.String);
+  public int getSheetOffset();
+  public boolean shouldDraw();
+  public boolean isAnimated();
+  public boolean isOutdated();
+}
+Compiled from "VersionChecker.java"
+public class net.minecraftforge.fml.VersionChecker {
+  public net.minecraftforge.fml.VersionChecker();
+  public static void startVersionCheck();
+  public static net.minecraftforge.fml.VersionChecker$CheckResult getResult(net.minecraftforge.forgespi.language.IModInfo);
+}
+Compiled from "ConfigFileTypeHandler.java"
+class net.minecraftforge.fml.config.ConfigFileTypeHandler$1 {
+}
+Compiled from "ConfigFileTypeHandler.java"
+class net.minecraftforge.fml.config.ConfigFileTypeHandler$ConfigLoadingException extends java.lang.RuntimeException {
+  public net.minecraftforge.fml.config.ConfigFileTypeHandler$ConfigLoadingException(net.minecraftforge.fml.config.ModConfig, java.lang.Exception);
+}
+Compiled from "ConfigFileTypeHandler.java"
+final class net.minecraftforge.fml.config.ConfigFileTypeHandler$ConfigWatcher extends java.lang.Record implements java.lang.Runnable {
+  public void run();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraftforge.fml.config.ModConfig modConfig();
+  public com.electronwill.nightconfig.core.file.CommentedFileConfig commentedFileConfig();
+  public java.lang.ClassLoader realClassLoader();
+}
+Compiled from "ConfigFileTypeHandler.java"
+public class net.minecraftforge.fml.config.ConfigFileTypeHandler {
+  public net.minecraftforge.fml.config.ConfigFileTypeHandler();
+  public java.util.function.Function<net.minecraftforge.fml.config.ModConfig, com.electronwill.nightconfig.core.file.CommentedFileConfig> reader(java.nio.file.Path);
+  public void unload(java.nio.file.Path, net.minecraftforge.fml.config.ModConfig);
+  public static void backUpConfig(com.electronwill.nightconfig.core.file.CommentedFileConfig);
+  public static void backUpConfig(com.electronwill.nightconfig.core.file.CommentedFileConfig, int);
+  public java.lang.String toString();
+}
+Compiled from "ConfigTracker.java"
+public final class net.minecraftforge.fml.config.ConfigTracker {
+  public static void loadConfigs(net.minecraftforge.fml.config.ModConfig$Type, java.nio.file.Path);
+  public static void unloadConfigs(net.minecraftforge.fml.config.ModConfig$Type, java.nio.file.Path);
+  public static void forceUnload();
+  public static void loadDefaultServerConfigs();
+  public static java.lang.String getConfigFileName(java.lang.String, net.minecraftforge.fml.config.ModConfig$Type);
+  public static java.util.Map<net.minecraftforge.fml.config.ModConfig$Type, java.util.Set<net.minecraftforge.fml.config.ModConfig>> configSets();
+  public static java.util.concurrent.ConcurrentHashMap<java.lang.String, net.minecraftforge.fml.config.ModConfig> fileMap();
+}
+Compiled from "IConfigEvent.java"
+public final class net.minecraftforge.fml.config.IConfigEvent$ConfigConfig extends java.lang.Record {
+  public net.minecraftforge.fml.config.IConfigEvent$ConfigConfig(java.util.function.Function<net.minecraftforge.fml.config.ModConfig, net.minecraftforge.fml.config.IConfigEvent>, java.util.function.Function<net.minecraftforge.fml.config.ModConfig, net.minecraftforge.fml.config.IConfigEvent>, java.util.function.Function<net.minecraftforge.fml.config.ModConfig, net.minecraftforge.fml.config.IConfigEvent>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.function.Function<net.minecraftforge.fml.config.ModConfig, net.minecraftforge.fml.config.IConfigEvent> loading();
+  public java.util.function.Function<net.minecraftforge.fml.config.ModConfig, net.minecraftforge.fml.config.IConfigEvent> reloading();
+  public java.util.function.Function<net.minecraftforge.fml.config.ModConfig, net.minecraftforge.fml.config.IConfigEvent> unloading();
+}
+Compiled from "IConfigEvent.java"
+public interface net.minecraftforge.fml.config.IConfigEvent {
+  public static final net.minecraftforge.fml.config.IConfigEvent$ConfigConfig CONFIGCONFIG;
+  public static net.minecraftforge.fml.config.IConfigEvent reloading(net.minecraftforge.fml.config.ModConfig);
+  public static net.minecraftforge.fml.config.IConfigEvent loading(net.minecraftforge.fml.config.ModConfig);
+  public static net.minecraftforge.fml.config.IConfigEvent unloading(net.minecraftforge.fml.config.ModConfig);
+  public abstract net.minecraftforge.fml.config.ModConfig getConfig();
+  public default <T extends net.minecraftforge.eventbus.api.event.InheritableEvent & net.minecraftforge.fml.config.IConfigEvent> T self();
+}
+Compiled from "IConfigSpec.java"
+public interface net.minecraftforge.fml.config.IConfigSpec<T extends net.minecraftforge.fml.config.IConfigSpec<T>> extends com.electronwill.nightconfig.core.UnmodifiableConfig {
+  public default T self();
+  public abstract void acceptConfig(com.electronwill.nightconfig.core.CommentedConfig);
+  public abstract boolean isCorrecting();
+  public abstract boolean isCorrect(com.electronwill.nightconfig.core.CommentedConfig);
+  public abstract int correct(com.electronwill.nightconfig.core.CommentedConfig);
+  public abstract void afterReload();
+}
+Compiled from "ModConfig.java"
+public final class net.minecraftforge.fml.config.ModConfig$Type extends java.lang.Enum<net.minecraftforge.fml.config.ModConfig$Type> {
+  public static final net.minecraftforge.fml.config.ModConfig$Type COMMON;
+  public static final net.minecraftforge.fml.config.ModConfig$Type CLIENT;
+  public static final net.minecraftforge.fml.config.ModConfig$Type SERVER;
+  public static net.minecraftforge.fml.config.ModConfig$Type[] values();
+  public static net.minecraftforge.fml.config.ModConfig$Type valueOf(java.lang.String);
+  public java.lang.String extension();
+}
+Compiled from "ModConfig.java"
+public class net.minecraftforge.fml.config.ModConfig {
+  public net.minecraftforge.fml.config.ModConfig(net.minecraftforge.fml.config.ModConfig$Type, net.minecraftforge.fml.config.IConfigSpec<?>, net.minecraftforge.fml.ModContainer, java.lang.String);
+  public net.minecraftforge.fml.config.ModConfig(net.minecraftforge.fml.config.ModConfig$Type, net.minecraftforge.fml.config.IConfigSpec<?>, net.minecraftforge.fml.ModContainer);
+  public net.minecraftforge.fml.config.ModConfig$Type getType();
+  public java.lang.String getFileName();
+  public net.minecraftforge.fml.config.ConfigFileTypeHandler getHandler();
+  public <T extends net.minecraftforge.fml.config.IConfigSpec<T>> net.minecraftforge.fml.config.IConfigSpec<T> getSpec();
+  public java.lang.String getModId();
+  public com.electronwill.nightconfig.core.CommentedConfig getConfigData();
+  public void save();
+  public java.nio.file.Path getFullPath();
+  public void acceptSyncedConfig(byte[]);
+}
+Compiled from "IModBusEvent.java"
+public interface net.minecraftforge.fml.event.IModBusEvent extends net.minecraftforge.eventbus.api.event.InheritableEvent {
+  public static <T extends net.minecraftforge.fml.event.IModBusEvent> net.minecraftforge.eventbus.api.bus.EventBus<T> getBus(net.minecraftforge.eventbus.api.bus.BusGroup, java.lang.Class<T>);
+}
+Compiled from "CertificateHelper.java"
+public class net.minecraftforge.fml.util.CertificateHelper {
+  public net.minecraftforge.fml.util.CertificateHelper();
+  public static com.google.common.collect.ImmutableList<java.lang.String> getFingerprints(java.security.cert.Certificate[]);
+  public static java.lang.String getFingerprint(java.security.cert.Certificate);
+  public static java.lang.String getFingerprint(java.nio.ByteBuffer);
+}
+Compiled from "EnhancedRuntimeException.java"
+class net.minecraftforge.fml.util.EnhancedRuntimeException$1 extends net.minecraftforge.fml.util.EnhancedRuntimeException$WrappedPrintStream {
+  public void println(java.lang.String);
+}
+Compiled from "EnhancedRuntimeException.java"
+class net.minecraftforge.fml.util.EnhancedRuntimeException$2 extends net.minecraftforge.fml.util.EnhancedRuntimeException$WrappedPrintStream {
+  public void println(java.lang.String);
+}
+Compiled from "EnhancedRuntimeException.java"
+class net.minecraftforge.fml.util.EnhancedRuntimeException$3 extends net.minecraftforge.fml.util.EnhancedRuntimeException$WrappedPrintStream {
+  public void println(java.lang.String);
+}
+Compiled from "EnhancedRuntimeException.java"
+public abstract class net.minecraftforge.fml.util.EnhancedRuntimeException$WrappedPrintStream {
+  public net.minecraftforge.fml.util.EnhancedRuntimeException$WrappedPrintStream();
+  public abstract void println(java.lang.String);
+}
+Compiled from "EnhancedRuntimeException.java"
+public abstract class net.minecraftforge.fml.util.EnhancedRuntimeException extends java.lang.RuntimeException {
+  public net.minecraftforge.fml.util.EnhancedRuntimeException();
+  public net.minecraftforge.fml.util.EnhancedRuntimeException(java.lang.String);
+  public net.minecraftforge.fml.util.EnhancedRuntimeException(java.lang.String, java.lang.Throwable);
+  public net.minecraftforge.fml.util.EnhancedRuntimeException(java.lang.Throwable);
+  public java.lang.String getMessage();
+  public void printStackTrace(java.io.PrintWriter);
+  public void printStackTrace(java.io.PrintStream);
+  protected abstract void printStackTrace(net.minecraftforge.fml.util.EnhancedRuntimeException$WrappedPrintStream);
+}
+Compiled from "LoaderException.java"
+public class net.minecraftforge.fml.util.LoaderException extends net.minecraftforge.fml.util.EnhancedRuntimeException {
+  public net.minecraftforge.fml.util.LoaderException(java.lang.Throwable);
+  public net.minecraftforge.fml.util.LoaderException();
+  public net.minecraftforge.fml.util.LoaderException(java.lang.String);
+  public net.minecraftforge.fml.util.LoaderException(java.lang.String, java.lang.Throwable);
+  protected void printStackTrace(net.minecraftforge.fml.util.EnhancedRuntimeException$WrappedPrintStream);
+}
+Compiled from "LoaderExceptionModCrash.java"
+public class net.minecraftforge.fml.util.LoaderExceptionModCrash extends net.minecraftforge.fml.util.LoaderException {
+  public net.minecraftforge.fml.util.LoaderExceptionModCrash(java.lang.String, java.lang.Throwable);
+  public synchronized java.lang.Throwable fillInStackTrace();
+}
+Compiled from "ObfuscationReflectionHelper.java"
+public class net.minecraftforge.fml.util.ObfuscationReflectionHelper$UnableToAccessFieldException extends java.lang.RuntimeException {
+}
+Compiled from "ObfuscationReflectionHelper.java"
+public class net.minecraftforge.fml.util.ObfuscationReflectionHelper$UnableToFindFieldException extends java.lang.RuntimeException {
+}
+Compiled from "ObfuscationReflectionHelper.java"
+public class net.minecraftforge.fml.util.ObfuscationReflectionHelper$UnableToFindMethodException extends java.lang.RuntimeException {
+  public net.minecraftforge.fml.util.ObfuscationReflectionHelper$UnableToFindMethodException(java.lang.Throwable);
+}
+Compiled from "ObfuscationReflectionHelper.java"
+public class net.minecraftforge.fml.util.ObfuscationReflectionHelper$UnknownConstructorException extends java.lang.RuntimeException {
+  public net.minecraftforge.fml.util.ObfuscationReflectionHelper$UnknownConstructorException(java.lang.String);
+}
+Compiled from "ObfuscationReflectionHelper.java"
+public class net.minecraftforge.fml.util.ObfuscationReflectionHelper {
+  public net.minecraftforge.fml.util.ObfuscationReflectionHelper();
+  public static java.lang.String remapName(cpw.mods.modlauncher.api.INameMappingService$Domain, java.lang.String);
+  public static <T, E> T getPrivateValue(java.lang.Class<? super E>, E, java.lang.String);
+  public static <T, E> void setPrivateValue(java.lang.Class<? super T>, T, E, java.lang.String);
+  public static java.lang.reflect.Method findMethod(java.lang.Class<?>, java.lang.String, java.lang.Class<?>...);
+  public static <T> java.lang.reflect.Constructor<T> findConstructor(java.lang.Class<T>, java.lang.Class<?>...);
+  public static <T> java.lang.reflect.Field findField(java.lang.Class<? super T>, java.lang.String);
+}
+Compiled from "EffectiveSide.java"
+public class net.minecraftforge.fml.util.thread.EffectiveSide {
+  public net.minecraftforge.fml.util.thread.EffectiveSide();
+  public static net.minecraftforge.fml.LogicalSide get();
+}
+Compiled from "SidedThreadGroup.java"
+public final class net.minecraftforge.fml.util.thread.SidedThreadGroup extends java.lang.ThreadGroup implements java.util.concurrent.ThreadFactory {
+  public net.minecraftforge.fml.LogicalSide getSide();
+  public java.lang.Thread newThread(java.lang.Runnable);
+}
+Compiled from "SidedThreadGroups.java"
+public final class net.minecraftforge.fml.util.thread.SidedThreadGroups {
+  public static final net.minecraftforge.fml.util.thread.SidedThreadGroup CLIENT;
+  public static final net.minecraftforge.fml.util.thread.SidedThreadGroup SERVER;
+  public static net.minecraftforge.fml.util.thread.SidedThreadGroup get(boolean);
+}

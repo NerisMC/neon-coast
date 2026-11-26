@@ -1,0 +1,157 @@
+Compiled from "EventPriority.java"
+public final class net.neoforged.bus.api.EventPriority extends java.lang.Enum<net.neoforged.bus.api.EventPriority> {
+  public static final net.neoforged.bus.api.EventPriority HIGHEST;
+  public static final net.neoforged.bus.api.EventPriority HIGH;
+  public static final net.neoforged.bus.api.EventPriority NORMAL;
+  public static final net.neoforged.bus.api.EventPriority LOW;
+  public static final net.neoforged.bus.api.EventPriority LOWEST;
+  public static net.neoforged.bus.api.EventPriority[] values();
+  public static net.neoforged.bus.api.EventPriority valueOf(java.lang.String);
+}
+Compiled from "Event.java"
+public abstract class net.neoforged.bus.api.Event {
+  protected net.neoforged.bus.api.Event();
+}
+Compiled from "BusBuilder.java"
+public interface net.neoforged.bus.api.BusBuilder {
+  public static net.neoforged.bus.api.BusBuilder builder();
+  public abstract net.neoforged.bus.api.BusBuilder setExceptionHandler(net.neoforged.bus.api.IEventExceptionHandler);
+  public abstract net.neoforged.bus.api.BusBuilder startShutdown();
+  public abstract net.neoforged.bus.api.BusBuilder checkTypesOnDispatch();
+  public default net.neoforged.bus.api.BusBuilder markerType(java.lang.Class<?>);
+  public abstract net.neoforged.bus.api.BusBuilder classChecker(net.neoforged.bus.api.IEventClassChecker);
+  public abstract net.neoforged.bus.api.BusBuilder allowPerPhasePost();
+  public abstract net.neoforged.bus.api.IEventBus build();
+}
+Compiled from "IEventBus.java"
+public interface net.neoforged.bus.api.IEventBus {
+  public abstract void register(java.lang.Object);
+  public abstract <T extends net.neoforged.bus.api.Event> void addListener(java.util.function.Consumer<T>);
+  public abstract <T extends net.neoforged.bus.api.Event> void addListener(java.lang.Class<T>, java.util.function.Consumer<T>);
+  public abstract <T extends net.neoforged.bus.api.Event> void addListener(net.neoforged.bus.api.EventPriority, java.util.function.Consumer<T>);
+  public abstract <T extends net.neoforged.bus.api.Event> void addListener(net.neoforged.bus.api.EventPriority, java.lang.Class<T>, java.util.function.Consumer<T>);
+  public abstract <T extends net.neoforged.bus.api.Event> void addListener(net.neoforged.bus.api.EventPriority, boolean, java.util.function.Consumer<T>);
+  public abstract <T extends net.neoforged.bus.api.Event> void addListener(net.neoforged.bus.api.EventPriority, boolean, java.lang.Class<T>, java.util.function.Consumer<T>);
+  public abstract <T extends net.neoforged.bus.api.Event> void addListener(boolean, java.util.function.Consumer<T>);
+  public abstract <T extends net.neoforged.bus.api.Event> void addListener(boolean, java.lang.Class<T>, java.util.function.Consumer<T>);
+  public abstract void unregister(java.lang.Object);
+  public abstract <T extends net.neoforged.bus.api.Event> T post(T);
+  public abstract <T extends net.neoforged.bus.api.Event> T post(net.neoforged.bus.api.EventPriority, T);
+  public abstract void start();
+}
+Compiled from "EventListener.java"
+public abstract class net.neoforged.bus.api.EventListener {
+  public net.neoforged.bus.api.EventListener();
+  public abstract void invoke(net.neoforged.bus.api.Event);
+}
+Compiled from "SubscribeEvent.java"
+public interface net.neoforged.bus.api.SubscribeEvent extends java.lang.annotation.Annotation {
+  public abstract net.neoforged.bus.api.EventPriority priority();
+  public abstract boolean receiveCanceled();
+}
+Compiled from "ICancellableEvent.java"
+public interface net.neoforged.bus.api.ICancellableEvent {
+  public default void setCanceled(boolean);
+  public default boolean isCanceled();
+}
+Compiled from "IEventExceptionHandler.java"
+public interface net.neoforged.bus.api.IEventExceptionHandler {
+  public abstract void handleException(net.neoforged.bus.api.IEventBus, net.neoforged.bus.api.Event, net.neoforged.bus.api.EventListener[], int, java.lang.Throwable);
+}
+Compiled from "IEventClassChecker.java"
+public interface net.neoforged.bus.api.IEventClassChecker {
+  public abstract void check(java.lang.Class<? extends net.neoforged.bus.api.Event>) throws java.lang.IllegalArgumentException;
+}
+Compiled from "IWrapperListener.java"
+public interface net.neoforged.bus.IWrapperListener {
+  public abstract net.neoforged.bus.api.EventListener getWithoutCheck();
+}
+Compiled from "ConsumerEventHandler.java"
+public class net.neoforged.bus.ConsumerEventHandler extends net.neoforged.bus.api.EventListener {
+  protected final java.util.function.Consumer<net.neoforged.bus.api.Event> consumer;
+  public net.neoforged.bus.ConsumerEventHandler(java.util.function.Consumer<net.neoforged.bus.api.Event>);
+  public void invoke(net.neoforged.bus.api.Event);
+  public java.lang.String toString();
+}
+Compiled from "SubscribeEventListener.java"
+public final class net.neoforged.bus.SubscribeEventListener extends net.neoforged.bus.api.EventListener implements net.neoforged.bus.IWrapperListener {
+  public net.neoforged.bus.SubscribeEventListener(java.lang.Object, java.lang.reflect.Method);
+  public void invoke(net.neoforged.bus.api.Event);
+  public net.neoforged.bus.api.EventPriority getPriority();
+  public java.lang.String toString();
+  public net.neoforged.bus.api.EventListener getWithoutCheck();
+}
+Compiled from "GeneratedEventListener.java"
+public abstract class net.neoforged.bus.GeneratedEventListener extends net.neoforged.bus.api.EventListener {
+  public net.neoforged.bus.GeneratedEventListener();
+}
+Compiled from "LockHelper.java"
+public class net.neoforged.bus.LockHelper<K, V> {
+  public static <K, V> net.neoforged.bus.LockHelper<K, V> withHashMap();
+  public static <K, V> net.neoforged.bus.LockHelper<K, V> withIdentityHashMap();
+  public V get(K);
+  public boolean containsKey(K);
+  public V computeIfAbsent(K, java.util.function.Function<K, V>);
+  public <I> V computeIfAbsent(K, java.util.function.Function<K, I>, java.util.function.Function<I, V>);
+  public void clearAll();
+}
+Compiled from "BusBuilderImpl.java"
+public final class net.neoforged.bus.BusBuilderImpl implements net.neoforged.bus.api.BusBuilder {
+  public net.neoforged.bus.BusBuilderImpl();
+  public net.neoforged.bus.api.BusBuilder setExceptionHandler(net.neoforged.bus.api.IEventExceptionHandler);
+  public net.neoforged.bus.api.BusBuilder startShutdown();
+  public net.neoforged.bus.api.BusBuilder checkTypesOnDispatch();
+  public net.neoforged.bus.api.BusBuilder classChecker(net.neoforged.bus.api.IEventClassChecker);
+  public net.neoforged.bus.api.BusBuilder allowPerPhasePost();
+  public net.neoforged.bus.api.IEventBus build();
+}
+Compiled from "ListenerList.java"
+public class net.neoforged.bus.ListenerList {
+  public net.neoforged.bus.api.EventListener[] getListeners();
+  public net.neoforged.bus.api.EventListener[] getPhaseListeners(net.neoforged.bus.api.EventPriority);
+  protected boolean shouldRebuild();
+  protected void forceRebuild();
+  public void register(net.neoforged.bus.api.EventPriority, net.neoforged.bus.api.EventListener);
+  public void unregister(net.neoforged.bus.api.EventListener);
+}
+Compiled from "EventBus.java"
+public class net.neoforged.bus.EventBus implements net.neoforged.bus.api.IEventExceptionHandler,net.neoforged.bus.api.IEventBus {
+  public net.neoforged.bus.EventBus(net.neoforged.bus.BusBuilderImpl);
+  public void register(java.lang.Object);
+  public <T extends net.neoforged.bus.api.Event> void addListener(java.util.function.Consumer<T>);
+  public <T extends net.neoforged.bus.api.Event> void addListener(net.neoforged.bus.api.EventPriority, java.util.function.Consumer<T>);
+  public <T extends net.neoforged.bus.api.Event> void addListener(net.neoforged.bus.api.EventPriority, boolean, java.util.function.Consumer<T>);
+  public <T extends net.neoforged.bus.api.Event> void addListener(net.neoforged.bus.api.EventPriority, java.lang.Class<T>, java.util.function.Consumer<T>);
+  public <T extends net.neoforged.bus.api.Event> void addListener(boolean, java.util.function.Consumer<T>);
+  public <T extends net.neoforged.bus.api.Event> void addListener(boolean, java.lang.Class<T>, java.util.function.Consumer<T>);
+  public <T extends net.neoforged.bus.api.Event> void addListener(java.lang.Class<T>, java.util.function.Consumer<T>);
+  public <T extends net.neoforged.bus.api.Event> void addListener(net.neoforged.bus.api.EventPriority, boolean, java.lang.Class<T>, java.util.function.Consumer<T>);
+  public void unregister(java.lang.Object);
+  public <T extends net.neoforged.bus.api.Event> T post(T);
+  public <T extends net.neoforged.bus.api.Event> T post(net.neoforged.bus.api.EventPriority, T);
+  public void handleException(net.neoforged.bus.api.IEventBus, net.neoforged.bus.api.Event, net.neoforged.bus.api.EventListener[], int, java.lang.Throwable);
+  public void start();
+}
+Compiled from "EventBusErrorMessage.java"
+public class net.neoforged.bus.EventBusErrorMessage implements org.apache.logging.log4j.message.Message,org.apache.logging.log4j.util.StringBuilderFormattable {
+  public net.neoforged.bus.EventBusErrorMessage(net.neoforged.bus.api.Event, int, net.neoforged.bus.api.EventListener[], java.lang.Throwable);
+  public java.lang.String getFormattedMessage();
+  public java.lang.String getFormat();
+  public java.lang.Object[] getParameters();
+  public java.lang.Throwable getThrowable();
+  public void formatTo(java.lang.StringBuilder);
+}
+Compiled from "LogMarkers.java"
+class net.neoforged.bus.LogMarkers {
+}
+Compiled from "EventListenerFactory.java"
+class net.neoforged.bus.EventListenerFactory {
+  protected static byte[] makeClass(java.lang.String, boolean);
+  public static net.neoforged.bus.api.EventListener create(java.lang.reflect.Method, java.lang.Object);
+}
+Compiled from "ConsumerEventHandler.java"
+public final class net.neoforged.bus.ConsumerEventHandler$WithPredicate extends net.neoforged.bus.ConsumerEventHandler implements net.neoforged.bus.IWrapperListener {
+  public net.neoforged.bus.ConsumerEventHandler$WithPredicate(java.util.function.Consumer<net.neoforged.bus.api.Event>, java.util.function.Predicate<net.neoforged.bus.api.Event>);
+  public void invoke(net.neoforged.bus.api.Event);
+  public net.neoforged.bus.api.EventListener getWithoutCheck();
+}

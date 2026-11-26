@@ -1,0 +1,3 @@
+net.minecraftforge.fml.mclanguageprovider.MinecraftModContainer
+net.minecraftforge.fml.mclanguageprovider.MinecraftModLanguageProvider$MinecraftModTarget
+net.minecraftforge.fml.mclanguageprovider.MinecraftModLanguageProvider

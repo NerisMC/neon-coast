@@ -1,0 +1,2099 @@
+Compiled from "CrashReportCallables.java"
+class net.neoforged.fml.CrashReportCallables$1 implements net.neoforged.fml.ISystemReportExtender {
+  public java.lang.String getLabel();
+  public java.lang.String get();
+  public java.lang.Object get();
+}
+Compiled from "CrashReportCallables.java"
+class net.neoforged.fml.CrashReportCallables$2 implements net.neoforged.fml.ISystemReportExtender {
+  public java.lang.String getLabel();
+  public java.lang.String get();
+  public boolean isActive();
+  public java.lang.Object get();
+}
+Compiled from "CrashReportCallables.java"
+public class net.neoforged.fml.CrashReportCallables {
+  public net.neoforged.fml.CrashReportCallables();
+  public static void registerCrashCallable(net.neoforged.fml.ISystemReportExtender);
+  public static void registerCrashCallable(java.lang.String, java.util.function.Supplier<java.lang.String>);
+  public static void registerCrashCallable(java.lang.String, java.util.function.Supplier<java.lang.String>, java.util.function.BooleanSupplier);
+  public static void registerHeader(net.neoforged.fml.ICrashReportHeader);
+  public static java.util.List<net.neoforged.fml.ISystemReportExtender> allCrashCallables();
+  public static java.util.stream.Stream<java.lang.String> getHeaders();
+}
+Compiled from "DeferredWorkQueue.java"
+class net.neoforged.fml.DeferredWorkQueue$TaskInfo {
+}
+Compiled from "DeferredWorkQueue.java"
+public class net.neoforged.fml.DeferredWorkQueue {
+  public net.neoforged.fml.DeferredWorkQueue(java.lang.String);
+  public void runTasks();
+  public java.util.concurrent.CompletableFuture<java.lang.Void> enqueueWork(net.neoforged.fml.ModContainer, java.lang.Runnable);
+  public <T> java.util.concurrent.CompletableFuture<T> enqueueWork(net.neoforged.fml.ModContainer, java.util.function.Supplier<T>);
+}
+Compiled from "FMLVersion.java"
+public final class net.neoforged.fml.FMLVersion {
+  public static java.lang.String getVersion();
+}
+Compiled from "FMLVersionProperties.java"
+final class net.neoforged.fml.FMLVersionProperties {
+}
+Compiled from "IBindingsProvider.java"
+public interface net.neoforged.fml.IBindingsProvider {
+  public abstract net.neoforged.bus.api.IEventBus getGameBus();
+}
+Compiled from "ICrashReportHeader.java"
+public interface net.neoforged.fml.ICrashReportHeader {
+  public abstract java.lang.String getHeader();
+}
+Compiled from "IExtensionPoint.java"
+public interface net.neoforged.fml.IExtensionPoint {
+}
+Compiled from "ISystemReportExtender.java"
+public interface net.neoforged.fml.ISystemReportExtender extends java.util.function.Supplier<java.lang.String> {
+  public abstract java.lang.String getLabel();
+  public default boolean isActive();
+}
+Compiled from "InterModComms.java"
+public final class net.neoforged.fml.InterModComms$IMCMessage extends java.lang.Record {
+  public net.neoforged.fml.InterModComms$IMCMessage(java.lang.String, java.lang.String, java.lang.String, java.util.function.Supplier<?>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String senderModId();
+  public java.lang.String modId();
+  public java.lang.String method();
+  public java.util.function.Supplier<?> messageSupplier();
+}
+Compiled from "InterModComms.java"
+class net.neoforged.fml.InterModComms$QueueFilteringSpliterator implements java.util.Spliterator<net.neoforged.fml.InterModComms$IMCMessage> {
+  public net.neoforged.fml.InterModComms$QueueFilteringSpliterator(java.util.concurrent.ConcurrentLinkedQueue<net.neoforged.fml.InterModComms$IMCMessage>, java.util.function.Predicate<java.lang.String>);
+  public int characteristics();
+  public long estimateSize();
+  public boolean tryAdvance(java.util.function.Consumer<? super net.neoforged.fml.InterModComms$IMCMessage>);
+  public java.util.Spliterator<net.neoforged.fml.InterModComms$IMCMessage> trySplit();
+}
+Compiled from "InterModComms.java"
+public class net.neoforged.fml.InterModComms {
+  public net.neoforged.fml.InterModComms();
+  public static boolean sendTo(java.lang.String, java.lang.String, java.util.function.Supplier<?>);
+  public static boolean sendTo(java.lang.String, java.lang.String, java.lang.String, java.util.function.Supplier<?>);
+  public static java.util.stream.Stream<net.neoforged.fml.InterModComms$IMCMessage> getMessages(java.lang.String, java.util.function.Predicate<java.lang.String>);
+  public static java.util.stream.Stream<net.neoforged.fml.InterModComms$IMCMessage> getMessages(java.lang.String);
+}
+Compiled from "Logging.java"
+public class net.neoforged.fml.Logging {
+  public static final org.apache.logging.log4j.Marker CORE;
+  public static final org.apache.logging.log4j.Marker LOADING;
+  public static final org.apache.logging.log4j.Marker SCAN;
+  public static final org.apache.logging.log4j.Marker SPLASH;
+  public static final org.apache.logging.log4j.Marker CAPABILITIES;
+  public static final org.apache.logging.log4j.Marker MODELLOADING;
+  public static final org.apache.logging.log4j.Marker FORGEMOD;
+  public net.neoforged.fml.Logging();
+}
+Compiled from "LogicalSide.java"
+public final class net.neoforged.fml.LogicalSide extends java.lang.Enum<net.neoforged.fml.LogicalSide> {
+  public static final net.neoforged.fml.LogicalSide CLIENT;
+  public static final net.neoforged.fml.LogicalSide SERVER;
+  public static net.neoforged.fml.LogicalSide[] values();
+  public static net.neoforged.fml.LogicalSide valueOf(java.lang.String);
+  public boolean isServer();
+  public boolean isClient();
+}
+Compiled from "ModContainer.java"
+public abstract class net.neoforged.fml.ModContainer {
+  protected final java.lang.String modId;
+  protected final java.lang.String namespace;
+  protected final net.neoforged.neoforgespi.language.IModInfo modInfo;
+  protected final java.util.Map<java.lang.Class<? extends net.neoforged.fml.IExtensionPoint>, java.util.function.Supplier<?>> extensionPoints;
+  public net.neoforged.fml.ModContainer(net.neoforged.neoforgespi.language.IModInfo);
+  public final java.lang.String getModId();
+  public final java.lang.String getNamespace();
+  public net.neoforged.neoforgespi.language.IModInfo getModInfo();
+  public <T extends net.neoforged.fml.IExtensionPoint> java.util.Optional<T> getCustomExtension(java.lang.Class<T>);
+  public <T extends net.neoforged.fml.IExtensionPoint> void registerExtensionPoint(java.lang.Class<T>, T);
+  public <T extends net.neoforged.fml.IExtensionPoint> void registerExtensionPoint(java.lang.Class<T>, java.util.function.Supplier<T>);
+  public void registerConfig(net.neoforged.fml.config.ModConfig$Type, net.neoforged.fml.config.IConfigSpec);
+  public void registerConfig(net.neoforged.fml.config.ModConfig$Type, net.neoforged.fml.config.IConfigSpec, java.lang.String);
+  protected void constructMod();
+  public abstract net.neoforged.bus.api.IEventBus getEventBus();
+  public final <T extends net.neoforged.bus.api.Event & net.neoforged.fml.event.IModBusEvent> void acceptEvent(T);
+  public final <T extends net.neoforged.bus.api.Event & net.neoforged.fml.event.IModBusEvent> void acceptEvent(net.neoforged.bus.api.EventPriority, T);
+}
+Compiled from "ModList.java"
+public class net.neoforged.fml.ModList {
+  public static net.neoforged.fml.ModList of(java.util.List<net.neoforged.fml.loading.moddiscovery.ModFile>, java.util.List<net.neoforged.fml.loading.moddiscovery.ModInfo>);
+  public static net.neoforged.fml.ModList get();
+  public java.util.List<net.neoforged.neoforgespi.language.IModFileInfo> getModFiles();
+  public net.neoforged.neoforgespi.language.IModFileInfo getModFileById(java.lang.String);
+  public java.util.Optional<? extends net.neoforged.fml.ModContainer> getModContainerById(java.lang.String);
+  public java.util.List<net.neoforged.neoforgespi.language.IModInfo> getMods();
+  public boolean isLoaded(java.lang.String);
+  public int size();
+  public java.util.List<net.neoforged.neoforgespi.language.ModFileScanData> getAllScanData();
+  public void forEachModFile(java.util.function.Consumer<net.neoforged.neoforgespi.locating.IModFile>);
+  public <T> java.util.stream.Stream<T> applyForEachModFile(java.util.function.Function<net.neoforged.neoforgespi.locating.IModFile, T>);
+  public <T> java.util.stream.Stream<T> applyForEachModFileAlphabetical(java.util.function.Function<net.neoforged.neoforgespi.locating.IModFile, T>);
+  public void forEachModContainer(java.util.function.BiConsumer<java.lang.String, net.neoforged.fml.ModContainer>);
+  public java.util.List<net.neoforged.fml.ModContainer> getSortedMods();
+  public void forEachModInOrder(java.util.function.Consumer<net.neoforged.fml.ModContainer>);
+  public <T> java.util.stream.Stream<T> applyForEachModContainer(java.util.function.Function<net.neoforged.fml.ModContainer, T>);
+  public static void clear();
+}
+Compiled from "ModLoader.java"
+class net.neoforged.fml.ModLoader$DependentFutureFailedException extends java.lang.RuntimeException {
+}
+Compiled from "ModLoader.java"
+public final class net.neoforged.fml.ModLoader {
+  public static void gatherAndInitializeMods(java.util.concurrent.Executor, java.util.concurrent.Executor, java.lang.Runnable);
+  public static void runInitTask(java.lang.String, java.util.concurrent.Executor, java.lang.Runnable, java.lang.Runnable);
+  public static void dispatchParallelEvent(java.lang.String, java.util.concurrent.Executor, java.util.concurrent.Executor, java.lang.Runnable, java.util.function.BiFunction<net.neoforged.fml.ModContainer, net.neoforged.fml.DeferredWorkQueue, net.neoforged.fml.event.lifecycle.ParallelDispatchEvent>);
+  public static void waitForTask(java.lang.String, java.lang.Runnable, java.util.concurrent.CompletableFuture<?>);
+  public static void dispatchParallelTask(java.lang.String, java.util.concurrent.Executor, java.lang.Runnable, java.util.function.Consumer<net.neoforged.fml.ModContainer>);
+  public static <T extends net.neoforged.bus.api.Event & net.neoforged.fml.event.IModBusEvent> void runEventGenerator(java.util.function.Function<net.neoforged.fml.ModContainer, T>);
+  public static <T extends net.neoforged.bus.api.Event & net.neoforged.fml.event.IModBusEvent> void postEvent(T);
+  public static <T extends net.neoforged.bus.api.Event & net.neoforged.fml.event.IModBusEvent> T postEventWithReturn(T);
+  public static <T extends net.neoforged.bus.api.Event & net.neoforged.fml.event.IModBusEvent> void postEventWrapContainerInModOrder(T);
+  public static <T extends net.neoforged.bus.api.Event & net.neoforged.fml.event.IModBusEvent> void postEventWithWrapInModOrder(T, java.util.function.BiConsumer<net.neoforged.fml.ModContainer, T>, java.util.function.BiConsumer<net.neoforged.fml.ModContainer, T>);
+  public static boolean hasErrors();
+  public static java.util.List<net.neoforged.fml.ModLoadingIssue> getLoadingErrors();
+  public static java.util.List<net.neoforged.fml.ModLoadingIssue> getLoadingWarnings();
+  public static java.util.List<net.neoforged.fml.ModLoadingIssue> getLoadingIssues();
+  public static void clearLoadingIssues();
+  public static void addLoadingIssue(net.neoforged.fml.ModLoadingIssue);
+  public static void clear();
+}
+Compiled from "ModLoadingContext.java"
+public class net.neoforged.fml.ModLoadingContext {
+  public net.neoforged.fml.ModLoadingContext();
+  public static net.neoforged.fml.ModLoadingContext get();
+  public void setActiveContainer(net.neoforged.fml.ModContainer);
+  public net.neoforged.fml.ModContainer getActiveContainer();
+  public java.lang.String getActiveNamespace();
+  public <T extends net.neoforged.fml.IExtensionPoint> void registerExtensionPoint(java.lang.Class<T>, java.util.function.Supplier<T>);
+}
+Compiled from "ModLoadingException.java"
+public class net.neoforged.fml.ModLoadingException extends java.lang.RuntimeException {
+  public net.neoforged.fml.ModLoadingException(net.neoforged.fml.ModLoadingIssue);
+  public net.neoforged.fml.ModLoadingException(java.util.List<net.neoforged.fml.ModLoadingIssue>);
+  public java.util.List<net.neoforged.fml.ModLoadingIssue> getIssues();
+  public java.lang.String getMessage();
+}
+Compiled from "ModLoadingIssue.java"
+public final class net.neoforged.fml.ModLoadingIssue$Severity extends java.lang.Enum<net.neoforged.fml.ModLoadingIssue$Severity> {
+  public static final net.neoforged.fml.ModLoadingIssue$Severity WARNING;
+  public static final net.neoforged.fml.ModLoadingIssue$Severity ERROR;
+  public static net.neoforged.fml.ModLoadingIssue$Severity[] values();
+  public static net.neoforged.fml.ModLoadingIssue$Severity valueOf(java.lang.String);
+}
+Compiled from "ModLoadingIssue.java"
+public final class net.neoforged.fml.ModLoadingIssue extends java.lang.Record {
+  public net.neoforged.fml.ModLoadingIssue(net.neoforged.fml.ModLoadingIssue$Severity, java.lang.String, java.util.List<java.lang.Object>);
+  public net.neoforged.fml.ModLoadingIssue(net.neoforged.fml.ModLoadingIssue$Severity, java.lang.String, java.util.List<java.lang.Object>, java.lang.Throwable, java.nio.file.Path, net.neoforged.neoforgespi.locating.IModFile, net.neoforged.neoforgespi.language.IModInfo);
+  public static net.neoforged.fml.ModLoadingIssue error(java.lang.String, java.lang.Object...);
+  public static net.neoforged.fml.ModLoadingIssue warning(java.lang.String, java.lang.Object...);
+  public net.neoforged.fml.ModLoadingIssue withAffectedPath(java.nio.file.Path);
+  public net.neoforged.fml.ModLoadingIssue withAffectedModFile(net.neoforged.neoforgespi.locating.IModFile);
+  public net.neoforged.fml.ModLoadingIssue withAffectedMod(net.neoforged.neoforgespi.language.IModInfo);
+  public net.neoforged.fml.ModLoadingIssue withCause(java.lang.Throwable);
+  public net.neoforged.fml.ModLoadingIssue withSeverity(net.neoforged.fml.ModLoadingIssue$Severity);
+  public java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.neoforged.fml.ModLoadingIssue$Severity severity();
+  public java.lang.String translationKey();
+  public java.util.List<java.lang.Object> translationArgs();
+  public java.lang.Throwable cause();
+  public java.nio.file.Path affectedPath();
+  public net.neoforged.neoforgespi.locating.IModFile affectedModFile();
+  public net.neoforged.neoforgespi.language.IModInfo affectedMod();
+}
+Compiled from "ModWorkManager.java"
+public class net.neoforged.fml.ModWorkManager {
+  public net.neoforged.fml.ModWorkManager();
+  public static java.util.concurrent.Executor syncExecutor();
+  public static java.util.concurrent.Executor parallelExecutor();
+}
+Compiled from "VersionChecker.java"
+class net.neoforged.fml.VersionChecker$1 extends java.lang.Thread {
+  public void run();
+}
+Compiled from "VersionChecker.java"
+public final class net.neoforged.fml.VersionChecker$CheckResult extends java.lang.Record {
+  public net.neoforged.fml.VersionChecker$CheckResult(net.neoforged.fml.VersionChecker$Status, org.apache.maven.artifact.versioning.ComparableVersion, java.util.Map<org.apache.maven.artifact.versioning.ComparableVersion, java.lang.String>, java.lang.String);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.neoforged.fml.VersionChecker$Status status();
+  public org.apache.maven.artifact.versioning.ComparableVersion target();
+  public java.util.Map<org.apache.maven.artifact.versioning.ComparableVersion, java.lang.String> changes();
+  public java.lang.String url();
+}
+Compiled from "VersionChecker.java"
+public final class net.neoforged.fml.VersionChecker$Status extends java.lang.Enum<net.neoforged.fml.VersionChecker$Status> {
+  public static final net.neoforged.fml.VersionChecker$Status PENDING;
+  public static final net.neoforged.fml.VersionChecker$Status FAILED;
+  public static final net.neoforged.fml.VersionChecker$Status UP_TO_DATE;
+  public static final net.neoforged.fml.VersionChecker$Status OUTDATED;
+  public static final net.neoforged.fml.VersionChecker$Status AHEAD;
+  public static final net.neoforged.fml.VersionChecker$Status BETA;
+  public static final net.neoforged.fml.VersionChecker$Status BETA_OUTDATED;
+  public static net.neoforged.fml.VersionChecker$Status[] values();
+  public static net.neoforged.fml.VersionChecker$Status valueOf(java.lang.String);
+  public int getSheetOffset();
+  public boolean shouldDraw();
+  public boolean isAnimated();
+}
+Compiled from "VersionChecker.java"
+public class net.neoforged.fml.VersionChecker {
+  public net.neoforged.fml.VersionChecker();
+  public static void startVersionCheck();
+  public static net.neoforged.fml.VersionChecker$CheckResult getResult(net.neoforged.neoforgespi.language.IModInfo);
+}
+Compiled from "JarContentsModule.java"
+public final class net.neoforged.fml.classloading.JarContentsModule extends java.lang.Record {
+  public net.neoforged.fml.classloading.JarContentsModule(net.neoforged.fml.jarcontents.JarContents);
+  public net.neoforged.fml.classloading.JarContentsModule(net.neoforged.fml.jarcontents.JarContents, java.lang.module.ModuleDescriptor);
+  public java.lang.String moduleName();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.neoforged.fml.jarcontents.JarContents contents();
+  public java.lang.module.ModuleDescriptor moduleDescriptor();
+}
+Compiled from "JarContentsModuleFinder.java"
+public final class net.neoforged.fml.classloading.JarContentsModuleFinder implements java.lang.module.ModuleFinder {
+  public net.neoforged.fml.classloading.JarContentsModuleFinder(java.util.Collection<net.neoforged.fml.classloading.JarContentsModule>);
+  public java.util.Optional<java.lang.module.ModuleReference> find(java.lang.String);
+  public java.util.Set<java.lang.module.ModuleReference> findAll();
+}
+Compiled from "JarContentsModuleReader.java"
+final class net.neoforged.fml.classloading.JarContentsModuleReader implements java.lang.module.ModuleReader {
+  public net.neoforged.fml.classloading.JarContentsModuleReader(net.neoforged.fml.jarcontents.JarContents);
+  public java.util.Optional<java.io.InputStream> open(java.lang.String) throws java.io.IOException;
+  public java.util.Optional<java.net.URI> find(java.lang.String);
+  public java.util.stream.Stream<java.lang.String> list();
+  public void close();
+  public java.lang.String toString();
+}
+Compiled from "JarContentsModuleReference.java"
+final class net.neoforged.fml.classloading.JarContentsModuleReference extends java.lang.module.ModuleReference {
+  public java.lang.module.ModuleReader open();
+}
+Compiled from "ModuleClassLoader.java"
+class net.neoforged.fml.classloading.ModuleClassLoader$1 implements java.util.Enumeration<java.net.URL> {
+  public boolean hasMoreElements();
+  public java.net.URL nextElement();
+  public java.lang.Object nextElement();
+}
+Compiled from "ModuleClassLoader.java"
+class net.neoforged.fml.classloading.ModuleClassLoader$2 implements java.util.Enumeration<java.net.URL> {
+  public boolean hasMoreElements();
+  public java.net.URL nextElement();
+  public java.lang.Object nextElement();
+}
+Compiled from "ModuleClassLoader.java"
+final class net.neoforged.fml.classloading.ModuleClassLoader$ModuleInfo implements java.lang.AutoCloseable {
+  public void close() throws java.io.IOException;
+}
+Compiled from "ModuleClassLoader.java"
+public class net.neoforged.fml.classloading.ModuleClassLoader extends java.lang.ClassLoader implements java.lang.AutoCloseable {
+  public net.neoforged.fml.classloading.ModuleClassLoader(java.lang.String, java.lang.module.Configuration, java.util.List<java.lang.ModuleLayer>);
+  public net.neoforged.fml.classloading.ModuleClassLoader(java.lang.String, java.lang.module.Configuration, java.util.List<java.lang.ModuleLayer>, java.lang.ClassLoader);
+  protected byte[] maybeTransformClassBytes(byte[], java.lang.String, java.lang.String);
+  protected java.lang.Class<?> loadClass(java.lang.String, boolean) throws java.lang.ClassNotFoundException;
+  public java.net.URL getResource(java.lang.String);
+  protected java.net.URL findResource(java.lang.String, java.lang.String) throws java.io.IOException;
+  public java.util.Enumeration<java.net.URL> getResources(java.lang.String) throws java.io.IOException;
+  protected java.util.Enumeration<java.net.URL> findResources(java.lang.String) throws java.io.IOException;
+  protected java.lang.Class<?> findClass(java.lang.String, java.lang.String);
+  protected java.lang.Class<?> findClass(java.lang.String) throws java.lang.ClassNotFoundException;
+  protected byte[] getMaybeTransformedClassBytes(java.lang.String, java.lang.String) throws java.lang.ClassNotFoundException;
+  public void setFallbackClassLoader(java.lang.ClassLoader);
+  public void close() throws java.io.IOException;
+  public java.lang.module.Configuration getConfiguration();
+}
+Compiled from "ResourceMaskingClassLoader.java"
+class net.neoforged.fml.classloading.ResourceMaskingClassLoader$FilteringEnumeration implements java.util.Enumeration<java.net.URL> {
+  public net.neoforged.fml.classloading.ResourceMaskingClassLoader$FilteringEnumeration(java.util.Enumeration<java.net.URL>, java.lang.String);
+  public boolean hasMoreElements();
+  public java.net.URL nextElement();
+  public java.lang.Object nextElement();
+}
+Compiled from "ResourceMaskingClassLoader.java"
+public class net.neoforged.fml.classloading.ResourceMaskingClassLoader extends java.lang.ClassLoader {
+  public net.neoforged.fml.classloading.ResourceMaskingClassLoader(java.lang.ClassLoader, java.util.Set<java.nio.file.Path>);
+  public java.net.URL getResource(java.lang.String);
+  public java.util.Enumeration<java.net.URL> getResources(java.lang.String) throws java.io.IOException;
+}
+Compiled from "package-info.java"
+interface net.neoforged.fml.classloading.package-info {
+}
+Compiled from "ClassHierarchyRecomputationContext.java"
+public interface net.neoforged.fml.classloading.transformation.ClassHierarchyRecomputationContext {
+  public abstract java.lang.Class<?> findLoadedClass(java.lang.String);
+  public abstract byte[] upToFrames(java.lang.String) throws java.lang.ClassNotFoundException;
+  public abstract java.lang.Class<?> locateParentClass(java.lang.String) throws java.lang.ClassNotFoundException;
+}
+Compiled from "ClassProcessorAuditLog.java"
+final class net.neoforged.fml.classloading.transformation.ClassProcessorAuditLog$TransformerActivity implements java.util.function.BiConsumer<java.lang.String, java.lang.String[]> {
+  public void accept(java.lang.String, java.lang.String...);
+  public void accept(java.lang.Object, java.lang.Object);
+}
+Compiled from "ClassProcessorAuditLog.java"
+public class net.neoforged.fml.classloading.transformation.ClassProcessorAuditLog implements net.neoforged.fml.classloading.transformation.ClassProcessorAuditSource {
+  public net.neoforged.fml.classloading.transformation.ClassProcessorAuditLog();
+  public void clear();
+  public java.lang.String getAuditString(java.lang.String);
+}
+Compiled from "ClassProcessorAuditSource.java"
+public interface net.neoforged.fml.classloading.transformation.ClassProcessorAuditSource {
+  public abstract java.lang.String getAuditString(java.lang.String);
+}
+Compiled from "ClassProcessorSet.java"
+class net.neoforged.fml.classloading.transformation.ClassProcessorSet$Builder$1 implements net.neoforged.neoforgespi.transformation.ClassProcessor {
+  public net.neoforged.neoforgespi.transformation.ProcessorName name();
+  public java.util.Set<net.neoforged.neoforgespi.transformation.ProcessorName> runsAfter();
+  public net.neoforged.neoforgespi.transformation.ClassProcessor$OrderingHint orderingHint();
+  public boolean handlesClass(net.neoforged.neoforgespi.transformation.ClassProcessor$SelectionContext);
+  public net.neoforged.neoforgespi.transformation.ClassProcessor$ComputeFlags processClass(net.neoforged.neoforgespi.transformation.ClassProcessor$TransformationContext);
+}
+Compiled from "ClassProcessorSet.java"
+public final class net.neoforged.fml.classloading.transformation.ClassProcessorSet$Builder {
+  public net.neoforged.fml.classloading.transformation.ClassProcessorSet$Builder markMarker(net.neoforged.neoforgespi.transformation.ProcessorName);
+  public net.neoforged.fml.classloading.transformation.ClassProcessorSet$Builder addProcessor(net.neoforged.neoforgespi.transformation.ClassProcessor);
+  public net.neoforged.fml.classloading.transformation.ClassProcessorSet$Builder addProcessors(java.util.Collection<net.neoforged.neoforgespi.transformation.ClassProcessor>);
+  public net.neoforged.fml.classloading.transformation.ClassProcessorSet$Builder addProcessorProviders(java.util.Collection<net.neoforged.neoforgespi.transformation.ClassProcessorProvider>);
+  public net.neoforged.fml.classloading.transformation.ClassProcessorSet build();
+}
+Compiled from "ClassProcessorSet.java"
+public final class net.neoforged.fml.classloading.transformation.ClassProcessorSet {
+  public static net.neoforged.fml.classloading.transformation.ClassProcessorSet of(net.neoforged.neoforgespi.transformation.ClassProcessor...);
+  public boolean isMarker(net.neoforged.neoforgespi.transformation.ClassProcessor);
+  public java.util.Set<java.lang.String> getGeneratedPackages();
+  public java.util.List<net.neoforged.neoforgespi.transformation.ClassProcessor> transformersFor(org.objectweb.asm.Type, boolean, net.neoforged.neoforgespi.transformation.ProcessorName);
+  public void link(java.util.function.Function<net.neoforged.neoforgespi.transformation.ProcessorName, net.neoforged.neoforgespi.transformation.BytecodeProvider>);
+  public static net.neoforged.fml.classloading.transformation.ClassProcessorSet$Builder builder();
+}
+Compiled from "ClassTransformStatistics.java"
+final class net.neoforged.fml.classloading.transformation.ClassTransformStatistics$1Entry extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public double ratio();
+  public java.lang.String name();
+}
+Compiled from "ClassTransformStatistics.java"
+public class net.neoforged.fml.classloading.transformation.ClassTransformStatistics {
+  public net.neoforged.fml.classloading.transformation.ClassTransformStatistics();
+  public static void incrementMixinParsedClasses();
+  public static synchronized java.lang.String getTransformationSummary();
+  public static java.lang.String getMixinParsedClassesSummary();
+  public static synchronized void logTransformationSummary();
+  public static synchronized void checkTransformationBehavior();
+  public static synchronized java.lang.String computeCrashReportEntry(net.neoforged.fml.classloading.transformation.ClassProcessorSet);
+}
+Compiled from "ClassTransformer.java"
+class net.neoforged.fml.classloading.transformation.ClassTransformer$1 {
+}
+Compiled from "ClassTransformer.java"
+public class net.neoforged.fml.classloading.transformation.ClassTransformer {
+  public net.neoforged.fml.classloading.transformation.ClassTransformer(net.neoforged.fml.classloading.transformation.ClassProcessorSet, net.neoforged.fml.classloading.transformation.ClassProcessorAuditLog);
+  public byte[] transform(byte[], java.lang.String, net.neoforged.neoforgespi.transformation.ProcessorName, net.neoforged.fml.classloading.transformation.ClassHierarchyRecomputationContext);
+}
+Compiled from "TransformerClassWriter.java"
+class net.neoforged.fml.classloading.transformation.TransformerClassWriter$SuperCollectingVisitor extends org.objectweb.asm.ClassVisitor {
+  public net.neoforged.fml.classloading.transformation.TransformerClassWriter$SuperCollectingVisitor(net.neoforged.fml.classloading.transformation.TransformerClassWriter);
+  public void visit(int, int, java.lang.String, java.lang.String, java.lang.String, java.lang.String[]);
+}
+Compiled from "TransformerClassWriter.java"
+class net.neoforged.fml.classloading.transformation.TransformerClassWriter extends org.objectweb.asm.ClassWriter {
+  public net.neoforged.fml.classloading.transformation.TransformerClassWriter(int, org.objectweb.asm.tree.ClassNode, net.neoforged.fml.classloading.transformation.ClassHierarchyRecomputationContext);
+  protected java.lang.String getCommonSuperClass(java.lang.String, java.lang.String);
+}
+Compiled from "TransformingClassLoader.java"
+class net.neoforged.fml.classloading.transformation.TransformingClassLoader$1 implements net.neoforged.fml.classloading.transformation.ClassHierarchyRecomputationContext {
+  public java.lang.Class<?> findLoadedClass(java.lang.String);
+  public byte[] upToFrames(java.lang.String) throws java.lang.ClassNotFoundException;
+  public java.lang.Class<?> locateParentClass(java.lang.String) throws java.lang.ClassNotFoundException;
+}
+Compiled from "TransformingClassLoader.java"
+public class net.neoforged.fml.classloading.transformation.TransformingClassLoader extends net.neoforged.fml.classloading.ModuleClassLoader {
+  public net.neoforged.fml.classloading.transformation.TransformingClassLoader(net.neoforged.fml.classloading.transformation.ClassProcessorSet, net.neoforged.fml.classloading.transformation.ClassProcessorAuditLog, java.lang.module.Configuration, java.util.List<java.lang.ModuleLayer>, java.lang.ClassLoader);
+  protected byte[] maybeTransformClassBytes(byte[], java.lang.String, java.lang.String);
+}
+Compiled from "package-info.java"
+interface net.neoforged.fml.classloading.transformation.package-info {
+}
+Compiled from "EventBusSubscriber.java"
+public interface net.neoforged.fml.common.EventBusSubscriber extends java.lang.annotation.Annotation {
+  public abstract net.neoforged.api.distmarker.Dist[] value();
+  public abstract java.lang.String modid();
+}
+Compiled from "Mod.java"
+public interface net.neoforged.fml.common.Mod extends java.lang.annotation.Annotation {
+  public abstract java.lang.String value();
+  public abstract net.neoforged.api.distmarker.Dist[] dist();
+  public abstract java.lang.String[] depends();
+}
+Compiled from "AccessTransformerService.java"
+public class net.neoforged.fml.common.asm.AccessTransformerService implements net.neoforged.neoforgespi.transformation.ClassProcessor {
+  public net.neoforged.fml.common.asm.AccessTransformerService(net.neoforged.accesstransformer.api.AccessTransformerEngine);
+  public net.neoforged.neoforgespi.transformation.ProcessorName name();
+  public java.util.Set<net.neoforged.neoforgespi.transformation.ProcessorName> runsBefore();
+  public net.neoforged.neoforgespi.transformation.ClassProcessor$ComputeFlags processClass(net.neoforged.neoforgespi.transformation.ClassProcessor$TransformationContext);
+  public boolean handlesClass(net.neoforged.neoforgespi.transformation.ClassProcessor$SelectionContext);
+}
+Compiled from "ListGeneratorAdapter.java"
+public class net.neoforged.fml.common.asm.ListGeneratorAdapter extends org.objectweb.asm.commons.GeneratorAdapter {
+  public final org.objectweb.asm.tree.InsnList insnList;
+  public net.neoforged.fml.common.asm.ListGeneratorAdapter(org.objectweb.asm.tree.InsnList);
+}
+Compiled from "SimpleProcessorsGroup.java"
+public class net.neoforged.fml.common.asm.SimpleProcessorsGroup implements net.neoforged.neoforgespi.transformation.ClassProcessor {
+  public net.neoforged.fml.common.asm.SimpleProcessorsGroup();
+  public net.neoforged.neoforgespi.transformation.ProcessorName name();
+  public java.util.Set<net.neoforged.neoforgespi.transformation.ProcessorName> runsAfter();
+  public boolean handlesClass(net.neoforged.neoforgespi.transformation.ClassProcessor$SelectionContext);
+  public net.neoforged.neoforgespi.transformation.ClassProcessor$ComputeFlags processClass(net.neoforged.neoforgespi.transformation.ClassProcessor$TransformationContext);
+}
+Compiled from "EnumParameters.java"
+public final class net.neoforged.fml.common.asm.enumextension.EnumParameters$Constant extends java.lang.Record implements net.neoforged.fml.common.asm.enumextension.EnumParameters {
+  public net.neoforged.fml.common.asm.enumextension.EnumParameters$Constant(java.util.List<java.lang.Object>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.List<java.lang.Object> params();
+}
+Compiled from "EnumParameters.java"
+public final class net.neoforged.fml.common.asm.enumextension.EnumParameters$FieldReference extends java.lang.Record implements net.neoforged.fml.common.asm.enumextension.EnumParameters {
+  public net.neoforged.fml.common.asm.enumextension.EnumParameters$FieldReference(org.objectweb.asm.Type, java.lang.String);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public org.objectweb.asm.Type owner();
+  public java.lang.String fieldName();
+}
+Compiled from "EnumParameters.java"
+public final class net.neoforged.fml.common.asm.enumextension.EnumParameters$MethodReference extends java.lang.Record implements net.neoforged.fml.common.asm.enumextension.EnumParameters {
+  public net.neoforged.fml.common.asm.enumextension.EnumParameters$MethodReference(org.objectweb.asm.Type, java.lang.String);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public org.objectweb.asm.Type owner();
+  public java.lang.String methodName();
+}
+Compiled from "EnumParameters.java"
+interface net.neoforged.fml.common.asm.enumextension.EnumParameters {
+}
+Compiled from "EnumPrototype.java"
+final class net.neoforged.fml.common.asm.enumextension.EnumPrototype extends java.lang.Record implements java.lang.Comparable<net.neoforged.fml.common.asm.enumextension.EnumPrototype> {
+  public int compareTo(net.neoforged.fml.common.asm.enumextension.EnumPrototype);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String owningMod();
+  public java.lang.String enumName();
+  public java.lang.String fieldName();
+  public java.lang.String ctorDesc();
+  public java.lang.String fullCtorDesc();
+  public net.neoforged.fml.common.asm.enumextension.EnumParameters ctorParams();
+  public int compareTo(java.lang.Object);
+}
+Compiled from "EnumProxy.java"
+public final class net.neoforged.fml.common.asm.enumextension.EnumProxy<T extends java.lang.Enum<T> & net.neoforged.fml.common.asm.enumextension.IExtensibleEnum> {
+  public net.neoforged.fml.common.asm.enumextension.EnumProxy(java.lang.Class<T>, java.lang.Object...);
+  public net.neoforged.fml.common.asm.enumextension.EnumProxy(java.lang.Class<T>, java.util.List<java.lang.Object>);
+  public java.lang.Object getParameter(int);
+  public T getValue();
+  public void setValue(T);
+}
+Compiled from "ExtensionInfo.java"
+public final class net.neoforged.fml.common.asm.enumextension.ExtensionInfo extends java.lang.Record {
+  public net.neoforged.fml.common.asm.enumextension.ExtensionInfo(boolean, int, int, net.neoforged.fml.common.asm.enumextension.NetworkedEnum$NetworkCheck);
+  public static <T extends java.lang.Enum<T> & net.neoforged.fml.common.asm.enumextension.IExtensibleEnum> net.neoforged.fml.common.asm.enumextension.ExtensionInfo nonExtended(java.lang.Class<T>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public boolean extended();
+  public int vanillaCount();
+  public int totalCount();
+  public net.neoforged.fml.common.asm.enumextension.NetworkedEnum$NetworkCheck netCheck();
+}
+Compiled from "IExtensibleEnum.java"
+public interface net.neoforged.fml.common.asm.enumextension.IExtensibleEnum {
+}
+Compiled from "IndexedEnum.java"
+public interface net.neoforged.fml.common.asm.enumextension.IndexedEnum extends java.lang.annotation.Annotation {
+  public abstract int value();
+}
+Compiled from "NamedEnum.java"
+public interface net.neoforged.fml.common.asm.enumextension.NamedEnum extends java.lang.annotation.Annotation {
+  public abstract int value();
+}
+Compiled from "NetworkedEnum.java"
+public final class net.neoforged.fml.common.asm.enumextension.NetworkedEnum$NetworkCheck extends java.lang.Enum<net.neoforged.fml.common.asm.enumextension.NetworkedEnum$NetworkCheck> {
+  public static final net.neoforged.fml.common.asm.enumextension.NetworkedEnum$NetworkCheck CLIENTBOUND;
+  public static final net.neoforged.fml.common.asm.enumextension.NetworkedEnum$NetworkCheck SERVERBOUND;
+  public static final net.neoforged.fml.common.asm.enumextension.NetworkedEnum$NetworkCheck BIDIRECTIONAL;
+  public static net.neoforged.fml.common.asm.enumextension.NetworkedEnum$NetworkCheck[] values();
+  public static net.neoforged.fml.common.asm.enumextension.NetworkedEnum$NetworkCheck valueOf(java.lang.String);
+}
+Compiled from "NetworkedEnum.java"
+public interface net.neoforged.fml.common.asm.enumextension.NetworkedEnum extends java.lang.annotation.Annotation {
+  public abstract net.neoforged.fml.common.asm.enumextension.NetworkedEnum$NetworkCheck value();
+}
+Compiled from "ReservedConstructor.java"
+public interface net.neoforged.fml.common.asm.enumextension.ReservedConstructor extends java.lang.annotation.Annotation {
+}
+Compiled from "RuntimeEnumExtender.java"
+public class net.neoforged.fml.common.asm.enumextension.RuntimeEnumExtender implements net.neoforged.neoforgespi.transformation.ClassProcessor {
+  public net.neoforged.fml.common.asm.enumextension.RuntimeEnumExtender();
+  public net.neoforged.neoforgespi.transformation.ProcessorName name();
+  public java.util.Set<net.neoforged.neoforgespi.transformation.ProcessorName> runsBefore();
+  public net.neoforged.neoforgespi.transformation.ClassProcessor$OrderingHint orderingHint();
+  public boolean handlesClass(net.neoforged.neoforgespi.transformation.ClassProcessor$SelectionContext);
+  public net.neoforged.neoforgespi.transformation.ClassProcessor$ComputeFlags processClass(net.neoforged.neoforgespi.transformation.ClassProcessor$TransformationContext);
+  public static org.objectweb.asm.tree.MethodInsnNode findFirstStaticMethodCall(org.objectweb.asm.tree.MethodNode, java.lang.String, java.lang.String, java.lang.String);
+  public static org.objectweb.asm.tree.AbstractInsnNode findFirstInstructionBefore(org.objectweb.asm.tree.MethodNode, int, int);
+  public static void loadEnumPrototypes(java.util.Map<net.neoforged.neoforgespi.language.IModInfo, net.neoforged.fml.jarcontents.JarResource>);
+  public static java.lang.String validateNameParameter(java.lang.String, java.lang.String);
+}
+Compiled from "ConfigTracker.java"
+public class net.neoforged.fml.config.ConfigTracker {
+  public static final net.neoforged.fml.config.ConfigTracker INSTANCE;
+  public net.neoforged.fml.config.ConfigTracker();
+  public net.neoforged.fml.config.ModConfig registerConfig(net.neoforged.fml.config.ModConfig$Type, net.neoforged.fml.config.IConfigSpec, net.neoforged.fml.ModContainer);
+  public net.neoforged.fml.config.ModConfig registerConfig(net.neoforged.fml.config.ModConfig$Type, net.neoforged.fml.config.IConfigSpec, net.neoforged.fml.ModContainer, java.lang.String);
+  public void loadConfigs(net.neoforged.fml.config.ModConfig$Type, java.nio.file.Path);
+  public void loadConfigs(net.neoforged.fml.config.ModConfig$Type, java.nio.file.Path, java.nio.file.Path);
+  public void unloadConfigs(net.neoforged.fml.config.ModConfig$Type);
+  public static void acceptSyncedConfig(net.neoforged.fml.config.ModConfig, byte[]);
+  public void loadDefaultServerConfigs();
+}
+Compiled from "ConfigWatcher.java"
+class net.neoforged.fml.config.ConfigWatcher implements java.lang.Runnable {
+  public void run();
+}
+Compiled from "IConfigSpec.java"
+public interface net.neoforged.fml.config.IConfigSpec$ILoadedConfig {
+  public abstract com.electronwill.nightconfig.core.CommentedConfig config();
+  public abstract void save();
+}
+Compiled from "IConfigSpec.java"
+public interface net.neoforged.fml.config.IConfigSpec {
+  public abstract boolean isEmpty();
+  public abstract void validateSpec(net.neoforged.fml.config.ModConfig);
+  public abstract boolean isCorrect(com.electronwill.nightconfig.core.UnmodifiableCommentedConfig);
+  public abstract void correct(com.electronwill.nightconfig.core.CommentedConfig);
+  public abstract void acceptConfig(net.neoforged.fml.config.IConfigSpec$ILoadedConfig);
+}
+Compiled from "LoadedConfig.java"
+final class net.neoforged.fml.config.LoadedConfig extends java.lang.Record implements net.neoforged.fml.config.IConfigSpec$ILoadedConfig {
+  public void save();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public com.electronwill.nightconfig.core.CommentedConfig config();
+  public java.nio.file.Path path();
+  public net.neoforged.fml.config.ModConfig modConfig();
+}
+Compiled from "ModConfig.java"
+public final class net.neoforged.fml.config.ModConfig$Type extends java.lang.Enum<net.neoforged.fml.config.ModConfig$Type> {
+  public static final net.neoforged.fml.config.ModConfig$Type COMMON;
+  public static final net.neoforged.fml.config.ModConfig$Type CLIENT;
+  public static final net.neoforged.fml.config.ModConfig$Type SERVER;
+  public static final net.neoforged.fml.config.ModConfig$Type STARTUP;
+  public static net.neoforged.fml.config.ModConfig$Type[] values();
+  public static net.neoforged.fml.config.ModConfig$Type valueOf(java.lang.String);
+  public java.lang.String extension();
+}
+Compiled from "ModConfig.java"
+public final class net.neoforged.fml.config.ModConfig {
+  public net.neoforged.fml.config.ModConfig$Type getType();
+  public java.lang.String getFileName();
+  public net.neoforged.fml.config.IConfigSpec getSpec();
+  public java.lang.String getModId();
+  public net.neoforged.fml.config.IConfigSpec$ILoadedConfig getLoadedConfig();
+  public java.nio.file.Path getFullPath();
+}
+Compiled from "ModConfigs.java"
+public final class net.neoforged.fml.config.ModConfigs {
+  public net.neoforged.fml.config.ModConfigs();
+  public static java.util.List<net.neoforged.fml.config.ModConfig> getModConfigs(java.lang.String);
+  public static java.util.List<java.lang.String> getConfigFileNames(java.lang.String, net.neoforged.fml.config.ModConfig$Type);
+  public static java.util.Set<net.neoforged.fml.config.ModConfig> getConfigSet(net.neoforged.fml.config.ModConfig$Type);
+  public static java.util.Map<java.lang.String, net.neoforged.fml.config.ModConfig> getFileMap();
+}
+Compiled from "IModBusEvent.java"
+public interface net.neoforged.fml.event.IModBusEvent {
+}
+Compiled from "ModConfigEvent.java"
+public class net.neoforged.fml.event.config.ModConfigEvent$Loading extends net.neoforged.fml.event.config.ModConfigEvent {
+  public net.neoforged.fml.event.config.ModConfigEvent$Loading(net.neoforged.fml.config.ModConfig);
+}
+Compiled from "ModConfigEvent.java"
+public class net.neoforged.fml.event.config.ModConfigEvent$Reloading extends net.neoforged.fml.event.config.ModConfigEvent {
+  public net.neoforged.fml.event.config.ModConfigEvent$Reloading(net.neoforged.fml.config.ModConfig);
+}
+Compiled from "ModConfigEvent.java"
+public class net.neoforged.fml.event.config.ModConfigEvent$Unloading extends net.neoforged.fml.event.config.ModConfigEvent {
+  public net.neoforged.fml.event.config.ModConfigEvent$Unloading(net.neoforged.fml.config.ModConfig);
+}
+Compiled from "ModConfigEvent.java"
+public class net.neoforged.fml.event.config.ModConfigEvent extends net.neoforged.bus.api.Event implements net.neoforged.fml.event.IModBusEvent {
+  public net.neoforged.fml.config.ModConfig getConfig();
+}
+Compiled from "FMLClientSetupEvent.java"
+public class net.neoforged.fml.event.lifecycle.FMLClientSetupEvent extends net.neoforged.fml.event.lifecycle.ParallelDispatchEvent {
+  public net.neoforged.fml.event.lifecycle.FMLClientSetupEvent(net.neoforged.fml.ModContainer, net.neoforged.fml.DeferredWorkQueue);
+}
+Compiled from "FMLCommonSetupEvent.java"
+public class net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent extends net.neoforged.fml.event.lifecycle.ParallelDispatchEvent {
+  public net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent(net.neoforged.fml.ModContainer, net.neoforged.fml.DeferredWorkQueue);
+}
+Compiled from "FMLConstructModEvent.java"
+public class net.neoforged.fml.event.lifecycle.FMLConstructModEvent extends net.neoforged.fml.event.lifecycle.ParallelDispatchEvent {
+  public net.neoforged.fml.event.lifecycle.FMLConstructModEvent(net.neoforged.fml.ModContainer, net.neoforged.fml.DeferredWorkQueue);
+}
+Compiled from "FMLDedicatedServerSetupEvent.java"
+public class net.neoforged.fml.event.lifecycle.FMLDedicatedServerSetupEvent extends net.neoforged.fml.event.lifecycle.ParallelDispatchEvent {
+  public net.neoforged.fml.event.lifecycle.FMLDedicatedServerSetupEvent(net.neoforged.fml.ModContainer, net.neoforged.fml.DeferredWorkQueue);
+}
+Compiled from "FMLLoadCompleteEvent.java"
+public class net.neoforged.fml.event.lifecycle.FMLLoadCompleteEvent extends net.neoforged.fml.event.lifecycle.ParallelDispatchEvent {
+  public net.neoforged.fml.event.lifecycle.FMLLoadCompleteEvent(net.neoforged.fml.ModContainer, net.neoforged.fml.DeferredWorkQueue);
+}
+Compiled from "InterModEnqueueEvent.java"
+public class net.neoforged.fml.event.lifecycle.InterModEnqueueEvent extends net.neoforged.fml.event.lifecycle.ParallelDispatchEvent {
+  public net.neoforged.fml.event.lifecycle.InterModEnqueueEvent(net.neoforged.fml.ModContainer, net.neoforged.fml.DeferredWorkQueue);
+}
+Compiled from "InterModProcessEvent.java"
+public class net.neoforged.fml.event.lifecycle.InterModProcessEvent extends net.neoforged.fml.event.lifecycle.ParallelDispatchEvent {
+  public net.neoforged.fml.event.lifecycle.InterModProcessEvent(net.neoforged.fml.ModContainer, net.neoforged.fml.DeferredWorkQueue);
+}
+Compiled from "ModLifecycleEvent.java"
+public abstract class net.neoforged.fml.event.lifecycle.ModLifecycleEvent extends net.neoforged.bus.api.Event implements net.neoforged.fml.event.IModBusEvent {
+  public net.neoforged.fml.event.lifecycle.ModLifecycleEvent(net.neoforged.fml.ModContainer);
+  public java.util.stream.Stream<net.neoforged.fml.InterModComms$IMCMessage> getIMCStream();
+  public java.util.stream.Stream<net.neoforged.fml.InterModComms$IMCMessage> getIMCStream(java.util.function.Predicate<java.lang.String>);
+  public net.neoforged.fml.ModContainer getContainer();
+}
+Compiled from "ParallelDispatchEvent.java"
+public abstract class net.neoforged.fml.event.lifecycle.ParallelDispatchEvent extends net.neoforged.fml.event.lifecycle.ModLifecycleEvent {
+  public net.neoforged.fml.event.lifecycle.ParallelDispatchEvent(net.neoforged.fml.ModContainer, net.neoforged.fml.DeferredWorkQueue);
+  public java.util.concurrent.CompletableFuture<java.lang.Void> enqueueWork(java.lang.Runnable);
+  public <T> java.util.concurrent.CompletableFuture<T> enqueueWork(java.util.function.Supplier<T>);
+}
+Compiled from "FMLTranslations.java"
+class net.neoforged.fml.i18n.FMLTranslations$CustomFormat$1 extends java.text.Format {
+  public java.lang.StringBuffer format(java.lang.Object, java.lang.StringBuffer, java.text.FieldPosition);
+  public java.lang.Object parseObject(java.lang.String, java.text.ParsePosition);
+}
+Compiled from "FMLTranslations.java"
+interface net.neoforged.fml.i18n.FMLTranslations$CustomFormat$FormatFunction<T> {
+  public abstract void format(java.lang.StringBuffer, T);
+}
+Compiled from "FMLTranslations.java"
+interface net.neoforged.fml.i18n.FMLTranslations$CustomFormat$FormatFunctionWithArgs<T> {
+  public abstract void format(java.lang.StringBuffer, T, java.lang.String);
+}
+Compiled from "FMLTranslations.java"
+final class net.neoforged.fml.i18n.FMLTranslations$CustomFormat<T> extends java.lang.Record implements org.apache.commons.lang3.text.FormatFactory {
+  public net.neoforged.fml.i18n.FMLTranslations$CustomFormat(java.lang.Class<T>, net.neoforged.fml.i18n.FMLTranslations$CustomFormat$FormatFunction<T>);
+  public java.text.Format getFormat(java.lang.String, java.lang.String, java.util.Locale);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.Class<T> valueClass();
+  public net.neoforged.fml.i18n.FMLTranslations$CustomFormat$FormatFunctionWithArgs<T> formatter();
+}
+Compiled from "FMLTranslations.java"
+public class net.neoforged.fml.i18n.FMLTranslations {
+  public net.neoforged.fml.i18n.FMLTranslations();
+  public static java.lang.String getPattern(java.lang.String, java.util.function.Supplier<java.lang.String>);
+  public static java.lang.String parseMessage(java.lang.String, java.lang.Object...);
+  public static java.lang.String parseMessageWithFallback(java.lang.String, java.util.function.Supplier<java.lang.String>, java.lang.Object...);
+  public static java.lang.String parseEnglishMessage(java.lang.String, java.lang.Object...);
+  public static java.lang.String parseFormat(java.lang.String, java.lang.Object...);
+  public static java.lang.String translateIssueEnglish(net.neoforged.fml.ModLoadingIssue);
+  public static java.lang.String translateIssue(net.neoforged.fml.ModLoadingIssue);
+  public static java.lang.String stripControlCodes(java.lang.String);
+}
+Compiled from "I18nManager.java"
+class net.neoforged.fml.i18n.I18nManager$1 extends com.google.gson.reflect.TypeToken<java.util.Map<java.lang.String, java.lang.String>> {
+}
+Compiled from "I18nManager.java"
+public class net.neoforged.fml.i18n.I18nManager {
+  public net.neoforged.fml.i18n.I18nManager();
+  public static void injectTranslations(java.util.Map<java.lang.String, java.lang.String>);
+  public static java.util.Map<java.lang.String, java.lang.String> loadTranslations(java.lang.String);
+}
+Compiled from "MavenVersionTranslator.java"
+public class net.neoforged.fml.i18n.MavenVersionTranslator {
+  public net.neoforged.fml.i18n.MavenVersionTranslator();
+  public static java.lang.String artifactVersionToString(org.apache.maven.artifact.versioning.ArtifactVersion);
+  public static java.lang.String versionRangeToString(org.apache.maven.artifact.versioning.VersionRange);
+  public static java.lang.String restrictionToString(org.apache.maven.artifact.versioning.Restriction);
+}
+Compiled from "CompositeJarContents.java"
+class net.neoforged.fml.jarcontents.CompositeJarContents$1 implements net.neoforged.fml.jarcontents.JarResourceVisitor {
+  public void visit(java.lang.String, net.neoforged.fml.jarcontents.JarResource);
+}
+Compiled from "CompositeJarContents.java"
+public final class net.neoforged.fml.jarcontents.CompositeJarContents implements net.neoforged.fml.jarcontents.JarContents {
+  public net.neoforged.fml.jarcontents.CompositeJarContents(java.util.List<net.neoforged.fml.jarcontents.JarContents>);
+  public net.neoforged.fml.jarcontents.CompositeJarContents(java.util.List<net.neoforged.fml.jarcontents.JarContents>, java.util.List<net.neoforged.fml.jarcontents.JarContents$PathFilter>);
+  public java.util.Collection<java.nio.file.Path> getContentRoots();
+  public boolean isFiltered();
+  public java.util.Optional<java.lang.String> getChecksum();
+  public java.nio.file.Path getPrimaryPath();
+  public java.lang.String toString();
+  public java.util.Optional<java.net.URI> findFile(java.lang.String);
+  public java.util.jar.Manifest getManifest();
+  public net.neoforged.fml.jarcontents.JarResource get(java.lang.String);
+  public boolean containsFile(java.lang.String);
+  public java.io.InputStream openFile(java.lang.String) throws java.io.IOException;
+  public byte[] readFile(java.lang.String) throws java.io.IOException;
+  public void visitContent(java.lang.String, net.neoforged.fml.jarcontents.JarResourceVisitor);
+  public void close() throws java.io.IOException;
+  public java.util.List<net.neoforged.fml.jarcontents.JarContents> getDelegates();
+}
+Compiled from "EmptyJarContents.java"
+public final class net.neoforged.fml.jarcontents.EmptyJarContents implements net.neoforged.fml.jarcontents.JarContents {
+  public net.neoforged.fml.jarcontents.EmptyJarContents(java.nio.file.Path);
+  public java.util.Optional<java.lang.String> getChecksum();
+  public java.util.Optional<java.net.URI> findFile(java.lang.String);
+  public net.neoforged.fml.jarcontents.JarResource get(java.lang.String);
+  public boolean containsFile(java.lang.String);
+  public java.nio.file.Path getPrimaryPath();
+  public java.util.Collection<java.nio.file.Path> getContentRoots();
+  public java.util.jar.Manifest getManifest();
+  public java.io.InputStream openFile(java.lang.String);
+  public byte[] readFile(java.lang.String);
+  public void visitContent(java.lang.String, net.neoforged.fml.jarcontents.JarResourceVisitor);
+  public void close();
+  public java.lang.String toString();
+}
+Compiled from "EmptyManifest.java"
+final class net.neoforged.fml.jarcontents.EmptyManifest {
+}
+Compiled from "FolderJarContents.java"
+class net.neoforged.fml.jarcontents.FolderJarContents$FileResource implements net.neoforged.fml.jarcontents.JarResource {
+  public net.neoforged.fml.jarcontents.FolderJarContents$FileResource(java.nio.file.Path, boolean);
+  public java.io.InputStream open() throws java.io.IOException;
+  public net.neoforged.fml.jarcontents.JarResourceAttributes attributes() throws java.io.IOException;
+  public net.neoforged.fml.jarcontents.JarResource retain();
+}
+Compiled from "FolderJarContents.java"
+public final class net.neoforged.fml.jarcontents.FolderJarContents implements net.neoforged.fml.jarcontents.JarContents {
+  public net.neoforged.fml.jarcontents.FolderJarContents(java.nio.file.Path);
+  public java.nio.file.Path getPrimaryPath();
+  public java.util.Optional<java.lang.String> getChecksum();
+  public net.neoforged.fml.jarcontents.JarResource get(java.lang.String);
+  public boolean containsFile(java.lang.String);
+  public java.io.InputStream openFile(java.lang.String) throws java.io.IOException;
+  public byte[] readFile(java.lang.String) throws java.io.IOException;
+  public java.util.Collection<java.nio.file.Path> getContentRoots();
+  public void visitContent(java.lang.String, net.neoforged.fml.jarcontents.JarResourceVisitor);
+  public java.util.Optional<java.net.URI> findFile(java.lang.String);
+  public java.util.jar.Manifest getManifest();
+  public void close();
+  public java.lang.String toString();
+}
+Compiled from "JarContents.java"
+public final class net.neoforged.fml.jarcontents.JarContents$FilteredPath extends java.lang.Record {
+  public net.neoforged.fml.jarcontents.JarContents$FilteredPath(java.nio.file.Path);
+  public net.neoforged.fml.jarcontents.JarContents$FilteredPath(java.nio.file.Path, net.neoforged.fml.jarcontents.JarContents$PathFilter);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.nio.file.Path path();
+  public net.neoforged.fml.jarcontents.JarContents$PathFilter filter();
+}
+Compiled from "JarContents.java"
+public interface net.neoforged.fml.jarcontents.JarContents$PathFilter {
+  public abstract boolean test(java.lang.String);
+  public static net.neoforged.fml.jarcontents.JarContents$PathFilter and(net.neoforged.fml.jarcontents.JarContents$PathFilter, net.neoforged.fml.jarcontents.JarContents$PathFilter);
+}
+Compiled from "JarContents.java"
+public interface net.neoforged.fml.jarcontents.JarContents extends java.io.Closeable {
+  public static net.neoforged.fml.jarcontents.JarContents ofFilteredPaths(java.util.Collection<net.neoforged.fml.jarcontents.JarContents$FilteredPath>) throws java.io.IOException;
+  public static net.neoforged.fml.jarcontents.JarContents ofPaths(java.util.Collection<java.nio.file.Path>) throws java.io.IOException;
+  public static net.neoforged.fml.jarcontents.JarContents ofPath(java.nio.file.Path) throws java.io.IOException;
+  public static net.neoforged.fml.jarcontents.JarContents empty(java.nio.file.Path);
+  public abstract java.util.Optional<java.lang.String> getChecksum();
+  public abstract java.nio.file.Path getPrimaryPath();
+  public abstract java.util.Collection<java.nio.file.Path> getContentRoots();
+  public abstract net.neoforged.fml.jarcontents.JarResource get(java.lang.String);
+  public abstract java.util.Optional<java.net.URI> findFile(java.lang.String);
+  public abstract java.io.InputStream openFile(java.lang.String) throws java.io.IOException;
+  public default byte[] readFile(java.lang.String) throws java.io.IOException;
+  public abstract boolean containsFile(java.lang.String);
+  public abstract java.util.jar.Manifest getManifest();
+  public default void visitContent(net.neoforged.fml.jarcontents.JarResourceVisitor);
+  public abstract void visitContent(java.lang.String, net.neoforged.fml.jarcontents.JarResourceVisitor);
+}
+Compiled from "JarFileContents.java"
+final class net.neoforged.fml.jarcontents.JarFileContents$JarEntryResource implements net.neoforged.fml.jarcontents.JarResource {
+  public net.neoforged.fml.jarcontents.JarFileContents$JarEntryResource(net.neoforged.fml.jarcontents.JarFileContents, java.util.jar.JarEntry, boolean);
+  public java.io.InputStream open() throws java.io.IOException;
+  public net.neoforged.fml.jarcontents.JarResourceAttributes attributes();
+  public net.neoforged.fml.jarcontents.JarResource retain();
+}
+Compiled from "JarFileContents.java"
+public final class net.neoforged.fml.jarcontents.JarFileContents implements net.neoforged.fml.jarcontents.JarContents {
+  public net.neoforged.fml.jarcontents.JarFileContents(java.nio.file.Path) throws java.io.IOException;
+  public java.nio.file.Path getPrimaryPath();
+  public java.util.Collection<java.nio.file.Path> getContentRoots();
+  public java.util.Optional<java.lang.String> getChecksum();
+  public java.lang.String toString();
+  public java.util.jar.Manifest getManifest();
+  public java.util.Optional<java.net.URI> findFile(java.lang.String);
+  public net.neoforged.fml.jarcontents.JarResource get(java.lang.String);
+  public boolean containsFile(java.lang.String);
+  public java.io.InputStream openFile(java.lang.String) throws java.io.IOException;
+  public byte[] readFile(java.lang.String) throws java.io.IOException;
+  public void visitContent(java.lang.String, net.neoforged.fml.jarcontents.JarResourceVisitor);
+  public void close();
+}
+Compiled from "JarResource.java"
+public interface net.neoforged.fml.jarcontents.JarResource {
+  public abstract java.io.InputStream open() throws java.io.IOException;
+  public default java.io.BufferedReader bufferedReader() throws java.io.IOException;
+  public default java.io.BufferedReader bufferedReader(java.nio.charset.Charset) throws java.io.IOException;
+  public default byte[] readAllBytes() throws java.io.IOException;
+  public abstract net.neoforged.fml.jarcontents.JarResourceAttributes attributes() throws java.io.IOException;
+  public abstract net.neoforged.fml.jarcontents.JarResource retain();
+}
+Compiled from "JarResourceAttributes.java"
+public final class net.neoforged.fml.jarcontents.JarResourceAttributes extends java.lang.Record {
+  public net.neoforged.fml.jarcontents.JarResourceAttributes(java.nio.file.attribute.FileTime, long);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.nio.file.attribute.FileTime lastModified();
+  public long size();
+}
+Compiled from "JarResourceVisitor.java"
+public interface net.neoforged.fml.jarcontents.JarResourceVisitor {
+  public abstract void visit(java.lang.String, net.neoforged.fml.jarcontents.JarResource);
+}
+Compiled from "PathNormalization.java"
+final class net.neoforged.fml.jarcontents.PathNormalization {
+  public static void assertNormalized(java.lang.CharSequence);
+  public static boolean isNormalized(java.lang.CharSequence);
+  public static java.lang.String normalize(java.lang.CharSequence);
+  public static java.lang.String normalizeFolderPrefix(java.lang.CharSequence);
+}
+Compiled from "AuomaticModuleJarModuleInfo.java"
+class net.neoforged.fml.jarmoduleinfo.AuomaticModuleJarModuleInfo implements net.neoforged.fml.jarmoduleinfo.JarModuleInfo {
+  public static net.neoforged.fml.jarmoduleinfo.AuomaticModuleJarModuleInfo from(net.neoforged.fml.jarcontents.JarContents);
+  public java.lang.String name();
+  public java.lang.String version();
+  public java.lang.module.ModuleDescriptor createDescriptor(net.neoforged.fml.jarcontents.JarContents);
+}
+Compiled from "JarModuleInfo.java"
+public interface net.neoforged.fml.jarmoduleinfo.JarModuleInfo {
+  public abstract java.lang.String name();
+  public abstract java.lang.String version();
+  public abstract java.lang.module.ModuleDescriptor createDescriptor(net.neoforged.fml.jarcontents.JarContents);
+  public static net.neoforged.fml.jarmoduleinfo.JarModuleInfo from(net.neoforged.fml.jarcontents.JarContents);
+  public static void scanAutomaticModule(net.neoforged.fml.jarcontents.JarContents, java.lang.module.ModuleDescriptor$Builder, java.lang.String...);
+  public static java.util.Set<java.lang.String> scanModulePackages(net.neoforged.fml.jarcontents.JarContents);
+}
+Compiled from "JlsConstants.java"
+final class net.neoforged.fml.jarmoduleinfo.JlsConstants {
+  public static boolean isJavaIdentifier(java.lang.String);
+  public static java.lang.String getPackageName(java.lang.String);
+  public static boolean isTypeName(java.lang.String);
+}
+Compiled from "ModuleDescriptorFactory.java"
+final class net.neoforged.fml.jarmoduleinfo.ModuleDescriptorFactory {
+  public static void scanAutomaticModule(net.neoforged.fml.jarcontents.JarContents, java.lang.module.ModuleDescriptor$Builder, java.lang.String...);
+  public static java.util.Set<java.lang.String> scanModulePackages(net.neoforged.fml.jarcontents.JarContents);
+}
+Compiled from "ModuleJarModuleInfo.java"
+class net.neoforged.fml.jarmoduleinfo.ModuleJarModuleInfo implements net.neoforged.fml.jarmoduleinfo.JarModuleInfo {
+  public net.neoforged.fml.jarmoduleinfo.ModuleJarModuleInfo(net.neoforged.fml.jarcontents.JarResource);
+  public java.lang.module.ModuleDescriptor createDescriptor(net.neoforged.fml.jarcontents.JarContents);
+  public java.lang.String name();
+  public java.lang.String version();
+}
+Compiled from "NameAndVersion.java"
+final class net.neoforged.fml.jarmoduleinfo.NameAndVersion extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String name();
+  public java.lang.String version();
+}
+Compiled from "AutomaticEventSubscriber.java"
+public class net.neoforged.fml.javafmlmod.AutomaticEventSubscriber {
+  public net.neoforged.fml.javafmlmod.AutomaticEventSubscriber();
+  public static void inject(net.neoforged.fml.ModContainer, net.neoforged.neoforgespi.language.ModFileScanData, java.lang.Module);
+  public static java.util.EnumSet<net.neoforged.api.distmarker.Dist> getSides(java.lang.Object);
+}
+Compiled from "FMLJavaModLanguageProvider.java"
+public class net.neoforged.fml.javafmlmod.FMLJavaModLanguageProvider extends net.neoforged.fml.loading.BuiltInLanguageLoader {
+  public static final java.lang.String NAME;
+  public net.neoforged.fml.javafmlmod.FMLJavaModLanguageProvider();
+  public java.lang.String name();
+  public net.neoforged.fml.ModContainer loadMod(net.neoforged.neoforgespi.language.IModInfo, net.neoforged.neoforgespi.language.ModFileScanData, java.lang.ModuleLayer);
+  public void validate(net.neoforged.neoforgespi.locating.IModFile, java.util.Collection<net.neoforged.fml.ModContainer>, net.neoforged.neoforgespi.IIssueReporting);
+}
+Compiled from "FMLModContainer.java"
+public class net.neoforged.fml.javafmlmod.FMLModContainer extends net.neoforged.fml.ModContainer {
+  public net.neoforged.fml.javafmlmod.FMLModContainer(net.neoforged.neoforgespi.language.IModInfo, java.util.List<java.lang.String>, net.neoforged.neoforgespi.language.ModFileScanData, java.lang.ModuleLayer);
+  protected void constructMod();
+  public net.neoforged.bus.api.IEventBus getEventBus();
+}
+Compiled from "BackgroundWaiter.java"
+public class net.neoforged.fml.loading.BackgroundWaiter {
+  public net.neoforged.fml.loading.BackgroundWaiter();
+  public static void runAndTick(java.lang.Runnable, java.lang.Runnable);
+}
+Compiled from "BuiltInLanguageLoader.java"
+public abstract class net.neoforged.fml.loading.BuiltInLanguageLoader implements net.neoforged.neoforgespi.language.IModLanguageLoader {
+  public net.neoforged.fml.loading.BuiltInLanguageLoader();
+  public java.lang.String version();
+}
+Compiled from "ClassLoadingGuardian.java"
+class net.neoforged.fml.loading.ClassLoadingGuardian$1 implements java.lang.instrument.ClassFileTransformer {
+  public byte[] transform(java.lang.ClassLoader, java.lang.String, java.lang.Class<?>, java.security.ProtectionDomain, byte[]);
+  public byte[] transform(java.lang.Module, java.lang.ClassLoader, java.lang.String, java.lang.Class<?>, java.security.ProtectionDomain, byte[]);
+}
+Compiled from "ClassLoadingGuardian.java"
+final class net.neoforged.fml.loading.ClassLoadingGuardian implements java.lang.AutoCloseable {
+  public net.neoforged.fml.loading.ClassLoadingGuardian(java.lang.instrument.Instrumentation, java.util.List<net.neoforged.fml.loading.moddiscovery.ModFile>);
+  public static void fail();
+  public void setAllowedClassLoader(java.lang.ClassLoader);
+  public void close();
+}
+Compiled from "EarlyLoadingScreenController.java"
+public interface net.neoforged.fml.loading.EarlyLoadingScreenController {
+  public static net.neoforged.fml.loading.EarlyLoadingScreenController current();
+  public abstract long takeOverGlfwWindow();
+  public abstract void periodicTick();
+  public abstract void updateProgress(java.lang.String);
+  public abstract void completeProgress();
+}
+Compiled from "EarlyServiceDiscovery.java"
+class net.neoforged.fml.loading.EarlyServiceDiscovery$1 extends java.nio.file.SimpleFileVisitor<java.nio.file.Path> {
+  public java.nio.file.FileVisitResult visitFile(java.nio.file.Path, java.nio.file.attribute.BasicFileAttributes);
+  public java.nio.file.FileVisitResult visitFile(java.lang.Object, java.nio.file.attribute.BasicFileAttributes) throws java.io.IOException;
+}
+Compiled from "EarlyServiceDiscovery.java"
+final class net.neoforged.fml.loading.EarlyServiceDiscovery {
+  public static java.util.List<net.neoforged.fml.loading.moddiscovery.ModFile> findEarlyServiceJars(net.neoforged.fml.startup.StartupArgs, java.nio.file.Path);
+}
+Compiled from "FMLConfig.java"
+public final class net.neoforged.fml.loading.FMLConfig$ConfigValue extends java.lang.Enum<net.neoforged.fml.loading.FMLConfig$ConfigValue> {
+  public static final net.neoforged.fml.loading.FMLConfig$ConfigValue DISABLE_CONFIG_WATCHER;
+  public static final net.neoforged.fml.loading.FMLConfig$ConfigValue EARLY_WINDOW_CONTROL;
+  public static final net.neoforged.fml.loading.FMLConfig$ConfigValue MAX_THREADS;
+  public static final net.neoforged.fml.loading.FMLConfig$ConfigValue VERSION_CHECK;
+  public static final net.neoforged.fml.loading.FMLConfig$ConfigValue DEBUG_OPENGL;
+  public static final net.neoforged.fml.loading.FMLConfig$ConfigValue DEFAULT_CONFIG_PATH;
+  public static final net.neoforged.fml.loading.FMLConfig$ConfigValue DISABLE_OPTIMIZED_DFU;
+  public static final net.neoforged.fml.loading.FMLConfig$ConfigValue EARLY_WINDOW_PROVIDER;
+  public static final net.neoforged.fml.loading.FMLConfig$ConfigValue EARLY_WINDOW_WIDTH;
+  public static final net.neoforged.fml.loading.FMLConfig$ConfigValue EARLY_WINDOW_HEIGHT;
+  public static final net.neoforged.fml.loading.FMLConfig$ConfigValue EARLY_WINDOW_MAXIMIZED;
+  public static final net.neoforged.fml.loading.FMLConfig$ConfigValue EARLY_LOADING_SCREEN_THEME;
+  public static net.neoforged.fml.loading.FMLConfig$ConfigValue[] values();
+  public static net.neoforged.fml.loading.FMLConfig$ConfigValue valueOf(java.lang.String);
+}
+Compiled from "FMLConfig.java"
+public final class net.neoforged.fml.loading.FMLConfig$DependencyOverride extends java.lang.Record {
+  public net.neoforged.fml.loading.FMLConfig$DependencyOverride(java.lang.String, boolean);
+  public java.lang.String getMessage();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String modId();
+  public boolean remove();
+}
+Compiled from "FMLConfig.java"
+public class net.neoforged.fml.loading.FMLConfig {
+  public net.neoforged.fml.loading.FMLConfig();
+  public static void load();
+  public static java.lang.String getConfigValue(net.neoforged.fml.loading.FMLConfig$ConfigValue);
+  public static boolean getBoolConfigValue(net.neoforged.fml.loading.FMLConfig$ConfigValue);
+  public static int getIntConfigValue(net.neoforged.fml.loading.FMLConfig$ConfigValue);
+  public static <A> java.util.List<A> getListConfigValue(net.neoforged.fml.loading.FMLConfig$ConfigValue);
+  public static <T> void updateConfig(net.neoforged.fml.loading.FMLConfig$ConfigValue, T);
+  public static java.lang.String defaultConfigPath();
+  public static java.util.List<net.neoforged.fml.loading.FMLConfig$DependencyOverride> getOverrides(java.lang.String);
+  public static java.util.Map<java.lang.String, java.util.List<net.neoforged.fml.loading.FMLConfig$DependencyOverride>> getDependencyOverrides();
+}
+Compiled from "FMLEnvironment.java"
+public final class net.neoforged.fml.loading.FMLEnvironment {
+  public static net.neoforged.api.distmarker.Dist getDist();
+  public static boolean isProduction();
+}
+Compiled from "FMLLoader.java"
+final class net.neoforged.fml.loading.FMLLoader$DiscoveryResult extends java.lang.Record {
+  public java.util.List<net.neoforged.fml.loading.moddiscovery.ModFile> allContent();
+  public java.util.List<net.neoforged.fml.loading.moddiscovery.ModFile> allGameContent();
+  public boolean hasErrors();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.List<net.neoforged.fml.loading.moddiscovery.ModFile> pluginContent();
+  public java.util.List<net.neoforged.fml.loading.moddiscovery.ModFile> gameContent();
+  public java.util.List<net.neoforged.fml.loading.moddiscovery.ModFile> gameLibraryContent();
+  public java.util.List<net.neoforged.fml.ModLoadingIssue> discoveryIssues();
+}
+Compiled from "FMLLoader.java"
+class net.neoforged.fml.loading.FMLLoader$LaunchContextAdapter implements net.neoforged.neoforgespi.ILaunchContext {
+  public net.neoforged.api.distmarker.Dist getRequiredDistribution();
+  public java.nio.file.Path gameDirectory();
+  public <T> java.util.stream.Stream<java.util.ServiceLoader$Provider<T>> loadServices(java.lang.Class<T>);
+  public boolean isLocated(java.nio.file.Path);
+  public boolean addLocated(java.nio.file.Path);
+  public net.neoforged.fml.loading.VersionInfo getVersions();
+}
+Compiled from "FMLLoader.java"
+public final class net.neoforged.fml.loading.FMLLoader implements java.lang.AutoCloseable {
+  public net.neoforged.fml.loading.modscan.BackgroundScanHandler backgroundScanHandler;
+  public net.neoforged.fml.classloading.transformation.ClassProcessorAuditSource getClassTransformerAuditLog();
+  public net.neoforged.neoforgespi.locating.IModFile getModFileByClass(java.lang.Class<?>);
+  public void addCloseCallback(java.lang.AutoCloseable);
+  public void close();
+  public java.lang.ClassLoader getCurrentClassLoader();
+  public net.neoforged.fml.loading.ProgramArgs getProgramArgs();
+  public net.neoforged.fml.IBindingsProvider getBindings();
+  public static net.neoforged.fml.loading.FMLLoader create(net.neoforged.fml.startup.StartupArgs);
+  public static net.neoforged.fml.loading.FMLLoader create(java.lang.instrument.Instrumentation, net.neoforged.fml.startup.StartupArgs);
+  public static net.neoforged.fml.loading.LanguageProviderLoader getLanguageLoadingProvider();
+  public static net.neoforged.fml.loading.FMLLoader getCurrent();
+  public static net.neoforged.fml.loading.FMLLoader getCurrentOrNull();
+  public net.neoforged.api.distmarker.Dist getDist();
+  public net.neoforged.fml.loading.LoadingModList getLoadingModList();
+  public java.nio.file.Path getGameDir();
+  public boolean isProduction();
+  public java.lang.ModuleLayer getGameLayer();
+  public net.neoforged.fml.loading.VersionInfo getVersionInfo();
+}
+Compiled from "FMLPaths.java"
+public final class net.neoforged.fml.loading.FMLPaths extends java.lang.Enum<net.neoforged.fml.loading.FMLPaths> {
+  public static final net.neoforged.fml.loading.FMLPaths GAMEDIR;
+  public static final net.neoforged.fml.loading.FMLPaths JIJ_CACHEDIR;
+  public static final net.neoforged.fml.loading.FMLPaths MODSDIR;
+  public static final net.neoforged.fml.loading.FMLPaths CONFIGDIR;
+  public static final net.neoforged.fml.loading.FMLPaths FMLCONFIG;
+  public static net.neoforged.fml.loading.FMLPaths[] values();
+  public static net.neoforged.fml.loading.FMLPaths valueOf(java.lang.String);
+  public static void loadAbsolutePaths(java.nio.file.Path);
+  public static java.nio.file.Path getOrCreateGameRelativePath(java.nio.file.Path);
+  public java.nio.file.Path relative();
+  public java.nio.file.Path get();
+}
+Compiled from "ImmediateWindowHandler.java"
+public class net.neoforged.fml.loading.ImmediateWindowHandler {
+  public net.neoforged.fml.loading.ImmediateWindowHandler();
+  public static void load(net.neoforged.neoforgespi.ILaunchContext, boolean, net.neoforged.fml.loading.ProgramArgs);
+  public static void setNeoForgeVersion(java.lang.String);
+  public static void setMinecraftVersion(java.lang.String);
+  public static void renderTick();
+  public static void updateProgress(java.lang.String);
+  public static void crash(java.lang.String);
+  public static void displayFatalErrorAndExit(java.util.List<net.neoforged.fml.ModLoadingIssue>, java.nio.file.Path, java.nio.file.Path, java.nio.file.Path);
+}
+Compiled from "JarVersionLookupHandler.java"
+public class net.neoforged.fml.loading.JarVersionLookupHandler {
+  public net.neoforged.fml.loading.JarVersionLookupHandler();
+  public static java.util.Optional<java.lang.String> getVersion(java.lang.Class<?>);
+}
+Compiled from "LanguageProviderLoader.java"
+final class net.neoforged.fml.loading.LanguageProviderLoader$ModLanguageWrapper extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.neoforged.neoforgespi.language.IModLanguageLoader modLanguageProvider();
+  public org.apache.maven.artifact.versioning.ArtifactVersion version();
+}
+Compiled from "LanguageProviderLoader.java"
+public class net.neoforged.fml.loading.LanguageProviderLoader {
+  public void forEach(java.util.function.Consumer<net.neoforged.neoforgespi.language.IModLanguageLoader>);
+  public <T> java.util.stream.Stream<T> applyForEach(java.util.function.Function<net.neoforged.neoforgespi.language.IModLanguageLoader, T>);
+  public net.neoforged.neoforgespi.language.IModLanguageLoader findLanguage(net.neoforged.fml.loading.moddiscovery.ModFile, java.lang.String, org.apache.maven.artifact.versioning.VersionRange);
+}
+Compiled from "LibraryFinder.java"
+public class net.neoforged.fml.loading.LibraryFinder {
+  public net.neoforged.fml.loading.LibraryFinder();
+  public static java.nio.file.Path findPathForMaven(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String);
+  public static java.nio.file.Path findPathForMaven(net.neoforged.fml.loading.MavenCoordinate);
+}
+Compiled from "LoadingModList.java"
+public class net.neoforged.fml.loading.LoadingModList {
+  public static net.neoforged.fml.loading.LoadingModList of(java.util.List<net.neoforged.fml.loading.moddiscovery.ModFile>, java.util.List<net.neoforged.fml.loading.moddiscovery.ModFile>, java.util.List<net.neoforged.fml.loading.moddiscovery.ModFile>, java.util.List<net.neoforged.fml.loading.moddiscovery.ModInfo>, java.util.List<net.neoforged.fml.ModLoadingIssue>, java.util.Map<net.neoforged.fml.loading.moddiscovery.ModInfo, java.util.List<net.neoforged.fml.loading.moddiscovery.ModInfo>>);
+  public static net.neoforged.fml.loading.LoadingModList get();
+  public boolean contains(net.neoforged.neoforgespi.locating.IModFile);
+  public java.util.List<net.neoforged.neoforgespi.language.IModFileInfo> getPlugins();
+  public java.util.List<net.neoforged.neoforgespi.locating.IModFile> getGameLibraries();
+  public java.util.List<net.neoforged.fml.loading.moddiscovery.ModFileInfo> getModFiles();
+  public java.util.Set<net.neoforged.neoforgespi.locating.IModFile> getAllModFiles();
+  public net.neoforged.fml.loading.moddiscovery.ModFileInfo getModFileById(java.lang.String);
+  public java.util.List<net.neoforged.fml.loading.moddiscovery.ModInfo> getMods();
+  public java.util.List<net.neoforged.fml.loading.moddiscovery.ModInfo> getDependencies(net.neoforged.neoforgespi.language.IModInfo);
+  public boolean hasErrors();
+  public java.util.List<net.neoforged.fml.ModLoadingIssue> getModLoadingIssues();
+}
+Compiled from "LogMarkers.java"
+public class net.neoforged.fml.loading.LogMarkers {
+  public static final org.slf4j.Marker CORE;
+  public static final org.slf4j.Marker LOADING;
+  public static final org.slf4j.Marker SCAN;
+  public static final org.slf4j.Marker SPLASH;
+  public net.neoforged.fml.loading.LogMarkers();
+}
+Compiled from "MavenCoordinate.java"
+public final class net.neoforged.fml.loading.MavenCoordinate extends java.lang.Record {
+  public net.neoforged.fml.loading.MavenCoordinate(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String);
+  public static net.neoforged.fml.loading.MavenCoordinate parse(java.lang.String);
+  public java.nio.file.Path toRelativeRepositoryPath();
+  public java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String groupId();
+  public java.lang.String artifactId();
+  public java.lang.String extension();
+  public java.lang.String classifier();
+  public java.lang.String version();
+}
+Compiled from "ModSorter.java"
+class net.neoforged.fml.loading.ModSorter$1 {
+}
+Compiled from "ModSorter.java"
+public final class net.neoforged.fml.loading.ModSorter$DependencyResolutionResult extends java.lang.Record {
+  public net.neoforged.fml.loading.ModSorter$DependencyResolutionResult(java.util.Collection<net.neoforged.neoforgespi.language.IModInfo$ModVersion>, java.util.Collection<net.neoforged.neoforgespi.language.IModInfo$ModVersion>, java.util.Collection<net.neoforged.neoforgespi.language.IModInfo$ModVersion>, java.util.Map<java.lang.String, org.apache.maven.artifact.versioning.ArtifactVersion>);
+  public java.util.List<net.neoforged.fml.ModLoadingIssue> buildWarningMessages();
+  public java.util.List<net.neoforged.fml.ModLoadingIssue> buildErrorMessages();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.Collection<net.neoforged.neoforgespi.language.IModInfo$ModVersion> incompatibilities();
+  public java.util.Collection<net.neoforged.neoforgespi.language.IModInfo$ModVersion> discouraged();
+  public java.util.Collection<net.neoforged.neoforgespi.language.IModInfo$ModVersion> versionResolution();
+  public java.util.Map<java.lang.String, org.apache.maven.artifact.versioning.ArtifactVersion> modVersions();
+}
+Compiled from "ModSorter.java"
+class net.neoforged.fml.loading.ModSorter {
+  public static net.neoforged.fml.loading.LoadingModList sort(java.util.List<net.neoforged.fml.loading.moddiscovery.ModFile>, java.util.List<net.neoforged.fml.ModLoadingIssue>);
+  public static net.neoforged.fml.loading.LoadingModList sort(java.util.List<net.neoforged.fml.loading.moddiscovery.ModFile>, java.util.List<net.neoforged.fml.loading.moddiscovery.ModFile>, java.util.List<net.neoforged.fml.loading.moddiscovery.ModFile>, java.util.List<net.neoforged.fml.ModLoadingIssue>);
+}
+Compiled from "ProgramArgs.java"
+class net.neoforged.fml.loading.ProgramArgs$EntryValue implements java.util.function.Supplier<java.lang.String[]> {
+  public net.neoforged.fml.loading.ProgramArgs$EntryValue(boolean, java.lang.String, java.lang.String, java.lang.String);
+  public java.lang.String getKey();
+  public java.lang.String getValue();
+  public void setValue(java.lang.String);
+  public java.lang.String[] get();
+  public java.lang.String toString();
+  public java.lang.Object get();
+}
+Compiled from "ProgramArgs.java"
+public final class net.neoforged.fml.loading.ProgramArgs {
+  public static net.neoforged.fml.loading.ProgramArgs from(java.lang.String...);
+  public void addRaw(java.lang.String);
+  public void addArg(boolean, java.lang.String, java.lang.String);
+  public java.lang.String[] getArguments();
+  public boolean hasValue(java.lang.String);
+  public java.lang.String get(java.lang.String);
+  public java.lang.String getOrDefault(java.lang.String, java.lang.String);
+  public void put(java.lang.String, java.lang.String);
+  public void putLazy(java.lang.String, java.lang.String);
+  public java.lang.String remove(java.lang.String);
+}
+Compiled from "StringSubstitutor.java"
+class net.neoforged.fml.loading.StringSubstitutor$1 extends org.apache.commons.lang3.text.StrLookup<java.lang.String> {
+  public java.lang.String lookup(java.lang.String);
+}
+Compiled from "StringSubstitutor.java"
+public class net.neoforged.fml.loading.StringSubstitutor {
+  public net.neoforged.fml.loading.StringSubstitutor();
+  public static java.lang.String replace(java.lang.String, net.neoforged.fml.loading.moddiscovery.ModFile);
+}
+Compiled from "StringUtils.java"
+public class net.neoforged.fml.loading.StringUtils {
+  public net.neoforged.fml.loading.StringUtils();
+  public static java.lang.String toLowerCase(java.lang.String);
+  public static java.lang.String toUpperCase(java.lang.String);
+  public static boolean endsWith(java.lang.String, java.lang.String...);
+  public static java.net.URL toURL(java.lang.String);
+  public static java.lang.String parseStringFormat(java.lang.String, java.util.Map<java.lang.String, java.lang.String>);
+  public static java.lang.String binToHex(byte[]);
+}
+Compiled from "TracingPrintStream.java"
+public class net.neoforged.fml.loading.TracingPrintStream extends java.io.PrintStream {
+  public net.neoforged.fml.loading.TracingPrintStream(org.slf4j.Logger, java.io.PrintStream);
+  public void println(java.lang.Object);
+  public void println(java.lang.String);
+  public void println(boolean);
+  public void println(char);
+  public void println(int);
+  public void println(long);
+  public void println(float);
+  public void println(double);
+  public void println(char[]);
+}
+Compiled from "UniqueModListBuilder.java"
+public final class net.neoforged.fml.loading.UniqueModListBuilder$UniqueModListData extends java.lang.Record {
+  public net.neoforged.fml.loading.UniqueModListBuilder$UniqueModListData(java.util.List<net.neoforged.fml.loading.moddiscovery.ModFile>, java.util.List<net.neoforged.fml.loading.moddiscovery.ModFile>, java.util.Map<java.lang.String, java.util.List<net.neoforged.fml.loading.moddiscovery.ModFile>>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.List<net.neoforged.fml.loading.moddiscovery.ModFile> modFiles();
+  public java.util.List<net.neoforged.fml.loading.moddiscovery.ModFile> discardedFiles();
+  public java.util.Map<java.lang.String, java.util.List<net.neoforged.fml.loading.moddiscovery.ModFile>> modFilesByFirstId();
+}
+Compiled from "UniqueModListBuilder.java"
+public class net.neoforged.fml.loading.UniqueModListBuilder {
+  public net.neoforged.fml.loading.UniqueModListBuilder(java.util.List<net.neoforged.fml.loading.moddiscovery.ModFile>);
+  public net.neoforged.fml.loading.UniqueModListBuilder$UniqueModListData buildUniqueList();
+}
+Compiled from "VersionInfo.java"
+public final class net.neoforged.fml.loading.VersionInfo extends java.lang.Record {
+  public net.neoforged.fml.loading.VersionInfo(java.lang.String, java.lang.String, java.lang.String);
+  public java.lang.String mcAndNeoFormVersion();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String neoForgeVersion();
+  public java.lang.String mcVersion();
+  public java.lang.String neoFormVersion();
+}
+Compiled from "VersionSupportMatrix.java"
+class net.neoforged.fml.loading.VersionSupportMatrix {
+  public net.neoforged.fml.loading.VersionSupportMatrix(net.neoforged.fml.loading.VersionInfo);
+  public boolean testVersionSupportMatrix(org.apache.maven.artifact.versioning.VersionRange, java.lang.String, java.lang.String, java.util.function.BiPredicate<java.lang.String, org.apache.maven.artifact.versioning.VersionRange>);
+}
+Compiled from "ForgeHighlight.java"
+public class net.neoforged.fml.loading.log4j.ForgeHighlight {
+  protected static final org.apache.logging.log4j.Logger LOGGER;
+  public net.neoforged.fml.loading.log4j.ForgeHighlight();
+  public static org.apache.logging.log4j.core.pattern.HighlightConverter newInstance(org.apache.logging.log4j.core.config.Configuration, java.lang.String[]);
+}
+Compiled from "FMLAuditTrail.java"
+class net.neoforged.fml.loading.mixin.FMLAuditTrail implements org.spongepowered.asm.service.IMixinAuditTrail {
+  public void setConsumer(java.lang.String, java.util.function.BiConsumer<java.lang.String, java.lang.String[]>);
+  public void onApply(java.lang.String, java.lang.String);
+  public void onPostProcess(java.lang.String);
+  public void onGenerate(java.lang.String, java.lang.String);
+}
+Compiled from "FMLClassBytecodeProvider.java"
+class net.neoforged.fml.loading.mixin.FMLClassBytecodeProvider implements org.spongepowered.asm.service.IClassBytecodeProvider {
+  public org.objectweb.asm.tree.ClassNode getClassNode(java.lang.String) throws java.lang.ClassNotFoundException;
+  public org.objectweb.asm.tree.ClassNode getClassNode(java.lang.String, boolean) throws java.lang.ClassNotFoundException;
+  public org.objectweb.asm.tree.ClassNode getClassNode(java.lang.String, boolean, int) throws java.lang.ClassNotFoundException;
+}
+Compiled from "FMLClassProvider.java"
+class net.neoforged.fml.loading.mixin.FMLClassProvider implements org.spongepowered.asm.service.IClassProvider {
+  public java.net.URL[] getClassPath();
+  public java.lang.Class<?> findClass(java.lang.String) throws java.lang.ClassNotFoundException;
+  public java.lang.Class<?> findClass(java.lang.String, boolean) throws java.lang.ClassNotFoundException;
+  public java.lang.Class<?> findAgentClass(java.lang.String, boolean) throws java.lang.ClassNotFoundException;
+}
+Compiled from "FMLClassTracker.java"
+class net.neoforged.fml.loading.mixin.FMLClassTracker implements org.spongepowered.asm.service.IClassTracker {
+  public void registerInvalidClass(java.lang.String);
+  public boolean isClassLoaded(java.lang.String);
+  public java.lang.String getClassRestrictions(java.lang.String);
+}
+Compiled from "FMLMixinAdviceProvider.java"
+class net.neoforged.fml.loading.mixin.FMLMixinAdviceProvider implements org.spongepowered.asm.service.IAdviceProvider {
+  public java.lang.String higherCompatibilityNeeded(int, java.lang.String);
+}
+Compiled from "FMLMixinClassProcessor.java"
+public class net.neoforged.fml.loading.mixin.FMLMixinClassProcessor implements net.neoforged.neoforgespi.transformation.ClassProcessor {
+  public net.neoforged.fml.loading.mixin.FMLMixinClassProcessor(net.neoforged.fml.loading.mixin.FMLMixinService);
+  public void link(net.neoforged.neoforgespi.transformation.ClassProcessor$LinkContext);
+  public net.neoforged.neoforgespi.transformation.ProcessorName name();
+  public java.util.Set<java.lang.String> generatesPackages();
+  public boolean handlesClass(net.neoforged.neoforgespi.transformation.ClassProcessor$SelectionContext);
+  public net.neoforged.neoforgespi.transformation.ClassProcessor$ComputeFlags processClass(net.neoforged.neoforgespi.transformation.ClassProcessor$TransformationContext);
+  public void afterProcessing(net.neoforged.neoforgespi.transformation.ClassProcessor$AfterProcessingContext);
+}
+Compiled from "FMLMixinFeatureValidator.java"
+class net.neoforged.fml.loading.mixin.FMLMixinFeatureValidator implements org.spongepowered.asm.service.IFeatureValidator {
+  public void validateEnumExtension(org.spongepowered.asm.mixin.extensibility.IMixinInfo, org.spongepowered.asm.mixin.transformer.ClassInfo) throws org.spongepowered.asm.mixin.transformer.throwables.InvalidMixinException;
+}
+Compiled from "FMLMixinGlobalProperties.java"
+final class net.neoforged.fml.loading.mixin.FMLMixinGlobalProperties$StringKey extends java.lang.Record implements org.spongepowered.asm.service.IPropertyKey {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String name();
+}
+Compiled from "FMLMixinGlobalProperties.java"
+public class net.neoforged.fml.loading.mixin.FMLMixinGlobalProperties implements org.spongepowered.asm.service.IGlobalPropertyService {
+  public net.neoforged.fml.loading.mixin.FMLMixinGlobalProperties();
+  public org.spongepowered.asm.service.IPropertyKey resolveKey(java.lang.String);
+  public <T> T getProperty(org.spongepowered.asm.service.IPropertyKey);
+  public void setProperty(org.spongepowered.asm.service.IPropertyKey, java.lang.Object);
+  public <T> T getProperty(org.spongepowered.asm.service.IPropertyKey, T);
+  public java.lang.String getPropertyString(org.spongepowered.asm.service.IPropertyKey, java.lang.String);
+}
+Compiled from "FMLMixinLogger.java"
+public class net.neoforged.fml.loading.mixin.FMLMixinLogger implements org.spongepowered.asm.logging.ILogger {
+  public net.neoforged.fml.loading.mixin.FMLMixinLogger(java.lang.String);
+  public java.lang.String getId();
+  public java.lang.String getType();
+  public void catching(org.spongepowered.asm.logging.Level, java.lang.Throwable);
+  public void catching(java.lang.Throwable);
+  public void debug(java.lang.String, java.lang.Object...);
+  public void debug(java.lang.String, java.lang.Throwable);
+  public void error(java.lang.String, java.lang.Object...);
+  public void error(java.lang.String, java.lang.Throwable);
+  public void fatal(java.lang.String, java.lang.Object...);
+  public void fatal(java.lang.String, java.lang.Throwable);
+  public void info(java.lang.String, java.lang.Object...);
+  public void info(java.lang.String, java.lang.Throwable);
+  public void log(org.spongepowered.asm.logging.Level, java.lang.String, java.lang.Object...);
+  public void log(org.spongepowered.asm.logging.Level, java.lang.String, java.lang.Throwable);
+  public <T extends java.lang.Throwable> T throwing(T);
+  public void trace(java.lang.String, java.lang.Object...);
+  public void trace(java.lang.String, java.lang.Throwable);
+  public void warn(java.lang.String, java.lang.Object...);
+  public void warn(java.lang.String, java.lang.Throwable);
+}
+Compiled from "FMLMixinService.java"
+class net.neoforged.fml.loading.mixin.FMLMixinService$1 {
+}
+Compiled from "FMLMixinService.java"
+public class net.neoforged.fml.loading.mixin.FMLMixinService implements org.spongepowered.asm.service.IMixinService {
+  public net.neoforged.fml.loading.mixin.FMLMixinService();
+  public void prepare();
+  public org.spongepowered.asm.mixin.MixinEnvironment$Phase getInitialPhase();
+  public void init();
+  public void beginPhase();
+  public void checkEnv(java.lang.Object);
+  public org.spongepowered.asm.util.ReEntranceLock getReEntranceLock();
+  public java.lang.String getSideName();
+  public void setBytecodeProvider(org.spongepowered.asm.service.IClassBytecodeProvider);
+  public void offer(org.spongepowered.asm.service.IMixinInternal);
+  public java.lang.String getName();
+  public org.spongepowered.asm.mixin.MixinEnvironment$CompatibilityLevel getMinCompatibilityLevel();
+  public org.spongepowered.asm.mixin.MixinEnvironment$CompatibilityLevel getMaxCompatibilityLevel();
+  public org.spongepowered.asm.logging.ILogger getLogger(java.lang.String);
+  public boolean isValid();
+  public org.spongepowered.asm.service.IClassProvider getClassProvider();
+  public org.spongepowered.asm.service.IClassBytecodeProvider getBytecodeProvider();
+  public org.spongepowered.asm.service.ITransformerProvider getTransformerProvider();
+  public org.spongepowered.asm.service.IClassTracker getClassTracker();
+  public org.spongepowered.asm.service.IMixinAuditTrail getAuditTrail();
+  public org.spongepowered.asm.service.IFeatureValidator getFeatureValidator();
+  public org.spongepowered.asm.service.IAdviceProvider getAdviceProvider();
+  public org.spongepowered.asm.mixin.transformer.IMixinTransformer getMixinTransformer();
+  public java.util.Collection<java.lang.String> getPlatformAgents();
+  public org.spongepowered.asm.launch.platform.container.IContainerHandle getPrimaryContainer();
+  public java.util.Collection<org.spongepowered.asm.launch.platform.container.IContainerHandle> getMixinContainers();
+  public java.io.InputStream getResourceAsStream(java.lang.String);
+  public void addMixinConfigContent(java.lang.String, byte[]);
+  public void addMixinContainer(org.spongepowered.asm.launch.platform.container.IContainerHandle);
+  public void clearMixinContainers();
+}
+Compiled from "FMLMixinServiceBootstrap.java"
+public class net.neoforged.fml.loading.mixin.FMLMixinServiceBootstrap implements org.spongepowered.asm.service.IMixinServiceBootstrap {
+  public net.neoforged.fml.loading.mixin.FMLMixinServiceBootstrap();
+  public java.lang.String getName();
+  public java.lang.String getServiceClassName();
+  public void bootstrap();
+}
+Compiled from "FMLModFileContainerHandle.java"
+final class net.neoforged.fml.loading.mixin.FMLModFileContainerHandle implements org.spongepowered.asm.launch.platform.container.IContainerHandle {
+  public net.neoforged.fml.loading.mixin.FMLModFileContainerHandle(net.neoforged.neoforgespi.locating.IModFile);
+  public java.lang.String getAttribute(java.lang.String);
+  public java.util.Collection<org.spongepowered.asm.launch.platform.container.IContainerHandle> getNestedContainers();
+  public java.lang.String getId();
+  public java.lang.String getDescription();
+  public java.lang.String toString();
+}
+Compiled from "MixinFacade.java"
+final class net.neoforged.fml.loading.mixin.MixinFacade$1AnnotationInfo extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.neoforged.neoforgespi.locating.IModFile modFile();
+  public int behaviorVersion();
+}
+Compiled from "MixinFacade.java"
+public final class net.neoforged.fml.loading.mixin.MixinFacade implements java.lang.AutoCloseable {
+  public static final int DEFAULT_BEHAVIOUR_VERSION;
+  public static final org.apache.maven.artifact.versioning.ArtifactVersion HIGHEST_MIXIN_VERSION;
+  public static final org.apache.maven.artifact.versioning.ArtifactVersion LOWEST_MIXIN_VERSION;
+  public net.neoforged.fml.loading.mixin.MixinFacade();
+  public net.neoforged.fml.loading.mixin.FMLMixinClassProcessor getClassProcessor();
+  public void finishInitialization(net.neoforged.fml.loading.LoadingModList, net.neoforged.fml.classloading.transformation.TransformingClassLoader);
+  public void close();
+}
+Compiled from "package-info.java"
+interface net.neoforged.fml.loading.mixin.package-info {
+}
+Compiled from "IncompatibleModReason.java"
+public final class net.neoforged.fml.loading.moddiscovery.IncompatibleModReason extends java.lang.Enum<net.neoforged.fml.loading.moddiscovery.IncompatibleModReason> {
+  public static final net.neoforged.fml.loading.moddiscovery.IncompatibleModReason OLDFORGE;
+  public static final net.neoforged.fml.loading.moddiscovery.IncompatibleModReason MINECRAFT_FORGE;
+  public static final net.neoforged.fml.loading.moddiscovery.IncompatibleModReason FABRIC;
+  public static final net.neoforged.fml.loading.moddiscovery.IncompatibleModReason QUILT;
+  public static final net.neoforged.fml.loading.moddiscovery.IncompatibleModReason LITELOADER;
+  public static final net.neoforged.fml.loading.moddiscovery.IncompatibleModReason OPTIFINE;
+  public static final net.neoforged.fml.loading.moddiscovery.IncompatibleModReason BUKKIT;
+  public static net.neoforged.fml.loading.moddiscovery.IncompatibleModReason[] values();
+  public static net.neoforged.fml.loading.moddiscovery.IncompatibleModReason valueOf(java.lang.String);
+  public java.lang.String getReason();
+  public static java.util.Optional<net.neoforged.fml.loading.moddiscovery.IncompatibleModReason> detect(net.neoforged.fml.jarcontents.JarContents);
+}
+Compiled from "ModDiscoverer.java"
+class net.neoforged.fml.loading.moddiscovery.ModDiscoverer$1 {
+}
+Compiled from "ModDiscoverer.java"
+class net.neoforged.fml.loading.moddiscovery.ModDiscoverer$DiscoveryPipeline implements net.neoforged.neoforgespi.locating.IDiscoveryPipeline {
+  public net.neoforged.fml.loading.moddiscovery.ModDiscoverer$DiscoveryPipeline(net.neoforged.neoforgespi.locating.ModFileDiscoveryAttributes, java.util.List<net.neoforged.fml.loading.moddiscovery.ModFile>, java.util.List<net.neoforged.fml.ModLoadingIssue>);
+  public java.util.Optional<net.neoforged.neoforgespi.locating.IModFile> addPath(java.util.List<java.nio.file.Path>, net.neoforged.neoforgespi.locating.ModFileDiscoveryAttributes, net.neoforged.neoforgespi.locating.IncompatibleFileReporting);
+  public net.neoforged.neoforgespi.locating.IModFile readModFile(net.neoforged.fml.jarcontents.JarContents, net.neoforged.neoforgespi.locating.ModFileDiscoveryAttributes);
+  public java.util.Optional<net.neoforged.neoforgespi.locating.IModFile> addJarContent(net.neoforged.fml.jarcontents.JarContents, net.neoforged.neoforgespi.locating.ModFileDiscoveryAttributes, net.neoforged.neoforgespi.locating.IncompatibleFileReporting);
+  public boolean addModFile(net.neoforged.neoforgespi.locating.IModFile);
+  public void addIssue(net.neoforged.fml.ModLoadingIssue);
+}
+Compiled from "ModDiscoverer.java"
+public final class net.neoforged.fml.loading.moddiscovery.ModDiscoverer$Result extends java.lang.Record {
+  public net.neoforged.fml.loading.moddiscovery.ModDiscoverer$Result(java.util.List<net.neoforged.fml.loading.moddiscovery.ModFile>, java.util.List<net.neoforged.fml.ModLoadingIssue>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.List<net.neoforged.fml.loading.moddiscovery.ModFile> modFiles();
+  public java.util.List<net.neoforged.fml.ModLoadingIssue> discoveryIssues();
+}
+Compiled from "ModDiscoverer.java"
+public class net.neoforged.fml.loading.moddiscovery.ModDiscoverer {
+  public net.neoforged.fml.loading.moddiscovery.ModDiscoverer(net.neoforged.neoforgespi.ILaunchContext);
+  public net.neoforged.fml.loading.moddiscovery.ModDiscoverer(net.neoforged.neoforgespi.ILaunchContext, java.util.Collection<net.neoforged.neoforgespi.locating.IModFileCandidateLocator>);
+  public net.neoforged.fml.loading.moddiscovery.ModDiscoverer$Result discoverMods(java.util.List<net.neoforged.fml.loading.moddiscovery.ModFile>);
+}
+Compiled from "ModFile.java"
+public class net.neoforged.fml.loading.moddiscovery.ModFile implements net.neoforged.neoforgespi.locating.IModFile {
+  public static final java.util.jar.Attributes$Name TYPE;
+  public net.neoforged.fml.loading.moddiscovery.ModFile(net.neoforged.fml.jarcontents.JarContents, net.neoforged.neoforgespi.locating.ModFileInfoParser, net.neoforged.neoforgespi.locating.ModFileDiscoveryAttributes);
+  public net.neoforged.fml.loading.moddiscovery.ModFile(net.neoforged.fml.jarcontents.JarContents, net.neoforged.fml.jarmoduleinfo.JarModuleInfo, net.neoforged.neoforgespi.locating.ModFileInfoParser, net.neoforged.neoforgespi.locating.ModFileDiscoveryAttributes);
+  public net.neoforged.fml.loading.moddiscovery.ModFile(net.neoforged.fml.jarcontents.JarContents, net.neoforged.fml.jarmoduleinfo.JarModuleInfo, net.neoforged.neoforgespi.locating.ModFileInfoParser, net.neoforged.neoforgespi.locating.IModFile$Type, net.neoforged.neoforgespi.locating.ModFileDiscoveryAttributes);
+  public java.lang.String getId();
+  public net.neoforged.fml.jarcontents.JarContents getContents();
+  public java.util.function.Supplier<java.util.Map<java.lang.String, java.lang.Object>> getSubstitutionMap();
+  public java.util.List<net.neoforged.neoforgespi.language.IModLanguageLoader> getLoaders();
+  public net.neoforged.neoforgespi.locating.IModFile$Type getType();
+  public java.nio.file.Path getFilePath();
+  public java.util.List<net.neoforged.neoforgespi.language.IModInfo> getModInfos();
+  public java.util.List<java.lang.String> getAccessTransformers();
+  public java.util.List<net.neoforged.fml.loading.moddiscovery.ModFileParser$MixinConfig> getMixinConfigs();
+  public java.util.concurrent.CompletionStage<net.neoforged.neoforgespi.language.ModFileScanData> startScan(java.util.concurrent.Executor);
+  public net.neoforged.neoforgespi.language.ModFileScanData getScanResult();
+  public void setFileProperties(java.util.Map<java.lang.String, java.lang.Object>);
+  public void identifyLanguage();
+  public java.lang.String toString();
+  public java.lang.String getFileName();
+  public net.neoforged.neoforgespi.locating.ModFileDiscoveryAttributes getDiscoveryAttributes();
+  public void setDiscoveryAttributes(net.neoforged.neoforgespi.locating.ModFileDiscoveryAttributes);
+  public net.neoforged.neoforgespi.language.IModFileInfo getModFileInfo();
+  public org.apache.maven.artifact.versioning.ArtifactVersion getJarVersion();
+  public java.lang.module.ModuleDescriptor getModuleDescriptor();
+  public void close();
+}
+Compiled from "ModFileInfo.java"
+public class net.neoforged.fml.loading.moddiscovery.ModFileInfo implements net.neoforged.neoforgespi.language.IModFileInfo,net.neoforged.neoforgespi.language.IConfigurable {
+  public net.neoforged.fml.loading.moddiscovery.ModFileInfo(net.neoforged.fml.loading.moddiscovery.ModFile, net.neoforged.neoforgespi.language.IConfigurable, java.util.function.Consumer<net.neoforged.neoforgespi.language.IModFileInfo>);
+  public net.neoforged.fml.loading.moddiscovery.ModFileInfo(net.neoforged.fml.loading.moddiscovery.ModFile, net.neoforged.neoforgespi.language.IConfigurable, java.util.function.Consumer<net.neoforged.neoforgespi.language.IModFileInfo>, java.util.List<net.neoforged.neoforgespi.language.IModFileInfo$LanguageSpec>);
+  public java.util.List<net.neoforged.neoforgespi.language.IModInfo> getMods();
+  public net.neoforged.fml.loading.moddiscovery.ModFile getFile();
+  public java.util.List<net.neoforged.neoforgespi.language.IModFileInfo$LanguageSpec> requiredLanguageLoaders();
+  public java.util.Map<java.lang.String, java.lang.Object> getFileProperties();
+  public boolean showAsResourcePack();
+  public boolean showAsDataPack();
+  public <T> java.util.Optional<T> getConfigElement(java.lang.String...);
+  public java.util.List<? extends net.neoforged.neoforgespi.language.IConfigurable> getConfigList(java.lang.String...);
+  public java.lang.String getLicense();
+  public net.neoforged.neoforgespi.language.IConfigurable getConfig();
+  public java.net.URL getIssueURL();
+  public java.util.Optional<java.lang.String> getCodeSigningFingerprint();
+  public java.lang.String versionString();
+  public java.util.List<java.lang.String> usesServices();
+  public java.lang.String toString();
+  public net.neoforged.neoforgespi.locating.IModFile getFile();
+}
+Compiled from "ModFileParser.java"
+public final class net.neoforged.fml.loading.moddiscovery.ModFileParser$MixinConfig extends java.lang.Record {
+  public net.neoforged.fml.loading.moddiscovery.ModFileParser$MixinConfig(java.lang.String, java.util.List<java.lang.String>, org.apache.maven.artifact.versioning.ArtifactVersion);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String config();
+  public java.util.List<java.lang.String> requiredMods();
+  public org.apache.maven.artifact.versioning.ArtifactVersion behaviorVersion();
+}
+Compiled from "ModFileParser.java"
+public class net.neoforged.fml.loading.moddiscovery.ModFileParser {
+  public net.neoforged.fml.loading.moddiscovery.ModFileParser();
+  public static net.neoforged.neoforgespi.language.IModFileInfo readModList(net.neoforged.fml.loading.moddiscovery.ModFile, net.neoforged.neoforgespi.locating.ModFileInfoParser);
+  public static net.neoforged.neoforgespi.language.IModFileInfo modsTomlParser(net.neoforged.neoforgespi.locating.IModFile);
+  protected static java.util.List<net.neoforged.fml.loading.moddiscovery.ModFileParser$MixinConfig> getMixinConfigs(net.neoforged.neoforgespi.language.IModFileInfo);
+  protected static java.util.Optional<java.util.List<java.lang.String>> getAccessTransformers(net.neoforged.neoforgespi.language.IModFileInfo);
+}
+Compiled from "ModInfo.java"
+class net.neoforged.fml.loading.moddiscovery.ModInfo$ModVersion implements net.neoforged.neoforgespi.language.IModInfo$ModVersion {
+  public net.neoforged.fml.loading.moddiscovery.ModInfo$ModVersion(net.neoforged.fml.loading.moddiscovery.ModInfo, net.neoforged.neoforgespi.language.IModInfo, net.neoforged.neoforgespi.language.IConfigurable);
+  public java.lang.String getModId();
+  public org.apache.maven.artifact.versioning.VersionRange getVersionRange();
+  public net.neoforged.neoforgespi.language.IModInfo$DependencyType getType();
+  public java.util.Optional<java.lang.String> getReason();
+  public net.neoforged.neoforgespi.language.IModInfo$Ordering getOrdering();
+  public net.neoforged.neoforgespi.language.IModInfo$DependencySide getSide();
+  public void setOwner(net.neoforged.neoforgespi.language.IModInfo);
+  public net.neoforged.neoforgespi.language.IModInfo getOwner();
+  public java.util.Optional<java.net.URL> getReferralURL();
+}
+Compiled from "ModInfo.java"
+public class net.neoforged.fml.loading.moddiscovery.ModInfo implements net.neoforged.neoforgespi.language.IModInfo,net.neoforged.neoforgespi.language.IConfigurable {
+  public net.neoforged.fml.loading.moddiscovery.ModInfo(net.neoforged.fml.loading.moddiscovery.ModFileInfo, net.neoforged.neoforgespi.language.IConfigurable);
+  public net.neoforged.neoforgespi.language.IModLanguageLoader getLoader();
+  public net.neoforged.fml.loading.moddiscovery.ModFileInfo getOwningFile();
+  public java.lang.String getModId();
+  public java.lang.String getDisplayName();
+  public java.lang.String getDescription();
+  public org.apache.maven.artifact.versioning.ArtifactVersion getVersion();
+  public java.util.List<? extends net.neoforged.neoforgespi.language.IModInfo$ModVersion> getDependencies();
+  public java.lang.String getNamespace();
+  public java.util.Map<java.lang.String, java.lang.Object> getModProperties();
+  public java.util.Optional<java.net.URL> getUpdateURL();
+  public java.util.Optional<java.lang.String> getLogoFile();
+  public boolean getLogoBlur();
+  public net.neoforged.neoforgespi.language.IConfigurable getConfig();
+  public java.util.List<? extends net.neoforged.neoforgespi.locating.ForgeFeature$Bound> getForgeFeatures();
+  public <T> java.util.Optional<T> getConfigElement(java.lang.String...);
+  public java.util.List<? extends net.neoforged.neoforgespi.language.IConfigurable> getConfigList(java.lang.String...);
+  public java.util.Optional<java.net.URL> getModURL();
+  public java.lang.String toString();
+  public net.neoforged.neoforgespi.language.IModFileInfo getOwningFile();
+}
+Compiled from "ModJarMetadata.java"
+public final class net.neoforged.fml.loading.moddiscovery.ModJarMetadata implements net.neoforged.fml.jarmoduleinfo.JarModuleInfo {
+  public net.neoforged.fml.loading.moddiscovery.ModJarMetadata();
+  public void setModFile(net.neoforged.neoforgespi.locating.IModFile);
+  public java.lang.String name();
+  public java.lang.String version();
+  public java.lang.module.ModuleDescriptor createDescriptor(net.neoforged.fml.jarcontents.JarContents);
+  public net.neoforged.neoforgespi.locating.IModFile modFile();
+  public boolean equals(java.lang.Object);
+  public int hashCode();
+  public java.lang.String toString();
+}
+Compiled from "NightConfigWrapper.java"
+public class net.neoforged.fml.loading.moddiscovery.NightConfigWrapper implements net.neoforged.neoforgespi.language.IConfigurable {
+  public net.neoforged.fml.loading.moddiscovery.NightConfigWrapper(com.electronwill.nightconfig.core.UnmodifiableConfig);
+  public net.neoforged.fml.loading.moddiscovery.NightConfigWrapper setFile(net.neoforged.neoforgespi.language.IModFileInfo);
+  public <T> java.util.Optional<T> getConfigElement(java.lang.String...);
+  public java.util.List<? extends net.neoforged.neoforgespi.language.IConfigurable> getConfigList(java.lang.String...);
+}
+Compiled from "GameLocator.java"
+class net.neoforged.fml.loading.moddiscovery.locators.GameLocator$1 {
+}
+Compiled from "GameLocator.java"
+public class net.neoforged.fml.loading.moddiscovery.locators.GameLocator implements net.neoforged.neoforgespi.locating.IModFileCandidateLocator {
+  public static final java.lang.String LIBRARIES_DIRECTORY_PROPERTY;
+  public static final java.lang.String[] NEOFORGE_SPECIFIC_PATH_PREFIXES;
+  public net.neoforged.fml.loading.moddiscovery.locators.GameLocator();
+  public void findCandidates(net.neoforged.neoforgespi.ILaunchContext, net.neoforged.neoforgespi.locating.IDiscoveryPipeline);
+  public int getPriority();
+  public java.lang.String toString();
+}
+Compiled from "InDevFolderLocator.java"
+final class net.neoforged.fml.loading.moddiscovery.locators.InDevFolderLocator$VirtualJarManifestEntry extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String name();
+  public java.util.List<java.io.File> files();
+}
+Compiled from "InDevFolderLocator.java"
+public class net.neoforged.fml.loading.moddiscovery.locators.InDevFolderLocator implements net.neoforged.neoforgespi.locating.IModFileCandidateLocator {
+  public net.neoforged.fml.loading.moddiscovery.locators.InDevFolderLocator();
+  public void findCandidates(net.neoforged.neoforgespi.ILaunchContext, net.neoforged.neoforgespi.locating.IDiscoveryPipeline);
+  public int getPriority();
+  public java.lang.String toString();
+}
+Compiled from "InDevJarLocator.java"
+public class net.neoforged.fml.loading.moddiscovery.locators.InDevJarLocator implements net.neoforged.neoforgespi.locating.IModFileCandidateLocator {
+  public net.neoforged.fml.loading.moddiscovery.locators.InDevJarLocator();
+  public void findCandidates(net.neoforged.neoforgespi.ILaunchContext, net.neoforged.neoforgespi.locating.IDiscoveryPipeline);
+  public int getPriority();
+  public java.lang.String toString();
+}
+Compiled from "JarInJarDependencyLocator.java"
+final class net.neoforged.fml.loading.moddiscovery.locators.JarInJarDependencyLocator$EmbeddedJarKey extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.neoforged.neoforgespi.locating.IModFile modFile();
+  public java.lang.String relativePath();
+}
+Compiled from "JarInJarDependencyLocator.java"
+final class net.neoforged.fml.loading.moddiscovery.locators.JarInJarDependencyLocator$ModWithVersionRange extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.neoforged.neoforgespi.language.IModInfo modInfo();
+  public org.apache.maven.artifact.versioning.VersionRange versionRange();
+  public org.apache.maven.artifact.versioning.ArtifactVersion artifactVersion();
+}
+Compiled from "JarInJarDependencyLocator.java"
+public class net.neoforged.fml.loading.moddiscovery.locators.JarInJarDependencyLocator implements net.neoforged.neoforgespi.locating.IDependencyLocator {
+  public net.neoforged.fml.loading.moddiscovery.locators.JarInJarDependencyLocator();
+  public void scanMods(java.util.List<net.neoforged.neoforgespi.locating.IModFile>, net.neoforged.neoforgespi.locating.IDiscoveryPipeline);
+  public java.lang.String toString();
+}
+Compiled from "MinecraftModInfo.java"
+final class net.neoforged.fml.loading.moddiscovery.locators.MinecraftModInfo {
+  public net.neoforged.fml.loading.moddiscovery.locators.MinecraftModInfo(java.lang.String);
+  public net.neoforged.neoforgespi.language.IModFileInfo buildMinecraftModInfo(net.neoforged.neoforgespi.locating.IModFile);
+}
+Compiled from "ModsFolderLocator.java"
+public class net.neoforged.fml.loading.moddiscovery.locators.ModsFolderLocator implements net.neoforged.neoforgespi.locating.IModFileCandidateLocator {
+  public net.neoforged.fml.loading.moddiscovery.locators.ModsFolderLocator();
+  public net.neoforged.fml.loading.moddiscovery.locators.ModsFolderLocator(java.nio.file.Path, java.lang.String);
+  public void findCandidates(net.neoforged.neoforgespi.ILaunchContext, net.neoforged.neoforgespi.locating.IDiscoveryPipeline);
+  public java.lang.String toString();
+}
+Compiled from "NeoForgeDevDistCleaner.java"
+class net.neoforged.fml.loading.moddiscovery.locators.NeoForgeDevDistCleaner$1 {
+}
+Compiled from "NeoForgeDevDistCleaner.java"
+public class net.neoforged.fml.loading.moddiscovery.locators.NeoForgeDevDistCleaner implements net.neoforged.neoforgespi.transformation.ClassProcessor {
+  public net.neoforged.fml.loading.moddiscovery.locators.NeoForgeDevDistCleaner(net.neoforged.fml.jarcontents.JarContents, net.neoforged.api.distmarker.Dist);
+  public static boolean supportsDistCleaning(net.neoforged.fml.jarcontents.JarContents);
+  public net.neoforged.neoforgespi.transformation.ProcessorName name();
+  public java.util.Set<net.neoforged.neoforgespi.transformation.ProcessorName> runsBefore();
+  public java.util.Set<net.neoforged.neoforgespi.transformation.ProcessorName> runsAfter();
+  public net.neoforged.neoforgespi.transformation.ClassProcessor$ComputeFlags processClass(net.neoforged.neoforgespi.transformation.ClassProcessor$TransformationContext);
+  public boolean handlesClass(net.neoforged.neoforgespi.transformation.ClassProcessor$SelectionContext);
+  public static java.util.stream.Stream<java.lang.String> getMaskedFiles(net.neoforged.fml.jarcontents.JarContents, net.neoforged.api.distmarker.Dist);
+}
+Compiled from "PathBasedLocator.java"
+public final class net.neoforged.fml.loading.moddiscovery.locators.PathBasedLocator extends java.lang.Record implements net.neoforged.neoforgespi.locating.IModFileCandidateLocator {
+  public net.neoforged.fml.loading.moddiscovery.locators.PathBasedLocator(java.lang.String, java.nio.file.Path...);
+  public net.neoforged.fml.loading.moddiscovery.locators.PathBasedLocator(java.lang.String, java.util.List<java.nio.file.Path>);
+  public void findCandidates(net.neoforged.neoforgespi.ILaunchContext, net.neoforged.neoforgespi.locating.IDiscoveryPipeline);
+  public int getPriority();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String name();
+  public java.util.List<java.nio.file.Path> paths();
+}
+Compiled from "RequiredSystemFiles.java"
+final class net.neoforged.fml.loading.moddiscovery.locators.RequiredSystemFiles implements java.lang.AutoCloseable {
+  public boolean areNeoForgeAndMinecraftSeparate();
+  public void checkForMissingMinecraftFiles(boolean);
+  public static net.neoforged.fml.loading.moddiscovery.locators.RequiredSystemFiles find(net.neoforged.neoforgespi.ILaunchContext, java.lang.ClassLoader);
+  public java.util.List<net.neoforged.fml.jarcontents.JarContents> getAll();
+  public java.util.List<net.neoforged.fml.jarcontents.JarContents> getClassesRoots();
+  public boolean isEmpty();
+  public net.neoforged.fml.jarcontents.JarContents getCommonClasses();
+  public net.neoforged.fml.jarcontents.JarContents getCommonResources();
+  public net.neoforged.fml.jarcontents.JarContents getClientClasses();
+  public net.neoforged.fml.jarcontents.JarContents getClientResources();
+  public net.neoforged.fml.jarcontents.JarContents getNeoForgeCommonClasses();
+  public net.neoforged.fml.jarcontents.JarContents getNeoForgeClientClasses();
+  public net.neoforged.fml.jarcontents.JarContents getNeoForgeResources();
+  public void close();
+  public java.util.List<net.neoforged.fml.jarcontents.JarContents> getMinecraftJarComponents();
+  public java.util.List<net.neoforged.fml.jarcontents.JarContents> getNeoForgeJarComponents();
+}
+Compiled from "JarModsDotTomlModFileReader.java"
+class net.neoforged.fml.loading.moddiscovery.readers.JarModsDotTomlModFileReader$1 implements net.neoforged.neoforgespi.language.IConfigurable {
+  public <T> java.util.Optional<T> getConfigElement(java.lang.String...);
+  public java.util.List<? extends net.neoforged.neoforgespi.language.IConfigurable> getConfigList(java.lang.String...);
+}
+Compiled from "JarModsDotTomlModFileReader.java"
+final class net.neoforged.fml.loading.moddiscovery.readers.JarModsDotTomlModFileReader$DefaultModFileInfo extends java.lang.Record implements net.neoforged.neoforgespi.language.IModFileInfo,net.neoforged.neoforgespi.language.IConfigurable {
+  public <T> java.util.Optional<T> getConfigElement(java.lang.String...);
+  public java.util.List<? extends net.neoforged.neoforgespi.language.IConfigurable> getConfigList(java.lang.String...);
+  public java.util.List<net.neoforged.neoforgespi.language.IModInfo> getMods();
+  public java.util.List<net.neoforged.neoforgespi.language.IModFileInfo$LanguageSpec> requiredLanguageLoaders();
+  public boolean showAsResourcePack();
+  public boolean showAsDataPack();
+  public java.util.Map<java.lang.String, java.lang.Object> getFileProperties();
+  public java.lang.String getLicense();
+  public net.neoforged.neoforgespi.locating.IModFile getFile();
+  public net.neoforged.neoforgespi.language.IConfigurable getConfig();
+  public java.lang.String versionString();
+  public java.util.List<java.lang.String> usesServices();
+  public java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.neoforged.neoforgespi.locating.IModFile mod();
+  public java.lang.String license();
+  public net.neoforged.neoforgespi.language.IConfigurable configurable();
+}
+Compiled from "JarModsDotTomlModFileReader.java"
+public class net.neoforged.fml.loading.moddiscovery.readers.JarModsDotTomlModFileReader implements net.neoforged.neoforgespi.locating.IModFileReader {
+  public static final java.lang.String MODS_TOML;
+  public static final java.lang.String MANIFEST;
+  public net.neoforged.fml.loading.moddiscovery.readers.JarModsDotTomlModFileReader();
+  public static net.neoforged.neoforgespi.locating.IModFile createModFile(net.neoforged.fml.jarcontents.JarContents, net.neoforged.neoforgespi.locating.ModFileDiscoveryAttributes);
+  public static net.neoforged.neoforgespi.language.IModFileInfo manifestParser(net.neoforged.neoforgespi.locating.IModFile);
+  public net.neoforged.neoforgespi.locating.IModFile read(net.neoforged.fml.jarcontents.JarContents, net.neoforged.neoforgespi.locating.ModFileDiscoveryAttributes);
+  public java.lang.String toString();
+}
+Compiled from "NestedLibraryModReader.java"
+public class net.neoforged.fml.loading.moddiscovery.readers.NestedLibraryModReader implements net.neoforged.neoforgespi.locating.IModFileReader {
+  public net.neoforged.fml.loading.moddiscovery.readers.NestedLibraryModReader();
+  public net.neoforged.neoforgespi.locating.IModFile read(net.neoforged.fml.jarcontents.JarContents, net.neoforged.neoforgespi.locating.ModFileDiscoveryAttributes);
+  public java.lang.String toString();
+  public int getPriority();
+}
+Compiled from "BackgroundScanHandler.java"
+final class net.neoforged.fml.loading.modscan.BackgroundScanHandler$ScanStatus extends java.lang.Enum<net.neoforged.fml.loading.modscan.BackgroundScanHandler$ScanStatus> {
+  public static final net.neoforged.fml.loading.modscan.BackgroundScanHandler$ScanStatus NOT_STARTED;
+  public static final net.neoforged.fml.loading.modscan.BackgroundScanHandler$ScanStatus RUNNING;
+  public static final net.neoforged.fml.loading.modscan.BackgroundScanHandler$ScanStatus COMPLETE;
+  public static final net.neoforged.fml.loading.modscan.BackgroundScanHandler$ScanStatus TIMED_OUT;
+  public static final net.neoforged.fml.loading.modscan.BackgroundScanHandler$ScanStatus INTERRUPTED;
+  public static final net.neoforged.fml.loading.modscan.BackgroundScanHandler$ScanStatus ERRORED;
+  public static net.neoforged.fml.loading.modscan.BackgroundScanHandler$ScanStatus[] values();
+  public static net.neoforged.fml.loading.modscan.BackgroundScanHandler$ScanStatus valueOf(java.lang.String);
+}
+Compiled from "BackgroundScanHandler.java"
+public class net.neoforged.fml.loading.modscan.BackgroundScanHandler {
+  public net.neoforged.fml.loading.modscan.BackgroundScanHandler(java.util.Collection<net.neoforged.neoforgespi.locating.IModFile>);
+  public void waitForScanToComplete(java.lang.Runnable);
+}
+Compiled from "ModAnnotation.java"
+public final class net.neoforged.fml.loading.modscan.ModAnnotation$EnumHolder extends java.lang.Record {
+  public net.neoforged.fml.loading.modscan.ModAnnotation$EnumHolder(java.lang.String, java.lang.String);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String desc();
+  public java.lang.String value();
+}
+Compiled from "ModAnnotation.java"
+public class net.neoforged.fml.loading.modscan.ModAnnotation {
+  public static net.neoforged.neoforgespi.language.ModFileScanData$AnnotationData fromModAnnotation(org.objectweb.asm.Type, net.neoforged.fml.loading.modscan.ModAnnotation);
+  public net.neoforged.fml.loading.modscan.ModAnnotation(java.lang.annotation.ElementType, org.objectweb.asm.Type, java.lang.String);
+  public net.neoforged.fml.loading.modscan.ModAnnotation(org.objectweb.asm.Type, net.neoforged.fml.loading.modscan.ModAnnotation);
+  public java.lang.String toString();
+  public java.lang.annotation.ElementType getType();
+  public org.objectweb.asm.Type getASMType();
+  public java.lang.String getMember();
+  public java.util.Map<java.lang.String, java.lang.Object> getValues();
+  public void addArray(java.lang.String);
+  public void addProperty(java.lang.String, java.lang.Object);
+  public void addEnumProperty(java.lang.String, java.lang.String, java.lang.String);
+  public void endArray();
+  public net.neoforged.fml.loading.modscan.ModAnnotation addChildAnnotation(java.lang.String, java.lang.String);
+}
+Compiled from "ModAnnotationVisitor.java"
+public class net.neoforged.fml.loading.modscan.ModAnnotationVisitor extends org.objectweb.asm.AnnotationVisitor {
+  public net.neoforged.fml.loading.modscan.ModAnnotationVisitor(java.util.LinkedList<net.neoforged.fml.loading.modscan.ModAnnotation>, net.neoforged.fml.loading.modscan.ModAnnotation);
+  public net.neoforged.fml.loading.modscan.ModAnnotationVisitor(java.util.LinkedList<net.neoforged.fml.loading.modscan.ModAnnotation>, net.neoforged.fml.loading.modscan.ModAnnotation, java.lang.String);
+  public net.neoforged.fml.loading.modscan.ModAnnotationVisitor(java.util.LinkedList<net.neoforged.fml.loading.modscan.ModAnnotation>, net.neoforged.fml.loading.modscan.ModAnnotation, boolean);
+  public void visit(java.lang.String, java.lang.Object);
+  public void visitEnum(java.lang.String, java.lang.String, java.lang.String);
+  public org.objectweb.asm.AnnotationVisitor visitArray(java.lang.String);
+  public org.objectweb.asm.AnnotationVisitor visitAnnotation(java.lang.String, java.lang.String);
+  public void visitEnd();
+}
+Compiled from "ModClassVisitor.java"
+public class net.neoforged.fml.loading.modscan.ModClassVisitor extends org.objectweb.asm.ClassVisitor {
+  public net.neoforged.fml.loading.modscan.ModClassVisitor();
+  public void visit(int, int, java.lang.String, java.lang.String, java.lang.String, java.lang.String[]);
+  public org.objectweb.asm.AnnotationVisitor visitAnnotation(java.lang.String, boolean);
+  public org.objectweb.asm.FieldVisitor visitField(int, java.lang.String, java.lang.String, java.lang.String, java.lang.Object);
+  public org.objectweb.asm.MethodVisitor visitMethod(int, java.lang.String, java.lang.String, java.lang.String, java.lang.String[]);
+  public void buildData(java.util.Set<net.neoforged.neoforgespi.language.ModFileScanData$ClassData>, java.util.Set<net.neoforged.neoforgespi.language.ModFileScanData$AnnotationData>);
+}
+Compiled from "ModFieldVisitor.java"
+public class net.neoforged.fml.loading.modscan.ModFieldVisitor extends org.objectweb.asm.FieldVisitor {
+  public net.neoforged.fml.loading.modscan.ModFieldVisitor(java.lang.String, java.util.LinkedList<net.neoforged.fml.loading.modscan.ModAnnotation>);
+  public org.objectweb.asm.AnnotationVisitor visitAnnotation(java.lang.String, boolean);
+}
+Compiled from "ModMethodVisitor.java"
+public class net.neoforged.fml.loading.modscan.ModMethodVisitor extends org.objectweb.asm.MethodVisitor {
+  public net.neoforged.fml.loading.modscan.ModMethodVisitor(java.lang.String, java.lang.String, java.util.LinkedList<net.neoforged.fml.loading.modscan.ModAnnotation>);
+  public org.objectweb.asm.AnnotationVisitor visitAnnotation(java.lang.String, boolean);
+}
+Compiled from "Scanner.java"
+public class net.neoforged.fml.loading.modscan.Scanner {
+  public net.neoforged.fml.loading.modscan.Scanner(net.neoforged.fml.loading.moddiscovery.ModFile);
+  public net.neoforged.neoforgespi.language.ModFileScanData scan();
+}
+Compiled from "package-info.java"
+interface net.neoforged.fml.loading.modscan.package-info {
+}
+Compiled from "Message.java"
+public final class net.neoforged.fml.loading.progress.Message$MessageType extends java.lang.Enum<net.neoforged.fml.loading.progress.Message$MessageType> {
+  public static final net.neoforged.fml.loading.progress.Message$MessageType MC;
+  public static final net.neoforged.fml.loading.progress.Message$MessageType ML;
+  public static final net.neoforged.fml.loading.progress.Message$MessageType LOC;
+  public static final net.neoforged.fml.loading.progress.Message$MessageType MOD;
+  public static net.neoforged.fml.loading.progress.Message$MessageType[] values();
+  public static net.neoforged.fml.loading.progress.Message$MessageType valueOf(java.lang.String);
+  public float[] colour();
+}
+Compiled from "Message.java"
+public class net.neoforged.fml.loading.progress.Message {
+  public net.neoforged.fml.loading.progress.Message(java.lang.String, net.neoforged.fml.loading.progress.Message$MessageType);
+  public java.lang.String getText();
+  public float[] getTypeColour();
+}
+Compiled from "ProgressMeter.java"
+public final class net.neoforged.fml.loading.progress.ProgressMeter {
+  public net.neoforged.fml.loading.progress.ProgressMeter(java.lang.String, int, int, net.neoforged.fml.loading.progress.Message);
+  public java.lang.String name();
+  public int steps();
+  public int current();
+  public net.neoforged.fml.loading.progress.Message label();
+  public void increment();
+  public void complete();
+  public float progress();
+  public void setAbsolute(int);
+  public void label(java.lang.String);
+}
+Compiled from "StartupNotificationManager.java"
+public final class net.neoforged.fml.loading.progress.StartupNotificationManager$AgeMessage extends java.lang.Record {
+  public net.neoforged.fml.loading.progress.StartupNotificationManager$AgeMessage(int, net.neoforged.fml.loading.progress.Message);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int age();
+  public net.neoforged.fml.loading.progress.Message message();
+}
+Compiled from "StartupNotificationManager.java"
+public class net.neoforged.fml.loading.progress.StartupNotificationManager {
+  public net.neoforged.fml.loading.progress.StartupNotificationManager();
+  public static java.util.List<net.neoforged.fml.loading.progress.ProgressMeter> getCurrentProgress();
+  public static net.neoforged.fml.loading.progress.ProgressMeter prependProgressBar(java.lang.String, int);
+  public static net.neoforged.fml.loading.progress.ProgressMeter addProgressBar(java.lang.String, int);
+  public static void popBar(net.neoforged.fml.loading.progress.ProgressMeter);
+  public static java.util.List<net.neoforged.fml.loading.progress.StartupNotificationManager$AgeMessage> getMessages();
+  public static void addModMessage(java.lang.String);
+  public static void modLoaderMessage(java.lang.String);
+  public static java.util.Optional<java.util.function.Consumer<java.lang.String>> modLoaderConsumer();
+  public static java.util.Optional<java.util.function.Consumer<java.lang.String>> locatorConsumer();
+  public static java.util.Optional<java.util.function.Consumer<java.lang.String>> mcLoaderConsumer();
+}
+Compiled from "CyclePresentException.java"
+public final class net.neoforged.fml.loading.toposort.CyclePresentException extends java.lang.IllegalArgumentException {
+  public <T> java.util.Set<java.util.Set<T>> getCycles();
+}
+Compiled from "StronglyConnectedComponentDetector.java"
+public class net.neoforged.fml.loading.toposort.StronglyConnectedComponentDetector<T> {
+  public net.neoforged.fml.loading.toposort.StronglyConnectedComponentDetector(com.google.common.graph.Graph<T>);
+  public java.util.Set<java.util.Set<T>> getComponents();
+}
+Compiled from "TopologicalSort.java"
+public final class net.neoforged.fml.loading.toposort.TopologicalSort {
+  public net.neoforged.fml.loading.toposort.TopologicalSort();
+  public static <T> java.util.List<T> topologicalSort(com.google.common.graph.Graph<T>, java.util.Comparator<? super T>) throws java.lang.IllegalArgumentException;
+}
+Compiled from "ExtraDataTextRenderer.java"
+class net.neoforged.fml.logging.ExtraDataTextRenderer$TransformerContext {
+  public void setClassName(java.lang.String);
+  public java.lang.String getClassName();
+  public void setMethodName(java.lang.String);
+  public java.lang.String getMethodName();
+  public java.lang.String toString();
+}
+Compiled from "ExtraDataTextRenderer.java"
+public class net.neoforged.fml.logging.ExtraDataTextRenderer implements org.apache.logging.log4j.core.pattern.TextRenderer {
+  public void render(java.lang.String, java.lang.StringBuilder, java.lang.String);
+  public void render(java.lang.StringBuilder, java.lang.StringBuilder);
+}
+Compiled from "MLClassLoaderContextSelector.java"
+public class net.neoforged.fml.logging.MLClassLoaderContextSelector extends org.apache.logging.log4j.core.selector.ClassLoaderContextSelector {
+  public net.neoforged.fml.logging.MLClassLoaderContextSelector();
+  protected java.lang.String toContextMapKey(java.lang.ClassLoader);
+}
+Compiled from "TransformingThrowablePatternConverter.java"
+public class net.neoforged.fml.logging.TransformingThrowablePatternConverter extends org.apache.logging.log4j.core.pattern.ThrowablePatternConverter {
+  protected net.neoforged.fml.logging.TransformingThrowablePatternConverter(org.apache.logging.log4j.core.config.Configuration, java.lang.String[]);
+  public void format(org.apache.logging.log4j.core.LogEvent, java.lang.StringBuilder);
+  public static net.neoforged.fml.logging.TransformingThrowablePatternConverter newInstance(org.apache.logging.log4j.core.config.Configuration, java.lang.String[]);
+  public static java.lang.String generateEnhancedStackTrace(java.lang.Throwable);
+}
+Compiled from "package-info.java"
+interface net.neoforged.fml.logging.package-info {
+}
+Compiled from "MinecraftModContainer.java"
+public class net.neoforged.fml.mclanguageprovider.MinecraftModContainer extends net.neoforged.fml.ModContainer {
+  public net.neoforged.fml.mclanguageprovider.MinecraftModContainer(net.neoforged.neoforgespi.language.IModInfo);
+  public net.neoforged.bus.api.IEventBus getEventBus();
+}
+Compiled from "MinecraftModLanguageProvider.java"
+public class net.neoforged.fml.mclanguageprovider.MinecraftModLanguageProvider extends net.neoforged.fml.loading.BuiltInLanguageLoader {
+  public net.neoforged.fml.mclanguageprovider.MinecraftModLanguageProvider();
+  public java.lang.String name();
+  public net.neoforged.fml.ModContainer loadMod(net.neoforged.neoforgespi.language.IModInfo, net.neoforged.neoforgespi.language.ModFileScanData, java.lang.ModuleLayer);
+}
+Compiled from "Client.java"
+public class net.neoforged.fml.startup.Client extends net.neoforged.fml.startup.Entrypoint {
+  public static void main(java.lang.String[]);
+}
+Compiled from "DataClient.java"
+public class net.neoforged.fml.startup.DataClient extends net.neoforged.fml.startup.Entrypoint {
+  public static void main(java.lang.String[]);
+}
+Compiled from "DataServer.java"
+public class net.neoforged.fml.startup.DataServer extends net.neoforged.fml.startup.Entrypoint {
+  public static void main(java.lang.String[]);
+}
+Compiled from "DevAgent.java"
+public final class net.neoforged.fml.startup.DevAgent {
+  public static java.lang.instrument.Instrumentation getInstrumentation();
+  public static void premain(java.lang.String, java.lang.instrument.Instrumentation);
+  public static void agentmain(java.lang.String, java.lang.instrument.Instrumentation);
+}
+Compiled from "Entrypoint.java"
+public final class net.neoforged.fml.startup.Entrypoint$StartupResult extends java.lang.Record implements java.lang.AutoCloseable {
+  protected net.neoforged.fml.startup.Entrypoint$StartupResult(net.neoforged.fml.loading.FMLLoader, net.neoforged.fml.startup.StartupArgs);
+  public void close() throws java.lang.Exception;
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.neoforged.fml.loading.FMLLoader loader();
+  public net.neoforged.fml.startup.StartupArgs startupArgs();
+}
+Compiled from "Entrypoint.java"
+public abstract class net.neoforged.fml.startup.Entrypoint {
+  protected net.neoforged.fml.startup.Entrypoint();
+  protected static net.neoforged.fml.startup.Entrypoint$StartupResult startup(java.lang.String[], boolean, net.neoforged.api.distmarker.Dist, boolean);
+  protected static java.lang.invoke.MethodHandle createMainMethodCallable(net.neoforged.fml.startup.Entrypoint$StartupResult, java.lang.String);
+  protected static java.lang.Thread findThread(java.lang.String);
+}
+Compiled from "FatalErrorReporting.java"
+public final class net.neoforged.fml.startup.FatalErrorReporting {
+  public static void reportFatalError(java.lang.Throwable);
+  public static void reportFatalError(java.lang.Throwable, java.nio.file.Path, java.nio.file.Path, java.nio.file.Path);
+  public static void reportFatalErrorOnConsole(java.lang.Throwable);
+  public static void reportFatalError(java.lang.String);
+}
+Compiled from "FatalStartupException.java"
+public class net.neoforged.fml.startup.FatalStartupException extends java.lang.RuntimeException {
+  public net.neoforged.fml.startup.FatalStartupException(java.lang.String, net.neoforged.fml.startup.StartupArgs);
+  public net.neoforged.fml.startup.FatalStartupException(java.lang.String, net.neoforged.fml.startup.StartupArgs, java.lang.Throwable);
+  public net.neoforged.fml.startup.StartupArgs getStartupArgs();
+}
+Compiled from "GameTestServer.java"
+public class net.neoforged.fml.startup.GameTestServer extends net.neoforged.fml.startup.Entrypoint {
+  public static void main(java.lang.String[]);
+}
+Compiled from "InstrumentationHelper.java"
+public final class net.neoforged.fml.startup.InstrumentationHelper {
+  public static java.lang.instrument.Instrumentation obtainInstrumentation();
+}
+Compiled from "JUnitGameBootstrapper.java"
+public interface net.neoforged.fml.startup.JUnitGameBootstrapper {
+  public abstract void bootstrap(net.neoforged.fml.loading.FMLLoader);
+}
+Compiled from "SelfAttach.java"
+public class net.neoforged.fml.startup.SelfAttach {
+  public net.neoforged.fml.startup.SelfAttach();
+  public static void main(java.lang.String[]) throws java.lang.Exception;
+  public static java.lang.String getClassPathItem();
+}
+Compiled from "Server.java"
+public class net.neoforged.fml.startup.Server extends net.neoforged.fml.startup.Entrypoint {
+  public static void main(java.lang.String[]);
+}
+Compiled from "StartupArgs.java"
+public final class net.neoforged.fml.startup.StartupArgs extends java.lang.Record {
+  public net.neoforged.fml.startup.StartupArgs(java.nio.file.Path, boolean, net.neoforged.api.distmarker.Dist, boolean, java.lang.String[], java.util.Set<java.io.File>, java.util.List<java.io.File>, java.lang.ClassLoader);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.nio.file.Path gameDirectory();
+  public boolean headless();
+  public net.neoforged.api.distmarker.Dist dist();
+  public boolean cleanDist();
+  public java.lang.String[] programArgs();
+  public java.util.Set<java.io.File> claimedFiles();
+  public java.util.List<java.io.File> unclaimedClassPathEntries();
+  public java.lang.ClassLoader parentClassLoader();
+}
+Compiled from "package-info.java"
+interface net.neoforged.fml.startup.package-info {
+}
+Compiled from "ClasspathResourceUtils.java"
+public final class net.neoforged.fml.util.ClasspathResourceUtils {
+  public static java.util.List<java.nio.file.Path> findFileSystemRootsOfFileOnClasspath(java.lang.String);
+  public static java.nio.file.Path findJarPathFor(java.lang.String, java.lang.String, java.net.URL);
+  public static java.nio.file.Path getRootFromResourceUrl(java.lang.String, java.net.URL);
+  public static java.nio.file.Path findFileSystemRootOfFileOnClasspath(java.lang.ClassLoader, java.lang.String);
+  public static java.util.List<java.nio.file.Path> findFileSystemRootsOfFileOnClasspath(java.lang.ClassLoader, java.lang.String);
+  public static java.nio.file.Path findFileSystemRootOfFileOnClasspath(java.lang.String);
+  public static java.util.Set<java.nio.file.Path> getAllClasspathItems(java.lang.ClassLoader);
+}
+Compiled from "ObfuscationReflectionHelper.java"
+public class net.neoforged.fml.util.ObfuscationReflectionHelper$UnableToAccessFieldException extends java.lang.RuntimeException {
+}
+Compiled from "ObfuscationReflectionHelper.java"
+public class net.neoforged.fml.util.ObfuscationReflectionHelper$UnableToFindFieldException extends java.lang.RuntimeException {
+}
+Compiled from "ObfuscationReflectionHelper.java"
+public class net.neoforged.fml.util.ObfuscationReflectionHelper$UnableToFindMethodException extends java.lang.RuntimeException {
+  public net.neoforged.fml.util.ObfuscationReflectionHelper$UnableToFindMethodException(java.lang.Throwable);
+}
+Compiled from "ObfuscationReflectionHelper.java"
+public class net.neoforged.fml.util.ObfuscationReflectionHelper$UnknownConstructorException extends java.lang.RuntimeException {
+  public net.neoforged.fml.util.ObfuscationReflectionHelper$UnknownConstructorException(java.lang.String);
+}
+Compiled from "ObfuscationReflectionHelper.java"
+public class net.neoforged.fml.util.ObfuscationReflectionHelper {
+  public net.neoforged.fml.util.ObfuscationReflectionHelper();
+  public static <T, E> T getPrivateValue(java.lang.Class<? super E>, E, java.lang.String);
+  public static <T, E> void setPrivateValue(java.lang.Class<? super T>, T, E, java.lang.String);
+  public static java.lang.reflect.Method findMethod(java.lang.Class<?>, java.lang.String, java.lang.Class<?>...);
+  public static <T> java.lang.reflect.Constructor<T> findConstructor(java.lang.Class<T>, java.lang.Class<?>...);
+  public static <T> java.lang.reflect.Field findField(java.lang.Class<? super T>, java.lang.String);
+}
+Compiled from "PathPrettyPrinting.java"
+final class net.neoforged.fml.util.PathPrettyPrinting$PathSubstitution extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.nio.file.Path basePath();
+  public java.lang.String prefix();
+  public java.lang.String suffix();
+}
+Compiled from "PathPrettyPrinting.java"
+public final class net.neoforged.fml.util.PathPrettyPrinting {
+  public static void addRoot(java.nio.file.Path);
+  public static void addSubstitution(java.nio.file.Path, java.lang.String, java.lang.String);
+  public static java.lang.String prettyPrint(java.nio.file.Path);
+}
+Compiled from "ServiceLoaderUtil.java"
+public final class net.neoforged.fml.util.ServiceLoaderUtil {
+  public static <T> java.util.List<T> loadServices(net.neoforged.neoforgespi.ILaunchContext, java.lang.Class<T>);
+  public static <T> java.util.List<T> loadServices(net.neoforged.neoforgespi.ILaunchContext, java.lang.Class<T>, java.util.function.Predicate<java.lang.Class<? extends T>>);
+  public static <T> java.util.List<T> loadServices(net.neoforged.neoforgespi.ILaunchContext, java.lang.Class<T>, java.util.Collection<T>);
+  public static <T> java.util.List<T> loadEarlyServices(net.neoforged.neoforgespi.ILaunchContext, java.lang.Class<T>, java.util.Collection<T>);
+  public static <T> java.util.List<T> loadServices(net.neoforged.neoforgespi.ILaunchContext, java.lang.Class<T>, java.util.Collection<T>, java.util.function.Predicate<java.lang.Class<? extends T>>);
+  public static java.lang.String identifySourcePath(java.lang.Object);
+}
+Compiled from "EffectiveSide.java"
+public class net.neoforged.fml.util.thread.EffectiveSide {
+  public net.neoforged.fml.util.thread.EffectiveSide();
+  public static net.neoforged.fml.LogicalSide get();
+}
+Compiled from "SidedThreadGroup.java"
+public final class net.neoforged.fml.util.thread.SidedThreadGroup extends java.lang.ThreadGroup implements java.util.concurrent.ThreadFactory {
+  public net.neoforged.fml.LogicalSide getSide();
+  public java.lang.Thread newThread(java.lang.Runnable);
+}
+Compiled from "SidedThreadGroups.java"
+public final class net.neoforged.fml.util.thread.SidedThreadGroups {
+  public static final net.neoforged.fml.util.thread.SidedThreadGroup CLIENT;
+  public static final net.neoforged.fml.util.thread.SidedThreadGroup SERVER;
+}

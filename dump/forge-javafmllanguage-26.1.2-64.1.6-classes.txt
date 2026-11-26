@@ -1,0 +1,10 @@
+net.minecraftforge.fml.common.Mod$EventBusSubscriber$Bus
+net.minecraftforge.fml.common.Mod$EventBusSubscriber
+net.minecraftforge.fml.common.Mod
+net.minecraftforge.fml.javafmlmod.AutomaticEventSubscriber$EventBusSubscriberLogic$1DodgyLookup
+net.minecraftforge.fml.javafmlmod.AutomaticEventSubscriber$EventBusSubscriberLogic
+net.minecraftforge.fml.javafmlmod.AutomaticEventSubscriber
+net.minecraftforge.fml.javafmlmod.FMLJavaModLanguageProvider$FMLModTarget
+net.minecraftforge.fml.javafmlmod.FMLJavaModLanguageProvider
+net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext
+net.minecraftforge.fml.javafmlmod.FMLModContainer

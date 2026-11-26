@@ -1,0 +1,18 @@
+Compiled from "MinecraftModContainer.java"
+public class net.minecraftforge.fml.mclanguageprovider.MinecraftModContainer extends net.minecraftforge.fml.ModContainer {
+  public net.minecraftforge.fml.mclanguageprovider.MinecraftModContainer(net.minecraftforge.forgespi.language.IModInfo);
+  public boolean matches(java.lang.Object);
+  public java.lang.Object getMod();
+}
+Compiled from "MinecraftModLanguageProvider.java"
+public class net.minecraftforge.fml.mclanguageprovider.MinecraftModLanguageProvider$MinecraftModTarget implements net.minecraftforge.forgespi.language.IModLanguageProvider$IModLanguageLoader {
+  public net.minecraftforge.fml.mclanguageprovider.MinecraftModLanguageProvider$MinecraftModTarget();
+  public <T> T loadMod(net.minecraftforge.forgespi.language.IModInfo, net.minecraftforge.forgespi.language.ModFileScanData, java.lang.ModuleLayer);
+}
+Compiled from "MinecraftModLanguageProvider.java"
+public class net.minecraftforge.fml.mclanguageprovider.MinecraftModLanguageProvider implements net.minecraftforge.forgespi.language.IModLanguageProvider {
+  public net.minecraftforge.fml.mclanguageprovider.MinecraftModLanguageProvider();
+  public java.lang.String name();
+  public java.util.function.Consumer<net.minecraftforge.forgespi.language.ModFileScanData> getFileVisitor();
+  public <R extends net.minecraftforge.forgespi.language.ILifecycleEvent<R>> void consumeLifecycleEvent(java.util.function.Supplier<R>);
+}

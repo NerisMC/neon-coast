@@ -1,0 +1,287 @@
+Compiled from "BusGroup.java"
+public interface net.minecraftforge.eventbus.api.bus.BusGroup {
+  public static final net.minecraftforge.eventbus.api.bus.BusGroup DEFAULT;
+  public static net.minecraftforge.eventbus.api.bus.BusGroup create(java.lang.String);
+  public static net.minecraftforge.eventbus.api.bus.BusGroup create(java.lang.String, java.lang.Class<?>);
+  public abstract java.lang.String name();
+  public abstract void startup();
+  public abstract void shutdown();
+  public abstract void dispose();
+  public abstract void trim();
+  public abstract java.util.Collection<net.minecraftforge.eventbus.api.listener.EventListener> register(java.lang.invoke.MethodHandles$Lookup, java.lang.Class<?>);
+  public abstract java.util.Collection<net.minecraftforge.eventbus.api.listener.EventListener> register(java.lang.invoke.MethodHandles$Lookup, java.lang.Object);
+  public abstract void unregister(java.util.Collection<net.minecraftforge.eventbus.api.listener.EventListener>);
+}
+Compiled from "CancellableEventBus.java"
+public interface net.minecraftforge.eventbus.api.bus.CancellableEventBus<T extends net.minecraftforge.eventbus.internal.Event & net.minecraftforge.eventbus.api.event.characteristic.Cancellable> extends net.minecraftforge.eventbus.api.bus.EventBus<T> {
+  public default net.minecraftforge.eventbus.api.listener.EventListener addListener(boolean, java.util.function.Consumer<T>);
+  public abstract net.minecraftforge.eventbus.api.listener.EventListener addListener(byte, boolean, java.util.function.Consumer<T>);
+  public abstract net.minecraftforge.eventbus.api.listener.EventListener addListener(java.util.function.Predicate<T>);
+  public abstract net.minecraftforge.eventbus.api.listener.EventListener addListener(byte, java.util.function.Predicate<T>);
+  public abstract net.minecraftforge.eventbus.api.listener.EventListener addListener(net.minecraftforge.eventbus.api.listener.ObjBooleanBiConsumer<T>);
+  public static <T extends net.minecraftforge.eventbus.internal.Event & net.minecraftforge.eventbus.api.event.characteristic.Cancellable> net.minecraftforge.eventbus.api.bus.CancellableEventBus<T> create(java.lang.Class<T>);
+  public static <T extends net.minecraftforge.eventbus.internal.Event & net.minecraftforge.eventbus.api.event.characteristic.Cancellable> net.minecraftforge.eventbus.api.bus.CancellableEventBus<T> create(net.minecraftforge.eventbus.api.bus.BusGroup, java.lang.Class<T>);
+}
+Compiled from "EventBus.java"
+public interface net.minecraftforge.eventbus.api.bus.EventBus<T extends net.minecraftforge.eventbus.internal.Event> {
+  public abstract net.minecraftforge.eventbus.api.listener.EventListener addListener(java.util.function.Consumer<T>);
+  public abstract net.minecraftforge.eventbus.api.listener.EventListener addListener(byte, java.util.function.Consumer<T>);
+  public abstract net.minecraftforge.eventbus.api.listener.EventListener addListener(net.minecraftforge.eventbus.api.listener.EventListener);
+  public abstract void removeListener(net.minecraftforge.eventbus.api.listener.EventListener);
+  public abstract boolean post(T);
+  public abstract T fire(T);
+  public abstract boolean hasListeners();
+  public static <E extends net.minecraftforge.eventbus.internal.Event> net.minecraftforge.eventbus.api.bus.EventBus<E> create(java.lang.Class<E>);
+  public static <E extends net.minecraftforge.eventbus.internal.Event> net.minecraftforge.eventbus.api.bus.EventBus<E> create(net.minecraftforge.eventbus.api.bus.BusGroup, java.lang.Class<E>);
+}
+Compiled from "package-info.java"
+interface net.minecraftforge.eventbus.api.bus.package-info {
+}
+Compiled from "InheritableEvent.java"
+public interface net.minecraftforge.eventbus.api.event.InheritableEvent extends net.minecraftforge.eventbus.internal.Event {
+}
+Compiled from "MutableEvent.java"
+public abstract class net.minecraftforge.eventbus.api.event.MutableEvent extends net.minecraftforge.eventbus.internal.MutableEventInternals implements net.minecraftforge.eventbus.internal.Event {
+  public net.minecraftforge.eventbus.api.event.MutableEvent();
+}
+Compiled from "RecordEvent.java"
+public interface net.minecraftforge.eventbus.api.event.RecordEvent extends net.minecraftforge.eventbus.internal.Event {
+}
+Compiled from "package-info.java"
+interface net.minecraftforge.eventbus.api.event.package-info {
+}
+Compiled from "Cancellable.java"
+public interface net.minecraftforge.eventbus.api.event.characteristic.Cancellable extends net.minecraftforge.eventbus.internal.EventCharacteristic {
+}
+Compiled from "MonitorAware.java"
+class net.minecraftforge.eventbus.api.event.characteristic.MonitorAware$1 {
+}
+Compiled from "MonitorAware.java"
+public interface net.minecraftforge.eventbus.api.event.characteristic.MonitorAware extends net.minecraftforge.eventbus.internal.EventCharacteristic {
+  public default boolean isMonitoring();
+}
+Compiled from "SelfDestructing.java"
+public interface net.minecraftforge.eventbus.api.event.characteristic.SelfDestructing extends net.minecraftforge.eventbus.internal.EventCharacteristic {
+}
+Compiled from "SelfPosting.java"
+public interface net.minecraftforge.eventbus.api.event.characteristic.SelfPosting<T extends net.minecraftforge.eventbus.internal.Event> extends net.minecraftforge.eventbus.internal.EventCharacteristic {
+  public abstract net.minecraftforge.eventbus.api.bus.EventBus<T> getDefaultBus();
+  public default boolean post();
+  public default T fire();
+}
+Compiled from "package-info.java"
+interface net.minecraftforge.eventbus.api.event.characteristic.package-info {
+}
+Compiled from "EventListener.java"
+public interface net.minecraftforge.eventbus.api.listener.EventListener {
+  public abstract java.lang.Class<? extends net.minecraftforge.eventbus.internal.Event> eventType();
+  public abstract byte priority();
+  public default boolean alwaysCancelling();
+}
+Compiled from "ObjBooleanBiConsumer.java"
+public interface net.minecraftforge.eventbus.api.listener.ObjBooleanBiConsumer<T> {
+  public abstract void accept(T, boolean);
+}
+Compiled from "Priority.java"
+public final class net.minecraftforge.eventbus.api.listener.Priority {
+  public static final byte HIGHEST;
+  public static final byte HIGH;
+  public static final byte NORMAL;
+  public static final byte LOW;
+  public static final byte LOWEST;
+  public static final byte MONITOR;
+}
+Compiled from "SubscribeEvent.java"
+public interface net.minecraftforge.eventbus.api.listener.SubscribeEvent extends java.lang.annotation.Annotation {
+  public abstract byte priority();
+  public abstract boolean alwaysCancelling();
+}
+Compiled from "package-info.java"
+interface net.minecraftforge.eventbus.api.listener.package-info {
+}
+Compiled from "AbstractEventBusImpl.java"
+public interface net.minecraftforge.eventbus.internal.AbstractEventBusImpl<T extends net.minecraftforge.eventbus.internal.Event, I> extends net.minecraftforge.eventbus.api.bus.EventBus<T> {
+  public abstract java.util.ArrayList<net.minecraftforge.eventbus.api.listener.EventListener> backingList();
+  public abstract java.util.ArrayList<net.minecraftforge.eventbus.api.listener.EventListener> monitorBackingList();
+  public abstract java.util.List<net.minecraftforge.eventbus.internal.AbstractEventBusImpl<?, ?>> children();
+  public abstract java.util.concurrent.atomic.AtomicBoolean shutdownFlag();
+  public abstract java.util.concurrent.atomic.AtomicBoolean alreadyInvalidated();
+  public abstract int eventCharacteristics();
+  public static int computeEventCharacteristics(java.lang.Class<?>);
+  public static java.util.List<net.minecraftforge.eventbus.internal.AbstractEventBusImpl<?, ?>> makeEventChildrenList(java.lang.Class<?>, int);
+  public default net.minecraftforge.eventbus.api.listener.EventListener addListener(net.minecraftforge.eventbus.api.listener.EventListener);
+  public default void removeListener(net.minecraftforge.eventbus.api.listener.EventListener);
+  public abstract I maybeGetInvoker();
+  public abstract void invalidateInvoker();
+  public abstract I buildInvoker();
+  public abstract void setNoOpInvoker();
+  public default I getInvoker();
+  public default void startup();
+  public default void shutdown();
+  public default void dispose();
+  public default void trim();
+}
+Compiled from "BusGroupImpl.java"
+public final class net.minecraftforge.eventbus.internal.BusGroupImpl extends java.lang.Record implements net.minecraftforge.eventbus.api.bus.BusGroup {
+  public net.minecraftforge.eventbus.internal.BusGroupImpl(java.lang.String, java.lang.Class<?>);
+  public net.minecraftforge.eventbus.internal.BusGroupImpl(java.lang.String, java.lang.Class<?>, java.util.concurrent.ConcurrentHashMap<java.lang.Class<? extends net.minecraftforge.eventbus.internal.Event>, net.minecraftforge.eventbus.api.bus.EventBus<?>>);
+  public void startup();
+  public void shutdown();
+  public void dispose();
+  public void trim();
+  public java.util.Collection<net.minecraftforge.eventbus.api.listener.EventListener> register(java.lang.invoke.MethodHandles$Lookup, java.lang.Class<?>);
+  public java.util.Collection<net.minecraftforge.eventbus.api.listener.EventListener> register(java.lang.invoke.MethodHandles$Lookup, java.lang.Object);
+  public void unregister(java.util.Collection<net.minecraftforge.eventbus.api.listener.EventListener>);
+  public <T extends net.minecraftforge.eventbus.internal.Event> net.minecraftforge.eventbus.api.bus.EventBus<T> getOrCreateEventBus(java.lang.Class<T>);
+  public boolean equals(java.lang.Object);
+  public int hashCode();
+  public final java.lang.String toString();
+  public java.lang.String name();
+  public java.lang.Class<?> baseType();
+  public java.util.concurrent.ConcurrentHashMap<java.lang.Class<? extends net.minecraftforge.eventbus.internal.Event>, net.minecraftforge.eventbus.api.bus.EventBus<?>> eventBuses();
+}
+Compiled from "CancellableEventBusImpl.java"
+public final class net.minecraftforge.eventbus.internal.CancellableEventBusImpl<T extends net.minecraftforge.eventbus.internal.Event & net.minecraftforge.eventbus.api.event.characteristic.Cancellable> extends java.lang.Record implements net.minecraftforge.eventbus.api.bus.CancellableEventBus<T>, net.minecraftforge.eventbus.internal.AbstractEventBusImpl<T, java.util.function.Predicate<T>> {
+  public net.minecraftforge.eventbus.internal.CancellableEventBusImpl(java.lang.String, java.lang.Class<T>, java.util.ArrayList<net.minecraftforge.eventbus.api.listener.EventListener>, int);
+  public net.minecraftforge.eventbus.internal.CancellableEventBusImpl(java.lang.String, java.lang.Class<T>, java.lang.invoke.CallSite, java.util.ArrayList<net.minecraftforge.eventbus.api.listener.EventListener>, java.util.ArrayList<net.minecraftforge.eventbus.api.listener.EventListener>, java.util.List<net.minecraftforge.eventbus.internal.AbstractEventBusImpl<?, ?>>, java.util.concurrent.atomic.AtomicBoolean, java.util.concurrent.atomic.AtomicBoolean, int);
+  public net.minecraftforge.eventbus.api.listener.EventListener addListener(java.util.function.Consumer<T>);
+  public net.minecraftforge.eventbus.api.listener.EventListener addListener(byte, java.util.function.Consumer<T>);
+  public net.minecraftforge.eventbus.api.listener.EventListener addListener(byte, boolean, java.util.function.Consumer<T>);
+  public net.minecraftforge.eventbus.api.listener.EventListener addListener(java.util.function.Predicate<T>);
+  public net.minecraftforge.eventbus.api.listener.EventListener addListener(byte, java.util.function.Predicate<T>);
+  public net.minecraftforge.eventbus.api.listener.EventListener addListener(net.minecraftforge.eventbus.api.listener.ObjBooleanBiConsumer<T>);
+  public boolean post(T);
+  public T fire(T);
+  public boolean hasListeners();
+  public java.util.function.Predicate<T> maybeGetInvoker();
+  public void invalidateInvoker();
+  public java.util.function.Predicate<T> buildInvoker();
+  public void setNoOpInvoker();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String busGroupName();
+  public java.lang.Class<T> eventType();
+  public java.lang.invoke.CallSite invokerCallSite();
+  public java.util.ArrayList<net.minecraftforge.eventbus.api.listener.EventListener> backingList();
+  public java.util.ArrayList<net.minecraftforge.eventbus.api.listener.EventListener> monitorBackingList();
+  public java.util.List<net.minecraftforge.eventbus.internal.AbstractEventBusImpl<?, ?>> children();
+  public java.util.concurrent.atomic.AtomicBoolean alreadyInvalidated();
+  public java.util.concurrent.atomic.AtomicBoolean shutdownFlag();
+  public int eventCharacteristics();
+  public java.lang.Object buildInvoker();
+  public java.lang.Object maybeGetInvoker();
+}
+Compiled from "Constants.java"
+final class net.minecraftforge.eventbus.internal.Constants {
+}
+Compiled from "Event.java"
+public interface net.minecraftforge.eventbus.internal.Event {
+}
+Compiled from "EventBusImpl.java"
+public final class net.minecraftforge.eventbus.internal.EventBusImpl<T extends net.minecraftforge.eventbus.internal.Event> extends java.lang.Record implements net.minecraftforge.eventbus.api.bus.EventBus<T>, net.minecraftforge.eventbus.internal.AbstractEventBusImpl<T, java.util.function.Consumer<T>> {
+  public net.minecraftforge.eventbus.internal.EventBusImpl(java.lang.String, java.lang.Class<T>, java.util.ArrayList<net.minecraftforge.eventbus.api.listener.EventListener>, int);
+  public net.minecraftforge.eventbus.internal.EventBusImpl(java.lang.String, java.lang.Class<T>, java.lang.invoke.CallSite, java.util.ArrayList<net.minecraftforge.eventbus.api.listener.EventListener>, java.util.ArrayList<net.minecraftforge.eventbus.api.listener.EventListener>, java.util.List<net.minecraftforge.eventbus.internal.AbstractEventBusImpl<?, ?>>, java.util.concurrent.atomic.AtomicBoolean, java.util.concurrent.atomic.AtomicBoolean, int);
+  public net.minecraftforge.eventbus.api.listener.EventListener addListener(java.util.function.Consumer<T>);
+  public net.minecraftforge.eventbus.api.listener.EventListener addListener(byte, java.util.function.Consumer<T>);
+  public boolean post(T);
+  public T fire(T);
+  public boolean hasListeners();
+  public java.util.function.Consumer<T> maybeGetInvoker();
+  public void invalidateInvoker();
+  public java.util.function.Consumer<T> buildInvoker();
+  public void setNoOpInvoker();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String busGroupName();
+  public java.lang.Class<T> eventType();
+  public java.lang.invoke.CallSite invokerCallSite();
+  public java.util.ArrayList<net.minecraftforge.eventbus.api.listener.EventListener> backingList();
+  public java.util.ArrayList<net.minecraftforge.eventbus.api.listener.EventListener> monitorBackingList();
+  public java.util.List<net.minecraftforge.eventbus.internal.AbstractEventBusImpl<?, ?>> children();
+  public java.util.concurrent.atomic.AtomicBoolean alreadyInvalidated();
+  public java.util.concurrent.atomic.AtomicBoolean shutdownFlag();
+  public int eventCharacteristics();
+  public java.lang.Object buildInvoker();
+  public java.lang.Object maybeGetInvoker();
+}
+Compiled from "EventCharacteristic.java"
+public interface net.minecraftforge.eventbus.internal.EventCharacteristic {
+}
+Compiled from "EventListenerFactory.java"
+final class net.minecraftforge.eventbus.internal.EventListenerFactory {
+  public static java.util.Collection<net.minecraftforge.eventbus.api.listener.EventListener> register(net.minecraftforge.eventbus.internal.BusGroupImpl, java.lang.invoke.MethodHandles$Lookup, java.lang.Class<?>, java.lang.Object);
+  public static java.util.Collection<net.minecraftforge.eventbus.api.listener.EventListener> registerStrict(net.minecraftforge.eventbus.internal.BusGroupImpl, java.lang.invoke.MethodHandles$Lookup, java.lang.Class<?>, java.lang.Object);
+}
+Compiled from "EventListenerImpl.java"
+public final class net.minecraftforge.eventbus.internal.EventListenerImpl$ConsumerListener<T extends net.minecraftforge.eventbus.internal.Event> extends java.lang.Record implements net.minecraftforge.eventbus.internal.EventListenerImpl$HasConsumer<T> {
+  public net.minecraftforge.eventbus.internal.EventListenerImpl$ConsumerListener(java.lang.Class<T>, byte, java.util.function.Consumer<T>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.Class<T> eventType();
+  public byte priority();
+  public java.util.function.Consumer<T> consumer();
+}
+Compiled from "EventListenerImpl.java"
+public interface net.minecraftforge.eventbus.internal.EventListenerImpl$HasConsumer<T extends net.minecraftforge.eventbus.internal.Event> extends net.minecraftforge.eventbus.internal.EventListenerImpl {
+  public abstract java.util.function.Consumer<T> consumer();
+}
+Compiled from "EventListenerImpl.java"
+public interface net.minecraftforge.eventbus.internal.EventListenerImpl$HasPredicate<T extends net.minecraftforge.eventbus.internal.Event> extends net.minecraftforge.eventbus.internal.EventListenerImpl {
+  public abstract java.util.function.Predicate<T> predicate();
+}
+Compiled from "EventListenerImpl.java"
+public final class net.minecraftforge.eventbus.internal.EventListenerImpl$MonitoringListener<T extends net.minecraftforge.eventbus.internal.Event> extends java.lang.Record implements net.minecraftforge.eventbus.internal.EventListenerImpl {
+  public net.minecraftforge.eventbus.internal.EventListenerImpl$MonitoringListener(java.lang.Class<T>, java.util.function.Consumer<T>);
+  public net.minecraftforge.eventbus.internal.EventListenerImpl$MonitoringListener(java.lang.Class<T>, net.minecraftforge.eventbus.api.listener.ObjBooleanBiConsumer<T>);
+  public byte priority();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.Class<T> eventType();
+  public net.minecraftforge.eventbus.api.listener.ObjBooleanBiConsumer<T> booleanBiConsumer();
+}
+Compiled from "EventListenerImpl.java"
+public final class net.minecraftforge.eventbus.internal.EventListenerImpl$PredicateListener<T extends net.minecraftforge.eventbus.internal.Event & net.minecraftforge.eventbus.api.event.characteristic.Cancellable> extends java.lang.Record implements net.minecraftforge.eventbus.internal.EventListenerImpl$HasPredicate<T> {
+  public net.minecraftforge.eventbus.internal.EventListenerImpl$PredicateListener(java.lang.Class<T>, byte, java.util.function.Predicate<T>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.Class<T> eventType();
+  public byte priority();
+  public java.util.function.Predicate<T> predicate();
+}
+Compiled from "EventListenerImpl.java"
+public final class net.minecraftforge.eventbus.internal.EventListenerImpl$WrappedConsumerListener<T extends net.minecraftforge.eventbus.internal.Event> extends java.lang.Record implements net.minecraftforge.eventbus.internal.EventListenerImpl$HasConsumer<T>, net.minecraftforge.eventbus.internal.EventListenerImpl$HasPredicate<T> {
+  public net.minecraftforge.eventbus.internal.EventListenerImpl$WrappedConsumerListener(java.lang.Class<T>, byte, java.util.function.Consumer<T>);
+  public net.minecraftforge.eventbus.internal.EventListenerImpl$WrappedConsumerListener(java.lang.Class<T>, byte, boolean, java.util.function.Consumer<T>);
+  public net.minecraftforge.eventbus.internal.EventListenerImpl$WrappedConsumerListener(java.lang.Class<T>, byte, boolean, java.util.function.Consumer<T>, java.util.function.Predicate<T>);
+  public static <T extends net.minecraftforge.eventbus.internal.Event> java.util.function.Predicate<T> wrap(boolean, java.util.function.Consumer<T>);
+  public boolean equals(java.lang.Object);
+  public int hashCode();
+  public final java.lang.String toString();
+  public java.lang.Class<T> eventType();
+  public byte priority();
+  public boolean alwaysCancelling();
+  public java.util.function.Consumer<T> consumer();
+  public java.util.function.Predicate<T> predicate();
+}
+Compiled from "EventListenerImpl.java"
+public interface net.minecraftforge.eventbus.internal.EventListenerImpl extends net.minecraftforge.eventbus.api.listener.EventListener {
+}
+Compiled from "InvokerFactory.java"
+final class net.minecraftforge.eventbus.internal.InvokerFactory {
+}
+Compiled from "InvokerFactoryUtils.java"
+final class net.minecraftforge.eventbus.internal.InvokerFactoryUtils {
+}
+Compiled from "MutableEventInternals.java"
+public abstract class net.minecraftforge.eventbus.internal.MutableEventInternals {
+  public transient boolean isMonitoring;
+  public net.minecraftforge.eventbus.internal.MutableEventInternals();
+}
+Compiled from "package-info.java"
+interface net.minecraftforge.eventbus.internal.package-info {
+}
