@@ -10,5 +10,47 @@
       "neoncoast:siren"
     ],
     "subtitle": "subtitles.neoncoast.siren"
+  },
+  "gun_pistol": {
+    "sounds": [
+      "neoncoast:gun_pistol"
+    ],
+    "subtitle": "subtitles.neoncoast.gun_pistol"
+  },
+  "gun_smg": {
+    "sounds": [
+      "neoncoast:gun_smg"
+    ],
+    "subtitle": "subtitles.neoncoast.gun_smg"
+  },
+  "gun_rifle": {
+    "sounds": [
+      "neoncoast:gun_rifle"
+    ],
+    "subtitle": "subtitles.neoncoast.gun_rifle"
+  },
+  "gun_shotgun": {
+    "sounds": [
+      "neoncoast:gun_shotgun"
+    ],
+    "subtitle": "subtitles.neoncoast.gun_shotgun"
+  },
+  "gun_sniper": {
+    "sounds": [
+      "neoncoast:gun_sniper"
+    ],
+    "subtitle": "subtitles.neoncoast.gun_sniper"
+  },
+  "gun_reload": {
+    "sounds": [
+      "neoncoast:gun_reload"
+    ],
+    "subtitle": "subtitles.neoncoast.gun_reload"
+  },
+  "gun_empty": {
+    "sounds": [
+      "neoncoast:gun_empty"
+    ],
+    "subtitle": "subtitles.neoncoast.gun_empty"
   }
 }

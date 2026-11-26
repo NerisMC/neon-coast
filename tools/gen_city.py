@@ -207,6 +207,9 @@ textures()
 data()
 print("city blocks + All City preset done")
 
+# citizens, guns, gun sounds
+import subprocess as _sp0
+_sp0.run([sys.executable, os.path.join(os.path.dirname(os.path.abspath(__file__)), "gen_life.py"), ROOT], check=True)
 # 26.1 resource formats
 import subprocess as _sp
 _sp.run([sys.executable, os.path.join(os.path.dirname(os.path.abspath(__file__)), "port26.py"), ROOT])

@@ -16,6 +16,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ItemUseAnimation;
 import net.minecraft.world.level.Level;
 import net.minecraft.util.Mth;
+import java.util.function.Consumer;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.component.TooltipDisplay;
 
 /**
  * A hitscan gun. The magazine is stored as item damage (the bar under the icon is your ammo):
@@ -67,6 +70,14 @@ public class GunItem extends Item {
     @Override
     public int getBarColor(ItemStack stack) {
         return rounds(stack) <= stats.mag() / 4 ? 0xFF5050 : 0xFFD24A;
+    }
+
+    @Override
+    public void appendHoverText(ItemStack stack, Item.TooltipContext context, TooltipDisplay display,
+                                Consumer<Component> lines, TooltipFlag flag) {
+        lines.accept(Component.literal("Ammo: " + rounds(stack) + "/" + stats.mag()).withStyle(ChatFormatting.GOLD));
+        lines.accept(Component.literal(stats.automatic() ? "Hold right-click: fire" : "Right-click: fire").withStyle(ChatFormatting.GRAY));
+        lines.accept(Component.literal("Sneak + right-click: reload").withStyle(ChatFormatting.GRAY));
     }
 
     private void tryFire(Level level, Player player, ItemStack stack) {

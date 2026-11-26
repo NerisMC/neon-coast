@@ -43,5 +43,21 @@
   "block.neoncoast.bench": "Bench",
   "block.neoncoast.trash_can": "Trash Can",
   "generator.neoncoast.all_city": "All City",
-  "biome.neoncoast.city": "City"
+  "biome.neoncoast.city": "City",
+  "entity.neoncoast.citizen": "Citizen",
+  "item.neoncoast.pistol": "Pistol",
+  "item.neoncoast.smg": "SMG",
+  "item.neoncoast.shotgun": "Shotgun",
+  "item.neoncoast.rifle": "Assault Rifle",
+  "item.neoncoast.sniper": "Sniper Rifle",
+  "item.neoncoast.pistol_ammo": "Pistol/SMG Ammo",
+  "item.neoncoast.rifle_ammo": "Rifle Ammo",
+  "item.neoncoast.shotgun_shells": "Shotgun Shells",
+  "subtitles.neoncoast.gun_pistol": "Pistol shot",
+  "subtitles.neoncoast.gun_smg": "SMG fire",
+  "subtitles.neoncoast.gun_rifle": "Rifle fire",
+  "subtitles.neoncoast.gun_shotgun": "Shotgun blast",
+  "subtitles.neoncoast.gun_sniper": "Sniper shot",
+  "subtitles.neoncoast.gun_reload": "Gun reloads",
+  "subtitles.neoncoast.gun_empty": "Gun clicks empty"
 }
