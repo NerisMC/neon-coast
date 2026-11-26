@@ -8,10 +8,10 @@ jobs:
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
-          java-version: 21
+          java-version: 25
       - run: chmod +x gradlew && ./gradlew build --stacktrace
       - uses: actions/upload-artifact@v4
         with:
-          name: neon-coast-jar
-          path: build/libs/neon-coast-1.1.0.jar
+          name: neon-coast-jar-26.1.2
+          path: build/libs/neon-coast-2.0.0.jar
           if-no-files-found: error
