@@ -58,7 +58,15 @@ public final class ShopLogic {
             }
             case 3 -> give(player, new ItemStack(ModItems.REPAIR_KIT));
             case 4 -> give(player, new ItemStack(Items.COOKED_BEEF, 8));
-            case 5 -> WantedManager.clear(player);
+            case 5 -> give(player, new ItemStack(ModItems.PISTOL));
+            case 6 -> give(player, new ItemStack(ModItems.SMG));
+            case 7 -> give(player, new ItemStack(ModItems.SHOTGUN));
+            case 8 -> give(player, new ItemStack(ModItems.RIFLE));
+            case 9 -> give(player, new ItemStack(ModItems.SNIPER));
+            case 10 -> give(player, new ItemStack(ModItems.PISTOL_AMMO, 30));
+            case 11 -> give(player, new ItemStack(ModItems.RIFLE_AMMO, 30));
+            case 12 -> give(player, new ItemStack(ModItems.SHOTGUN_SHELLS, 12));
+            case ShopCatalog.PAY_OFF -> WantedManager.clear(player);
             default -> { }
         }
         player.playSound(SoundEvents.EXPERIENCE_ORB_PICKUP, 0.8f, 1.2f);

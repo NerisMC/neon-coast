@@ -1,5 +1,7 @@
 package com.neoncoast.vehicle;
 
+import com.neoncoast.npc.Dialogue;
+import com.neoncoast.npc.CitizenEntity;
 import com.neoncoast.crime.CrimeHooks;
 import com.neoncoast.crime.WantedManager;
 import com.neoncoast.npc.PoliceOfficerEntity;
@@ -89,6 +91,10 @@ public class CarEntity extends Mob implements PlayerRideableJumping {
     private double serverLastX, serverLastZ;
     private int idleTicks;
     private int aiStuckTicks;
+    // NPC driving
+    private boolean ambientTraffic;
+    private float npcHeading = Float.NaN;
+    private int npcTurnCooldown, npcPanicTicks, npcStuckTicks, npcReverseTicks;
 
     public CarEntity(EntityType<? extends CarEntity> type, Level world) {
         super(type, world);
@@ -160,6 +166,7 @@ public class CarEntity extends Mob implements PlayerRideableJumping {
         nbt.putInt("Variant", getVariant());
         nbt.putFloat("CarHealth", getCarHealth());
         nbt.putBoolean("Civilian", civilian);
+        nbt.putBoolean("Traffic", ambientTraffic);
         nbt.storeNullable("Owner", UUIDUtil.CODEC, owner);
     }
 
@@ -169,6 +176,7 @@ public class CarEntity extends Mob implements PlayerRideableJumping {
         setVariant(nbt.getIntOr("Variant", 0));
         setCarHealth(nbt.getFloatOr("CarHealth", getCarType().maxHealth()));
         civilian = nbt.getBooleanOr("Civilian", false);
+        ambientTraffic = nbt.getBooleanOr("Traffic", false);
         owner = nbt.read("Owner", UUIDUtil.CODEC).orElse(null);
     }
 
@@ -183,6 +191,20 @@ public class CarEntity extends Mob implements PlayerRideableJumping {
                 held.consume(1, player);
                 this.playSound(SoundEvents.ANVIL_USE, 0.6f, 1.4f);
                 player.sendOverlayMessage(Component.literal("Car repaired").withStyle(ChatFormatting.GREEN));
+            }
+            return InteractionResult.SUCCESS;
+        }
+        if (!player.isSecondaryUseActive() && getFirstPassenger() instanceof CitizenEntity npc) {
+            // carjacking: drag the driver out and take the wheel
+            if (!this.level().isClientSide() && player instanceof ServerPlayer sp) {
+                npc.stopRiding();
+                npc.scare(player.position(), 300);
+                npc.shout(Dialogue.pick(Dialogue.CARJACKED, this.random));
+                CrimeHooks.witnessedCrime(sp, 1, "Carjacking");
+                owner = player.getUUID();
+                civilian = false;
+                ambientTraffic = false;
+                player.startRiding(this);
             }
             return InteractionResult.SUCCESS;
         }
@@ -441,6 +463,12 @@ public class CarEntity extends Mob implements PlayerRideableJumping {
     /** Police AI and any other server-driven movement. */
     @Override
     public void travel(Vec3 movementInput) {
+        if (!this.level().isClientSide() && !this.hasControllingPassenger() && getFirstPassenger() instanceof CitizenEntity npc) {
+            float[] input = npcDrive(npc);
+            simulate(input[0], input[1], false);
+            super.travel(Vec3.ZERO);
+            return;
+        }
         if (!this.level().isClientSide() && !this.hasControllingPassenger() && isPolice()) {
             float[] input = policeDriver();
             simulate(input[0], input[1], false);
@@ -492,6 +520,120 @@ public class CarEntity extends Mob implements PlayerRideableJumping {
             aiStuckTicks = 0;
         }
         return new float[]{throttleIn, steerIn};
+    }
+
+    // ------------------------------------------------------------------ NPC drivers
+
+    public boolean isAmbientTraffic() {
+        return ambientTraffic;
+    }
+
+    public void setAmbientTraffic(boolean ambientTraffic) {
+        this.ambientTraffic = ambientTraffic;
+    }
+
+    public boolean isNpcDriven() {
+        return getFirstPassenger() instanceof CitizenEntity;
+    }
+
+    /** The driver got spooked (gunfire nearby): floor it. */
+    public void npcPanic(int ticks) {
+        npcPanicTicks = Math.max(npcPanicTicks, ticks);
+    }
+
+    public static boolean isRoad(BlockState state) {
+        return state.is(ModBlocks.ASPHALT) || state.is(ModBlocks.ROAD_LINE) || state.is(ModBlocks.CROSSWALK) || state.is(ModBlocks.MANHOLE);
+    }
+
+    private boolean roadAt(double x, double z) {
+        BlockPos p = BlockPos.containing(x, getY() - 0.5, z);
+        return isRoad(this.level().getBlockState(p)) || isRoad(this.level().getBlockState(p.below()));
+    }
+
+    /** How many of the points 3..11 blocks along a heading (from an offset start) are road. */
+    private int roadScore(float heading, double startAhead) {
+        double fx = -Mth.sin(heading * DEG), fz = Mth.cos(heading * DEG);
+        int n = 0;
+        for (int d = 3; d <= 11; d += 2) {
+            if (roadAt(getX() + fx * (startAhead + d), getZ() + fz * (startAhead + d))) n++;
+        }
+        return n;
+    }
+
+    /**
+     * Follows the road: keeps to the right-hand lane, picks random turns at junctions, U-turns at dead ends,
+     * slows for corners and stops for anyone in front. Returns {throttle, steer}.
+     */
+    private float[] npcDrive(CitizenEntity driver) {
+        CarType s = getCarType();
+        boolean panic = npcPanicTicks > 0 || driver.isScared();
+        if (Float.isNaN(npcHeading)) npcHeading = Math.round(getYRot() / 90.0f) * 90.0f;
+        if (npcTurnCooldown > 0) npcTurnCooldown--;
+
+        // reversing out of a jam
+        if (npcReverseTicks > 0) {
+            npcReverseTicks--;
+            return new float[]{-1.0f, 0.6f};
+        }
+
+        // junctions and dead ends
+        int ahead = roadScore(npcHeading, 0.0);
+        if (npcTurnCooldown == 0) {
+            float left = npcHeading - 90.0f, right = npcHeading + 90.0f;
+            boolean canLeft = roadScore(left, 0.0) >= 4;
+            boolean canRight = roadScore(right, 0.0) >= 4;
+            if (ahead <= 1) {
+                npcHeading = canRight ? right : canLeft ? left : npcHeading + 180.0f;
+                npcTurnCooldown = 50;
+            } else if ((canLeft || canRight) && this.random.nextInt(100) < 3) {
+                npcHeading = canRight && (!canLeft || this.random.nextBoolean()) ? right : left;
+                npcTurnCooldown = 60;
+            }
+        }
+        npcHeading = Mth.wrapDegrees(npcHeading);
+
+        // lane keeping: find the road edges either side and aim 1.3 blocks right of the middle
+        double fx = -Mth.sin(npcHeading * DEG), fz = Mth.cos(npcHeading * DEG);
+        double rx = -fz, rz = fx; // right-hand side (+x is the car's left)
+        int leftW = 0, rightW = 0;
+        for (int i = 1; i <= 7 && roadAt(getX() - rx * i + fx * 2, getZ() - rz * i + fz * 2); i++) leftW++;
+        for (int i = 1; i <= 7 && roadAt(getX() + rx * i + fx * 2, getZ() + rz * i + fz * 2); i++) rightW++;
+        double offsetFromMiddle = (leftW - rightW) / 2.0;      // + means we're right of the middle
+        double laneError = 1.3 - offsetFromMiddle;               // + means move further right
+        if (leftW + rightW < 3) laneError = 0.0;                 // narrow / no road: don't wander
+        float wantYaw = npcHeading + (float) Math.toDegrees(Math.atan2(laneError, 7.0)); // more yaw = turning right
+        float diff = Mth.wrapDegrees(wantYaw - getYRot());
+        float steerIn = Mth.clamp(-diff / 20.0f, -1.0f, 1.0f);
+
+        // speed: cruise, slow for corners, brake for obstacles
+        float cruise = s.maxSpeed() * (panic ? 0.8f : 0.36f);
+        if (Math.abs(diff) > 25.0f) cruise *= 0.45f;
+        if (obstacleAhead()) cruise = 0.0f;
+        float throttleIn;
+        if (flyDist < cruise - 0.02f) throttleIn = 1.0f;
+        else if (flyDist > cruise + 0.08f) throttleIn = -1.0f;
+        else throttleIn = 0.0f;
+
+        // stuck against something
+        if (cruise > 0.05f && lastSpeed < 0.02f) {
+            if (++npcStuckTicks > 50) {
+                npcStuckTicks = 0;
+                npcReverseTicks = 25;
+                npcHeading += 180.0f;
+            }
+        } else {
+            npcStuckTicks = 0;
+        }
+        return new float[]{throttleIn, steerIn};
+    }
+
+    private boolean obstacleAhead() {
+        float yawRad = getYRot() * DEG;
+        double fx = -Mth.sin(yawRad), fz = Mth.cos(yawRad);
+        double cx = getX() + fx * 4.5, cz = getZ() + fz * 4.5;
+        AABB box = new AABB(cx - 1.6, getY(), cz - 1.6, cx + 1.6, getY() + 2.0, cz + 1.6).expandTowards(fx * 2.0, 0, fz * 2.0);
+        return !this.level().getEntities(this, box, e -> (e instanceof LivingEntity || e instanceof CarEntity)
+                && !this.hasPassenger(e) && e.getVehicle() != this && !(e instanceof CarEntity c && c.hasPassenger(this))).isEmpty();
     }
 
     // ------------------------------------------------------------------ ticking
@@ -564,6 +706,12 @@ public class CarEntity extends Mob implements PlayerRideableJumping {
 
     private void serverTick() {
         this.fallDistance = 0.0;
+        if (npcPanicTicks > 0) npcPanicTicks--;
+        if (ambientTraffic && this.tickCount % 40 == 0 && this.level().getNearestPlayer(this, 112.0) == null) {
+            for (Entity p : this.getPassengers()) p.discard();
+            this.discard();
+            return;
+        }
         double mx = getX() - serverLastX, mz = getZ() - serverLastZ;
         double moved = this.tickCount > 2 ? Math.min(3.0, Math.sqrt(mx * mx + mz * mz)) : 0.0;
         serverLastX = getX();

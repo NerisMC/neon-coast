@@ -4,18 +4,27 @@
   "version": "${version}",
   "name": "Neon Coast",
   "description": "Open-world city life: drive and steal realistic cars, wanted levels with police chases, money, jobs and shops, and cities that generate in your world.",
-  "authors": ["NerisMC"],
+  "authors": [
+    "NerisMC"
+  ],
   "license": "MIT",
   "icon": "assets/neoncoast/icon.png",
   "environment": "*",
   "entrypoints": {
-    "main": ["com.neoncoast.NeonCoast"],
-    "client": ["com.neoncoast.client.NeonCoastClient"]
+    "main": [
+      "com.neoncoast.NeonCoast"
+    ],
+    "client": [
+      "com.neoncoast.client.NeonCoastClient"
+    ]
   },
   "depends": {
     "fabricloader": ">=0.20.0",
     "minecraft": "~26.1.2",
     "java": ">=25",
     "fabric-api": "*"
-  }
+  },
+  "mixins": [
+    "neoncoast.mixins.json"
+  ]
 }

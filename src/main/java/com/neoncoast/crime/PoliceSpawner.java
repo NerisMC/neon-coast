@@ -29,6 +29,7 @@ public final class PoliceSpawner {
             if (pos != null && cop != null) {
                 cop.snapTo(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, r.nextFloat() * 360.0f, 0.0f);
                 cop.finalizeSpawn(world, world.getCurrentDifficultyAt(pos), EntitySpawnReason.EVENT, null);
+                cop.armFor(stars);
                 world.addFreshEntity(cop);
             }
         }
@@ -44,6 +45,7 @@ public final class PoliceSpawner {
                     world.addFreshEntity(car);
                     driver.snapTo(car.getX(), car.getY(), car.getZ(), yaw, 0.0f);
                     driver.finalizeSpawn(world, world.getCurrentDifficultyAt(pos), EntitySpawnReason.EVENT, null);
+                    driver.armFor(stars);
                     world.addFreshEntity(driver);
                     driver.startRiding(car, true, true);
                 }

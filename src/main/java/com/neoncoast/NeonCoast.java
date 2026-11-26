@@ -51,6 +51,7 @@ public class NeonCoast implements ModInitializer {
                 WantedManager.tick(server);
                 Jobs.tick(server);
             }
+            if (server.getTickCount() % 40 == 7) com.neoncoast.world.CityLife.tick(server);
         });
         LOGGER.info("Neon Coast loaded");
     }

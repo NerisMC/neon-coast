@@ -102,7 +102,7 @@ def sedan_parts(police=False):
         (-3, -9, 31, 6, 2, 1, "plate", 0),
         (-11, -5, 30, 2, 1, 2, "chrome", 0),              # exhaust
         (15, belt - 2, -10, 2, 2, 2, "trim", 0), (-17, belt - 2, -10, 2, 2, 2, "trim", 0),  # mirrors
-    ] + cabin(belt, roof, -11, 15) + interior(belt, roof, -10, 1, 11)
+    ] + cabin(belt, roof, -11, 15) + interior(belt, roof, -10, 3, 11)
     if police:
         body += [(-10, -12, -33, 20, 7, 2, "trim", 0),    # push bar
                  (-9, roof - 3, 1, 9, 2, 4, "light_red", 0), (0, roof - 3, 1, 9, 2, 4, "light_blue", 0)]
@@ -126,7 +126,7 @@ def sports_parts():
         (-10, belt - 3, 27, 2, 3, 2, "trim", 0), (8, belt - 3, 27, 2, 3, 2, "trim", 0),   # spoiler posts
         (-15, belt - 4, 26, 30, 1, 5, "paint", 0),       # spoiler wing
         (15, belt - 2, -7, 2, 2, 2, "trim", 0), (-17, belt - 2, -7, 2, 2, 2, "trim", 0),
-    ] + cabin(belt, roof, -8, 17) + interior(belt, roof, -7, 4, 14)
+    ] + cabin(belt, roof, -8, 17) + interior(belt, roof, -7, 6, 14)
 
 
 def car_spec(cls, layer, body, wz, tex, steer_at):
@@ -141,9 +141,9 @@ def car_spec(cls, layer, body, wz, tex, steer_at):
     ]}
 
 
-SEDAN = car_spec("SedanModel", "sedan", sedan_parts(), 19, (256, 256), (6, -19, -5))
-SPORTS = car_spec("SportsCarModel", "sports_car", sports_parts(), 20, (256, 256), (6, -16, -2))
-POLICE = car_spec("PoliceCarModel", "police_car", sedan_parts(True), 19, (256, 256), (6, -19, -5))
+SEDAN = car_spec("SedanModel", "sedan", sedan_parts(), 19, (256, 256), (6, -16, -6))
+SPORTS = car_spec("SportsCarModel", "sports_car", sports_parts(), 20, (256, 256), (6, -13, -3))
+POLICE = car_spec("PoliceCarModel", "police_car", sedan_parts(True), 19, (256, 256), (6, -16, -6))
 
 
 def pack(model):

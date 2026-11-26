@@ -2,6 +2,8 @@ package com.neoncoast.client;
 
 import com.neoncoast.NeonCoast;
 import com.neoncoast.vehicle.CarEntity;
+import com.neoncoast.weapon.GunItem;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
@@ -11,8 +13,10 @@ public class CarRenderer extends MobRenderer<CarEntity, CarRenderState, EntityMo
     private final Identifier[] textures;
     private final Identifier flash;
 
-    public CarRenderer(EntityRendererProvider.Context ctx, EntityModel<CarRenderState> model, String name, boolean police) {
+    public CarRenderer(EntityRendererProvider.Context ctx, EntityModel<CarRenderState> model, String name, boolean police,
+                       DriverArmsModel.Geometry driverGeometry) {
         super(ctx, model, 1.2f);
+        this.addLayer(new DriverArmsLayer(this, new DriverArmsModel(ctx.bakeLayer(DriverArmsModel.LAYER), driverGeometry)));
         if (police) {
             textures = new Identifier[]{NeonCoast.id("textures/entity/" + name + ".png")};
             flash = NeonCoast.id("textures/entity/" + name + "_flash.png");
@@ -39,6 +43,14 @@ public class CarRenderer extends MobRenderer<CarEntity, CarRenderState, EntityMo
         state.bodyPitch = car.getBodyPitch(td);
         state.variant = car.getVariant();
         state.sirenFlash = car.isSirenOn() && (car.tickCount / 4) % 2 == 0;
+        Minecraft mc = Minecraft.getInstance();
+        if (mc.player != null && car.getFirstPassenger() == mc.player && mc.options.getCameraType().isFirstPerson()) {
+            state.driverSkin = mc.player.getSkin().body().texturePath();
+            state.driverHoldsGun = mc.player.getMainHandItem().getItem() instanceof GunItem;
+        } else {
+            state.driverSkin = null;
+            state.driverHoldsGun = false;
+        }
     }
 
     @Override

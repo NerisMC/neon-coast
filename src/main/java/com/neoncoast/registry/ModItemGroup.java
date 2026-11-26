@@ -20,6 +20,14 @@ public final class ModItemGroup {
                         entries.accept(ModItems.POLICE_KEY);
                         entries.accept(ModItems.REPAIR_KIT);
                         entries.accept(ModItems.PACKAGE);
+                        entries.accept(ModItems.PISTOL);
+                        entries.accept(ModItems.SMG);
+                        entries.accept(ModItems.SHOTGUN);
+                        entries.accept(ModItems.RIFLE);
+                        entries.accept(ModItems.SNIPER);
+                        entries.accept(ModItems.PISTOL_AMMO);
+                        entries.accept(ModItems.RIFLE_AMMO);
+                        entries.accept(ModItems.SHOTGUN_SHELLS);
                         entries.accept(ModBlocks.SHOP_TERMINAL);
                         entries.accept(ModBlocks.JOB_BOARD);
                         entries.accept(ModBlocks.CHOP_SHOP);

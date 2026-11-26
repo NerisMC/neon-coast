@@ -10,4 +10,7 @@ public class CarRenderState extends LivingEntityRenderState {
     public float bodyPitch;
     public int variant;
     public boolean sirenFlash;
+    /** Skin of the local player driving in first person, or null. */
+    public net.minecraft.resources.Identifier driverSkin;
+    public boolean driverHoldsGun;
 }

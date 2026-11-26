@@ -2,6 +2,7 @@ package com.neoncoast.client;
 
 import com.neoncoast.NeonCoast;
 import com.neoncoast.npc.PoliceOfficerEntity;
+import com.neoncoast.weapon.GunItem;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -19,6 +20,16 @@ public class PoliceRenderer extends HumanoidMobRenderer<PoliceOfficerEntity, Hum
     @Override
     public HumanoidRenderState createRenderState() {
         return new HumanoidRenderState();
+    }
+
+    @Override
+    public void extractRenderState(PoliceOfficerEntity entity, HumanoidRenderState state, float partialTick) {
+        super.extractRenderState(entity, state, partialTick);
+        // aim down the sights while shooting
+        if (entity.isAggressive() && entity.getMainHandItem().getItem() instanceof GunItem) {
+            state.rightArmPose = HumanoidModel.ArmPose.CROSSBOW_HOLD;
+            state.leftArmPose = HumanoidModel.ArmPose.CROSSBOW_HOLD;
+        }
     }
 
     @Override
