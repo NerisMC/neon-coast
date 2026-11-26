@@ -186,9 +186,10 @@ def data():
     wj(f"{D}/{MOD}/worldgen/placed_feature/all_city.json", {"feature": f"{MOD}:all_city", "placement": []})
     wj(f"{D}/{MOD}/worldgen/biome/city.json", {
         "has_precipitation": True, "temperature": 0.8, "downfall": 0.4,
-        "effects": {"sky_color": 7907327, "fog_color": 12638463, "water_color": 4159204, "water_fog_color": 329011,
-                    "mood_sound": {"sound": "minecraft:ambient.cave", "tick_delay": 6000, "block_search_extent": 8, "offset": 2.0}},
-        "spawners": {}, "spawn_costs": {}, "carvers": {},
+        "attributes": {"minecraft:visual/sky_color": "#78a7ff", "minecraft:visual/fog_color": "#c0d8ff",
+                       "minecraft:visual/water_fog_color": "#050533"},
+        "effects": {"water_color": "#3f76e4"},
+        "spawners": {}, "spawn_costs": {}, "carvers": [],
         "features": [[], [], [], [], [f"{MOD}:all_city"], [], [], [], [], [], []]})
     wj(f"{D}/{MOD}/worldgen/world_preset/all_city.json", {"dimensions": {
         "minecraft:overworld": {"type": "minecraft:overworld", "generator": {"type": "minecraft:flat", "settings": {
