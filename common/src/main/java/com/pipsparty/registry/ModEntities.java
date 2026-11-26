@@ -7,6 +7,7 @@ import com.pipsparty.entity.SecurityCameraEntity;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.Avatar;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
@@ -22,15 +23,20 @@ public final class ModEntities {
                     EntityType.Builder.<AnimatronicEntity>of((type, level) -> new AnimatronicEntity(type, level, c), MobCategory.MONSTER)
                             .sized(0.8f, 2.35f).eyeHeight(2.05f)
                             .passengerAttachments(new Vec3(0.0, 1.35, 0.0))
-                            .clientTrackingRange(12).build(key)));
+                            .clientTrackingRange(12).build(entityKey(key))));
         }
     }
 
     public static final Reg<EntityType<SecurityCameraEntity>> SECURITY_CAMERA = Reg.<EntityType<SecurityCameraEntity>>of(Registries.ENTITY_TYPE,
             PipsParty.id("security_camera"), key -> EntityType.Builder.<SecurityCameraEntity>of(SecurityCameraEntity::new, MobCategory.MISC)
-                    .sized(0.4f, 0.4f).eyeHeight(0.2f).clientTrackingRange(16).updateInterval(20).build(key));
+                    .sized(0.4f, 0.4f).eyeHeight(0.2f).clientTrackingRange(16).updateInterval(20).build(entityKey(key)));
 
     private ModEntities() {
+    }
+
+    @SuppressWarnings({"unchecked", "rawtypes"})
+    private static ResourceKey<EntityType<?>> entityKey(ResourceKey<?> key) {
+        return (ResourceKey) key;
     }
 
     public static Reg<EntityType<AnimatronicEntity>> of(Character c) {
