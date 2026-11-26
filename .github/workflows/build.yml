@@ -31,6 +31,18 @@ jobs:
           git add -f dump
           git commit -qm "API dump"
           git push -f origin pips-apidump
+      - name: Publish jars to the pips-jars branch
+        if: success()
+        run: |
+          mkdir -p /tmp/out && cp fabric/build/libs/*.jar forge/build/libs/*.jar neoforge/build/libs/*.jar /tmp/out/
+          rm -f /tmp/out/*-sources.jar
+          git config user.name ci; git config user.email ci@example.com
+          git checkout --orphan pips-jars
+          git rm -rf --cached . >/dev/null
+          rm -rf jars && mkdir jars && cp /tmp/out/*.jar jars/
+          git add -f jars
+          git commit -qm "Jars for ${GITHUB_SHA}"
+          git push -f origin pips-jars
       - uses: actions/upload-artifact@v4
         if: always()
         with:
