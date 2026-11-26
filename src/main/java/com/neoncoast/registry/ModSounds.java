@@ -1,10 +1,10 @@
 package com.neoncoast.registry;
 
 import com.neoncoast.NeonCoast;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.util.Identifier;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvent;
 
 public final class ModSounds {
     public static final SoundEvent CAR_ENGINE = register("car_engine");
@@ -14,8 +14,8 @@ public final class ModSounds {
     }
 
     private static SoundEvent register(String name) {
-        Identifier id = NeonCoast.id(name);
-        return Registry.register(Registries.SOUND_EVENT, id, SoundEvent.of(id));
+        ResourceLocation id = NeonCoast.id(name);
+        return Registry.register(BuiltInRegistries.SOUND_EVENT, id, SoundEvent.createVariableRangeEvent(id));
     }
 
     public static void init() {

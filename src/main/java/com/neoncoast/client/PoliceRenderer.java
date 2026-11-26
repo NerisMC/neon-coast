@@ -2,21 +2,21 @@ package com.neoncoast.client;
 
 import com.neoncoast.NeonCoast;
 import com.neoncoast.npc.PoliceOfficerEntity;
-import net.minecraft.client.render.entity.BipedEntityRenderer;
-import net.minecraft.client.render.entity.EntityRendererFactory;
-import net.minecraft.client.render.entity.model.BipedEntityModel;
-import net.minecraft.client.render.entity.model.EntityModelLayers;
-import net.minecraft.util.Identifier;
+import net.minecraft.client.model.HumanoidModel;
+import net.minecraft.client.model.geom.ModelLayers;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.entity.HumanoidMobRenderer;
+import net.minecraft.resources.ResourceLocation;
 
-public class PoliceRenderer extends BipedEntityRenderer<PoliceOfficerEntity, BipedEntityModel<PoliceOfficerEntity>> {
-    private static final Identifier TEXTURE = NeonCoast.id("textures/entity/police_officer.png");
+public class PoliceRenderer extends HumanoidMobRenderer<PoliceOfficerEntity, HumanoidModel<PoliceOfficerEntity>> {
+    private static final ResourceLocation TEXTURE = NeonCoast.id("textures/entity/police_officer.png");
 
-    public PoliceRenderer(EntityRendererFactory.Context ctx) {
-        super(ctx, new BipedEntityModel<>(ctx.getPart(EntityModelLayers.PLAYER)), 0.5f);
+    public PoliceRenderer(EntityRendererProvider.Context ctx) {
+        super(ctx, new HumanoidModel<>(ctx.bakeLayer(ModelLayers.PLAYER)), 0.5f);
     }
 
     @Override
-    public Identifier getTexture(PoliceOfficerEntity entity) {
+    public ResourceLocation getTexture(PoliceOfficerEntity entity) {
         return TEXTURE;
     }
 }

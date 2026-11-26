@@ -5,30 +5,30 @@ import com.neoncoast.world.AllCityFeature;
 import com.neoncoast.world.CityFeature;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.world.biome.BiomeKeys;
-import net.minecraft.world.gen.GenerationStep;
-import net.minecraft.world.gen.feature.DefaultFeatureConfig;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.PlacedFeature;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.level.biome.Biomes;
+import net.minecraft.world.level.levelgen.GenerationStep;
+import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
+import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 
 public final class ModWorldgen {
-    public static final Feature<DefaultFeatureConfig> CITY = Registry.register(Registries.FEATURE, NeonCoast.id("city"),
-            new CityFeature(DefaultFeatureConfig.CODEC));
-    public static final Feature<DefaultFeatureConfig> ALL_CITY = Registry.register(Registries.FEATURE, NeonCoast.id("all_city"),
-            new AllCityFeature(DefaultFeatureConfig.CODEC));
-    public static final RegistryKey<PlacedFeature> CITY_PLACED = RegistryKey.of(RegistryKeys.PLACED_FEATURE, NeonCoast.id("city"));
+    public static final Feature<NoneFeatureConfiguration> CITY = Registry.register(BuiltInRegistries.FEATURE, NeonCoast.id("city"),
+            new CityFeature(NoneFeatureConfiguration.CODEC));
+    public static final Feature<NoneFeatureConfiguration> ALL_CITY = Registry.register(BuiltInRegistries.FEATURE, NeonCoast.id("all_city"),
+            new AllCityFeature(NoneFeatureConfiguration.CODEC));
+    public static final ResourceKey<PlacedFeature> CITY_PLACED = ResourceKey.create(Registries.PLACED_FEATURE, NeonCoast.id("city"));
 
     private ModWorldgen() {
     }
 
     public static void init() {
         BiomeModifications.addFeature(
-                BiomeSelectors.includeByKey(BiomeKeys.PLAINS, BiomeKeys.SUNFLOWER_PLAINS, BiomeKeys.SAVANNA, BiomeKeys.DESERT,
-                        BiomeKeys.FOREST, BiomeKeys.BIRCH_FOREST, BiomeKeys.MEADOW, BiomeKeys.BEACH),
-                GenerationStep.Feature.SURFACE_STRUCTURES, CITY_PLACED);
+                BiomeSelectors.includeByKey(Biomes.PLAINS, Biomes.SUNFLOWER_PLAINS, Biomes.SAVANNA, Biomes.DESERT,
+                        Biomes.FOREST, Biomes.BIRCH_FOREST, Biomes.MEADOW, Biomes.BEACH),
+                GenerationStep.Decoration.SURFACE_STRUCTURES, CITY_PLACED);
     }
 }

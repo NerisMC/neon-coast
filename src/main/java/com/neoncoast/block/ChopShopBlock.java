@@ -3,45 +3,44 @@ package com.neoncoast.block;
 import com.neoncoast.crime.CrimeHooks;
 import com.neoncoast.economy.Money;
 import com.neoncoast.vehicle.CarEntity;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.text.Text;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.math.Box;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-
 import java.util.Comparator;
 import java.util.List;
+import net.minecraft.ChatFormatting;
+import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.BlockHitResult;
 
 /** Park a car next to it and right-click: they strip it for parts and pay you. No questions asked. */
 public class ChopShopBlock extends Block {
-    public ChopShopBlock(Settings settings) {
+    public ChopShopBlock(Properties settings) {
         super(settings);
     }
 
     @Override
-    protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
-        if (world.isClient || !(player instanceof ServerPlayerEntity sp)) return ActionResult.success(world.isClient);
-        List<CarEntity> cars = world.getEntitiesByClass(CarEntity.class, new Box(pos).expand(6.0), c -> !c.hasPassengers());
+    protected InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
+        if (world.isClientSide || !(player instanceof ServerPlayer sp)) return InteractionResult.sidedSuccess(world.isClientSide);
+        List<CarEntity> cars = world.getEntitiesOfClass(CarEntity.class, new AABB(pos).inflate(6.0), c -> !c.isVehicle());
         if (cars.isEmpty()) {
-            sp.sendMessage(Text.literal("Park a car right next to the chop shop first.").formatted(Formatting.GRAY), true);
-            return ActionResult.SUCCESS;
+            sp.displayClientMessage(Component.literal("Park a car right next to the chop shop first.").withStyle(ChatFormatting.GRAY), true);
+            return InteractionResult.SUCCESS;
         }
-        cars.sort(Comparator.comparingDouble(c -> c.squaredDistanceTo(pos.toCenterPos())));
+        cars.sort(Comparator.comparingDouble(c -> c.distanceToSqr(pos.getCenter())));
         CarEntity car = cars.get(0);
         long value = car.isPolice() ? 1500 : car.getCarType().chopValue();
         value = Math.round(value * (0.4 + 0.6 * car.getCarHealth() / car.getCarType().maxHealth()));
         if (car.isPolice()) CrimeHooks.crime(sp, 1, "Chopped a police car");
         car.discard();
         Money.add(sp, value);
-        world.playSound(null, pos, SoundEvents.BLOCK_ANVIL_LAND, net.minecraft.sound.SoundCategory.BLOCKS, 0.6f, 0.7f);
-        sp.sendMessage(Text.literal("Chopped for parts: +$" + value).formatted(Formatting.GREEN, Formatting.BOLD), true);
-        return ActionResult.SUCCESS;
+        world.playSound(null, pos, SoundEvents.ANVIL_LAND, net.minecraft.sounds.SoundSource.BLOCKS, 0.6f, 0.7f);
+        sp.displayClientMessage(Component.literal("Chopped for parts: +$" + value).withStyle(ChatFormatting.GREEN, ChatFormatting.BOLD), true);
+        return InteractionResult.SUCCESS;
     }
 }

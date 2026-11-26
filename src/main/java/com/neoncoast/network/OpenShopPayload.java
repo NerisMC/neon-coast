@@ -1,18 +1,17 @@
 package com.neoncoast.network;
 
 import com.neoncoast.NeonCoast;
-import net.minecraft.network.RegistryByteBuf;
-import net.minecraft.network.codec.PacketCodec;
-import net.minecraft.network.codec.PacketCodecs;
-import net.minecraft.network.packet.CustomPayload;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.core.BlockPos;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 
-public record OpenShopPayload(BlockPos pos) implements CustomPayload {
-    public static final CustomPayload.Id<OpenShopPayload> ID = new CustomPayload.Id<>(NeonCoast.id("open_shop"));
-    public static final PacketCodec<RegistryByteBuf, OpenShopPayload> CODEC = PacketCodec.tuple(BlockPos.PACKET_CODEC, OpenShopPayload::pos, OpenShopPayload::new);
+public record OpenShopPayload(BlockPos pos) implements CustomPacketPayload {
+    public static final CustomPacketPayload.Type<OpenShopPayload> ID = new CustomPacketPayload.Type<>(NeonCoast.id("open_shop"));
+    public static final StreamCodec<RegistryFriendlyByteBuf, OpenShopPayload> CODEC = StreamCodec.composite(BlockPos.STREAM_CODEC, OpenShopPayload::pos, OpenShopPayload::new);
 
     @Override
-    public Id<? extends CustomPayload> getId() {
+    public Type<? extends CustomPacketPayload> type() {
         return ID;
     }
 }

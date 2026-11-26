@@ -1,18 +1,17 @@
 package com.neoncoast.network;
 
 import com.neoncoast.NeonCoast;
-import net.minecraft.network.RegistryByteBuf;
-import net.minecraft.network.codec.PacketCodec;
-import net.minecraft.network.codec.PacketCodecs;
-import net.minecraft.network.packet.CustomPayload;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.ByteBufCodecs;
+import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 
-public record MoneySyncPayload(long money) implements CustomPayload {
-    public static final CustomPayload.Id<MoneySyncPayload> ID = new CustomPayload.Id<>(NeonCoast.id("money"));
-    public static final PacketCodec<RegistryByteBuf, MoneySyncPayload> CODEC = PacketCodec.tuple(PacketCodecs.VAR_LONG, MoneySyncPayload::money, MoneySyncPayload::new);
+public record MoneySyncPayload(long money) implements CustomPacketPayload {
+    public static final CustomPacketPayload.Type<MoneySyncPayload> ID = new CustomPacketPayload.Type<>(NeonCoast.id("money"));
+    public static final StreamCodec<RegistryFriendlyByteBuf, MoneySyncPayload> CODEC = StreamCodec.composite(ByteBufCodecs.VAR_LONG, MoneySyncPayload::money, MoneySyncPayload::new);
 
     @Override
-    public Id<? extends CustomPayload> getId() {
+    public Type<? extends CustomPacketPayload> type() {
         return ID;
     }
 }

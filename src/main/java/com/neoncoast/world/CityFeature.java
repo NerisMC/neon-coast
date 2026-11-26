@@ -1,20 +1,20 @@
 package com.neoncoast.world;
 
 import com.mojang.serialization.Codec;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.Heightmap;
-import net.minecraft.world.StructureWorldAccess;
-import net.minecraft.world.gen.feature.DefaultFeatureConfig;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.util.FeatureContext;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
+import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
 /**
  * Cities: the world is split into 256x256 regions and about 1 in 6 is a city. Inside a city region
  * every third chunk (in both directions) builds a 48x48 district centred on itself, and the
  * districts tile into one big connected street grid at sea level + 1.
  */
-public class CityFeature extends Feature<DefaultFeatureConfig> {
-    public CityFeature(Codec<DefaultFeatureConfig> codec) {
+public class CityFeature extends Feature<NoneFeatureConfiguration> {
+    public CityFeature(Codec<NoneFeatureConfiguration> codec) {
         super(codec);
     }
 
@@ -28,19 +28,19 @@ public class CityFeature extends Feature<DefaultFeatureConfig> {
     }
 
     @Override
-    public boolean generate(FeatureContext<DefaultFeatureConfig> context) {
-        StructureWorldAccess world = context.getWorld();
-        BlockPos origin = context.getOrigin();
+    public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> context) {
+        WorldGenLevel world = context.level();
+        BlockPos origin = context.origin();
         int cx = origin.getX() >> 4, cz = origin.getZ() >> 4;
         if (Math.floorMod(cx, 3) != 0 || Math.floorMod(cz, 3) != 0) return false;
         int x0 = (cx << 4) - CityGenerator.OFF;
         int z0 = (cz << 4) - CityGenerator.OFF;
         if (!isCityRegion(world.getSeed(), x0 + 24, z0 + 24)) return false;
         int street = world.getSeaLevel() + 1;
-        int ground = world.getTopY(Heightmap.Type.WORLD_SURFACE_WG, x0 + 24, z0 + 24) - 1;
+        int ground = world.getHeight(Heightmap.Types.WORLD_SURFACE_WG, x0 + 24, z0 + 24) - 1;
         BlockPos centre = new BlockPos(x0 + 24, ground, z0 + 24);
         if (!world.getFluidState(centre).isEmpty() || ground < street - 4 || ground > street + 22) return false;
-        CityGenerator.generateDistrict(world, x0, street, z0, context.getRandom());
+        CityGenerator.generateDistrict(world, x0, street, z0, context.random());
         return true;
     }
 }

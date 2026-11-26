@@ -2,22 +2,22 @@ package com.neoncoast.client;
 
 import com.neoncoast.NeonCoast;
 import com.neoncoast.vehicle.CarEntity;
-import net.minecraft.client.render.entity.EntityRendererFactory;
-import net.minecraft.client.render.entity.MobEntityRenderer;
-import net.minecraft.client.render.entity.model.EntityModel;
-import net.minecraft.util.Identifier;
+import net.minecraft.client.model.EntityModel;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.entity.MobRenderer;
+import net.minecraft.resources.ResourceLocation;
 
-public class CarRenderer<M extends EntityModel<CarEntity>> extends MobEntityRenderer<CarEntity, M> {
-    private final Identifier[] textures;
-    private final Identifier flash;
+public class CarRenderer<M extends EntityModel<CarEntity>> extends MobRenderer<CarEntity, M> {
+    private final ResourceLocation[] textures;
+    private final ResourceLocation flash;
 
-    public CarRenderer(EntityRendererFactory.Context ctx, M model, String name, boolean police) {
+    public CarRenderer(EntityRendererProvider.Context ctx, M model, String name, boolean police) {
         super(ctx, model, 1.2f);
         if (police) {
-            textures = new Identifier[]{NeonCoast.id("textures/entity/" + name + ".png")};
+            textures = new ResourceLocation[]{NeonCoast.id("textures/entity/" + name + ".png")};
             flash = NeonCoast.id("textures/entity/" + name + "_flash.png");
         } else {
-            textures = new Identifier[CarEntity.COLORS.length];
+            textures = new ResourceLocation[CarEntity.COLORS.length];
             for (int i = 0; i < textures.length; i++) {
                 textures[i] = NeonCoast.id("textures/entity/" + name + "_" + CarEntity.COLORS[i] + ".png");
             }
@@ -26,9 +26,9 @@ public class CarRenderer<M extends EntityModel<CarEntity>> extends MobEntityRend
     }
 
     @Override
-    public Identifier getTexture(CarEntity car) {
+    public ResourceLocation getTexture(CarEntity car) {
         if (flash != null) {
-            return car.isSirenOn() && (car.age / 4) % 2 == 0 ? flash : textures[0];
+            return car.isSirenOn() && (car.tickCount / 4) % 2 == 0 ? flash : textures[0];
         }
         return textures[Math.min(car.getVariant(), textures.length - 1)];
     }

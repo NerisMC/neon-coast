@@ -2,7 +2,7 @@ package com.neoncoast.economy;
 
 import com.neoncoast.network.MoneySyncPayload;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
-import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.level.ServerPlayer;
 
 public final class Money {
     public static final long STARTING_CASH = 500;
@@ -10,30 +10,30 @@ public final class Money {
     private Money() {
     }
 
-    private static MoneyState state(ServerPlayerEntity player) {
-        return player.getServer().getOverworld().getPersistentStateManager().getOrCreate(MoneyState.TYPE, "neoncoast_money");
+    private static MoneyState state(ServerPlayer player) {
+        return player.getServer().overworld().getDataStorage().computeIfAbsent(MoneyState.TYPE, "neoncoast_money");
     }
 
-    public static long get(ServerPlayerEntity player) {
-        return state(player).balances.getOrDefault(player.getUuid(), STARTING_CASH);
+    public static long get(ServerPlayer player) {
+        return state(player).balances.getOrDefault(player.getUUID(), STARTING_CASH);
     }
 
-    public static void add(ServerPlayerEntity player, long delta) {
+    public static void add(ServerPlayer player, long delta) {
         MoneyState s = state(player);
-        long now = Math.max(0, s.balances.getOrDefault(player.getUuid(), STARTING_CASH) + delta);
-        s.balances.put(player.getUuid(), now);
-        s.markDirty();
+        long now = Math.max(0, s.balances.getOrDefault(player.getUUID(), STARTING_CASH) + delta);
+        s.balances.put(player.getUUID(), now);
+        s.setDirty();
         sync(player);
     }
 
     /** Takes the money if the player has it. */
-    public static boolean spend(ServerPlayerEntity player, long amount) {
+    public static boolean spend(ServerPlayer player, long amount) {
         if (get(player) < amount) return false;
         add(player, -amount);
         return true;
     }
 
-    public static void sync(ServerPlayerEntity player) {
+    public static void sync(ServerPlayer player) {
         ServerPlayNetworking.send(player, new MoneySyncPayload(get(player)));
     }
 }

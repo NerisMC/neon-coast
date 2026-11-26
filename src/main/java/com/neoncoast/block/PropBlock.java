@@ -1,48 +1,48 @@
 package com.neoncoast.block;
 
 import com.mojang.serialization.MapCodec;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.HorizontalFacingBlock;
-import net.minecraft.block.ShapeContext;
-import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.state.StateManager;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.world.BlockView;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.HorizontalDirectionalBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 
 /** Street furniture (vending machines, dumpsters, hydrants...). Faces the player when placed. Shapes are centred. */
-public class PropBlock extends HorizontalFacingBlock {
-    public static final MapCodec<PropBlock> CODEC = createCodec(s -> new PropBlock(s, 0, 0, 0, 16, 16, 16));
+public class PropBlock extends HorizontalDirectionalBlock {
+    public static final MapCodec<PropBlock> CODEC = simpleCodec(s -> new PropBlock(s, 0, 0, 0, 16, 16, 16));
     private final VoxelShape northSouth;
     private final VoxelShape eastWest;
 
-    public PropBlock(Settings settings, double x1, double y1, double z1, double x2, double y2, double z2) {
+    public PropBlock(Properties settings, double x1, double y1, double z1, double x2, double y2, double z2) {
         super(settings);
-        this.northSouth = Block.createCuboidShape(x1, y1, z1, x2, y2, z2);
-        this.eastWest = Block.createCuboidShape(z1, y1, x1, z2, y2, x2);
-        this.setDefaultState(this.getStateManager().getDefaultState().with(FACING, Direction.NORTH));
+        this.northSouth = Block.box(x1, y1, z1, x2, y2, z2);
+        this.eastWest = Block.box(z1, y1, x1, z2, y2, x2);
+        this.registerDefaultState(this.getStateDefinition().any().setValue(FACING, Direction.NORTH));
     }
 
     @Override
-    protected MapCodec<? extends HorizontalFacingBlock> getCodec() {
+    protected MapCodec<? extends HorizontalDirectionalBlock> codec() {
         return CODEC;
     }
 
     @Override
-    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(FACING);
     }
 
     @Override
-    public BlockState getPlacementState(ItemPlacementContext ctx) {
-        return this.getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing().getOpposite());
+    public BlockState getStateForPlacement(BlockPlaceContext ctx) {
+        return this.defaultBlockState().setValue(FACING, ctx.getHorizontalDirection().getOpposite());
     }
 
     @Override
-    protected VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        Direction d = state.get(FACING);
+    protected VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+        Direction d = state.getValue(FACING);
         return d == Direction.NORTH || d == Direction.SOUTH ? northSouth : eastWest;
     }
 }

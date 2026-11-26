@@ -1,18 +1,18 @@
 package com.neoncoast.network;
 
 import com.neoncoast.NeonCoast;
-import net.minecraft.network.RegistryByteBuf;
-import net.minecraft.network.codec.PacketCodec;
-import net.minecraft.network.codec.PacketCodecs;
-import net.minecraft.network.packet.CustomPayload;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.core.BlockPos;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.ByteBufCodecs;
+import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 
-public record JobSyncPayload(boolean active, BlockPos target) implements CustomPayload {
-    public static final CustomPayload.Id<JobSyncPayload> ID = new CustomPayload.Id<>(NeonCoast.id("job"));
-    public static final PacketCodec<RegistryByteBuf, JobSyncPayload> CODEC = PacketCodec.tuple(PacketCodecs.BOOL, JobSyncPayload::active, BlockPos.PACKET_CODEC, JobSyncPayload::target, JobSyncPayload::new);
+public record JobSyncPayload(boolean active, BlockPos target) implements CustomPacketPayload {
+    public static final CustomPacketPayload.Type<JobSyncPayload> ID = new CustomPacketPayload.Type<>(NeonCoast.id("job"));
+    public static final StreamCodec<RegistryFriendlyByteBuf, JobSyncPayload> CODEC = StreamCodec.composite(ByteBufCodecs.BOOL, JobSyncPayload::active, BlockPos.STREAM_CODEC, JobSyncPayload::target, JobSyncPayload::new);
 
     @Override
-    public Id<? extends CustomPayload> getId() {
+    public Type<? extends CustomPacketPayload> type() {
         return ID;
     }
 }

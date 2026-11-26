@@ -3,81 +3,81 @@ package com.neoncoast.npc;
 import com.neoncoast.crime.WantedManager;
 import com.neoncoast.economy.Money;
 import com.neoncoast.vehicle.CarEntity;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityData;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.SpawnReason;
-import net.minecraft.entity.ai.goal.ActiveTargetGoal;
-import net.minecraft.entity.ai.goal.LookAroundGoal;
-import net.minecraft.entity.ai.goal.LookAtEntityGoal;
-import net.minecraft.entity.ai.goal.MeleeAttackGoal;
-import net.minecraft.entity.ai.goal.SwimGoal;
-import net.minecraft.entity.ai.goal.WanderAroundFarGoal;
-import net.minecraft.entity.attribute.DefaultAttributeContainer;
-import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.entity.mob.HostileEntity;
-import net.minecraft.entity.mob.PathAwareEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
-import net.minecraft.world.LocalDifficulty;
-import net.minecraft.world.ServerWorldAccess;
-import net.minecraft.world.World;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.PathfinderMob;
+import net.minecraft.world.entity.SpawnGroupData;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.FloatGoal;
+import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
+import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
+import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
+import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
+import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
+import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.ServerLevelAccessor;
 import org.jetbrains.annotations.Nullable;
 
 /** Cop on foot. Ignores you unless you're wanted; at 1-2 stars a hit when you're hurt means you're busted. */
-public class PoliceOfficerEntity extends PathAwareEntity {
+public class PoliceOfficerEntity extends PathfinderMob {
     private int noTargetTicks;
 
-    public PoliceOfficerEntity(EntityType<? extends PathAwareEntity> type, World world) {
+    public PoliceOfficerEntity(EntityType<? extends PathfinderMob> type, Level world) {
         super(type, world);
     }
 
-    public static DefaultAttributeContainer.Builder createPoliceAttributes() {
-        return HostileEntity.createHostileAttributes()
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, 24.0)
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.32)
-                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 3.0)
-                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 48.0)
-                .add(EntityAttributes.GENERIC_ARMOR, 4.0);
+    public static AttributeSupplier.Builder createPoliceAttributes() {
+        return Monster.createMonsterAttributes()
+                .add(Attributes.MAX_HEALTH, 24.0)
+                .add(Attributes.MOVEMENT_SPEED, 0.32)
+                .add(Attributes.ATTACK_DAMAGE, 3.0)
+                .add(Attributes.FOLLOW_RANGE, 48.0)
+                .add(Attributes.ARMOR, 4.0);
     }
 
     @Override
-    protected void initGoals() {
-        this.goalSelector.add(0, new SwimGoal(this));
-        this.goalSelector.add(2, new MeleeAttackGoal(this, 1.25, true));
-        this.goalSelector.add(6, new WanderAroundFarGoal(this, 0.8));
-        this.goalSelector.add(7, new LookAtEntityGoal(this, PlayerEntity.class, 10.0f));
-        this.goalSelector.add(8, new LookAroundGoal(this));
-        this.targetSelector.add(1, new ActiveTargetGoal<>(this, PlayerEntity.class, 5, true, false,
-                p -> p instanceof PlayerEntity pl && WantedManager.getStars(pl) > 0));
+    protected void registerGoals() {
+        this.goalSelector.addGoal(0, new FloatGoal(this));
+        this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.25, true));
+        this.goalSelector.addGoal(6, new WaterAvoidingRandomStrollGoal(this, 0.8));
+        this.goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 10.0f));
+        this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
+        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, 5, true, false,
+                p -> p instanceof Player pl && WantedManager.getStars(pl) > 0));
     }
 
     @Nullable
     @Override
-    public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData) {
-        this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(Items.STICK));
-        this.setEquipmentDropChance(EquipmentSlot.MAINHAND, 0.0f);
-        return super.initialize(world, difficulty, spawnReason, entityData);
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance difficulty, MobSpawnType spawnReason, @Nullable SpawnGroupData entityData) {
+        this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(Items.STICK));
+        this.setDropChance(EquipmentSlot.MAINHAND, 0.0f);
+        return super.finalizeSpawn(world, difficulty, spawnReason, entityData);
     }
 
     @Override
     public void tick() {
         super.tick();
-        if (this.getWorld().isClient) return;
-        if (this.getTarget() instanceof PlayerEntity p && WantedManager.getStars(p) <= 0) {
+        if (this.level().isClientSide) return;
+        if (this.getTarget() instanceof Player p && WantedManager.getStars(p) <= 0) {
             this.setTarget(null);
         }
         // hop out of the cruiser once we're close
-        if (this.getVehicle() instanceof CarEntity && this.getTarget() != null && this.squaredDistanceTo(this.getTarget()) < 64.0) {
+        if (this.getVehicle() instanceof CarEntity && this.getTarget() != null && this.distanceToSqr(this.getTarget()) < 64.0) {
             this.stopRiding();
         }
-        if (this.getTarget() == null && !this.hasVehicle()) {
+        if (this.getTarget() == null && !this.isPassenger()) {
             if (++noTargetTicks > 1200) this.discard(); // off duty
         } else {
             noTargetTicks = 0;
@@ -85,29 +85,29 @@ public class PoliceOfficerEntity extends PathAwareEntity {
     }
 
     @Override
-    public boolean tryAttack(Entity target) {
-        if (target instanceof ServerPlayerEntity player && !player.hasVehicle()) {
+    public boolean doHurtTarget(Entity target) {
+        if (target instanceof ServerPlayer player && !player.isPassenger()) {
             int stars = WantedManager.getStars(player);
             if (stars > 0 && stars <= 2 && player.getHealth() <= 10.0f) {
                 bust(player);
                 return true;
             }
         }
-        return super.tryAttack(target);
+        return super.doHurtTarget(target);
     }
 
-    private void bust(ServerPlayerEntity player) {
+    private void bust(ServerPlayer player) {
         long fine = Math.max(100, Money.get(player) / 5);
         Money.add(player, -fine);
         WantedManager.clear(player);
         this.setTarget(null);
         player.setHealth(Math.max(player.getHealth(), 6.0f));
-        player.playSound(SoundEvents.BLOCK_IRON_DOOR_CLOSE, 1.0f, 0.8f);
-        player.sendMessage(Text.literal("BUSTED! Fine: $" + fine).formatted(Formatting.DARK_AQUA, Formatting.BOLD), true);
+        player.playSound(SoundEvents.IRON_DOOR_CLOSE, 1.0f, 0.8f);
+        player.displayClientMessage(Component.literal("BUSTED! Fine: $" + fine).withStyle(ChatFormatting.DARK_AQUA, ChatFormatting.BOLD), true);
     }
 
     @Override
-    public boolean canImmediatelyDespawn(double distanceSquared) {
+    public boolean removeWhenFarAway(double distanceSquared) {
         return this.getTarget() == null && distanceSquared > 128 * 128;
     }
 }

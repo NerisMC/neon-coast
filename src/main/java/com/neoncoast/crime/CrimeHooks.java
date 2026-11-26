@@ -3,14 +3,14 @@ package com.neoncoast.crime;
 import com.neoncoast.npc.PoliceOfficerEntity;
 import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
 import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.passive.VillagerEntity;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.text.Text;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.math.Box;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.npc.Villager;
+import net.minecraft.world.phys.AABB;
 
 /** Turns things you do into wanted stars. */
 public final class CrimeHooks {
@@ -19,26 +19,26 @@ public final class CrimeHooks {
 
     public static void register() {
         AttackEntityCallback.EVENT.register((player, world, hand, entity, hit) -> {
-            if (!world.isClient && player instanceof ServerPlayerEntity sp && !sp.isCreative()) {
+            if (!world.isClientSide && player instanceof ServerPlayer sp && !sp.isCreative()) {
                 if (entity instanceof PoliceOfficerEntity) crime(sp, 2, "Assaulting an officer");
-                else if (entity instanceof VillagerEntity) witnessedCrime(sp, 1, "Assault");
+                else if (entity instanceof Villager) witnessedCrime(sp, 1, "Assault");
             }
-            return ActionResult.PASS;
+            return InteractionResult.PASS;
         });
         ServerLivingEntityEvents.AFTER_DEATH.register((entity, source) -> {
-            if (entity instanceof ServerPlayerEntity dead) {
+            if (entity instanceof ServerPlayer dead) {
                 int stars = WantedManager.getStars(dead);
                 WantedManager.clear(dead);
                 long bill = Math.min(1000, Math.max(50, com.neoncoast.economy.Money.get(dead) / 10));
                 com.neoncoast.economy.Money.add(dead, -bill);
-                dead.sendMessage(Text.literal("Hospital bill: $" + bill + (stars > 0 ? " (wanted level cleared)" : "")).formatted(Formatting.RED), false);
+                dead.displayClientMessage(Component.literal("Hospital bill: $" + bill + (stars > 0 ? " (wanted level cleared)" : "")).withStyle(ChatFormatting.RED), false);
                 return;
             }
-            if (source.getAttacker() instanceof ServerPlayerEntity killer && !killer.isCreative()) {
+            if (source.getEntity() instanceof ServerPlayer killer && !killer.isCreative()) {
                 if (entity instanceof PoliceOfficerEntity) {
                     WantedManager.setAtLeast(killer, 3);
                     crime(killer, 1, "Killed an officer");
-                } else if (entity instanceof VillagerEntity) {
+                } else if (entity instanceof Villager) {
                     crime(killer, 1, "Murder");
                 }
             }
@@ -46,29 +46,29 @@ public final class CrimeHooks {
     }
 
     /** A crime the police always hear about. */
-    public static void crime(ServerPlayerEntity player, int stars, String what) {
+    public static void crime(ServerPlayer player, int stars, String what) {
         if (player.isCreative()) return;
         WantedManager.addStars(player, stars);
-        player.sendMessage(Text.literal(what + "! Wanted level: " + WantedManager.getStars(player))
-                .formatted(Formatting.RED, Formatting.BOLD), true);
+        player.displayClientMessage(Component.literal(what + "! Wanted level: " + WantedManager.getStars(player))
+                .withStyle(ChatFormatting.RED, ChatFormatting.BOLD), true);
     }
 
     /** A crime that only counts if a cop or a citizen saw it. */
-    public static void witnessedCrime(ServerPlayerEntity player, int stars, String what) {
+    public static void witnessedCrime(ServerPlayer player, int stars, String what) {
         if (hasWitness(player)) crime(player, stars, what);
     }
 
-    public static void hitWithCar(ServerPlayerEntity driver, LivingEntity victim) {
+    public static void hitWithCar(ServerPlayer driver, LivingEntity victim) {
         if (victim instanceof PoliceOfficerEntity) crime(driver, 2, "Ran over an officer");
-        else if (victim instanceof VillagerEntity) witnessedCrime(driver, 1, "Hit and run");
+        else if (victim instanceof Villager) witnessedCrime(driver, 1, "Hit and run");
     }
 
-    private static boolean hasWitness(ServerPlayerEntity player) {
-        Box near = player.getBoundingBox().expand(16.0);
-        Box far = player.getBoundingBox().expand(32.0);
-        for (Entity e : player.getWorld().getOtherEntities(player, far, e -> e instanceof PoliceOfficerEntity || e instanceof VillagerEntity)) {
+    private static boolean hasWitness(ServerPlayer player) {
+        AABB near = player.getBoundingBox().inflate(16.0);
+        AABB far = player.getBoundingBox().inflate(32.0);
+        for (Entity e : player.level().getEntities(player, far, e -> e instanceof PoliceOfficerEntity || e instanceof Villager)) {
             if (e instanceof PoliceOfficerEntity) return true;
-            if (near.intersects(e.getBoundingBox()) && e instanceof LivingEntity l && l.canSee(player)) return true;
+            if (near.intersects(e.getBoundingBox()) && e instanceof LivingEntity l && l.hasLineOfSight(player)) return true;
         }
         return false;
     }

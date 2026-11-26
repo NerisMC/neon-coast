@@ -12,10 +12,10 @@ import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.RenderType;
 import com.neoncoast.registry.ModBlocks;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.render.RenderLayer;
 
 public class NeonCoastClient implements ClientModInitializer {
     @Override
@@ -25,16 +25,16 @@ public class NeonCoastClient implements ClientModInitializer {
         EntityModelLayerRegistry.registerModelLayer(PoliceCarModel.LAYER, PoliceCarModel::getTexturedModelData);
 
         EntityRendererRegistry.<CarEntity>register(ModEntities.SEDAN,
-                ctx -> new CarRenderer<>(ctx, new SedanModel(ctx.getPart(SedanModel.LAYER)), "sedan", false));
+                ctx -> new CarRenderer<>(ctx, new SedanModel(ctx.bakeLayer(SedanModel.LAYER)), "sedan", false));
         EntityRendererRegistry.<CarEntity>register(ModEntities.SPORTS_CAR,
-                ctx -> new CarRenderer<>(ctx, new SportsCarModel(ctx.getPart(SportsCarModel.LAYER)), "sports_car", false));
+                ctx -> new CarRenderer<>(ctx, new SportsCarModel(ctx.bakeLayer(SportsCarModel.LAYER)), "sports_car", false));
         EntityRendererRegistry.<CarEntity>register(ModEntities.POLICE_CAR,
-                ctx -> new CarRenderer<>(ctx, new PoliceCarModel(ctx.getPart(PoliceCarModel.LAYER)), "police_car", true));
+                ctx -> new CarRenderer<>(ctx, new PoliceCarModel(ctx.bakeLayer(PoliceCarModel.LAYER)), "police_car", true));
         EntityRendererRegistry.register(ModEntities.POLICE_OFFICER, PoliceRenderer::new);
 
         HudRenderCallback.EVENT.register(Hud::render);
-        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getTranslucent(), ModBlocks.OFFICE_WINDOW, ModBlocks.GLASS_CURTAIN_WALL);
-        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), ModBlocks.TRAFFIC_LIGHT, ModBlocks.BENCH, ModBlocks.FIRE_HYDRANT);
+        BlockRenderLayerMap.INSTANCE.putBlocks(RenderType.translucent(), ModBlocks.OFFICE_WINDOW, ModBlocks.GLASS_CURTAIN_WALL);
+        BlockRenderLayerMap.INSTANCE.putBlocks(RenderType.cutout(), ModBlocks.TRAFFIC_LIGHT, ModBlocks.BENCH, ModBlocks.FIRE_HYDRANT);
 
         ClientPlayNetworking.registerGlobalReceiver(WantedSyncPayload.ID, (payload, context) -> {
             ClientState.stars = payload.stars();
@@ -52,8 +52,8 @@ public class NeonCoastClient implements ClientModInitializer {
             if (ClientPlayNetworking.canSend(CarCrashPayload.ID)) ClientPlayNetworking.send(new CarCrashPayload(impact));
         };
         CarEntity.soundStarter = car -> {
-            MinecraftClient.getInstance().getSoundManager().play(new CarSoundInstance(car, false));
-            if (car.isPolice()) MinecraftClient.getInstance().getSoundManager().play(new CarSoundInstance(car, true));
+            Minecraft.getInstance().getSoundManager().play(new CarSoundInstance(car, false));
+            if (car.isPolice()) Minecraft.getInstance().getSoundManager().play(new CarSoundInstance(car, true));
         };
     }
 }
