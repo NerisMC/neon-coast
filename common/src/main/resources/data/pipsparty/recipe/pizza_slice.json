@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "T",
+    "B"
+  ],
+  "key": {
+    "T": "minecraft:beetroot",
+    "B": "minecraft:bread"
+  },
+  "result": {
+    "id": "pipsparty:pizza_slice",
+    "count": 2
+  }
+}

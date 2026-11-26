@@ -1,0 +1,106 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "front": "pipsparty:block/fan_front",
+    "side": "pipsparty:block/desk_metal",
+    "particle": "pipsparty:block/fan_front"
+  },
+  "elements": [
+    {
+      "from": [
+        6,
+        0,
+        6
+      ],
+      "to": [
+        10,
+        1,
+        10
+      ],
+      "faces": {
+        "north": {
+          "texture": "#side"
+        },
+        "south": {
+          "texture": "#side"
+        },
+        "east": {
+          "texture": "#side"
+        },
+        "west": {
+          "texture": "#side"
+        },
+        "up": {
+          "texture": "#side"
+        },
+        "down": {
+          "texture": "#side"
+        }
+      }
+    },
+    {
+      "from": [
+        7.5,
+        1,
+        7.5
+      ],
+      "to": [
+        8.5,
+        6,
+        8.5
+      ],
+      "faces": {
+        "north": {
+          "texture": "#side"
+        },
+        "south": {
+          "texture": "#side"
+        },
+        "east": {
+          "texture": "#side"
+        },
+        "west": {
+          "texture": "#side"
+        },
+        "up": {
+          "texture": "#side"
+        },
+        "down": {
+          "texture": "#side"
+        }
+      }
+    },
+    {
+      "from": [
+        4,
+        5,
+        7
+      ],
+      "to": [
+        12,
+        13,
+        9
+      ],
+      "faces": {
+        "north": {
+          "texture": "#front"
+        },
+        "south": {
+          "texture": "#front"
+        },
+        "east": {
+          "texture": "#side"
+        },
+        "west": {
+          "texture": "#side"
+        },
+        "up": {
+          "texture": "#side"
+        },
+        "down": {
+          "texture": "#side"
+        }
+      }
+    }
+  ]
+}

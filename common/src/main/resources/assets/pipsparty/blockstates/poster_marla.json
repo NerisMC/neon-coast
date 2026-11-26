@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "pipsparty:block/poster_marla"
+    },
+    "facing=east": {
+      "model": "pipsparty:block/poster_marla",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "pipsparty:block/poster_marla",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "pipsparty:block/poster_marla",
+      "y": 270
+    }
+  }
+}

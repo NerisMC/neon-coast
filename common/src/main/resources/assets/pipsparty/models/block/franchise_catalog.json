@@ -1,0 +1,74 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "cover": "pipsparty:block/catalog_cover",
+    "pages": "pipsparty:block/catalog_pages",
+    "particle": "pipsparty:block/catalog_cover"
+  },
+  "elements": [
+    {
+      "from": [
+        2,
+        0,
+        2
+      ],
+      "to": [
+        14,
+        3,
+        14
+      ],
+      "faces": {
+        "north": {
+          "texture": "#pages"
+        },
+        "south": {
+          "texture": "#pages"
+        },
+        "east": {
+          "texture": "#pages"
+        },
+        "west": {
+          "texture": "#pages"
+        },
+        "up": {
+          "texture": "#cover"
+        },
+        "down": {
+          "texture": "#pages"
+        }
+      }
+    },
+    {
+      "from": [
+        2,
+        3,
+        6
+      ],
+      "to": [
+        14,
+        15,
+        7
+      ],
+      "faces": {
+        "north": {
+          "texture": "#cover"
+        },
+        "south": {
+          "texture": "#cover"
+        },
+        "east": {
+          "texture": "#pages"
+        },
+        "west": {
+          "texture": "#pages"
+        },
+        "up": {
+          "texture": "#pages"
+        },
+        "down": {
+          "texture": "#pages"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "pipsparty:block/time_clock"
+    },
+    "facing=east": {
+      "model": "pipsparty:block/time_clock",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "pipsparty:block/time_clock",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "pipsparty:block/time_clock",
+      "y": 270
+    }
+  }
+}

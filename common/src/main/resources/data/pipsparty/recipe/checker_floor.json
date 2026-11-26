@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "WB",
+    "BW"
+  ],
+  "key": {
+    "W": "minecraft:white_concrete",
+    "B": "minecraft:black_concrete"
+  },
+  "result": {
+    "id": "pipsparty:checker_floor",
+    "count": 4
+  }
+}

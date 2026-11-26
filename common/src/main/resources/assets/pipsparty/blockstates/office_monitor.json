@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "pipsparty:block/office_monitor"
+    },
+    "facing=east": {
+      "model": "pipsparty:block/office_monitor",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "pipsparty:block/office_monitor",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "pipsparty:block/office_monitor",
+      "y": 270
+    }
+  }
+}

@@ -1,0 +1,110 @@
+{
+  "jumpscare": {
+    "sounds": [
+      {
+        "name": "pipsparty:jumpscare",
+        "stream": false
+      }
+    ],
+    "subtitle": "subtitles.pipsparty.jumpscare"
+  },
+  "servo_step": {
+    "sounds": [
+      {
+        "name": "pipsparty:servo_step",
+        "stream": false
+      }
+    ],
+    "subtitle": "subtitles.pipsparty.servo_step"
+  },
+  "door_slam": {
+    "sounds": [
+      {
+        "name": "pipsparty:door_slam",
+        "stream": false
+      }
+    ],
+    "subtitle": "subtitles.pipsparty.door_slam"
+  },
+  "door_bang": {
+    "sounds": [
+      {
+        "name": "pipsparty:door_bang",
+        "stream": false
+      }
+    ],
+    "subtitle": "subtitles.pipsparty.door_bang"
+  },
+  "light_buzz": {
+    "sounds": [
+      {
+        "name": "pipsparty:light_buzz",
+        "stream": false
+      }
+    ],
+    "subtitle": "subtitles.pipsparty.light_buzz"
+  },
+  "music_box": {
+    "sounds": [
+      {
+        "name": "pipsparty:music_box",
+        "stream": true
+      }
+    ],
+    "subtitle": "subtitles.pipsparty.music_box"
+  },
+  "chime_6am": {
+    "sounds": [
+      {
+        "name": "pipsparty:chime_6am",
+        "stream": false
+      }
+    ],
+    "subtitle": "subtitles.pipsparty.chime_6am"
+  },
+  "camera_flip": {
+    "sounds": [
+      {
+        "name": "pipsparty:camera_flip",
+        "stream": false
+      }
+    ],
+    "subtitle": "subtitles.pipsparty.camera_flip"
+  },
+  "power_down": {
+    "sounds": [
+      {
+        "name": "pipsparty:power_down",
+        "stream": false
+      }
+    ],
+    "subtitle": "subtitles.pipsparty.power_down"
+  },
+  "stage_band": {
+    "sounds": [
+      {
+        "name": "pipsparty:stage_band",
+        "stream": true
+      }
+    ],
+    "subtitle": "subtitles.pipsparty.stage_band"
+  },
+  "gator_run": {
+    "sounds": [
+      {
+        "name": "pipsparty:gator_run",
+        "stream": false
+      }
+    ],
+    "subtitle": "subtitles.pipsparty.gator_run"
+  },
+  "giggle": {
+    "sounds": [
+      {
+        "name": "pipsparty:giggle",
+        "stream": false
+      }
+    ],
+    "subtitle": "subtitles.pipsparty.giggle"
+  }
+}

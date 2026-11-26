@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "pipsparty:block/ticket_machine"
+    },
+    "facing=east": {
+      "model": "pipsparty:block/ticket_machine",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "pipsparty:block/ticket_machine",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "pipsparty:block/ticket_machine",
+      "y": 270
+    }
+  }
+}

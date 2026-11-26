@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "pipsparty:block/security_desk"
+    },
+    "facing=east": {
+      "model": "pipsparty:block/security_desk",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "pipsparty:block/security_desk",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "pipsparty:block/security_desk",
+      "y": 270
+    }
+  }
+}

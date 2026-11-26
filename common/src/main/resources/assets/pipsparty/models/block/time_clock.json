@@ -1,0 +1,42 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "front": "pipsparty:block/time_clock",
+    "side": "pipsparty:block/desk_metal",
+    "particle": "pipsparty:block/time_clock"
+  },
+  "elements": [
+    {
+      "from": [
+        3,
+        0,
+        3
+      ],
+      "to": [
+        13,
+        16,
+        13
+      ],
+      "faces": {
+        "north": {
+          "texture": "#front"
+        },
+        "south": {
+          "texture": "#side"
+        },
+        "east": {
+          "texture": "#side"
+        },
+        "west": {
+          "texture": "#side"
+        },
+        "up": {
+          "texture": "#side"
+        },
+        "down": {
+          "texture": "#side"
+        }
+      }
+    }
+  ]
+}

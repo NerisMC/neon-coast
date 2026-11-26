@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "pipsparty:block/party_table"
+    },
+    "facing=east": {
+      "model": "pipsparty:block/party_table",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "pipsparty:block/party_table",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "pipsparty:block/party_table",
+      "y": 270
+    }
+  }
+}

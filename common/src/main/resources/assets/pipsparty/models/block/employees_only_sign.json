@@ -1,0 +1,42 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "front": "pipsparty:block/employees_only_sign",
+    "back": "pipsparty:block/office_wall",
+    "particle": "pipsparty:block/employees_only_sign"
+  },
+  "elements": [
+    {
+      "from": [
+        0,
+        0,
+        15
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ],
+      "faces": {
+        "north": {
+          "texture": "#front"
+        },
+        "south": {
+          "texture": "#back"
+        },
+        "east": {
+          "texture": "#back"
+        },
+        "west": {
+          "texture": "#back"
+        },
+        "up": {
+          "texture": "#back"
+        },
+        "down": {
+          "texture": "#back"
+        }
+      }
+    }
+  ]
+}

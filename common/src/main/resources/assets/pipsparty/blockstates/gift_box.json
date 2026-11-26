@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "pipsparty:block/gift_box"
+    },
+    "facing=east": {
+      "model": "pipsparty:block/gift_box",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "pipsparty:block/gift_box",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "pipsparty:block/gift_box",
+      "y": 270
+    }
+  }
+}

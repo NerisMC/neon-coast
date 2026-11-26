@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "pipsparty:block/kitchen_counter"
+    },
+    "facing=east": {
+      "model": "pipsparty:block/kitchen_counter",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "pipsparty:block/kitchen_counter",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "pipsparty:block/kitchen_counter",
+      "y": 270
+    }
+  }
+}

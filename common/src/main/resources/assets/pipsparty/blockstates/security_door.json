@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "powered=true": {
+      "model": "pipsparty:block/security_door_closed"
+    },
+    "powered=false": {
+      "model": "pipsparty:block/security_door_open"
+    }
+  }
+}

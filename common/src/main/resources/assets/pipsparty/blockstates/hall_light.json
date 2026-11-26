@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "lit=false": {
+      "model": "pipsparty:block/hall_light"
+    },
+    "lit=true": {
+      "model": "pipsparty:block/hall_light_on"
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "pipsparty:block/employees_only_sign"
+    },
+    "facing=east": {
+      "model": "pipsparty:block/employees_only_sign",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "pipsparty:block/employees_only_sign",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "pipsparty:block/employees_only_sign",
+      "y": 270
+    }
+  }
+}

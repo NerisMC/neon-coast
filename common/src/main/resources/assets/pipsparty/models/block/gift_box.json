@@ -1,0 +1,74 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "side": "pipsparty:block/gift_box",
+    "top": "pipsparty:block/gift_box_top",
+    "particle": "pipsparty:block/gift_box"
+  },
+  "elements": [
+    {
+      "from": [
+        2,
+        0,
+        2
+      ],
+      "to": [
+        14,
+        12,
+        14
+      ],
+      "faces": {
+        "north": {
+          "texture": "#side"
+        },
+        "south": {
+          "texture": "#side"
+        },
+        "east": {
+          "texture": "#side"
+        },
+        "west": {
+          "texture": "#side"
+        },
+        "up": {
+          "texture": "#top"
+        },
+        "down": {
+          "texture": "#side"
+        }
+      }
+    },
+    {
+      "from": [
+        3,
+        12,
+        3
+      ],
+      "to": [
+        13,
+        13,
+        13
+      ],
+      "faces": {
+        "north": {
+          "texture": "#top"
+        },
+        "south": {
+          "texture": "#top"
+        },
+        "east": {
+          "texture": "#top"
+        },
+        "west": {
+          "texture": "#top"
+        },
+        "up": {
+          "texture": "#top"
+        },
+        "down": {
+          "texture": "#top"
+        }
+      }
+    }
+  ]
+}

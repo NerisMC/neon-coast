@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "PE",
+    "BP"
+  ],
+  "key": {
+    "P": "minecraft:paper",
+    "E": "minecraft:emerald",
+    "B": "minecraft:book"
+  },
+  "result": {
+    "id": "pipsparty:franchise_catalog",
+    "count": 1
+  }
+}

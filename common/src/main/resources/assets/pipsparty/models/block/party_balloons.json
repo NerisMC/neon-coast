@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "pipsparty:block/party_balloons"
+  },
+  "render_type": "cutout"
+}

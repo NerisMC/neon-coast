@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "pipsparty:block/franchise_catalog"
+    },
+    "facing=east": {
+      "model": "pipsparty:block/franchise_catalog",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "pipsparty:block/franchise_catalog",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "pipsparty:block/franchise_catalog",
+      "y": 270
+    }
+  }
+}

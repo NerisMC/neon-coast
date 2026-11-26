@@ -1,0 +1,41 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "door": "pipsparty:block/security_door",
+    "particle": "pipsparty:block/security_door"
+  },
+  "elements": [
+    {
+      "from": [
+        0,
+        14,
+        6
+      ],
+      "to": [
+        16,
+        16,
+        10
+      ],
+      "faces": {
+        "north": {
+          "texture": "#door"
+        },
+        "south": {
+          "texture": "#door"
+        },
+        "east": {
+          "texture": "#door"
+        },
+        "west": {
+          "texture": "#door"
+        },
+        "up": {
+          "texture": "#door"
+        },
+        "down": {
+          "texture": "#door"
+        }
+      }
+    }
+  ]
+}

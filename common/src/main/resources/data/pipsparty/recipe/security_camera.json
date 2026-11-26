@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "I",
+    "G",
+    "R"
+  ],
+  "key": {
+    "I": "minecraft:iron_ingot",
+    "G": "minecraft:glass",
+    "R": "minecraft:redstone"
+  },
+  "result": {
+    "id": "pipsparty:security_camera",
+    "count": 2
+  }
+}
