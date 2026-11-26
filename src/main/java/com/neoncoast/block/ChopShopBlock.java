@@ -26,10 +26,10 @@ public class ChopShopBlock extends Block {
 
     @Override
     protected InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
-        if (world.isClientSide || !(player instanceof ServerPlayer sp)) return InteractionResult.sidedSuccess(world.isClientSide);
+        if (world.isClientSide() || !(player instanceof ServerPlayer sp)) return InteractionResult.SUCCESS;
         List<CarEntity> cars = world.getEntitiesOfClass(CarEntity.class, new AABB(pos).inflate(6.0), c -> !c.isVehicle());
         if (cars.isEmpty()) {
-            sp.displayClientMessage(Component.literal("Park a car right next to the chop shop first.").withStyle(ChatFormatting.GRAY), true);
+            sp.sendOverlayMessage(Component.literal("Park a car right next to the chop shop first.").withStyle(ChatFormatting.GRAY));
             return InteractionResult.SUCCESS;
         }
         cars.sort(Comparator.comparingDouble(c -> c.distanceToSqr(pos.getCenter())));
@@ -40,7 +40,7 @@ public class ChopShopBlock extends Block {
         car.discard();
         Money.add(sp, value);
         world.playSound(null, pos, SoundEvents.ANVIL_LAND, net.minecraft.sounds.SoundSource.BLOCKS, 0.6f, 0.7f);
-        sp.displayClientMessage(Component.literal("Chopped for parts: +$" + value).withStyle(ChatFormatting.GREEN, ChatFormatting.BOLD), true);
+        sp.sendOverlayMessage(Component.literal("Chopped for parts: +$" + value).withStyle(ChatFormatting.GREEN, ChatFormatting.BOLD));
         return InteractionResult.SUCCESS;
     }
 }

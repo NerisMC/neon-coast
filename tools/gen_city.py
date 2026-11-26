@@ -205,3 +205,7 @@ def data():
 textures()
 data()
 print("city blocks + All City preset done")
+
+# 26.1 resource formats
+import subprocess as _sp
+_sp.run([sys.executable, os.path.join(os.path.dirname(os.path.abspath(__file__)), "port26.py"), ROOT])

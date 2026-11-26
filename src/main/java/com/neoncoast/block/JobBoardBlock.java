@@ -18,7 +18,7 @@ public class JobBoardBlock extends Block {
 
     @Override
     protected InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
-        if (!world.isClientSide && player instanceof ServerPlayer sp) Jobs.takeJob(sp);
-        return InteractionResult.sidedSuccess(world.isClientSide);
+        if (!world.isClientSide() && player instanceof ServerPlayer sp) Jobs.takeJob(sp);
+        return InteractionResult.SUCCESS;
     }
 }

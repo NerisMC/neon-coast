@@ -6,12 +6,8 @@
     "CG"
   ],
   "key": {
-    "G": {
-      "item": "minecraft:gravel"
-    },
-    "C": {
-      "item": "minecraft:coal"
-    }
+    "G": "minecraft:gravel",
+    "C": "minecraft:coal"
   },
   "result": {
     "id": "neoncoast:asphalt",

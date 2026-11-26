@@ -42,10 +42,10 @@ public class ShopTerminalBlock extends HorizontalDirectionalBlock {
 
     @Override
     protected InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
-        if (!world.isClientSide && player instanceof ServerPlayer sp) {
+        if (!world.isClientSide() && player instanceof ServerPlayer sp) {
             com.neoncoast.economy.Money.sync(sp);
             ServerPlayNetworking.send(sp, new OpenShopPayload(pos));
         }
-        return InteractionResult.sidedSuccess(world.isClientSide);
+        return InteractionResult.SUCCESS;
     }
 }

@@ -84,7 +84,7 @@ public final class WantedManager {
                     s.stars = 0;
                     s.evading = false;
                     sync(player, s);
-                    player.displayClientMessage(Component.literal("You lost the cops.").withStyle(ChatFormatting.GREEN, ChatFormatting.BOLD), true);
+                    player.sendOverlayMessage(Component.literal("You lost the cops.").withStyle(ChatFormatting.GREEN, ChatFormatting.BOLD));
                 }
             }
             PoliceSpawner.tick(player, s.stars);

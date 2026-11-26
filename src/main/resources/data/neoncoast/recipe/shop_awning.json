@@ -5,12 +5,8 @@
     "RWR"
   ],
   "key": {
-    "R": {
-      "item": "minecraft:red_wool"
-    },
-    "W": {
-      "item": "minecraft:white_wool"
-    }
+    "R": "minecraft:red_wool",
+    "W": "minecraft:white_wool"
   },
   "result": {
     "id": "neoncoast:shop_awning",

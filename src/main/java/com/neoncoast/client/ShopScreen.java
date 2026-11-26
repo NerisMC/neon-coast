@@ -4,7 +4,7 @@ import com.neoncoast.economy.ShopCatalog;
 import com.neoncoast.network.BuyPayload;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
@@ -36,11 +36,11 @@ public class ShopScreen extends Screen {
     }
 
     @Override
-    public void render(GuiGraphics context, int mouseX, int mouseY, float delta) {
-        super.render(context, mouseX, mouseY, delta);
+    public void extractRenderState(GuiGraphicsExtractor context, int mouseX, int mouseY, float delta) {
+        super.extractRenderState(context, mouseX, mouseY, delta);
         int top = this.height / 2 - (ShopCatalog.NAMES.length * 24) / 2 - 22;
-        context.drawCenteredString(this.font, this.title, this.width / 2, top, 0xFFD23F);
-        context.drawCenteredString(this.font, Component.literal("Cash: $" + Hud.format(ClientState.money)), this.width / 2, top + 12, 0x55FF55);
+        context.centeredText(this.font, this.title, this.width / 2, top, 0xFFFFD23F);
+        context.centeredText(this.font, Component.literal("Cash: $" + Hud.format(ClientState.money)), this.width / 2, top + 12, 0xFF55FF55);
     }
 
     @Override

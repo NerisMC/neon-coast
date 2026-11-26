@@ -11,7 +11,7 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -55,12 +55,12 @@ public class PoliceOfficerEntity extends PathfinderMob {
         this.goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 10.0f));
         this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, 5, true, false,
-                p -> p instanceof Player pl && WantedManager.getStars(pl) > 0));
+                (p, level) -> p instanceof Player pl && WantedManager.getStars(pl) > 0));
     }
 
     @Nullable
     @Override
-    public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance difficulty, MobSpawnType spawnReason, @Nullable SpawnGroupData entityData) {
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance difficulty, EntitySpawnReason spawnReason, @Nullable SpawnGroupData entityData) {
         this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(Items.STICK));
         this.setDropChance(EquipmentSlot.MAINHAND, 0.0f);
         return super.finalizeSpawn(world, difficulty, spawnReason, entityData);
@@ -69,7 +69,7 @@ public class PoliceOfficerEntity extends PathfinderMob {
     @Override
     public void tick() {
         super.tick();
-        if (this.level().isClientSide) return;
+        if (this.level().isClientSide()) return;
         if (this.getTarget() instanceof Player p && WantedManager.getStars(p) <= 0) {
             this.setTarget(null);
         }
@@ -85,7 +85,7 @@ public class PoliceOfficerEntity extends PathfinderMob {
     }
 
     @Override
-    public boolean doHurtTarget(Entity target) {
+    public boolean doHurtTarget(net.minecraft.server.level.ServerLevel level, Entity target) {
         if (target instanceof ServerPlayer player && !player.isPassenger()) {
             int stars = WantedManager.getStars(player);
             if (stars > 0 && stars <= 2 && player.getHealth() <= 10.0f) {
@@ -93,7 +93,7 @@ public class PoliceOfficerEntity extends PathfinderMob {
                 return true;
             }
         }
-        return super.doHurtTarget(target);
+        return super.doHurtTarget(level, target);
     }
 
     private void bust(ServerPlayer player) {
@@ -103,7 +103,7 @@ public class PoliceOfficerEntity extends PathfinderMob {
         this.setTarget(null);
         player.setHealth(Math.max(player.getHealth(), 6.0f));
         player.playSound(SoundEvents.IRON_DOOR_CLOSE, 1.0f, 0.8f);
-        player.displayClientMessage(Component.literal("BUSTED! Fine: $" + fine).withStyle(ChatFormatting.DARK_AQUA, ChatFormatting.BOLD), true);
+        player.sendOverlayMessage(Component.literal("BUSTED! Fine: $" + fine).withStyle(ChatFormatting.DARK_AQUA, ChatFormatting.BOLD));
     }
 
     @Override

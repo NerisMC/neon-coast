@@ -8,7 +8,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.level.levelgen.Heightmap;
 
 /** Sends cops after wanted players: more stars, more cops, and police cars from 2 stars up. */
@@ -17,35 +17,35 @@ public final class PoliceSpawner {
     }
 
     static void tick(ServerPlayer player, int stars) {
-        ServerLevel world = player.serverLevel();
+        ServerLevel world = player.level();
         if (stars <= 0 || player.isCreative() || player.isSpectator()) return;
-        if (player.getServer().getTickCount() % 100 != 0) return; // every 5 seconds
+        if (player.level().getServer().getTickCount() % 100 != 0) return; // every 5 seconds
         int officers = world.getEntitiesOfClass(PoliceOfficerEntity.class, player.getBoundingBox().inflate(64.0), e -> true).size();
         int cars = world.getEntitiesOfClass(CarEntity.class, player.getBoundingBox().inflate(96.0), CarEntity::isPolice).size();
         RandomSource r = world.getRandom();
         if (officers < Math.min(2 * stars, 10)) {
             BlockPos pos = spot(world, player, r, 18, 28);
-            PoliceOfficerEntity cop = ModEntities.POLICE_OFFICER.create(world);
+            PoliceOfficerEntity cop = ModEntities.POLICE_OFFICER.create(world, EntitySpawnReason.EVENT);
             if (pos != null && cop != null) {
-                cop.moveTo(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, r.nextFloat() * 360.0f, 0.0f);
-                cop.finalizeSpawn(world, world.getCurrentDifficultyAt(pos), MobSpawnType.EVENT, null);
+                cop.snapTo(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, r.nextFloat() * 360.0f, 0.0f);
+                cop.finalizeSpawn(world, world.getCurrentDifficultyAt(pos), EntitySpawnReason.EVENT, null);
                 world.addFreshEntity(cop);
             }
         }
         if (stars >= 2 && cars < stars - 1) {
             BlockPos pos = spot(world, player, r, 40, 60);
-            CarEntity car = ModEntities.POLICE_CAR.create(world);
-            PoliceOfficerEntity driver = ModEntities.POLICE_OFFICER.create(world);
+            CarEntity car = ModEntities.POLICE_CAR.create(world, EntitySpawnReason.EVENT);
+            PoliceOfficerEntity driver = ModEntities.POLICE_OFFICER.create(world, EntitySpawnReason.EVENT);
             if (pos != null && car != null && driver != null) {
                 float yaw = (float) Math.toDegrees(Math.atan2(-(player.getX() - pos.getX()), player.getZ() - pos.getZ()));
-                car.moveTo(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, yaw, 0.0f);
+                car.snapTo(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, yaw, 0.0f);
                 car.initFresh(0);
                 if (world.noCollision(car)) {
                     world.addFreshEntity(car);
-                    driver.moveTo(car.getX(), car.getY(), car.getZ(), yaw, 0.0f);
-                    driver.finalizeSpawn(world, world.getCurrentDifficultyAt(pos), MobSpawnType.EVENT, null);
+                    driver.snapTo(car.getX(), car.getY(), car.getZ(), yaw, 0.0f);
+                    driver.finalizeSpawn(world, world.getCurrentDifficultyAt(pos), EntitySpawnReason.EVENT, null);
                     world.addFreshEntity(driver);
-                    driver.startRiding(car, true);
+                    driver.startRiding(car, true, true);
                 }
             }
         }

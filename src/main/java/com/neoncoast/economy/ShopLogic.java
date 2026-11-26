@@ -70,6 +70,6 @@ public final class ShopLogic {
     }
 
     private static void say(ServerPlayer player, String msg, ChatFormatting color) {
-        player.displayClientMessage(Component.literal(msg).withStyle(color), true);
+        player.sendOverlayMessage(Component.literal(msg).withStyle(color));
     }
 }

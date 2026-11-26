@@ -10,12 +10,12 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
 
 public final class ModItems {
-    public static final Item SEDAN_KEY = register("sedan_key", new CarKeyItem(new Item.Properties().stacksTo(1), () -> ModEntities.SEDAN));
-    public static final Item SPORTS_KEY = register("sports_car_key", new CarKeyItem(new Item.Properties().stacksTo(1), () -> ModEntities.SPORTS_CAR));
-    public static final Item POLICE_KEY = register("police_car_key", new CarKeyItem(new Item.Properties().stacksTo(1), () -> ModEntities.POLICE_CAR));
-    public static final Item REPAIR_KIT = register("repair_kit", new Item(new Item.Properties().stacksTo(16)));
-    public static final Item PACKAGE = register("package", new Item(new Item.Properties().stacksTo(16)));
-    public static final Item CITY_KIT = register("city_kit", new CityKitItem(new Item.Properties().stacksTo(16)));
+    public static final Item SEDAN_KEY = register("sedan_key", p -> new CarKeyItem(p, () -> ModEntities.SEDAN), new Item.Properties().stacksTo(1));
+    public static final Item SPORTS_KEY = register("sports_car_key", p -> new CarKeyItem(p, () -> ModEntities.SPORTS_CAR), new Item.Properties().stacksTo(1));
+    public static final Item POLICE_KEY = register("police_car_key", p -> new CarKeyItem(p, () -> ModEntities.POLICE_CAR), new Item.Properties().stacksTo(1));
+    public static final Item REPAIR_KIT = register("repair_kit", Item::new, new Item.Properties().stacksTo(16));
+    public static final Item PACKAGE = register("package", Item::new, new Item.Properties().stacksTo(16));
+    public static final Item CITY_KIT = register("city_kit", CityKitItem::new, new Item.Properties().stacksTo(16));
 
     private ModItems() {
     }
@@ -26,8 +26,9 @@ public final class ModItems {
         return SEDAN_KEY;
     }
 
-    private static Item register(String name, Item item) {
-        return Registry.register(BuiltInRegistries.ITEM, NeonCoast.id(name), item);
+    public static <T extends Item> T register(String name, java.util.function.Function<Item.Properties, T> factory, Item.Properties props) {
+        net.minecraft.resources.ResourceKey<Item> key = net.minecraft.resources.ResourceKey.create(net.minecraft.core.registries.Registries.ITEM, NeonCoast.id(name));
+        return Registry.register(BuiltInRegistries.ITEM, key, factory.apply(props.setId(key)));
     }
 
     public static void init() {

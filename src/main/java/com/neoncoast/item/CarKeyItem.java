@@ -22,10 +22,10 @@ public class CarKeyItem extends Item {
     public InteractionResult useOn(UseOnContext context) {
         if (!(context.getLevel() instanceof ServerLevel world)) return InteractionResult.SUCCESS;
         BlockPos pos = context.getClickedPos().relative(context.getClickedFace());
-        CarEntity car = type.get().create(world);
+        CarEntity car = type.get().create(world, net.minecraft.world.entity.EntitySpawnReason.SPAWN_ITEM_USE);
         if (car == null) return InteractionResult.FAIL;
         float yaw = context.getRotation();
-        car.moveTo(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, yaw, 0.0f);
+        car.snapTo(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, yaw, 0.0f);
         car.setYHeadRot(yaw);
         car.setYBodyRot(yaw);
         car.initFresh(world.getRandom().nextInt(CarEntity.COLORS.length));

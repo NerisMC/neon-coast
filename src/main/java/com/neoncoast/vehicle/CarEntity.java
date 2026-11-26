@@ -14,7 +14,10 @@ import java.util.function.Consumer;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.core.UUIDUtil;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -152,21 +155,21 @@ public class CarEntity extends Mob implements PlayerRideableJumping {
     }
 
     @Override
-    public void addAdditionalSaveData(CompoundTag nbt) {
+    public void addAdditionalSaveData(ValueOutput nbt) {
         super.addAdditionalSaveData(nbt);
         nbt.putInt("Variant", getVariant());
         nbt.putFloat("CarHealth", getCarHealth());
         nbt.putBoolean("Civilian", civilian);
-        if (owner != null) nbt.putUUID("Owner", owner);
+        nbt.storeNullable("Owner", UUIDUtil.CODEC, owner);
     }
 
     @Override
-    public void readAdditionalSaveData(CompoundTag nbt) {
+    public void readAdditionalSaveData(ValueInput nbt) {
         super.readAdditionalSaveData(nbt);
-        setVariant(nbt.getInt("Variant"));
-        if (nbt.contains("CarHealth")) setCarHealth(nbt.getFloat("CarHealth"));
-        civilian = nbt.getBoolean("Civilian");
-        if (nbt.hasUUID("Owner")) owner = nbt.getUUID("Owner");
+        setVariant(nbt.getIntOr("Variant", 0));
+        setCarHealth(nbt.getFloatOr("CarHealth", getCarType().maxHealth()));
+        civilian = nbt.getBooleanOr("Civilian", false);
+        owner = nbt.read("Owner", UUIDUtil.CODEC).orElse(null);
     }
 
     // ------------------------------------------------------------------ interaction
@@ -175,18 +178,18 @@ public class CarEntity extends Mob implements PlayerRideableJumping {
     public InteractionResult mobInteract(Player player, InteractionHand hand) {
         ItemStack held = player.getItemInHand(hand);
         if (held.is(ModItems.REPAIR_KIT)) {
-            if (!this.level().isClientSide) {
+            if (!this.level().isClientSide()) {
                 setCarHealth(getCarType().maxHealth());
                 held.consume(1, player);
                 this.playSound(SoundEvents.ANVIL_USE, 0.6f, 1.4f);
-                player.displayClientMessage(Component.literal("Car repaired").withStyle(ChatFormatting.GREEN), true);
+                player.sendOverlayMessage(Component.literal("Car repaired").withStyle(ChatFormatting.GREEN));
             }
-            return InteractionResult.sidedSuccess(this.level().isClientSide);
+            return InteractionResult.SUCCESS;
         }
         if (player.isSecondaryUseActive() || this.isVehicle()) {
             return InteractionResult.PASS;
         }
-        if (!this.level().isClientSide && player instanceof ServerPlayer sp) {
+        if (!this.level().isClientSide() && player instanceof ServerPlayer sp) {
             boolean mine = owner != null && owner.equals(player.getUUID());
             if (!mine) {
                 if (isPolice()) {
@@ -199,7 +202,7 @@ public class CarEntity extends Mob implements PlayerRideableJumping {
             }
             player.startRiding(this);
         }
-        return InteractionResult.sidedSuccess(this.level().isClientSide);
+        return InteractionResult.SUCCESS;
     }
 
     @Nullable
@@ -209,9 +212,9 @@ public class CarEntity extends Mob implements PlayerRideableJumping {
     }
 
     @Override
-    public boolean hurt(DamageSource source, float amount) {
-        if (this.level().isClientSide || this.isRemoved()) return false;
-        if (source.is(DamageTypeTags.BYPASSES_INVULNERABILITY)) return super.hurt(source, amount);
+    public boolean hurtServer(ServerLevel serverLevel, DamageSource source, float amount) {
+        if (this.isRemoved()) return false;
+        if (source.is(DamageTypeTags.BYPASSES_INVULNERABILITY)) return super.hurtServer(serverLevel, source, amount);
         Entity attacker = source.getEntity();
         if (attacker instanceof Player player) {
             if (this.hasPassenger(player)) return false;
@@ -222,7 +225,7 @@ public class CarEntity extends Mob implements PlayerRideableJumping {
             boolean mine = owner != null && owner.equals(player.getUUID());
             if (mine && player.isShiftKeyDown()) {
                 // owners can pocket their car back into a key
-                this.spawnAtLocation(new ItemStack(ModItems.keyFor(this.getType())));
+                this.spawnAtLocation(serverLevel, new ItemStack(ModItems.keyFor(this.getType())));
                 this.discard();
                 return true;
             }
@@ -248,15 +251,15 @@ public class CarEntity extends Mob implements PlayerRideableJumping {
     }
 
     private void explode() {
-        if (this.level().isClientSide || this.isRemoved()) return;
+        if (this.level().isClientSide() || this.isRemoved()) return;
         this.ejectPassengers();
         this.level().explode(this, getX(), getY() + 0.5, getZ(), 2.5f, Level.ExplosionInteraction.NONE);
         this.discard();
     }
 
     @Override
-    public boolean causeFallDamage(float fallDistance, float damageMultiplier, DamageSource damageSource) {
-        if (fallDistance > 4.0f && !this.level().isClientSide) damageCar((fallDistance - 4.0f) * 4.0f);
+    public boolean causeFallDamage(double fallDistance, float damageMultiplier, DamageSource damageSource) {
+        if (fallDistance > 4.0f && !this.level().isClientSide()) damageCar((float) (fallDistance - 4.0) * 4.0f);
         return false;
     }
 
@@ -276,7 +279,7 @@ public class CarEntity extends Mob implements PlayerRideableJumping {
     }
 
     @Override
-    public boolean startRiding(Entity entity, boolean force) {
+    public boolean startRiding(Entity entity, boolean force, boolean sendEvent) {
         return false;
     }
 
@@ -336,7 +339,7 @@ public class CarEntity extends Mob implements PlayerRideableJumping {
     @Override
     protected void tickRidden(Player rider, Vec3 movementInput) {
         super.tickRidden(rider, movementInput);
-        if (!this.isControlledByLocalInstance()) return;
+        if (!this.isLocalInstanceAuthoritative()) return;
         float fwd = rider.zza > 0.01f ? 1.0f : rider.zza < -0.01f ? -1.0f : 0.0f;
         float side = rider.xxa > 0.01f ? 1.0f : rider.xxa < -0.01f ? -1.0f : 0.0f;
         float dYaw = simulate(fwd, side, true);
@@ -359,7 +362,7 @@ public class CarEntity extends Mob implements PlayerRideableJumping {
         // crash into something solid
         if (this.horizontalCollision && lastSpeed > 0.45f && moved < lastSpeed * 0.4f) {
             float impact = lastSpeed;
-            if (reportCrashes && crashCooldown == 0 && this.level().isClientSide) {
+            if (reportCrashes && crashCooldown == 0 && this.level().isClientSide()) {
                 crashCooldown = 20;
                 crashSender.accept(impact);
             }
@@ -438,7 +441,7 @@ public class CarEntity extends Mob implements PlayerRideableJumping {
     /** Police AI and any other server-driven movement. */
     @Override
     public void travel(Vec3 movementInput) {
-        if (!this.level().isClientSide && !this.hasControllingPassenger() && isPolice()) {
+        if (!this.level().isClientSide() && !this.hasControllingPassenger() && isPolice()) {
             float[] input = policeDriver();
             simulate(input[0], input[1], false);
             super.travel(Vec3.ZERO);
@@ -498,8 +501,8 @@ public class CarEntity extends Mob implements PlayerRideableJumping {
         super.tick();
         this.setYBodyRot(this.getYRot());
         this.setYHeadRot(this.getYRot());
-        if (this.level().isClientSide) {
-            controlledLocally = this.isControlledByLocalInstance() && this.hasControllingPassenger();
+        if (this.level().isClientSide()) {
+            controlledLocally = this.isLocalInstanceAuthoritative() && this.hasControllingPassenger();
             clientTick();
         } else {
             serverTick();
@@ -560,7 +563,7 @@ public class CarEntity extends Mob implements PlayerRideableJumping {
     }
 
     private void serverTick() {
-        this.fallDistance = 0.0f;
+        this.fallDistance = 0.0;
         double mx = getX() - serverLastX, mz = getZ() - serverLastZ;
         double moved = this.tickCount > 2 ? Math.min(3.0, Math.sqrt(mx * mx + mz * mz)) : 0.0;
         serverLastX = getX();

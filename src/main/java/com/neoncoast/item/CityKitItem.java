@@ -25,7 +25,7 @@ public class CityKitItem extends Item {
             }
         }
         if (context.getPlayer() != null) {
-            context.getPlayer().displayClientMessage(Component.literal("City built!").withStyle(ChatFormatting.GREEN, ChatFormatting.BOLD), true);
+            context.getPlayer().sendOverlayMessage(Component.literal("City built!").withStyle(ChatFormatting.GREEN, ChatFormatting.BOLD));
         }
         context.getItemInHand().consume(1, context.getPlayer());
         return InteractionResult.CONSUME;

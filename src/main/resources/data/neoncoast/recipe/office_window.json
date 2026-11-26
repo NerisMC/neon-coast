@@ -7,12 +7,8 @@
     "GIG"
   ],
   "key": {
-    "G": {
-      "item": "minecraft:glass"
-    },
-    "I": {
-      "item": "minecraft:iron_nugget"
-    }
+    "G": "minecraft:glass",
+    "I": "minecraft:iron_nugget"
   },
   "result": {
     "id": "neoncoast:office_window",

@@ -6,12 +6,8 @@
     "Y"
   ],
   "key": {
-    "A": {
-      "item": "neoncoast:asphalt"
-    },
-    "Y": {
-      "item": "minecraft:yellow_dye"
-    }
+    "A": "neoncoast:asphalt",
+    "Y": "minecraft:yellow_dye"
   },
   "result": {
     "id": "neoncoast:road_line",

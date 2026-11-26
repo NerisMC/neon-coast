@@ -7,15 +7,9 @@
     "GDG"
   ],
   "key": {
-    "G": {
-      "item": "minecraft:glass"
-    },
-    "D": {
-      "item": "minecraft:blue_dye"
-    },
-    "S": {
-      "item": "minecraft:glowstone"
-    }
+    "G": "minecraft:glass",
+    "D": "minecraft:blue_dye",
+    "S": "minecraft:glowstone"
   },
   "result": {
     "id": "neoncoast:neon_blue",

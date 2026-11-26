@@ -9,7 +9,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.npc.Villager;
+import net.minecraft.world.entity.npc.villager.Villager;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -191,9 +191,9 @@ public final class CityGenerator {
                 building(world, x0 + 2, y, z0 + 2, size - 4, size - 4, 8, ModBlocks.CONCRETE_PANEL.defaultBlockState(),
                         window, random, m);
                 for (int dx = 3; dx < size - 3; dx++) set(world, m.set(x0 + dx, y + 7, z0 + 1), ModBlocks.NEON[1].defaultBlockState());
-                CarEntity cruiser = ModEntities.POLICE_CAR.create(world.getLevel());
+                CarEntity cruiser = ModEntities.POLICE_CAR.create(world.getLevel(), net.minecraft.world.entity.EntitySpawnReason.STRUCTURE);
                 if (cruiser != null) {
-                    cruiser.moveTo(x0 + size / 2.0, y + 1, z0 - 1.5, 90.0f, 0.0f);
+                    cruiser.snapTo(x0 + size / 2.0, y + 1, z0 - 1.5, 90.0f, 0.0f);
                     cruiser.initFresh(0);
                     world.addFreshEntityWithPassengers(cruiser);
                 }
@@ -284,9 +284,9 @@ public final class CityGenerator {
             }
             if (x < x0 + 1 || x > x0 + SIZE - 2 || z < z0 + 1 || z > z0 + SIZE - 2) continue;
             EntityType<CarEntity> type = random.nextInt(4) == 0 ? ModEntities.SPORTS_CAR : ModEntities.SEDAN;
-            CarEntity car = type.create(world.getLevel());
+            CarEntity car = type.create(world.getLevel(), net.minecraft.world.entity.EntitySpawnReason.STRUCTURE);
             if (car == null) continue;
-            car.moveTo(x, y + 1, z, yaw, 0.0f);
+            car.snapTo(x, y + 1, z, yaw, 0.0f);
             car.setYHeadRot(yaw);
             car.setYBodyRot(yaw);
             car.initFresh(random.nextInt(CarEntity.COLORS.length));
@@ -297,12 +297,12 @@ public final class CityGenerator {
         int blockX = Math.floorDiv(x0 + OFF, PITCH) * PITCH - OFF;
         int blockZ = Math.floorDiv(z0 + OFF, PITCH) * PITCH - OFF;
         for (int p = 0; p < people; p++) {
-            Villager citizen = EntityType.VILLAGER.create(world.getLevel());
+            Villager citizen = EntityType.VILLAGER.create(world.getLevel(), net.minecraft.world.entity.EntitySpawnReason.STRUCTURE);
             if (citizen == null) continue;
             double px = blockX + PITCH * random.nextInt(2) + ROAD + 1 + random.nextInt(PITCH - ROAD - 2) + 0.5;
             double pz = blockZ + PITCH * random.nextInt(2) + ROAD + 0.5;
             if (px < x0 + 1 || px > x0 + SIZE - 1 || pz < z0 + 1 || pz > z0 + SIZE - 1) continue;
-            citizen.moveTo(px, y + 1, pz, random.nextFloat() * 360.0f, 0.0f);
+            citizen.snapTo(px, y + 1, pz, random.nextFloat() * 360.0f, 0.0f);
             citizen.setPersistenceRequired();
             world.addFreshEntityWithPassengers(citizen);
         }

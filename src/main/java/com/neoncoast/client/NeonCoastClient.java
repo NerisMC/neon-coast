@@ -9,32 +9,28 @@ import com.neoncoast.registry.ModEntities;
 import com.neoncoast.vehicle.CarEntity;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
-import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
+import net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
-import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
+import net.fabricmc.fabric.api.client.rendering.v1.hud.HudElementRegistry;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.RenderType;
 import com.neoncoast.registry.ModBlocks;
-import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 
 public class NeonCoastClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
-        EntityModelLayerRegistry.registerModelLayer(SedanModel.LAYER, SedanModel::getTexturedModelData);
-        EntityModelLayerRegistry.registerModelLayer(SportsCarModel.LAYER, SportsCarModel::getTexturedModelData);
-        EntityModelLayerRegistry.registerModelLayer(PoliceCarModel.LAYER, PoliceCarModel::getTexturedModelData);
+        ModelLayerRegistry.registerModelLayer(SedanModel.LAYER, SedanModel::getTexturedModelData);
+        ModelLayerRegistry.registerModelLayer(SportsCarModel.LAYER, SportsCarModel::getTexturedModelData);
+        ModelLayerRegistry.registerModelLayer(PoliceCarModel.LAYER, PoliceCarModel::getTexturedModelData);
 
-        EntityRendererRegistry.<CarEntity>register(ModEntities.SEDAN,
-                ctx -> new CarRenderer<>(ctx, new SedanModel(ctx.bakeLayer(SedanModel.LAYER)), "sedan", false));
-        EntityRendererRegistry.<CarEntity>register(ModEntities.SPORTS_CAR,
-                ctx -> new CarRenderer<>(ctx, new SportsCarModel(ctx.bakeLayer(SportsCarModel.LAYER)), "sports_car", false));
-        EntityRendererRegistry.<CarEntity>register(ModEntities.POLICE_CAR,
-                ctx -> new CarRenderer<>(ctx, new PoliceCarModel(ctx.bakeLayer(PoliceCarModel.LAYER)), "police_car", true));
+        EntityRendererRegistry.register(ModEntities.SEDAN,
+                ctx -> new CarRenderer(ctx, new SedanModel(ctx.bakeLayer(SedanModel.LAYER)), "sedan", false));
+        EntityRendererRegistry.register(ModEntities.SPORTS_CAR,
+                ctx -> new CarRenderer(ctx, new SportsCarModel(ctx.bakeLayer(SportsCarModel.LAYER)), "sports_car", false));
+        EntityRendererRegistry.register(ModEntities.POLICE_CAR,
+                ctx -> new CarRenderer(ctx, new PoliceCarModel(ctx.bakeLayer(PoliceCarModel.LAYER)), "police_car", true));
         EntityRendererRegistry.register(ModEntities.POLICE_OFFICER, PoliceRenderer::new);
 
-        HudRenderCallback.EVENT.register(Hud::render);
-        BlockRenderLayerMap.INSTANCE.putBlocks(RenderType.translucent(), ModBlocks.OFFICE_WINDOW, ModBlocks.GLASS_CURTAIN_WALL);
-        BlockRenderLayerMap.INSTANCE.putBlocks(RenderType.cutout(), ModBlocks.TRAFFIC_LIGHT, ModBlocks.BENCH, ModBlocks.FIRE_HYDRANT);
+        HudElementRegistry.addLast(com.neoncoast.NeonCoast.id("hud"), Hud::render);
 
         ClientPlayNetworking.registerGlobalReceiver(WantedSyncPayload.ID, (payload, context) -> {
             ClientState.stars = payload.stars();

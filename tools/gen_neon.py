@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 """Generates Neon Coast car models (Java), all textures, sounds and JSON data."""
+import os
+# Since 2.0.0 (Minecraft 26.1.2) the Java model classes are maintained by hand;
+# the templates here are the old 1.21.1 versions and only the textures/JSON are still generated.
+WRITE_JAVA = False
 import json, math, os, random, subprocess, sys
 import numpy as np
 from PIL import Image
@@ -326,7 +330,7 @@ def gen_model(model, colors, police=False):
                      f"                ModelTransform.of({f(pivot[0])}, {f(pivot[1])}, {f(pivot[2])}, {f(pivot[3])}, 0.0f, 0.0f));")
     src = (MODEL_TEMPLATE.replace("CLS", model["class"]).replace("LAYERNAME", model["layer"])
            .replace("PARTS", "\n".join(lines)).replace("TW", str(tw)).replace("TH", str(th)))
-    open(mk(f"{J}/{model['class']}.java"), "w").write(src)
+    (open(os.devnull, "w") if not WRITE_JAVA else open(mk(f"{J}/{model['class']}.java"), "w")).write(src)
 
 
 # ------------------------------------------------------------------ police officer skin (64x64 player layout)

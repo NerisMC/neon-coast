@@ -1,8 +1,6 @@
 {
   "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "neoncoast:asphalt"
-  },
+  "ingredient": "neoncoast:asphalt",
   "result": {
     "id": "neoncoast:manhole",
     "count": 1

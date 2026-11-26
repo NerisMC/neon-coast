@@ -1,31 +1,35 @@
 package com.neoncoast.economy;
 
+import com.mojang.serialization.Codec;
+import com.neoncoast.NeonCoast;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
-import net.minecraft.core.HolderLookup;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.saveddata.SavedData;
+import net.minecraft.world.level.saveddata.SavedDataType;
 
 /** Everyone's bank balance, saved with the world. */
 public class MoneyState extends SavedData {
-    public static final SavedData.Factory<MoneyState> TYPE = new SavedData.Factory<>(MoneyState::new, MoneyState::fromNbt, null);
+    private static final Codec<MoneyState> CODEC = Codec.unboundedMap(Codec.STRING, Codec.LONG).fieldOf("Balances").codec()
+            .xmap(MoneyState::fromMap, MoneyState::toMap);
+    public static final SavedDataType<MoneyState> TYPE = new SavedDataType<>(NeonCoast.id("money"), MoneyState::new, CODEC, null);
+
     final Map<UUID, Long> balances = new HashMap<>();
 
-    public static MoneyState fromNbt(CompoundTag nbt, HolderLookup.Provider lookup) {
+    private static MoneyState fromMap(Map<String, Long> map) {
         MoneyState state = new MoneyState();
-        CompoundTag b = nbt.getCompound("Balances");
-        for (String key : b.getAllKeys()) {
-            state.balances.put(UUID.fromString(key), b.getLong(key));
-        }
+        map.forEach((key, amount) -> {
+            try {
+                state.balances.put(UUID.fromString(key), amount);
+            } catch (IllegalArgumentException ignored) {
+            }
+        });
         return state;
     }
 
-    @Override
-    public CompoundTag save(CompoundTag nbt, HolderLookup.Provider lookup) {
-        CompoundTag b = new CompoundTag();
-        balances.forEach((uuid, amount) -> b.putLong(uuid.toString(), amount));
-        nbt.put("Balances", b);
-        return nbt;
+    private Map<String, Long> toMap() {
+        Map<String, Long> map = new HashMap<>();
+        balances.forEach((uuid, amount) -> map.put(uuid.toString(), amount));
+        return map;
     }
 }

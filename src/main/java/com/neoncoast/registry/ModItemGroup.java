@@ -1,7 +1,7 @@
 package com.neoncoast.registry;
 
 import com.neoncoast.NeonCoast;
-import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
+import net.fabricmc.fabric.api.creativetab.v1.FabricCreativeModeTab;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
@@ -10,7 +10,7 @@ import net.minecraft.world.item.ItemStack;
 
 public final class ModItemGroup {
     public static final CreativeModeTab MAIN = Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, NeonCoast.id("main"),
-            FabricItemGroup.builder()
+            FabricCreativeModeTab.builder()
                     .icon(() -> new ItemStack(ModItems.SPORTS_KEY))
                     .title(Component.translatable("itemGroup." + NeonCoast.MOD_ID))
                     .displayItems((context, entries) -> {

@@ -30,7 +30,7 @@ public final class Jobs {
     public static void takeJob(ServerPlayer player) {
         Job current = ACTIVE.get(player.getUUID());
         if (current != null) {
-            player.displayClientMessage(Component.literal("You already have a delivery: " + describe(player, current.target)).withStyle(ChatFormatting.YELLOW), false);
+            player.sendSystemMessage(Component.literal("You already have a delivery: " + describe(player, current.target)).withStyle(ChatFormatting.YELLOW));
             return;
         }
         ServerLevel world = player.serverLevel();
@@ -44,7 +44,7 @@ public final class Jobs {
         ACTIVE.put(player.getUUID(), new Job(target, pay));
         ItemStack box = new ItemStack(ModItems.PACKAGE);
         if (!player.getInventory().add(box)) player.drop(box, false);
-        player.displayClientMessage(Component.literal("Delivery job: take the package to " + x + ", " + z + " ($" + pay + ")").withStyle(ChatFormatting.GOLD, ChatFormatting.BOLD), false);
+        player.sendSystemMessage(Component.literal("Delivery job: take the package to " + x + ", " + z + " ($" + pay + ")").withStyle(ChatFormatting.GOLD, ChatFormatting.BOLD));
         sync(player);
     }
 
@@ -57,12 +57,12 @@ public final class Jobs {
             if (dx * dx + dz * dz > 6 * 6) continue;
             int slot = player.getInventory().findSlotMatchingItem(new ItemStack(ModItems.PACKAGE));
             if (slot < 0) {
-                player.displayClientMessage(Component.literal("You lost the package! Job cancelled.").withStyle(ChatFormatting.RED), true);
+                player.sendOverlayMessage(Component.literal("You lost the package! Job cancelled.").withStyle(ChatFormatting.RED));
             } else {
                 player.getInventory().getItem(slot).shrink(1);
                 Money.add(player, job.pay);
                 player.playSound(SoundEvents.PLAYER_LEVELUP, 0.8f, 1.2f);
-                player.displayClientMessage(Component.literal("Delivered! +$" + job.pay).withStyle(ChatFormatting.GREEN, ChatFormatting.BOLD), true);
+                player.sendOverlayMessage(Component.literal("Delivered! +$" + job.pay).withStyle(ChatFormatting.GREEN, ChatFormatting.BOLD));
             }
             ACTIVE.remove(player.getUUID());
             sync(player);

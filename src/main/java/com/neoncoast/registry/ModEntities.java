@@ -18,7 +18,11 @@ public final class ModEntities {
     public static final EntityType<CarEntity> POLICE_CAR = car("police_car", new Vec3(0.4, 0.25, 0.15));
     public static final EntityType<PoliceOfficerEntity> POLICE_OFFICER = Registry.register(BuiltInRegistries.ENTITY_TYPE, NeonCoast.id("police_officer"),
             EntityType.Builder.of(PoliceOfficerEntity::new, MobCategory.MISC)
-                    .sized(0.6f, 1.95f).eyeHeight(1.62f).clientTrackingRange(10).build("police_officer"));
+                    .sized(0.6f, 1.95f).eyeHeight(1.62f).clientTrackingRange(10).build(key("police_officer")));
+
+    private static net.minecraft.resources.ResourceKey<EntityType<?>> key(String name) {
+        return net.minecraft.resources.ResourceKey.create(net.minecraft.core.registries.Registries.ENTITY_TYPE, NeonCoast.id(name));
+    }
 
     private ModEntities() {
     }
@@ -27,7 +31,7 @@ public final class ModEntities {
         return Registry.register(BuiltInRegistries.ENTITY_TYPE, NeonCoast.id(name),
                 EntityType.Builder.of(CarEntity::new, MobCategory.MISC)
                         .sized(1.9f, 1.5f).passengerAttachments(seat)
-                        .clientTrackingRange(12).updateInterval(2).build(name));
+                        .clientTrackingRange(12).updateInterval(2).build(key(name)));
     }
 
     public static CarType carTypeOf(EntityType<?> type) {

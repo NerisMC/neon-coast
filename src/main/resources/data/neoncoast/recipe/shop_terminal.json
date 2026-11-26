@@ -7,15 +7,9 @@
     "IEI"
   ],
   "key": {
-    "I": {
-      "item": "minecraft:iron_ingot"
-    },
-    "G": {
-      "item": "minecraft:glass_pane"
-    },
-    "E": {
-      "item": "minecraft:emerald"
-    }
+    "I": "minecraft:iron_ingot",
+    "G": "minecraft:glass_pane",
+    "E": "minecraft:emerald"
   },
   "result": {
     "id": "neoncoast:shop_terminal",

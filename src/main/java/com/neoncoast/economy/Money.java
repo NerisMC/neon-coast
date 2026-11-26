@@ -11,7 +11,7 @@ public final class Money {
     }
 
     private static MoneyState state(ServerPlayer player) {
-        return player.getServer().overworld().getDataStorage().computeIfAbsent(MoneyState.TYPE, "neoncoast_money");
+        return player.level().getServer().overworld().getDataStorage().computeIfAbsent(MoneyState.TYPE);
     }
 
     public static long get(ServerPlayer player) {

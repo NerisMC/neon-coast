@@ -9,7 +9,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.npc.Villager;
+import net.minecraft.world.entity.npc.villager.Villager;
 import net.minecraft.world.phys.AABB;
 
 /** Turns things you do into wanted stars. */
@@ -19,7 +19,7 @@ public final class CrimeHooks {
 
     public static void register() {
         AttackEntityCallback.EVENT.register((player, world, hand, entity, hit) -> {
-            if (!world.isClientSide && player instanceof ServerPlayer sp && !sp.isCreative()) {
+            if (!world.isClientSide() && player instanceof ServerPlayer sp && !sp.isCreative()) {
                 if (entity instanceof PoliceOfficerEntity) crime(sp, 2, "Assaulting an officer");
                 else if (entity instanceof Villager) witnessedCrime(sp, 1, "Assault");
             }
@@ -31,7 +31,7 @@ public final class CrimeHooks {
                 WantedManager.clear(dead);
                 long bill = Math.min(1000, Math.max(50, com.neoncoast.economy.Money.get(dead) / 10));
                 com.neoncoast.economy.Money.add(dead, -bill);
-                dead.displayClientMessage(Component.literal("Hospital bill: $" + bill + (stars > 0 ? " (wanted level cleared)" : "")).withStyle(ChatFormatting.RED), false);
+                dead.sendSystemMessage(Component.literal("Hospital bill: $" + bill + (stars > 0 ? " (wanted level cleared)" : "")).withStyle(ChatFormatting.RED));
                 return;
             }
             if (source.getEntity() instanceof ServerPlayer killer && !killer.isCreative()) {
@@ -49,8 +49,8 @@ public final class CrimeHooks {
     public static void crime(ServerPlayer player, int stars, String what) {
         if (player.isCreative()) return;
         WantedManager.addStars(player, stars);
-        player.displayClientMessage(Component.literal(what + "! Wanted level: " + WantedManager.getStars(player))
-                .withStyle(ChatFormatting.RED, ChatFormatting.BOLD), true);
+        player.sendOverlayMessage(Component.literal(what + "! Wanted level: " + WantedManager.getStars(player))
+                .withStyle(ChatFormatting.RED, ChatFormatting.BOLD));
     }
 
     /** A crime that only counts if a cop or a citizen saw it. */
